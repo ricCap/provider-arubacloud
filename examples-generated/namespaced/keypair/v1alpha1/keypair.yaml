@@ -1,0 +1,20 @@
+apiVersion: keypair.arubacloud.m.crossplane.io/v1alpha1
+kind: Keypair
+metadata:
+  annotations:
+    meta.upbound.io/example-id: keypair/v1alpha1/keypair
+  labels:
+    testing.upbound.io/example-name: basic
+  name: basic
+  namespace: crossplane-system
+spec:
+  forProvider:
+    location: ITBG-Bergamo
+    name: example-keypair
+    projectId: your-project-id
+    tags:
+    - compute
+    - test
+    valueSecretRef:
+      key: example-key
+      name: example-secret

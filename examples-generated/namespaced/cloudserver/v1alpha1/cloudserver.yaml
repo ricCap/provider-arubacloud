@@ -1,0 +1,30 @@
+apiVersion: cloudserver.arubacloud.m.crossplane.io/v1alpha1
+kind: Cloudserver
+metadata:
+  annotations:
+    meta.upbound.io/example-id: cloudserver/v1alpha1/cloudserver
+  labels:
+    testing.upbound.io/example-name: basic
+  name: basic
+  namespace: crossplane-system
+spec:
+  forProvider:
+    location: ITBG-Bergamo
+    name: example-cloudserver
+    network:
+      elasticIpUriRef: ${arubacloud_elasticip.example.uri}
+      securitygroupUriRefs:
+      - ${arubacloud_securitygroup.example.uri}
+      subnetUriRefs:
+      - ${arubacloud_subnet.example.uri}
+      vpcUriRef: ${arubacloud_vpc.example.uri}
+    projectId: ${arubacloud_project.example.id}
+    settings:
+      flavorName: CSO4A8
+      keyPairUriRef: ${arubacloud_keypair.example.uri}
+    storage:
+      bootVolumeUriRef: ${arubacloud_blockstorage.example.uri}
+    tags:
+    - compute
+    - example
+    zone: ITBG-1

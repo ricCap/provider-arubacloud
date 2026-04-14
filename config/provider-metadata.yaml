@@ -1,40 +1,837 @@
-name: hashicorp/null
+name: arubacloud/arubacloud
 resources:
-    null_resource:
-        subCategory: ""
-        description: The null_resource resource implements the standard resource lifecycle but takes no further action. On Terraform 1.4 and later, use the terraform_data resource type https://developer.hashicorp.com/terraform/language/resources/terraform-data instead. Terraform 1.9 and later support the moved configuration block from null_resource to terraform_data. The triggers argument allows specifying an arbitrary set of values that, when changed, will cause the resource to be replaced.
-        name: null_resource
-        title: null_resource Resource - terraform-provider-null
+    arubacloud_backup:
+        subCategory: Storage
+        description: Manages an ArubaCloud Storage Backup.
+        name: arubacloud_backup
+        title: arubacloud_backup
         examples:
-            - name: cluster
+            - name: basic
               manifest: |-
                 {
-                  "connection": [
+                  "billing_period": "monthly",
+                  "location": "de-1",
+                  "name": "example-backup",
+                  "project_id": "project-123",
+                  "retention_days": 30,
+                  "tags": [
+                    "env:dev",
+                    "service:demo"
+                  ],
+                  "type": "full",
+                  "volume_id": "volume-123"
+                }
+        argumentDocs:
+            billing_period: (String) Billing period (Hour, Month, Year)
+            id: (String) Backup identifier
+            location: (String) Backup location
+            name: (String) Backup name
+            project_id: (String) ID of the project this backup belongs to
+            retention_days: (Number) Retention days for the backup
+            tags: (List of String) List of tags for the backup resource
+            type: (String) Type of backup (Full, Incremental)
+            uri: (String) Backup URI
+            volume_id: (String) Volume ID for the backup
+        importStatements:
+            - terraform import arubacloud_backup.example <backup_id>
+    arubacloud_blockstorage:
+        subCategory: Storage
+        description: Manages an ArubaCloud Block Storage.
+        name: arubacloud_blockstorage
+        title: arubacloud_blockstorage
+        examples:
+            - name: zonal_example
+              manifest: |-
+                {
+                  "billing_period": "Hour",
+                  "location": "ITBG-Bergamo",
+                  "name": "zonal-blockstorage",
+                  "project_id": "your-project-id",
+                  "size_gb": 100,
+                  "tags": [
+                    "storage",
+                    "zonal",
+                    "test"
+                  ],
+                  "type": "Standard",
+                  "zone": "ITBG-1"
+                }
+            - name: regional_example
+              manifest: |-
+                {
+                  "billing_period": "Hour",
+                  "location": "ITBG-Bergamo",
+                  "name": "regional-blockstorage",
+                  "project_id": "your-project-id",
+                  "size_gb": 100,
+                  "tags": [
+                    "storage",
+                    "regional",
+                    "test"
+                  ],
+                  "type": "Standard"
+                }
+        argumentDocs:
+            billing_period: (String) Billing period (Hour, Month, Year)
+            bootable: (Boolean) Whether the block storage is bootable. Must be set to true along with image to create a bootable disk.
+            id: (String) Block Storage identifier
+            image: (String) Image ID for bootable block storage. Required when bootable is true. See available images for a list of supported image IDs.
+            location: (String) Block Storage location/region
+            name: (String) Block Storage name
+            project_id: (String) ID of the project this Block Storage belongs to
+            size_gb: (Number) Size of the block storage in GB
+            tags: (List of String) List of tags for the block storage
+            type: (String) Type of block storage (Standard, Performance)
+            uri: (String) Block Storage URI
+            zone: (String) Zone where blockstorage will be created. If not specified, the block storage will be regional (available across all zones in the location). If specified, the block storage will be zonal (tied to a specific zone).
+        importStatements:
+            - terraform import arubacloud_blockstorage.example <blockstorage_id>
+    arubacloud_cloudserver:
+        subCategory: Compute
+        description: Manages an ArubaCloud CloudServer.
+        name: arubacloud_cloudserver
+        title: arubacloud_cloudserver
+        examples:
+            - name: basic
+              manifest: |-
+                {
+                  "location": "ITBG-Bergamo",
+                  "name": "example-cloudserver",
+                  "network": {
+                    "elastic_ip_uri_ref": "${arubacloud_elasticip.example.uri}",
+                    "securitygroup_uri_refs": [
+                      "${arubacloud_securitygroup.example.uri}"
+                    ],
+                    "subnet_uri_refs": [
+                      "${arubacloud_subnet.example.uri}"
+                    ],
+                    "vpc_uri_ref": "${arubacloud_vpc.example.uri}"
+                  },
+                  "project_id": "${arubacloud_project.example.id}",
+                  "settings": {
+                    "flavor_name": "CSO4A8",
+                    "key_pair_uri_ref": "${arubacloud_keypair.example.uri}"
+                  },
+                  "storage": {
+                    "boot_volume_uri_ref": "${arubacloud_blockstorage.example.uri}"
+                  },
+                  "tags": [
+                    "compute",
+                    "example"
+                  ],
+                  "zone": "ITBG-1"
+                }
+              references:
+                project_id: arubacloud_project.example.id
+        argumentDocs:
+            boot_volume_uri_ref: (String) Boot volume URI reference (e.g., arubacloud_blockstorage.example.uri)
+            elastic_ip_uri_ref: (String) Elastic IP URI reference (e.g., arubacloud_elasticip.example.uri)
+            flavor_name: (String) Flavor name (e.g., CSO4A8 for 4 CPU, 8GB RAM). See https://api.arubacloud.com/docs/metadata/#cloudserver-flavors
+            id: (String) CloudServer identifier
+            key_pair_uri_ref: (String) Key Pair URI reference (e.g., arubacloud_keypair.example.uri)
+            location: (String) CloudServer location
+            name: (String) CloudServer name
+            network: (Attributes) Network configuration for the cloud server (see below for nested schema)
+            project_id: (String) Project ID
+            securitygroup_uri_refs: (List of String) List of security group URI references (e.g., [arubacloud_securitygroup.example.uri])
+            settings: (Attributes) Cloud server settings (see below for nested schema)
+            storage: (Attributes) Storage configuration for the cloud server (see below for nested schema)
+            subnet_uri_refs: (List of String) List of subnet URI references (e.g., [arubacloud_subnet.example.uri])
+            tags: (List of String) List of tags for the Cloud Server
+            uri: (String) CloudServer URI
+            user_data: (String, Sensitive) Cloud-Init user data (raw YAML content)
+            vpc_uri_ref: (String) VPC URI reference (e.g., arubacloud_vpc.example.uri)
+            zone: (String) Zone
+        importStatements:
+            - terraform import arubacloud_cloudserver.example <cloudserver_id>
+    arubacloud_containerregistry:
+        subCategory: Container
+        description: Manages an ArubaCloud Container Registry resource.
+        name: arubacloud_containerregistry
+        title: arubacloud_containerregistry
+        examples:
+            - name: example
+              manifest: |-
+                {
+                  "billing_period": "Hour",
+                  "location": "ITBG-Bergamo",
+                  "name": "example-container-registry",
+                  "network": {
+                    "public_ip_uri_ref": "${arubacloud_elasticip.example.uri}",
+                    "security_group_uri_ref": "${arubacloud_securitygroup.example.uri}",
+                    "subnet_uri_ref": "${arubacloud_subnet.example.uri}",
+                    "vpc_uri_ref": "${arubacloud_vpc.example.uri}"
+                  },
+                  "project_id": "your-project-id",
+                  "settings": {
+                    "admin_user": "adminuser",
+                    "concurrent_users_flavor": "Small"
+                  },
+                  "storage": {
+                    "block_storage_uri_ref": "${arubacloud_blockstorage.example.uri}"
+                  },
+                  "tags": [
+                    "container",
+                    "test"
+                  ]
+                }
+        argumentDocs:
+            admin_user: (String) Administrator username
+            billing_period: (String) Billing period (Hour, Month, Year)
+            block_storage_uri_ref: (String) Block Storage URI reference (e.g., arubacloud_blockstorage.example.uri)
+            concurrent_users_flavor: '(String) Concurrent users flavor size. Must be one of: Small, Medium, HighPerf'
+            id: (String) Container Registry identifier
+            location: (String) Container Registry location
+            name: (String) Container Registry name
+            network: (Attributes) Network configuration for the container registry (see below for nested schema)
+            project_id: (String) ID of the project this Container Registry belongs to
+            public_ip_uri_ref: (String) Public IP URI reference (e.g., arubacloud_elasticip.example.uri)
+            security_group_uri_ref: (String) Security Group URI reference (e.g., arubacloud_securitygroup.example.uri)
+            settings: (Attributes) Container registry settings (see below for nested schema)
+            storage: (Attributes) Storage configuration for the container registry (see below for nested schema)
+            subnet_uri_ref: (String) Subnet URI reference (e.g., arubacloud_subnet.example.uri)
+            tags: (List of String) List of tags for the Container Registry resource
+            uri: (String) Container Registry URI
+            vpc_uri_ref: (String) VPC URI reference (e.g., arubacloud_vpc.example.uri)
+        importStatements:
+            - terraform import arubacloud_containerregistry.example <containerregistry_id>
+    arubacloud_database:
+        subCategory: Database
+        description: Manages an ArubaCloud Database.
+        name: arubacloud_database
+        title: arubacloud_database
+        argumentDocs:
+            dbaas_id: (String) DBaaS ID this database belongs to
+            id: (String) Database identifier (same as name)
+            name: (String) Database name
+            project_id: (String) ID of the project this database belongs to
+            uri: (String) Database URI
+        importStatements:
+            - terraform import arubacloud_database.example <database_id>
+    arubacloud_databasebackup:
+        subCategory: Database
+        description: Manages an ArubaCloud Database Backup.
+        name: arubacloud_databasebackup
+        title: arubacloud_databasebackup
+        argumentDocs:
+            billing_period: (String) Billing period
+            database: (String) Database name to backup
+            dbaas_id: (String) DBaaS ID this backup belongs to
+            id: (String) Database Backup identifier
+            location: (String) Database Backup location
+            name: (String) Database Backup name
+            project_id: (String) ID of the project this backup belongs to
+            tags: (List of String) List of tags for the Database Backup resource
+            uri: (String) Database Backup URI
+            zone: (String) Zone for the Database Backup
+        importStatements:
+            - terraform import arubacloud_databasebackup.example <databasebackup_id>
+    arubacloud_databasegrant:
+        subCategory: Database
+        description: Manages an ArubaCloud Database Grant.
+        name: arubacloud_databasegrant
+        title: arubacloud_databasegrant
+        argumentDocs:
+            database: (String) Database name
+            dbaas_id: (String) DBaaS ID this grant belongs to
+            id: (String) Database Grant identifier
+            project_id: (String) ID of the project this grant belongs to
+            role: (String) Role to grant (e.g., read, write, admin)
+            uri: (String) Database Grant URI
+            user_id: (String) User ID (username) to grant access
+        importStatements:
+            - terraform import arubacloud_databasegrant.example <databasegrant_id>
+    arubacloud_dbaas:
+        subCategory: Database
+        description: Manages an ArubaCloud DBaaS.
+        name: arubacloud_dbaas
+        title: arubacloud_dbaas
+        argumentDocs:
+            autoscaling: (Attributes) Autoscaling configuration for the DBaaS instance (see below for nested schema)
+            available_space: (Number) Minimum available space threshold in GB. When the available storage falls below this value, autoscaling will increase the storage by the step_size amount.
+            billing_period: (String) Billing period (Hour, Month, Year)
+            elastic_ip_uri_ref: (String) URI reference to the Elastic IP resource (e.g., arubacloud_elasticip.example.uri)
+            enabled: (Boolean) Enable autoscaling
+            engine_id: (String) Database engine ID. Available engines are described in the ArubaCloud API documentation. For example, mysql-8.0 for MySQL version 8.0.
+            flavor: (String) DBaaS flavor name. Available flavors are described in the ArubaCloud API documentation. For example, DBO2A4 means 2 CPU and 4GB RAM.
+            id: (String) DBaaS identifier
+            location: (String) DBaaS location
+            name: (String) DBaaS name
+            network: (Attributes) Network configuration for the DBaaS instance (see below for nested schema)
+            project_id: (String) ID of the project this DBaaS belongs to
+            security_group_uri_ref: (String) URI reference to the Security Group resource (e.g., arubacloud_securitygroup.example.uri)
+            size_gb: (Number) Storage size in GB for the DBaaS instance
+            step_size: (Number) Step size for autoscaling (in GB)
+            storage: (Attributes) Storage configuration for the DBaaS instance (see below for nested schema)
+            subnet_uri_ref: (String) URI reference to the Subnet resource (e.g., arubacloud_subnet.example.uri)
+            tags: (List of String) List of tags for the DBaaS resource
+            uri: (String) DBaaS URI
+            vpc_uri_ref: (String) URI reference to the VPC resource (e.g., arubacloud_vpc.example.uri)
+            zone: (String) Zone
+        importStatements:
+            - terraform import arubacloud_dbaas.example <dbaas_id>
+    arubacloud_dbaasuser:
+        subCategory: Database
+        description: Manages an ArubaCloud DBaaS User.
+        name: arubacloud_dbaasuser
+        title: arubacloud_dbaasuser
+        argumentDocs:
+            dbaas_id: (String) DBaaS ID this user belongs to
+            id: (String) DBaaS User identifier (same as username)
+            password: (String, Sensitive) Password for the DBaaS user
+            project_id: (String) ID of the project this user belongs to
+            uri: (String) DBaaS User URI
+            username: (String) Username for the DBaaS user
+        importStatements:
+            - terraform import arubacloud_dbaasuser.example <dbaasuser_id>
+    arubacloud_elasticip:
+        subCategory: Network
+        description: Manages an ArubaCloud Elastic IP.
+        name: arubacloud_elasticip
+        title: arubacloud_elasticip
+        examples:
+            - name: example
+              manifest: |-
+                {
+                  "billing_period": "hourly",
+                  "location": "ITBG-Bergamo",
+                  "name": "example-elastic-ip",
+                  "project_id": "your-project-id",
+                  "tags": [
+                    "public",
+                    "test"
+                  ]
+                }
+        argumentDocs:
+            address: (String) Elastic IP address (computed from ElasticIpPropertiesResponse)
+            billing_period: (String) Billing period for the Elastic IP (only 'hourly' allowed)
+            id: (String) Elastic IP Identifier
+            location: (String) Elastic IP location
+            name: (String) Elastic IP name
+            project_id: (String) ID of the project this Elastic IP belongs to
+            tags: (List of String) List of tags for the Elastic IP
+            uri: (String) Elastic IP URI
+        importStatements:
+            - terraform import arubacloud_elasticip.example <elasticip_id>
+    arubacloud_kaas:
+        subCategory: Container
+        description: Manages an ArubaCloud Kubernetes as a Service (KaaS) cluster. Once the cluster is ready, the provider downloads and exposes the kubeconfig (decoded from the API) so you can use it with kubectl or write it to a file.
+        name: arubacloud_kaas
+        title: arubacloud_kaas
+        examples:
+            - name: basic
+              manifest: |-
+                {
+                  "billing_period": "Hour",
+                  "location": "ITBG-Bergamo",
+                  "name": "basic-kaas",
+                  "network": [
                     {
-                      "host": "${element(aws_instance.cluster[*].public_ip, 0)}"
+                      "node_cidr": {
+                        "address": "10.0.2.0/24",
+                        "name": "kaas-node-cidr"
+                      },
+                      "pod_cidr": "10.0.3.0/24",
+                      "security_group_name": "kaas-security-group",
+                      "subnet_uri_ref": "${arubacloud_subnet.example.uri}",
+                      "vpc_uri_ref": "${arubacloud_vpc.example.uri}"
                     }
                   ],
-                  "provisioner": {
-                    "remote-exec": [
-                      {
-                        "inline": [
-                          "bootstrap-cluster.sh ${join(\" \",\n      aws_instance.cluster[*].private_ip)}"
-                        ]
-                      }
-                    ]
-                  },
-                  "triggers": {
-                    "cluster_instance_ids": "${join(\",\", aws_instance.cluster[*].id)}"
-                  }
-                }
-              dependencies:
-                aws_instance.cluster: |-
+                  "project_id": "your-project-id",
+                  "settings": [
                     {
-                      "ami": "ami-0dcc1e21636832c5d",
-                      "count": 3,
-                      "instance_type": "m5.large"
+                      "ha": true,
+                      "kubernetes_version": "1.33.2",
+                      "node_pools": [
+                        {
+                          "autoscaling": true,
+                          "instance": "K2A4",
+                          "max_count": 5,
+                          "min_count": 1,
+                          "name": "pool-1",
+                          "nodes": 2,
+                          "zone": "ITBG-1"
+                        }
+                      ]
                     }
+                  ],
+                  "tags": [
+                    "k8s",
+                    "test"
+                  ]
+                }
+              references:
+                network.subnet_uri_ref: arubacloud_subnet.example.uri
+                network.vpc_uri_ref: arubacloud_vpc.example.uri
         argumentDocs:
-            id: (String) This is set to a random value at create time.
-            triggers: (Map of String) A map of arbitrary strings that, when changed, will force the null resource to be replaced, re-running any associated provisioners.
+            address: (String) Node CIDR address in CIDR notation (e.g., 10.0.0.0/24)
+            autoscaling: (Boolean) Enable autoscaling for node pool
+            billing_period: (String) Billing period (Hour, Month, Year)
+            ha: (Boolean) High availability
+            id: (String) KaaS identifier
+            instance: (String) KaaS flavor name for nodes. Available flavors are described in the ArubaCloud API documentation. For example, K2A4 means 2 CPU, 4GB RAM, and 40GB storage.
+            kubeconfig: (String, Sensitive) Kubeconfig YAML for kubectl access (downloaded when KaaS is ready). Sensitive.
+            kubernetes_version: (String) Kubernetes version. Available versions are described in the ArubaCloud API documentation. For example, 1.33.2.
+            location: (String) KaaS location
+            management_ip: (String) Management IP address (available when KaaS is active)
+            max_count: (Number) Maximum number of nodes for autoscaling
+            min_count: (Number) Minimum number of nodes for autoscaling
+            name: (String) KaaS name
+            network: (Attributes) Network configuration for the KaaS cluster (see below for nested schema)
+            node_cidr: (Attributes) Node CIDR configuration (see below for nested schema)
+            node_pools: (Attributes List) Node pools configuration (see below for nested schema)
+            nodes: (Number) Number of nodes in the node pool
+            pod_cidr: (String) Pod CIDR in CIDR notation (e.g., 10.0.3.0/24)
+            project_id: (String) ID of the project this KaaS resource belongs to
+            security_group_name: (String) Security group name
+            settings: (Attributes) Kubernetes cluster settings (see below for nested schema)
+            subnet_uri_ref: (String) Subnet URI reference for the KaaS resource (e.g., arubacloud_subnet.example.uri)
+            tags: (List of String) List of tags for the KaaS resource
+            uri: (String) KaaS URI
+            vpc_uri_ref: (String) VPC URI reference for the KaaS resource (e.g., arubacloud_vpc.example.uri)
+            zone: (String) Datacenter/zone code for nodes
+        importStatements:
+            - terraform import arubacloud_kaas.example <kaas_id>
+    arubacloud_keypair:
+        subCategory: Security
+        description: Manages an ArubaCloud KeyPair.
+        name: arubacloud_keypair
+        title: arubacloud_keypair
+        examples:
+            - name: basic
+              manifest: |-
+                {
+                  "location": "ITBG-Bergamo",
+                  "name": "example-keypair",
+                  "project_id": "your-project-id",
+                  "tags": [
+                    "compute",
+                    "test"
+                  ],
+                  "value": "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEA2No7At0tgHrcZTL0kGWyLLUqPKfOhD9hGdNV9PbJxhjOGNFxcwdQ9wCXsJ3RQaRHBuGIgVodDurrlqzxFK86yCHMgXT2YLHF0j9P4m9GDiCfOK6msbFb89p5xZExjwD2zK+w68r7iOKZeRB2yrznW5TD3KDemSPIQQIVcyLF+yxft49HWBTI3PVQ4rBVOBJ2PdC9SAOf7CYnptW24CRrC0h85szIdwMA+Kmasfl3YGzk4MxheHrTO8C40aXXpieJ9S2VQA4VJAMRyAboptIK0cKjBYrbt5YkEL0AlyBGPIu6MPYr5K/MHyDunDi9yc7VYRYRR0f46MBOSqMUiGPnMw=="
+                }
+        argumentDocs:
+            id: (String) Keypair identifier (name)
+            location: (String) Keypair location
+            name: (String) Keypair name
+            project_id: (String) Project ID
+            tags: (List of String) List of tags for the keypair
+            uri: (String) Keypair URI
+            value: (String, Sensitive) Public key value
+        importStatements:
+            - terraform import arubacloud_keypair.example <keypair_id>
+    arubacloud_kms:
+        subCategory: Security
+        description: Manages an ArubaCloud Key Management System (KMS).
+        name: arubacloud_kms
+        title: arubacloud_kms
+        examples:
+            - name: basic
+              manifest: |-
+                {
+                  "billing_period": "Hour",
+                  "location": "ITBG-Bergamo",
+                  "name": "basic-kms",
+                  "project_id": "your-project-id",
+                  "tags": [
+                    "encryption",
+                    "security"
+                  ]
+                }
+        argumentDocs:
+            billing_period: (String) Billing period for the KMS
+            id: (String) KMS identifier
+            location: (String) Location for the KMS
+            name: (String) KMS name
+            project_id: (String) ID of the project this KMS belongs to
+            tags: (List of String) List of tags for the KMS
+            uri: (String) KMS URI
+        importStatements:
+            - terraform import arubacloud_kms.example <kms_id>
+    arubacloud_project:
+        subCategory: Management
+        description: Manages an ArubaCloud Project.
+        name: arubacloud_project
+        title: arubacloud_project
+        examples:
+            - name: basic
+              manifest: |-
+                {
+                  "description": "Project for testing Terraform provider",
+                  "name": "basic-project",
+                  "tags": [
+                    "terraform",
+                    "test"
+                  ]
+                }
+        argumentDocs:
+            description: (String) Project description
+            id: (String) Project Identifier
+            name: (String) Project name
+            tags: (List of String) List of tags for the project
+        importStatements:
+            - terraform import arubacloud_project.example <project_id>
+    arubacloud_restore:
+        subCategory: Storage
+        description: Manages an ArubaCloud Storage Restore.
+        name: arubacloud_restore
+        title: arubacloud_restore
+        examples:
+            - name: basic
+              manifest: |-
+                {
+                  "name": "basic-restore"
+                }
+        argumentDocs:
+            backup_id: (String) Backup ID to restore from
+            id: (String) Restore identifier
+            location: (String) Restore location
+            name: (String) Restore name
+            project_id: (String) ID of the project this restore belongs to
+            tags: (List of String) List of tags for the restore resource
+            uri: (String) Restore URI
+            volume_id: (String) Volume ID to restore to
+        importStatements:
+            - terraform import arubacloud_restore.example <restore_id>
+    arubacloud_schedulejob:
+        subCategory: Job
+        description: Manages an ArubaCloud Schedule Job.
+        name: arubacloud_schedulejob
+        title: arubacloud_schedulejob
+        examples:
+            - name: example
+              manifest: |-
+                {
+                  "location": "example-location",
+                  "name": "example-schedule-job",
+                  "project_id": "example-project",
+                  "properties": {
+                    "enabled": true,
+                    "execute_until": "2025-12-01T10:00:00Z",
+                    "schedule_at": "2025-11-26T10:00:00Z",
+                    "schedule_job_type": "Recurring"
+                  },
+                  "tags": [
+                    "tag1",
+                    "tag2"
+                  ]
+                }
+        argumentDocs:
+            action_uri: (String) URI of the action to execute.
+            body: (String) Optional HTTP request body.
+            cron: (String) CRON expression for recurrence (for Recurring)
+            enabled: (Boolean) Whether the job is enabled.
+            execute_until: (String) End date until which the job can run (for Recurring)
+            http_verb: (String) HTTP verb to use (GET, POST, etc.)
+            id: (String) Schedule Job identifier
+            location: (String) Location for the job
+            name: (String) Schedule Job name
+            project_id: (String) ID of the project this job belongs to
+            properties: (Attributes) (see below for nested schema)
+            resource_uri: (String) URI of the resource.
+            schedule_at: (String) Date and time when the job should run (for OneShot)
+            schedule_job_type: (String) Type of job (OneShot, Recurring)
+            steps: (Attributes List) (see below for nested schema)
+            tags: (List of String) List of tags for the job
+            uri: (String) Schedule Job URI
+        importStatements:
+            - terraform import arubacloud_schedulejob.example <schedulejob_id>
+    arubacloud_securitygroup:
+        subCategory: Network
+        description: Manages an ArubaCloud SecurityGroup.
+        name: arubacloud_securitygroup
+        title: arubacloud_securitygroup
+        argumentDocs:
+            id: (String) Security Group identifier
+            location: (String) Security Group location
+            name: (String) Security Group name
+            project_id: (String) ID of the project this Security Group belongs to
+            tags: (List of String) List of tags for the Security Group
+            uri: (String) Security Group URI
+            vpc_id: (String) ID of the VPC this Security Group belongs to
+        importStatements:
+            - terraform import arubacloud_security_group.example <securitygroup_id>
+    arubacloud_securityrule:
+        subCategory: Network
+        description: Manages an ArubaCloud Security Rule.
+        name: arubacloud_securityrule
+        title: arubacloud_securityrule
+        examples:
+            - name: http
+              manifest: |-
+                {
+                  "location": "ITBG-Bergamo",
+                  "name": "example-http-rule",
+                  "project_id": "example-project-id",
+                  "properties": {
+                    "direction": "Ingress",
+                    "port": "80",
+                    "protocol": "TCP",
+                    "target": {
+                      "kind": "Ip",
+                      "value": "0.0.0.0/0"
+                    }
+                  },
+                  "security_group_id": "example-security-group-id",
+                  "tags": [
+                    "security",
+                    "example"
+                  ],
+                  "vpc_id": "example-vpc-id"
+                }
+            - name: egress_all
+              manifest: |-
+                {
+                  "location": "ITBG-Bergamo",
+                  "name": "example-egress-all",
+                  "project_id": "example-project-id",
+                  "properties": {
+                    "direction": "Egress",
+                    "port": "*",
+                    "protocol": "ANY",
+                    "target": {
+                      "kind": "Ip",
+                      "value": "0.0.0.0/0"
+                    }
+                  },
+                  "security_group_id": "example-security-group-id",
+                  "vpc_id": "example-vpc-id"
+                }
+        argumentDocs:
+            direction: (String) Direction of the rule (Ingress/Egress)
+            id: (String) Security Rule identifier
+            kind: (String) Type of the target (Ip/SecurityGroup)
+            location: (String) Security Rule location
+            name: (String) Security Rule name
+            port: (String) Port or port range (for TCP/UDP)
+            project_id: (String) ID of the project this Security Rule belongs to
+            properties: (Attributes) Properties of the security rule (see below for nested schema)
+            protocol: (String) Protocol (ANY, TCP, UDP, ICMP)
+            security_group_id: (String) ID of the Security Group this rule belongs to
+            tags: (List of String) List of tags for the Security Rule
+            target: (Attributes) Target of the rule (source or destination) (see below for nested schema)
+            uri: (String) Security Rule URI
+            value: (String) Value of the target (CIDR or SecurityGroup URI)
+            vpc_id: (String) ID of the VPC this Security Rule belongs to
+        importStatements:
+            - terraform import arubacloud_securityrule.example <securityrule_id>
+    arubacloud_snapshot:
+        subCategory: Storage
+        description: Manages an ArubaCloud Snapshot.
+        name: arubacloud_snapshot
+        title: arubacloud_snapshot
+        argumentDocs:
+            billing_period: (String) Billing period (only 'Hour' allowed)
+            id: (String) Snapshot identifier
+            location: (String) Snapshot location
+            name: (String) Snapshot name
+            project_id: (String) ID of the project this Snapshot belongs to
+            tags: (List of String) List of tags for the snapshot
+            uri: (String) Snapshot URI
+            volume_uri: (String) URI of the volume this snapshot is for. Should be the volume URI (e.g., /projects/{project_id}/providers/Aruba.Storage/volumes/{volume_id}). You can reference the uri attribute from an arubacloud_blockstorage resource.
+        importStatements: []
+    arubacloud_subnet:
+        subCategory: Network
+        description: Manages an ArubaCloud Subnet resource.
+        name: arubacloud_subnet
+        title: arubacloud_subnet Resource - ArubaCloud
+        examples:
+            - name: basic
+              manifest: |-
+                {
+                  "location": "ITBG-Bergamo",
+                  "name": "basic-subnet",
+                  "network": {
+                    "address": "10.0.1.0/24",
+                    "dhcp": {
+                      "dns": [
+                        "8.8.8.8",
+                        "8.8.4.4"
+                      ],
+                      "enabled": true,
+                      "range": {
+                        "count": 100,
+                        "start": "10.0.1.10"
+                      },
+                      "routes": [
+                        {
+                          "address": "0.0.0.0/0",
+                          "gateway": "10.0.1.1"
+                        }
+                      ]
+                    }
+                  },
+                  "project_id": "your-project-id",
+                  "tags": [
+                    "network",
+                    "test"
+                  ],
+                  "type": "Advanced",
+                  "vpc_id": "your-vpc-id"
+                }
+            - name: basic_type
+              manifest: |-
+                {
+                  "location": "ITBG-Bergamo",
+                  "name": "basic-subnet",
+                  "project_id": "your-project-id",
+                  "tags": [
+                    "network",
+                    "basic"
+                  ],
+                  "type": "Basic",
+                  "vpc_id": "your-vpc-id"
+                }
+        argumentDocs:
+            address: ': Destination network address in CIDR notation (e.g., "0.0.0.0/0")'
+            count: ': Number of available IP addresses'
+            dhcp: (Attributes) (see below for nested schema)
+            dns: (List of String) DNS server addresses
+            enabled: (Boolean) Enable DHCP
+            gateway: ': Gateway IP address for the route'
+            id: (String) Subnet identifier
+            location: (String) Subnet location
+            name: (String) Subnet name
+            network: block
+            network.address: ': Network CIDR notation (e.g., "10.0.1.0/24")'
+            network.dhcp: block
+            network.dhcp.dns: ': List of DNS server IP addresses'
+            network.dhcp.enabled: ': Boolean to enable/disable DHCP'
+            network.dhcp.range: 'block with:'
+            network.dhcp.routes: ': List of DHCP routes with:'
+            project_id: (String) ID of the project this subnet belongs to
+            range: (Attributes) (see below for nested schema)
+            routes: (Attributes List) DHCP routes configuration (see below for nested schema)
+            start: ': Starting IP address for DHCP range'
+            tags: (List of String) List of tags for the subnet
+            type: is set to "Basic", the network block is not required.
+            uri: (String) Subnet URI
+            vpc_id: (String) ID of the VPC this subnet belongs to
+        importStatements:
+            - terraform import arubacloud_subnet.example <subnet_id>
+    arubacloud_vpc:
+        subCategory: Network
+        description: Manages an ArubaCloud VPC Network.
+        name: arubacloud_vpc
+        title: arubacloud_vpc
+        examples:
+            - name: basic
+              manifest: |-
+                {
+                  "location": "ITBG-Bergamo",
+                  "name": "basic-vpc",
+                  "project_id": "your-project-id",
+                  "tags": [
+                    "network",
+                    "test"
+                  ]
+                }
+        argumentDocs:
+            id: (String) VPC identifier
+            location: (String) VPC location
+            name: (String) VPC name
+            project_id: (String) Project ID
+            tags: (List of String) List of tags for the VPC
+            uri: (String) VPC URI
+        importStatements:
+            - terraform import arubacloud_vpc.example <vpc_id>
+    arubacloud_vpcpeering:
+        subCategory: Network
+        description: Manages an ArubaCloud VPC Peering.
+        name: arubacloud_vpcpeering
+        title: arubacloud_vpcpeering
+        examples:
+            - name: example
+              manifest: |-
+                {
+                  "location": "example-location",
+                  "name": "example-vpc-peering",
+                  "peer_vpc": "peer-vpc-id",
+                  "tags": [
+                    "tag1",
+                    "tag2"
+                  ]
+                }
+        argumentDocs:
+            id: (String) VPC Peering identifier
+            location: (String) VPC Peering location
+            name: (String) VPC Peering name
+            peer_vpc: (String) ID or URI of the peer VPC to connect to
+            project_id: (String) ID of the project this VPC Peering belongs to
+            tags: (List of String) List of tags for the VPC Peering
+            uri: (String) VPC Peering URI
+            vpc_id: (String) ID of the VPC this peering belongs to
+        importStatements:
+            - terraform import arubacloud_vpcpeering.example <peering_id>
+    arubacloud_vpcpeeringroute:
+        subCategory: Network
+        description: Manages an ArubaCloud VPC Peering Route.
+        name: arubacloud_vpcpeeringroute
+        title: arubacloud_vpcpeeringroute
+        argumentDocs:
+            billing_period: (String) Billing period (Hour, Month, Year)
+            id: (String) VPC Peering Route identifier
+            local_network_address: (String) Local network address in CIDR notation
+            name: (String) VPC Peering Route name
+            project_id: (String) ID of the project this VPC Peering Route belongs to
+            remote_network_address: (String) Remote network address in CIDR notation
+            tags: (List of String) List of tags for the VPC Peering Route
+            uri: (String) VPC Peering Route URI
+            vpc_id: (String) ID of the VPC this peering route belongs to
+            vpc_peering_id: (String) ID of the VPC Peering this route belongs to
+        importStatements:
+            - terraform import arubacloud_vpc_peering_route.example <route_id>
+    arubacloud_vpnroute:
+        subCategory: Network
+        description: Retrieves an ArubaCloud VPN Route.
+        name: arubacloud_vpnroute
+        title: arubacloud_vpnroute
+        argumentDocs:
+            cloud_subnet: (String) CIDR of the cloud subnet
+            id: (String) VPN Route identifier
+            location: (String) VPN Route location
+            name: (String) VPN Route name
+            on_prem_subnet: (String) CIDR of the on-prem subnet
+            project_id: (String) ID of the project this VPN Route belongs to
+            properties: (Attributes) Properties of the VPN Route (see below for nested schema)
+            tags: (List of String) List of tags for the VPN Route
+            uri: (String) VPN Route URI
+            vpn_tunnel_id: (String) ID of the VPN Tunnel this route belongs to
+        importStatements: []
+    arubacloud_vpntunnel:
+        subCategory: Network
+        description: Retrieves an ArubaCloud VPN Tunnel.
+        name: arubacloud_vpntunnel
+        title: arubacloud_vpntunnel
+        argumentDocs:
+            billing_period: (String) Billing period (Hour, Month, Year)
+            cloud_site: (String) PSK cloud site
+            dh_group: (String) IKE DH group
+            dpd_action: (String) IKE DPD action
+            dpd_interval: (Number) IKE DPD interval
+            dpd_timeout: (Number) IKE DPD timeout
+            encryption: (String) ESP encryption algorithm
+            esp: (Attributes) ESP settings (see below for nested schema)
+            hash: (String) ESP hash algorithm
+            id: (String) VPN Tunnel identifier
+            ike: (Attributes) IKE settings (see below for nested schema)
+            ip_configurations: (Attributes) Network configuration of the VPN tunnel (see below for nested schema)
+            lifetime: (Number) ESP lifetime
+            location: (String) VPN Tunnel location
+            name: (String) VPN Tunnel name
+            on_prem_site: (String) PSK on-prem site
+            peer_client_public_ip: (String) Peer client public IP address
+            pfs: (String) ESP PFS
+            project_id: (String) ID of the project this VPN Tunnel belongs to
+            properties: (Attributes) Properties of the VPN Tunnel (see below for nested schema)
+            psk: (Attributes) PSK settings (see below for nested schema)
+            public_ip: (Attributes) Public IP reference (see below for nested schema)
+            secret: (String) PSK secret
+            subnet: (Attributes) Subnet reference (see below for nested schema)
+            tags: (List of String) List of tags for the VPN Tunnel
+            uri: (String) VPN Tunnel URI
+            vpc: (Attributes) VPC reference (see below for nested schema)
+            vpn_client_protocol: (String) Protocol of the VPN tunnel (ikev2)
+            vpn_client_settings: (Attributes) Client settings of the VPN tunnel (see below for nested schema)
+            vpn_type: (String) Type of VPN tunnel (Site-To-Site)
         importStatements: []

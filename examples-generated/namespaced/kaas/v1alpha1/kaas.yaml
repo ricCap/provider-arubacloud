@@ -1,0 +1,37 @@
+apiVersion: kaas.arubacloud.m.crossplane.io/v1alpha1
+kind: Kaas
+metadata:
+  annotations:
+    meta.upbound.io/example-id: kaas/v1alpha1/kaas
+  labels:
+    testing.upbound.io/example-name: basic
+  name: basic
+  namespace: crossplane-system
+spec:
+  forProvider:
+    billingPeriod: Hour
+    location: ITBG-Bergamo
+    name: basic-kaas
+    network:
+    - nodeCidr:
+        address: 10.0.2.0/24
+        name: kaas-node-cidr
+      podCidr: 10.0.3.0/24
+      securityGroupName: kaas-security-group
+      subnetUriRef: ${arubacloud_subnet.example.uri}
+      vpcUriRef: ${arubacloud_vpc.example.uri}
+    projectId: your-project-id
+    settings:
+    - ha: true
+      kubernetesVersion: 1.33.2
+      nodePools:
+      - autoscaling: true
+        instance: K2A4
+        maxCount: 5
+        minCount: 1
+        name: pool-1
+        nodes: 2
+        zone: ITBG-1
+    tags:
+    - k8s
+    - test

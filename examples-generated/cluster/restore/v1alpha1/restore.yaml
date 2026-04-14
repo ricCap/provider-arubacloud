@@ -1,0 +1,11 @@
+apiVersion: restore.arubacloud.crossplane.io/v1alpha1
+kind: Restore
+metadata:
+  annotations:
+    meta.upbound.io/example-id: restore/v1alpha1/restore
+  labels:
+    testing.upbound.io/example-name: basic
+  name: basic
+spec:
+  forProvider:
+    name: basic-restore

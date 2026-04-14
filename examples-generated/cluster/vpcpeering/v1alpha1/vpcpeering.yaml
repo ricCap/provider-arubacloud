@@ -1,0 +1,16 @@
+apiVersion: vpcpeering.arubacloud.crossplane.io/v1alpha1
+kind: Vpcpeering
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpcpeering/v1alpha1/vpcpeering
+  labels:
+    testing.upbound.io/example-name: example
+  name: example
+spec:
+  forProvider:
+    location: example-location
+    name: example-vpc-peering
+    peerVpc: peer-vpc-id
+    tags:
+    - tag1
+    - tag2

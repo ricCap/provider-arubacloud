@@ -11,8 +11,8 @@ import (
 
 	"github.com/crossplane/upjet/v2/pkg/terraform"
 
-	clusterv1beta1 "github.com/crossplane/upjet-provider-template/apis/cluster/v1beta1"
-	namespacedv1beta1 "github.com/crossplane/upjet-provider-template/apis/namespaced/v1beta1"
+	clusterv1beta1 "github.com/riccap/provider-arubacloud/apis/cluster/v1beta1"
+	namespacedv1beta1 "github.com/riccap/provider-arubacloud/apis/namespaced/v1beta1"
 )
 
 const (
@@ -21,7 +21,10 @@ const (
 	errGetProviderConfig    = "cannot get referenced ProviderConfig"
 	errTrackUsage           = "cannot track ProviderConfig usage"
 	errExtractCredentials   = "cannot extract credentials"
-	errUnmarshalCredentials = "cannot unmarshal template credentials as JSON"
+	errUnmarshalCredentials = "cannot unmarshal arubacloud credentials as JSON"
+
+	keyAPIKey    = "api_key"
+	keyAPISecret = "api_secret"
 )
 
 // TerraformSetupBuilder builds Terraform a terraform.SetupFn function which
@@ -50,11 +53,13 @@ func TerraformSetupBuilder(version, providerSource, providerVersion string) terr
 			return ps, errors.Wrap(err, errUnmarshalCredentials)
 		}
 
-		// Set credentials in Terraform provider configuration.
-		/*ps.Configuration = map[string]any{
-			"username": creds["username"],
-			"password": creds["password"],
-		}*/
+		ps.Configuration = map[string]any{}
+		if v, ok := creds[keyAPIKey]; ok {
+			ps.Configuration[keyAPIKey] = v
+		}
+		if v, ok := creds[keyAPISecret]; ok {
+			ps.Configuration[keyAPISecret] = v
+		}
 		return ps, nil
 	}
 }

@@ -1,0 +1,25 @@
+apiVersion: securityrule.arubacloud.crossplane.io/v1alpha1
+kind: Securityrule
+metadata:
+  annotations:
+    meta.upbound.io/example-id: securityrule/v1alpha1/securityrule
+  labels:
+    testing.upbound.io/example-name: http
+  name: http
+spec:
+  forProvider:
+    location: ITBG-Bergamo
+    name: example-http-rule
+    projectId: example-project-id
+    properties:
+      direction: Ingress
+      port: "80"
+      protocol: TCP
+      target:
+        kind: Ip
+        value: 0.0.0.0/0
+    securityGroupId: example-security-group-id
+    tags:
+    - security
+    - example
+    vpcId: example-vpc-id
