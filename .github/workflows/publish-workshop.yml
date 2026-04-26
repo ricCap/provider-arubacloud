@@ -1,0 +1,112 @@
+#
+# Publish provider-arubacloud OCI package to ghcr.io for the Crossplane
+# workshop. Triggered on tags matching v*-workshop on this fork. The image
+# lands at ghcr.io/<owner>/provider-arubacloud:<tag> and is consumed by the
+# workshop's per-vcluster ApplicationSet.
+#
+# Distinct from publish-provider-package.yml (Upbound xpkg mirror) and
+# ci.yml's publish-artifacts (GitHub Actions artifacts only). When upstream
+# Arubacloud cuts a release that includes the patched Read semantics, we
+# can retire this workflow and re-target the workshop to upstream.
+
+name: Publish Workshop Package
+
+on:
+  push:
+    tags:
+      - 'v*-workshop'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version override (defaults to git tag). Must start with 'v'."
+        required: false
+        default: ''
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  GO_VERSION: '1.24'
+  DOCKER_BUILDX_VERSION: 'v0.30.1'
+
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@c7c53464625b32c7a7e944ae62b3e17d2b600130 # v3.7.0
+        with:
+          platforms: all
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3.12.0
+        with:
+          version: ${{ env.DOCKER_BUILDX_VERSION }}
+          install: true
+
+      - name: Checkout
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          submodules: true
+
+      - name: Fetch History
+        run: git fetch --prune --unshallow
+
+      - name: Set up Go
+        uses: actions/setup-go@4dc6199c7b1a012772edbd06daecab0f50c9053c # v6.1.0
+        with:
+          go-version: ${{ env.GO_VERSION }}
+
+      - name: Find the Go Build Cache
+        id: go
+        run: echo "cache=$(make go.cachedir)" >> $GITHUB_OUTPUT
+
+      - name: Cache the Go Build Cache
+        uses: actions/cache@9255dc7a253b0ccc959486e2bca901246202afeb # v5.0.1
+        with:
+          path: ${{ steps.go.outputs.cache }}
+          key: ${{ runner.os }}-build-publish-workshop-${{ hashFiles('**/go.sum') }}
+          restore-keys: ${{ runner.os }}-build-publish-workshop-
+
+      - name: Cache Go Dependencies
+        uses: actions/cache@9255dc7a253b0ccc959486e2bca901246202afeb # v5.0.1
+        with:
+          path: .work/pkg
+          key: ${{ runner.os }}-pkg-${{ hashFiles('**/go.sum') }}
+          restore-keys: ${{ runner.os }}-pkg-
+
+      - name: Vendor Dependencies
+        run: make vendor vendor.check
+
+      # Lowercase owner because OCI registry paths must be lowercase but
+      # ${{ github.repository_owner }} preserves the GitHub-original case
+      # (e.g. ricCap). docker/login-action is case-tolerant but the registry
+      # itself rejects mixed-case paths on push.
+      - name: Compute registry org
+        id: regorg
+        run: echo "org=ghcr.io/$(echo '${{ github.repository_owner }}' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_OUTPUT
+
+      - name: Build all xpkg artifacts
+        run: make -j2 build.all
+        env:
+          BUILD_ARGS: "--load"
+          XPKG_REG_ORGS: ${{ steps.regorg.outputs.org }}
+          XPKG_REG_ORGS_NO_PROMOTE: ${{ steps.regorg.outputs.org }}
+
+      - name: Login to ghcr.io
+        uses: docker/login-action@74a5d142397b4f367a81961eba4e8cd7edddf772 # v3.4.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish xpkg to ghcr.io
+        run: make xpkg.release.publish
+        env:
+          XPKG_REG_ORGS: ${{ steps.regorg.outputs.org }}
+          XPKG_REG_ORGS_NO_PROMOTE: ${{ steps.regorg.outputs.org }}
+
+      - name: Summary
+        run: |
+          echo "Published image: ${{ steps.regorg.outputs.org }}/provider-arubacloud:${GITHUB_REF_NAME}" >> $GITHUB_STEP_SUMMARY
