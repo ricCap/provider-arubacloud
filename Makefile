@@ -10,20 +10,28 @@ export TERRAFORM_VERSION ?= 1.5.7
 # licensed under BSL, which is not permitted.
 TERRAFORM_VERSION_VALID := $(shell [ "$(TERRAFORM_VERSION)" = "`printf "$(TERRAFORM_VERSION)\n1.6" | sort -V | head -n1`" ] && echo 1 || echo 0)
 
-# Schema source kept as the upstream Arubacloud TF Registry namespace so
-# `terraform init` (used only for `make generate` schema generation) keeps
-# working. The runtime binary is pulled from the ricCap fork below, which
-# carries the patched Read semantics required by upjet (see
-# https://github.com/ricCap/terraform-provider-arubacloud/pull/1). The fix
-# is runtime-only and does not change the provider schema, so the existing
-# committed config/schema.json (generated against v0.1.1) stays valid; we
-# avoid regenerating the schema against the fork because the fork tag is
-# not published to the Terraform Registry.
+# --- Terraform provider sourcing -------------------------------------------
+# Schema generation (via the Terraform Registry) and `pull-docs` (sparse
+# clone of docs/resources) both stay pointed at upstream Arubacloud at
+# v0.1.1 -- that's the last tag the registry has, the upstream repo has
+# the matching git tag, and the patched Read fix below does not change
+# the provider schema, so the committed config/schema.json stays valid.
+#
+# The runtime native binary, on the other hand, is overridden to the
+# ricCap fork's v0.1.3-workshop release. That tag carries the patched
+# Read semantics required by upjet
+# (https://github.com/ricCap/terraform-provider-arubacloud/pull/1).
+# Without the fix, upjet-managed Crossplane MRs loop Synced=False because
+# Terraform's Read hard-errors on empty IDs during the initial
+# refresh-only pass.
+#
+# When upstream Arubacloud cuts a release that includes the Read fix,
+# collapse the binary override back into the upstream variables.
 export TERRAFORM_PROVIDER_SOURCE ?= arubacloud/arubacloud
-export TERRAFORM_PROVIDER_REPO ?= https://github.com/ricCap/terraform-provider-arubacloud
-export TERRAFORM_PROVIDER_VERSION ?= 0.1.3-workshop
+export TERRAFORM_PROVIDER_REPO ?= https://github.com/Arubacloud/terraform-provider-arubacloud
+export TERRAFORM_PROVIDER_VERSION ?= 0.1.1
 export TERRAFORM_PROVIDER_DOWNLOAD_NAME ?= terraform-provider-arubacloud
-export TERRAFORM_PROVIDER_DOWNLOAD_URL_PREFIX ?= https://github.com/ricCap/terraform-provider-arubacloud/releases/download/v$(TERRAFORM_PROVIDER_VERSION)
+export TERRAFORM_PROVIDER_DOWNLOAD_URL_PREFIX ?= https://github.com/ricCap/terraform-provider-arubacloud/releases/download/v0.1.3-workshop
 export TERRAFORM_NATIVE_PROVIDER_BINARY ?= terraform-provider-arubacloud_v0.1.3-workshop
 export TERRAFORM_DOCS_PATH ?= docs/resources
 
