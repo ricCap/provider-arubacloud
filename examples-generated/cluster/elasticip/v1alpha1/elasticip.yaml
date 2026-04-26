@@ -1,0 +1,17 @@
+apiVersion: elasticip.arubacloud.crossplane.io/v1alpha1
+kind: Elasticip
+metadata:
+  annotations:
+    meta.upbound.io/example-id: elasticip/v1alpha1/elasticip
+  labels:
+    testing.upbound.io/example-name: example
+  name: example
+spec:
+  forProvider:
+    billingPeriod: hourly
+    location: ITBG-Bergamo
+    name: example-elastic-ip
+    projectId: your-project-id
+    tags:
+    - public
+    - test

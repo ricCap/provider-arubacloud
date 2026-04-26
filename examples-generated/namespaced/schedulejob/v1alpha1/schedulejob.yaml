@@ -1,0 +1,22 @@
+apiVersion: schedulejob.arubacloud.m.crossplane.io/v1alpha1
+kind: Schedulejob
+metadata:
+  annotations:
+    meta.upbound.io/example-id: schedulejob/v1alpha1/schedulejob
+  labels:
+    testing.upbound.io/example-name: example
+  name: example
+  namespace: crossplane-system
+spec:
+  forProvider:
+    location: example-location
+    name: example-schedule-job
+    projectId: example-project
+    properties:
+      enabled: true
+      executeUntil: "2025-12-01T10:00:00Z"
+      scheduleAt: "2025-11-26T10:00:00Z"
+      scheduleJobType: Recurring
+    tags:
+    - tag1
+    - tag2

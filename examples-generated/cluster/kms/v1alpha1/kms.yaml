@@ -1,0 +1,17 @@
+apiVersion: kms.arubacloud.crossplane.io/v1alpha1
+kind: KMS
+metadata:
+  annotations:
+    meta.upbound.io/example-id: kms/v1alpha1/kms
+  labels:
+    testing.upbound.io/example-name: basic
+  name: basic
+spec:
+  forProvider:
+    billingPeriod: Hour
+    location: ITBG-Bergamo
+    name: basic-kms
+    projectId: your-project-id
+    tags:
+    - encryption
+    - security

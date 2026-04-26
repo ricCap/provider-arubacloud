@@ -10,17 +10,65 @@ package namespaced
 import (
 	"k8s.io/apimachinery/pkg/runtime"
 
-	v1alpha1 "github.com/crossplane/upjet-provider-template/apis/namespaced/null/v1alpha1"
-	v1alpha1namespaced "github.com/crossplane/upjet-provider-template/apis/namespaced/v1alpha1"
-	v1beta1 "github.com/crossplane/upjet-provider-template/apis/namespaced/v1beta1"
+	v1alpha1 "github.com/riccap/provider-arubacloud/apis/namespaced/backup/v1alpha1"
+	v1alpha1blockstorage "github.com/riccap/provider-arubacloud/apis/namespaced/blockstorage/v1alpha1"
+	v1alpha1cloudserver "github.com/riccap/provider-arubacloud/apis/namespaced/cloudserver/v1alpha1"
+	v1alpha1containerregistry "github.com/riccap/provider-arubacloud/apis/namespaced/containerregistry/v1alpha1"
+	v1alpha1database "github.com/riccap/provider-arubacloud/apis/namespaced/database/v1alpha1"
+	v1alpha1databasebackup "github.com/riccap/provider-arubacloud/apis/namespaced/databasebackup/v1alpha1"
+	v1alpha1databasegrant "github.com/riccap/provider-arubacloud/apis/namespaced/databasegrant/v1alpha1"
+	v1alpha1dbaas "github.com/riccap/provider-arubacloud/apis/namespaced/dbaas/v1alpha1"
+	v1alpha1dbaasuser "github.com/riccap/provider-arubacloud/apis/namespaced/dbaasuser/v1alpha1"
+	v1alpha1elasticip "github.com/riccap/provider-arubacloud/apis/namespaced/elasticip/v1alpha1"
+	v1alpha1kaas "github.com/riccap/provider-arubacloud/apis/namespaced/kaas/v1alpha1"
+	v1alpha1keypair "github.com/riccap/provider-arubacloud/apis/namespaced/keypair/v1alpha1"
+	v1alpha1kms "github.com/riccap/provider-arubacloud/apis/namespaced/kms/v1alpha1"
+	v1alpha1project "github.com/riccap/provider-arubacloud/apis/namespaced/project/v1alpha1"
+	v1alpha1restore "github.com/riccap/provider-arubacloud/apis/namespaced/restore/v1alpha1"
+	v1alpha1schedulejob "github.com/riccap/provider-arubacloud/apis/namespaced/schedulejob/v1alpha1"
+	v1alpha1securitygroup "github.com/riccap/provider-arubacloud/apis/namespaced/securitygroup/v1alpha1"
+	v1alpha1securityrule "github.com/riccap/provider-arubacloud/apis/namespaced/securityrule/v1alpha1"
+	v1alpha1snapshot "github.com/riccap/provider-arubacloud/apis/namespaced/snapshot/v1alpha1"
+	v1alpha1subnet "github.com/riccap/provider-arubacloud/apis/namespaced/subnet/v1alpha1"
+	v1alpha1namespaced "github.com/riccap/provider-arubacloud/apis/namespaced/v1alpha1"
+	v1beta1 "github.com/riccap/provider-arubacloud/apis/namespaced/v1beta1"
+	v1alpha1vpc "github.com/riccap/provider-arubacloud/apis/namespaced/vpc/v1alpha1"
+	v1alpha1vpcpeering "github.com/riccap/provider-arubacloud/apis/namespaced/vpcpeering/v1alpha1"
+	v1alpha1vpcpeeringroute "github.com/riccap/provider-arubacloud/apis/namespaced/vpcpeeringroute/v1alpha1"
+	v1alpha1vpnroute "github.com/riccap/provider-arubacloud/apis/namespaced/vpnroute/v1alpha1"
+	v1alpha1vpntunnel "github.com/riccap/provider-arubacloud/apis/namespaced/vpntunnel/v1alpha1"
 )
 
 func init() {
 	// Register the types with the Scheme so the components can map objects to GroupVersionKinds and back
 	AddToSchemes = append(AddToSchemes,
 		v1alpha1.SchemeBuilder.AddToScheme,
+		v1alpha1blockstorage.SchemeBuilder.AddToScheme,
+		v1alpha1cloudserver.SchemeBuilder.AddToScheme,
+		v1alpha1containerregistry.SchemeBuilder.AddToScheme,
+		v1alpha1database.SchemeBuilder.AddToScheme,
+		v1alpha1databasebackup.SchemeBuilder.AddToScheme,
+		v1alpha1databasegrant.SchemeBuilder.AddToScheme,
+		v1alpha1dbaas.SchemeBuilder.AddToScheme,
+		v1alpha1dbaasuser.SchemeBuilder.AddToScheme,
+		v1alpha1elasticip.SchemeBuilder.AddToScheme,
+		v1alpha1kaas.SchemeBuilder.AddToScheme,
+		v1alpha1keypair.SchemeBuilder.AddToScheme,
+		v1alpha1kms.SchemeBuilder.AddToScheme,
+		v1alpha1project.SchemeBuilder.AddToScheme,
+		v1alpha1restore.SchemeBuilder.AddToScheme,
+		v1alpha1schedulejob.SchemeBuilder.AddToScheme,
+		v1alpha1securitygroup.SchemeBuilder.AddToScheme,
+		v1alpha1securityrule.SchemeBuilder.AddToScheme,
+		v1alpha1snapshot.SchemeBuilder.AddToScheme,
+		v1alpha1subnet.SchemeBuilder.AddToScheme,
 		v1alpha1namespaced.SchemeBuilder.AddToScheme,
 		v1beta1.SchemeBuilder.AddToScheme,
+		v1alpha1vpc.SchemeBuilder.AddToScheme,
+		v1alpha1vpcpeering.SchemeBuilder.AddToScheme,
+		v1alpha1vpcpeeringroute.SchemeBuilder.AddToScheme,
+		v1alpha1vpnroute.SchemeBuilder.AddToScheme,
+		v1alpha1vpntunnel.SchemeBuilder.AddToScheme,
 	)
 }
 

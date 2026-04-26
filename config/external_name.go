@@ -7,17 +7,31 @@ import (
 // ExternalNameConfigs contains all external name configurations for this
 // provider.
 var ExternalNameConfigs = map[string]config.ExternalName{
-	// Import requires using a randomly generated ID from provider: nl-2e21sda
-	"null_resource": idWithStub(),
-}
-
-func idWithStub() config.ExternalName {
-	e := config.IdentifierFromProvider
-	e.GetExternalNameFn = func(tfstate map[string]any) (string, error) {
-		en, _ := config.IDAsExternalName(tfstate)
-		return en, nil
-	}
-	return e
+	"arubacloud_backup":            config.IdentifierFromProvider,
+	"arubacloud_blockstorage":      config.IdentifierFromProvider,
+	"arubacloud_cloudserver":       config.IdentifierFromProvider,
+	"arubacloud_containerregistry": config.IdentifierFromProvider,
+	"arubacloud_database":          config.IdentifierFromProvider,
+	"arubacloud_databasebackup":    config.IdentifierFromProvider,
+	"arubacloud_databasegrant":     config.IdentifierFromProvider,
+	"arubacloud_dbaas":             config.IdentifierFromProvider,
+	"arubacloud_dbaasuser":         config.IdentifierFromProvider,
+	"arubacloud_elasticip":         config.IdentifierFromProvider,
+	"arubacloud_kaas":              config.IdentifierFromProvider,
+	"arubacloud_keypair":           config.IdentifierFromProvider,
+	"arubacloud_kms":               config.IdentifierFromProvider,
+	"arubacloud_project":           config.IdentifierFromProvider,
+	"arubacloud_restore":           config.IdentifierFromProvider,
+	"arubacloud_schedulejob":       config.IdentifierFromProvider,
+	"arubacloud_securitygroup":     config.IdentifierFromProvider,
+	"arubacloud_securityrule":      config.IdentifierFromProvider,
+	"arubacloud_snapshot":          config.IdentifierFromProvider,
+	"arubacloud_subnet":            config.IdentifierFromProvider,
+	"arubacloud_vpc":               config.IdentifierFromProvider,
+	"arubacloud_vpcpeering":        config.IdentifierFromProvider,
+	"arubacloud_vpcpeeringroute":   config.IdentifierFromProvider,
+	"arubacloud_vpnroute":          config.IdentifierFromProvider,
+	"arubacloud_vpntunnel":         config.IdentifierFromProvider,
 }
 
 // ExternalNameConfigurations applies all external name configs listed in the

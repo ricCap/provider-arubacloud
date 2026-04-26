@@ -1,0 +1,27 @@
+apiVersion: containerregistry.arubacloud.crossplane.io/v1alpha1
+kind: Containerregistry
+metadata:
+  annotations:
+    meta.upbound.io/example-id: containerregistry/v1alpha1/containerregistry
+  labels:
+    testing.upbound.io/example-name: example
+  name: example
+spec:
+  forProvider:
+    billingPeriod: Hour
+    location: ITBG-Bergamo
+    name: example-container-registry
+    network:
+      publicIpUriRef: ${arubacloud_elasticip.example.uri}
+      securityGroupUriRef: ${arubacloud_securitygroup.example.uri}
+      subnetUriRef: ${arubacloud_subnet.example.uri}
+      vpcUriRef: ${arubacloud_vpc.example.uri}
+    projectId: your-project-id
+    settings:
+      adminUser: adminuser
+      concurrentUsersFlavor: Small
+    storage:
+      blockStorageUriRef: ${arubacloud_blockstorage.example.uri}
+    tags:
+    - container
+    - test

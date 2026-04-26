@@ -1,0 +1,15 @@
+apiVersion: project.arubacloud.crossplane.io/v1alpha1
+kind: Project
+metadata:
+  annotations:
+    meta.upbound.io/example-id: project/v1alpha1/project
+  labels:
+    testing.upbound.io/example-name: basic
+  name: basic
+spec:
+  forProvider:
+    description: Project for testing Terraform provider
+    name: basic-project
+    tags:
+    - terraform
+    - test

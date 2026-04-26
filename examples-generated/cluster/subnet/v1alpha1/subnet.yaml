@@ -1,0 +1,31 @@
+apiVersion: subnet.arubacloud.crossplane.io/v1alpha1
+kind: Subnet
+metadata:
+  annotations:
+    meta.upbound.io/example-id: subnet/v1alpha1/subnet
+  labels:
+    testing.upbound.io/example-name: basic
+  name: basic
+spec:
+  forProvider:
+    location: ITBG-Bergamo
+    name: basic-subnet
+    network:
+      address: 10.0.1.0/24
+      dhcp:
+        dns:
+        - 8.8.8.8
+        - 8.8.4.4
+        enabled: true
+        range:
+          count: 100
+          start: 10.0.1.10
+        routes:
+        - address: 0.0.0.0/0
+          gateway: 10.0.1.1
+    projectId: your-project-id
+    tags:
+    - network
+    - test
+    type: Advanced
+    vpcId: your-vpc-id

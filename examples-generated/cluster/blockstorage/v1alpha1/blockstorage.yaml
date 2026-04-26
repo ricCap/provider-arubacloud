@@ -1,0 +1,21 @@
+apiVersion: blockstorage.arubacloud.crossplane.io/v1alpha1
+kind: Blockstorage
+metadata:
+  annotations:
+    meta.upbound.io/example-id: blockstorage/v1alpha1/blockstorage
+  labels:
+    testing.upbound.io/example-name: zonal_example
+  name: zonal-example
+spec:
+  forProvider:
+    billingPeriod: Hour
+    location: ITBG-Bergamo
+    name: zonal-blockstorage
+    projectId: your-project-id
+    sizeGb: 100
+    tags:
+    - storage
+    - zonal
+    - test
+    type: Standard
+    zone: ITBG-1
