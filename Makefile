@@ -31,8 +31,15 @@ export TERRAFORM_PROVIDER_SOURCE ?= arubacloud/arubacloud
 export TERRAFORM_PROVIDER_REPO ?= https://github.com/Arubacloud/terraform-provider-arubacloud
 export TERRAFORM_PROVIDER_VERSION ?= 0.1.1
 export TERRAFORM_PROVIDER_DOWNLOAD_NAME ?= terraform-provider-arubacloud
-export TERRAFORM_PROVIDER_DOWNLOAD_URL_PREFIX ?= https://github.com/ricCap/terraform-provider-arubacloud/releases/download/v0.1.3-workshop
-export TERRAFORM_NATIVE_PROVIDER_BINARY ?= terraform-provider-arubacloud_v0.1.3-workshop
+# Binary version is the fork's workshop tag and drives both the GitHub
+# Release URL and the goreleaser-named zip filename. Kept distinct from
+# TERRAFORM_PROVIDER_VERSION because Terraform's runtime mirror path
+# (PLUGIN_DIR in the Dockerfile) must match the schema version baked
+# into config/schema.json (= upstream 0.1.1) for the provider-mirror
+# resolution to succeed.
+export TERRAFORM_NATIVE_PROVIDER_VERSION ?= 0.1.3-workshop
+export TERRAFORM_PROVIDER_DOWNLOAD_URL_PREFIX ?= https://github.com/ricCap/terraform-provider-arubacloud/releases/download/v$(TERRAFORM_NATIVE_PROVIDER_VERSION)
+export TERRAFORM_NATIVE_PROVIDER_BINARY ?= terraform-provider-arubacloud_v$(TERRAFORM_NATIVE_PROVIDER_VERSION)
 export TERRAFORM_DOCS_PATH ?= docs/resources
 
 
