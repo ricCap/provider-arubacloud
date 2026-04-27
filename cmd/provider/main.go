@@ -3,6 +3,8 @@ package main
 import (
 	"context"
 	"fmt"
+	"io"
+	stdlog "log"
 	"os"
 	"path/filepath"
 	"time"
@@ -83,12 +85,18 @@ func main() {
 
 	kingpin.MustParse(app.Parse(os.Args[1:]))
 
+	// Wire a discard baseline into controller-runtime so its lazy "log.SetLogger(...)
+	// was never called" warning never fires. The real zap logger is installed
+	// below only when --debug is set; the provider's own reconcile/observe/apply
+	// logs flow through xpcontroller.Options.Logger independently of this.
+	stdlog.Default().SetOutput(io.Discard)
+	ctrl.SetLogger(zap.New(zap.WriteTo(io.Discard)))
+
 	zl := zap.New(zap.UseDevMode(*debug))
 	log := logging.NewLogrLogger(zl.WithName("provider-arubacloud"))
 	if *debug {
-		// The controller-runtime runs with a no-op logger by default. It is
-		// *very* verbose even at info level, so we only provide it a real
-		// logger when we're running in debug mode.
+		// controller-runtime is *very* verbose even at info level, so we only
+		// route its internal logs to the real logger when running in debug mode.
 		ctrl.SetLogger(zl)
 	}
 
