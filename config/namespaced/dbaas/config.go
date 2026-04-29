@@ -7,5 +7,6 @@ func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("arubacloud_dbaas", func(r *config.Resource) {
 		r.ShortGroup = "dbaas"
 		r.Kind = "DBaaS"
+		r.Path = "dbaas"
 	})
 }
