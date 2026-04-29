@@ -14,18 +14,18 @@ import (
 	"github.com/crossplane/upjet/v2/pkg/resource/json"
 )
 
-// GetTerraformResourceType returns Terraform resource type for this Schedulejob
-func (mg *Schedulejob) GetTerraformResourceType() string {
+// GetTerraformResourceType returns Terraform resource type for this ScheduleJob
+func (mg *ScheduleJob) GetTerraformResourceType() string {
 	return "arubacloud_schedulejob"
 }
 
-// GetConnectionDetailsMapping for this Schedulejob
-func (tr *Schedulejob) GetConnectionDetailsMapping() map[string]string {
+// GetConnectionDetailsMapping for this ScheduleJob
+func (tr *ScheduleJob) GetConnectionDetailsMapping() map[string]string {
 	return nil
 }
 
-// GetObservation of this Schedulejob
-func (tr *Schedulejob) GetObservation() (map[string]any, error) {
+// GetObservation of this ScheduleJob
+func (tr *ScheduleJob) GetObservation() (map[string]any, error) {
 	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
 	if err != nil {
 		return nil, err
@@ -34,8 +34,8 @@ func (tr *Schedulejob) GetObservation() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(o, &base)
 }
 
-// SetObservation for this Schedulejob
-func (tr *Schedulejob) SetObservation(obs map[string]any) error {
+// SetObservation for this ScheduleJob
+func (tr *ScheduleJob) SetObservation(obs map[string]any) error {
 	p, err := json.TFParser.Marshal(obs)
 	if err != nil {
 		return err
@@ -43,16 +43,16 @@ func (tr *Schedulejob) SetObservation(obs map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
 }
 
-// GetID returns ID of underlying Terraform resource of this Schedulejob
-func (tr *Schedulejob) GetID() string {
+// GetID returns ID of underlying Terraform resource of this ScheduleJob
+func (tr *ScheduleJob) GetID() string {
 	if tr.Status.AtProvider.ID == nil {
 		return ""
 	}
 	return *tr.Status.AtProvider.ID
 }
 
-// GetParameters of this Schedulejob
-func (tr *Schedulejob) GetParameters() (map[string]any, error) {
+// GetParameters of this ScheduleJob
+func (tr *ScheduleJob) GetParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
 	if err != nil {
 		return nil, err
@@ -61,8 +61,8 @@ func (tr *Schedulejob) GetParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// SetParameters for this Schedulejob
-func (tr *Schedulejob) SetParameters(params map[string]any) error {
+// SetParameters for this ScheduleJob
+func (tr *ScheduleJob) SetParameters(params map[string]any) error {
 	p, err := json.TFParser.Marshal(params)
 	if err != nil {
 		return err
@@ -70,8 +70,8 @@ func (tr *Schedulejob) SetParameters(params map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
 }
 
-// GetInitParameters of this Schedulejob
-func (tr *Schedulejob) GetInitParameters() (map[string]any, error) {
+// GetInitParameters of this ScheduleJob
+func (tr *ScheduleJob) GetInitParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.InitProvider)
 	if err != nil {
 		return nil, err
@@ -80,8 +80,8 @@ func (tr *Schedulejob) GetInitParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// GetInitParameters of this Schedulejob
-func (tr *Schedulejob) GetMergedParameters(shouldMergeInitProvider bool) (map[string]any, error) {
+// GetInitParameters of this ScheduleJob
+func (tr *ScheduleJob) GetMergedParameters(shouldMergeInitProvider bool) (map[string]any, error) {
 	params, err := tr.GetParameters()
 	if err != nil {
 		return nil, errors.Wrapf(err, "cannot get parameters for resource \"%s/%s\"", tr.GetNamespace(), tr.GetName())
@@ -110,10 +110,10 @@ func (tr *Schedulejob) GetMergedParameters(shouldMergeInitProvider bool) (map[st
 	return params, nil
 }
 
-// LateInitialize this Schedulejob using its observed tfState.
+// LateInitialize this ScheduleJob using its observed tfState.
 // returns True if there are any spec changes for the resource.
-func (tr *Schedulejob) LateInitialize(attrs []byte) (bool, error) {
-	params := &SchedulejobParameters{}
+func (tr *ScheduleJob) LateInitialize(attrs []byte) (bool, error) {
+	params := &ScheduleJobParameters{}
 	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
 		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
 	}
@@ -124,6 +124,6 @@ func (tr *Schedulejob) LateInitialize(attrs []byte) (bool, error) {
 }
 
 // GetTerraformSchemaVersion returns the associated Terraform schema version
-func (tr *Schedulejob) GetTerraformSchemaVersion() int {
+func (tr *ScheduleJob) GetTerraformSchemaVersion() int {
 	return 0
 }

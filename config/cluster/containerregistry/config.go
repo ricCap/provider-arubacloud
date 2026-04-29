@@ -6,5 +6,6 @@ import "github.com/crossplane/upjet/v2/pkg/config"
 func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("arubacloud_containerregistry", func(r *config.Resource) {
 		r.ShortGroup = "containerregistry"
+		r.Kind = "ContainerRegistry"
 	})
 }

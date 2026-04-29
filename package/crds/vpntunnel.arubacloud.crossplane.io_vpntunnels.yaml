@@ -12,8 +12,8 @@ spec:
     - crossplane
     - managed
     - arubacloud
-    kind: Vpntunnel
-    listKind: VpntunnelList
+    kind: VPNTunnel
+    listKind: VPNTunnelList
     plural: vpntunnels
     singular: vpntunnel
   scope: Cluster
@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Vpntunnel is the Schema for the Vpntunnels API. Retrieves an
+        description: VPNTunnel is the Schema for the VPNTunnels API. Retrieves an
           ArubaCloud VPN Tunnel.
         properties:
           apiVersion:
@@ -55,7 +55,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: VpntunnelSpec defines the desired state of Vpntunnel
+            description: VPNTunnelSpec defines the desired state of VPNTunnel
             properties:
               deletionPolicy:
                 default: Delete
@@ -541,7 +541,7 @@ spec:
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.properties)
                 || (has(self.initProvider) && has(self.initProvider.properties))'
           status:
-            description: VpntunnelStatus defines the observed state of Vpntunnel.
+            description: VPNTunnelStatus defines the observed state of VPNTunnel.
             properties:
               atProvider:
                 properties:

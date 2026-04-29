@@ -8,42 +8,42 @@ package v1alpha1
 
 import xpv1 "github.com/crossplane/crossplane-runtime/v2/apis/common/v1"
 
-// GetCondition of this Vpnroute.
-func (mg *Vpnroute) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
+// GetCondition of this VPNRoute.
+func (mg *VPNRoute) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
 	return mg.Status.GetCondition(ct)
 }
 
-// GetManagementPolicies of this Vpnroute.
-func (mg *Vpnroute) GetManagementPolicies() xpv1.ManagementPolicies {
+// GetManagementPolicies of this VPNRoute.
+func (mg *VPNRoute) GetManagementPolicies() xpv1.ManagementPolicies {
 	return mg.Spec.ManagementPolicies
 }
 
-// GetProviderConfigReference of this Vpnroute.
-func (mg *Vpnroute) GetProviderConfigReference() *xpv1.ProviderConfigReference {
+// GetProviderConfigReference of this VPNRoute.
+func (mg *VPNRoute) GetProviderConfigReference() *xpv1.ProviderConfigReference {
 	return mg.Spec.ProviderConfigReference
 }
 
-// GetWriteConnectionSecretToReference of this Vpnroute.
-func (mg *Vpnroute) GetWriteConnectionSecretToReference() *xpv1.LocalSecretReference {
+// GetWriteConnectionSecretToReference of this VPNRoute.
+func (mg *VPNRoute) GetWriteConnectionSecretToReference() *xpv1.LocalSecretReference {
 	return mg.Spec.WriteConnectionSecretToReference
 }
 
-// SetConditions of this Vpnroute.
-func (mg *Vpnroute) SetConditions(c ...xpv1.Condition) {
+// SetConditions of this VPNRoute.
+func (mg *VPNRoute) SetConditions(c ...xpv1.Condition) {
 	mg.Status.SetConditions(c...)
 }
 
-// SetManagementPolicies of this Vpnroute.
-func (mg *Vpnroute) SetManagementPolicies(r xpv1.ManagementPolicies) {
+// SetManagementPolicies of this VPNRoute.
+func (mg *VPNRoute) SetManagementPolicies(r xpv1.ManagementPolicies) {
 	mg.Spec.ManagementPolicies = r
 }
 
-// SetProviderConfigReference of this Vpnroute.
-func (mg *Vpnroute) SetProviderConfigReference(r *xpv1.ProviderConfigReference) {
+// SetProviderConfigReference of this VPNRoute.
+func (mg *VPNRoute) SetProviderConfigReference(r *xpv1.ProviderConfigReference) {
 	mg.Spec.ProviderConfigReference = r
 }
 
-// SetWriteConnectionSecretToReference of this Vpnroute.
-func (mg *Vpnroute) SetWriteConnectionSecretToReference(r *xpv1.LocalSecretReference) {
+// SetWriteConnectionSecretToReference of this VPNRoute.
+func (mg *VPNRoute) SetWriteConnectionSecretToReference(r *xpv1.LocalSecretReference) {
 	mg.Spec.WriteConnectionSecretToReference = r
 }

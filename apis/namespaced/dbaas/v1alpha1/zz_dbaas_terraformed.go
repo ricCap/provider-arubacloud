@@ -14,18 +14,18 @@ import (
 	"github.com/crossplane/upjet/v2/pkg/resource/json"
 )
 
-// GetTerraformResourceType returns Terraform resource type for this Dbaas
-func (mg *Dbaas) GetTerraformResourceType() string {
+// GetTerraformResourceType returns Terraform resource type for this DBaaS
+func (mg *DBaaS) GetTerraformResourceType() string {
 	return "arubacloud_dbaas"
 }
 
-// GetConnectionDetailsMapping for this Dbaas
-func (tr *Dbaas) GetConnectionDetailsMapping() map[string]string {
+// GetConnectionDetailsMapping for this DBaaS
+func (tr *DBaaS) GetConnectionDetailsMapping() map[string]string {
 	return nil
 }
 
-// GetObservation of this Dbaas
-func (tr *Dbaas) GetObservation() (map[string]any, error) {
+// GetObservation of this DBaaS
+func (tr *DBaaS) GetObservation() (map[string]any, error) {
 	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
 	if err != nil {
 		return nil, err
@@ -34,8 +34,8 @@ func (tr *Dbaas) GetObservation() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(o, &base)
 }
 
-// SetObservation for this Dbaas
-func (tr *Dbaas) SetObservation(obs map[string]any) error {
+// SetObservation for this DBaaS
+func (tr *DBaaS) SetObservation(obs map[string]any) error {
 	p, err := json.TFParser.Marshal(obs)
 	if err != nil {
 		return err
@@ -43,16 +43,16 @@ func (tr *Dbaas) SetObservation(obs map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
 }
 
-// GetID returns ID of underlying Terraform resource of this Dbaas
-func (tr *Dbaas) GetID() string {
+// GetID returns ID of underlying Terraform resource of this DBaaS
+func (tr *DBaaS) GetID() string {
 	if tr.Status.AtProvider.ID == nil {
 		return ""
 	}
 	return *tr.Status.AtProvider.ID
 }
 
-// GetParameters of this Dbaas
-func (tr *Dbaas) GetParameters() (map[string]any, error) {
+// GetParameters of this DBaaS
+func (tr *DBaaS) GetParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
 	if err != nil {
 		return nil, err
@@ -61,8 +61,8 @@ func (tr *Dbaas) GetParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// SetParameters for this Dbaas
-func (tr *Dbaas) SetParameters(params map[string]any) error {
+// SetParameters for this DBaaS
+func (tr *DBaaS) SetParameters(params map[string]any) error {
 	p, err := json.TFParser.Marshal(params)
 	if err != nil {
 		return err
@@ -70,8 +70,8 @@ func (tr *Dbaas) SetParameters(params map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
 }
 
-// GetInitParameters of this Dbaas
-func (tr *Dbaas) GetInitParameters() (map[string]any, error) {
+// GetInitParameters of this DBaaS
+func (tr *DBaaS) GetInitParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.InitProvider)
 	if err != nil {
 		return nil, err
@@ -80,8 +80,8 @@ func (tr *Dbaas) GetInitParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// GetInitParameters of this Dbaas
-func (tr *Dbaas) GetMergedParameters(shouldMergeInitProvider bool) (map[string]any, error) {
+// GetInitParameters of this DBaaS
+func (tr *DBaaS) GetMergedParameters(shouldMergeInitProvider bool) (map[string]any, error) {
 	params, err := tr.GetParameters()
 	if err != nil {
 		return nil, errors.Wrapf(err, "cannot get parameters for resource \"%s/%s\"", tr.GetNamespace(), tr.GetName())
@@ -110,10 +110,10 @@ func (tr *Dbaas) GetMergedParameters(shouldMergeInitProvider bool) (map[string]a
 	return params, nil
 }
 
-// LateInitialize this Dbaas using its observed tfState.
+// LateInitialize this DBaaS using its observed tfState.
 // returns True if there are any spec changes for the resource.
-func (tr *Dbaas) LateInitialize(attrs []byte) (bool, error) {
-	params := &DbaasParameters{}
+func (tr *DBaaS) LateInitialize(attrs []byte) (bool, error) {
+	params := &DBaaSParameters{}
 	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
 		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
 	}
@@ -124,6 +124,6 @@ func (tr *Dbaas) LateInitialize(attrs []byte) (bool, error) {
 }
 
 // GetTerraformSchemaVersion returns the associated Terraform schema version
-func (tr *Dbaas) GetTerraformSchemaVersion() int {
+func (tr *DBaaS) GetTerraformSchemaVersion() int {
 	return 0
 }

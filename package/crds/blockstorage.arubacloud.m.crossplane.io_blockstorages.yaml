@@ -12,8 +12,8 @@ spec:
     - crossplane
     - managed
     - arubacloud
-    kind: Blockstorage
-    listKind: BlockstorageList
+    kind: BlockStorage
+    listKind: BlockStorageList
     plural: blockstorages
     singular: blockstorage
   scope: Namespaced
@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Blockstorage is the Schema for the Blockstorages API. Manages
+        description: BlockStorage is the Schema for the BlockStorages API. Manages
           an ArubaCloud Block Storage.
         properties:
           apiVersion:
@@ -55,7 +55,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: BlockstorageSpec defines the desired state of Blockstorage
+            description: BlockStorageSpec defines the desired state of BlockStorage
             properties:
               forProvider:
                 properties:
@@ -269,7 +269,7 @@ spec:
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.type)
                 || (has(self.initProvider) && has(self.initProvider.type))'
           status:
-            description: BlockstorageStatus defines the observed state of Blockstorage.
+            description: BlockStorageStatus defines the observed state of BlockStorage.
             properties:
               atProvider:
                 properties:

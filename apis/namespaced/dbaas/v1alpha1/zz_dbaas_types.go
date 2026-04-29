@@ -62,7 +62,7 @@ type AutoscalingParameters struct {
 	StepSize *float64 `json:"stepSize" tf:"step_size,omitempty"`
 }
 
-type DbaasInitParameters struct {
+type DBaaSInitParameters struct {
 
 	// (String) Billing period (Hour, Month, Year)
 	// Billing period (Hour, Month, Year)
@@ -103,7 +103,7 @@ type DbaasInitParameters struct {
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
 
-type DbaasObservation struct {
+type DBaaSObservation struct {
 
 	// (String) Billing period (Hour, Month, Year)
 	// Billing period (Hour, Month, Year)
@@ -151,7 +151,7 @@ type DbaasObservation struct {
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
 
-type DbaasParameters struct {
+type DBaaSParameters struct {
 
 	// (String) Billing period (Hour, Month, Year)
 	// Billing period (Hour, Month, Year)
@@ -295,10 +295,10 @@ type StorageParameters struct {
 	SizeGb *float64 `json:"sizeGb" tf:"size_gb,omitempty"`
 }
 
-// DbaasSpec defines the desired state of Dbaas
-type DbaasSpec struct {
+// DBaaSSpec defines the desired state of DBaaS
+type DBaaSSpec struct {
 	v2.ManagedResourceSpec `json:",inline"`
-	ForProvider            DbaasParameters `json:"forProvider"`
+	ForProvider            DBaaSParameters `json:"forProvider"`
 	// THIS IS A BETA FIELD. It will be honored
 	// unless the Management Policies feature flag is disabled.
 	// InitProvider holds the same fields as ForProvider, with the exception
@@ -309,26 +309,26 @@ type DbaasSpec struct {
 	// required on creation, but we do not desire to update them after creation,
 	// for example because of an external controller is managing them, like an
 	// autoscaler.
-	InitProvider DbaasInitParameters `json:"initProvider,omitempty"`
+	InitProvider DBaaSInitParameters `json:"initProvider,omitempty"`
 }
 
-// DbaasStatus defines the observed state of Dbaas.
-type DbaasStatus struct {
+// DBaaSStatus defines the observed state of DBaaS.
+type DBaaSStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        DbaasObservation `json:"atProvider,omitempty"`
+	AtProvider        DBaaSObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// Dbaas is the Schema for the Dbaass API. Manages an ArubaCloud DBaaS.
+// DBaaS is the Schema for the DBaaSs API. Manages an ArubaCloud DBaaS.
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
-// +kubebuilder:resource:scope=Namespaced,categories={crossplane,managed,arubacloud}
-type Dbaas struct {
+// +kubebuilder:resource:scope=Namespaced,categories={crossplane,managed,arubacloud},path=dbaas
+type DBaaS struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.engineId) || (has(self.initProvider) && has(self.initProvider.engineId))",message="spec.forProvider.engineId is a required parameter"
@@ -339,27 +339,27 @@ type Dbaas struct {
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.projectId) || (has(self.initProvider) && has(self.initProvider.projectId))",message="spec.forProvider.projectId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.storage) || (has(self.initProvider) && has(self.initProvider.storage))",message="spec.forProvider.storage is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.zone) || (has(self.initProvider) && has(self.initProvider.zone))",message="spec.forProvider.zone is a required parameter"
-	Spec   DbaasSpec   `json:"spec"`
-	Status DbaasStatus `json:"status,omitempty"`
+	Spec   DBaaSSpec   `json:"spec"`
+	Status DBaaSStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// DbaasList contains a list of Dbaass
-type DbaasList struct {
+// DBaaSList contains a list of DBaaSs
+type DBaaSList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []Dbaas `json:"items"`
+	Items           []DBaaS `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	Dbaas_Kind             = "Dbaas"
-	Dbaas_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: Dbaas_Kind}.String()
-	Dbaas_KindAPIVersion   = Dbaas_Kind + "." + CRDGroupVersion.String()
-	Dbaas_GroupVersionKind = CRDGroupVersion.WithKind(Dbaas_Kind)
+	DBaaS_Kind             = "DBaaS"
+	DBaaS_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: DBaaS_Kind}.String()
+	DBaaS_KindAPIVersion   = DBaaS_Kind + "." + CRDGroupVersion.String()
+	DBaaS_GroupVersionKind = CRDGroupVersion.WithKind(DBaaS_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&Dbaas{}, &DbaasList{})
+	SchemeBuilder.Register(&DBaaS{}, &DBaaSList{})
 }

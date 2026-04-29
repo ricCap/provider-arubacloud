@@ -448,7 +448,7 @@ type VPNClientSettingsParameters struct {
 	Psk *PskParameters `json:"psk,omitempty" tf:"psk,omitempty"`
 }
 
-type VpntunnelInitParameters struct {
+type VPNTunnelInitParameters struct {
 
 	// (String) VPN Tunnel location
 	// VPN Tunnel location
@@ -470,7 +470,7 @@ type VpntunnelInitParameters struct {
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 }
 
-type VpntunnelObservation struct {
+type VPNTunnelObservation struct {
 
 	// (String) VPN Tunnel identifier
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
@@ -499,7 +499,7 @@ type VpntunnelObservation struct {
 	URI *string `json:"uri,omitempty" tf:"uri,omitempty"`
 }
 
-type VpntunnelParameters struct {
+type VPNTunnelParameters struct {
 
 	// (String) VPN Tunnel location
 	// VPN Tunnel location
@@ -526,10 +526,10 @@ type VpntunnelParameters struct {
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 }
 
-// VpntunnelSpec defines the desired state of Vpntunnel
-type VpntunnelSpec struct {
+// VPNTunnelSpec defines the desired state of VPNTunnel
+type VPNTunnelSpec struct {
 	v2.ManagedResourceSpec `json:",inline"`
-	ForProvider            VpntunnelParameters `json:"forProvider"`
+	ForProvider            VPNTunnelParameters `json:"forProvider"`
 	// THIS IS A BETA FIELD. It will be honored
 	// unless the Management Policies feature flag is disabled.
 	// InitProvider holds the same fields as ForProvider, with the exception
@@ -540,53 +540,53 @@ type VpntunnelSpec struct {
 	// required on creation, but we do not desire to update them after creation,
 	// for example because of an external controller is managing them, like an
 	// autoscaler.
-	InitProvider VpntunnelInitParameters `json:"initProvider,omitempty"`
+	InitProvider VPNTunnelInitParameters `json:"initProvider,omitempty"`
 }
 
-// VpntunnelStatus defines the observed state of Vpntunnel.
-type VpntunnelStatus struct {
+// VPNTunnelStatus defines the observed state of VPNTunnel.
+type VPNTunnelStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        VpntunnelObservation `json:"atProvider,omitempty"`
+	AtProvider        VPNTunnelObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// Vpntunnel is the Schema for the Vpntunnels API. Retrieves an ArubaCloud VPN Tunnel.
+// VPNTunnel is the Schema for the VPNTunnels API. Retrieves an ArubaCloud VPN Tunnel.
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:resource:scope=Namespaced,categories={crossplane,managed,arubacloud}
-type Vpntunnel struct {
+type VPNTunnel struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.location) || (has(self.initProvider) && has(self.initProvider.location))",message="spec.forProvider.location is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.projectId) || (has(self.initProvider) && has(self.initProvider.projectId))",message="spec.forProvider.projectId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.properties) || (has(self.initProvider) && has(self.initProvider.properties))",message="spec.forProvider.properties is a required parameter"
-	Spec   VpntunnelSpec   `json:"spec"`
-	Status VpntunnelStatus `json:"status,omitempty"`
+	Spec   VPNTunnelSpec   `json:"spec"`
+	Status VPNTunnelStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// VpntunnelList contains a list of Vpntunnels
-type VpntunnelList struct {
+// VPNTunnelList contains a list of VPNTunnels
+type VPNTunnelList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []Vpntunnel `json:"items"`
+	Items           []VPNTunnel `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	Vpntunnel_Kind             = "Vpntunnel"
-	Vpntunnel_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: Vpntunnel_Kind}.String()
-	Vpntunnel_KindAPIVersion   = Vpntunnel_Kind + "." + CRDGroupVersion.String()
-	Vpntunnel_GroupVersionKind = CRDGroupVersion.WithKind(Vpntunnel_Kind)
+	VPNTunnel_Kind             = "VPNTunnel"
+	VPNTunnel_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: VPNTunnel_Kind}.String()
+	VPNTunnel_KindAPIVersion   = VPNTunnel_Kind + "." + CRDGroupVersion.String()
+	VPNTunnel_GroupVersionKind = CRDGroupVersion.WithKind(VPNTunnel_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&Vpntunnel{}, &VpntunnelList{})
+	SchemeBuilder.Register(&VPNTunnel{}, &VPNTunnelList{})
 }

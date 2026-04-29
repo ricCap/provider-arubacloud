@@ -8,42 +8,42 @@ package v1alpha1
 
 import xpv1 "github.com/crossplane/crossplane-runtime/v2/apis/common/v1"
 
-// GetCondition of this Dbaas.
-func (mg *Dbaas) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
+// GetCondition of this DBaaS.
+func (mg *DBaaS) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
 	return mg.Status.GetCondition(ct)
 }
 
-// GetManagementPolicies of this Dbaas.
-func (mg *Dbaas) GetManagementPolicies() xpv1.ManagementPolicies {
+// GetManagementPolicies of this DBaaS.
+func (mg *DBaaS) GetManagementPolicies() xpv1.ManagementPolicies {
 	return mg.Spec.ManagementPolicies
 }
 
-// GetProviderConfigReference of this Dbaas.
-func (mg *Dbaas) GetProviderConfigReference() *xpv1.ProviderConfigReference {
+// GetProviderConfigReference of this DBaaS.
+func (mg *DBaaS) GetProviderConfigReference() *xpv1.ProviderConfigReference {
 	return mg.Spec.ProviderConfigReference
 }
 
-// GetWriteConnectionSecretToReference of this Dbaas.
-func (mg *Dbaas) GetWriteConnectionSecretToReference() *xpv1.LocalSecretReference {
+// GetWriteConnectionSecretToReference of this DBaaS.
+func (mg *DBaaS) GetWriteConnectionSecretToReference() *xpv1.LocalSecretReference {
 	return mg.Spec.WriteConnectionSecretToReference
 }
 
-// SetConditions of this Dbaas.
-func (mg *Dbaas) SetConditions(c ...xpv1.Condition) {
+// SetConditions of this DBaaS.
+func (mg *DBaaS) SetConditions(c ...xpv1.Condition) {
 	mg.Status.SetConditions(c...)
 }
 
-// SetManagementPolicies of this Dbaas.
-func (mg *Dbaas) SetManagementPolicies(r xpv1.ManagementPolicies) {
+// SetManagementPolicies of this DBaaS.
+func (mg *DBaaS) SetManagementPolicies(r xpv1.ManagementPolicies) {
 	mg.Spec.ManagementPolicies = r
 }
 
-// SetProviderConfigReference of this Dbaas.
-func (mg *Dbaas) SetProviderConfigReference(r *xpv1.ProviderConfigReference) {
+// SetProviderConfigReference of this DBaaS.
+func (mg *DBaaS) SetProviderConfigReference(r *xpv1.ProviderConfigReference) {
 	mg.Spec.ProviderConfigReference = r
 }
 
-// SetWriteConnectionSecretToReference of this Dbaas.
-func (mg *Dbaas) SetWriteConnectionSecretToReference(r *xpv1.LocalSecretReference) {
+// SetWriteConnectionSecretToReference of this DBaaS.
+func (mg *DBaaS) SetWriteConnectionSecretToReference(r *xpv1.LocalSecretReference) {
 	mg.Spec.WriteConnectionSecretToReference = r
 }

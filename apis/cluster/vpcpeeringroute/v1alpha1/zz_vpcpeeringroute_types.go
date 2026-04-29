@@ -13,7 +13,7 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/v2/apis/common/v1"
 )
 
-type VpcpeeringrouteInitParameters struct {
+type VPCPeeringRouteInitParameters struct {
 
 	// (String) Billing period (Hour, Month, Year)
 	// Billing period (Hour, Month, Year)
@@ -48,7 +48,7 @@ type VpcpeeringrouteInitParameters struct {
 	VPCPeeringID *string `json:"vpcPeeringId,omitempty" tf:"vpc_peering_id,omitempty"`
 }
 
-type VpcpeeringrouteObservation struct {
+type VPCPeeringRouteObservation struct {
 
 	// (String) Billing period (Hour, Month, Year)
 	// Billing period (Hour, Month, Year)
@@ -90,7 +90,7 @@ type VpcpeeringrouteObservation struct {
 	VPCPeeringID *string `json:"vpcPeeringId,omitempty" tf:"vpc_peering_id,omitempty"`
 }
 
-type VpcpeeringrouteParameters struct {
+type VPCPeeringRouteParameters struct {
 
 	// (String) Billing period (Hour, Month, Year)
 	// Billing period (Hour, Month, Year)
@@ -133,10 +133,10 @@ type VpcpeeringrouteParameters struct {
 	VPCPeeringID *string `json:"vpcPeeringId,omitempty" tf:"vpc_peering_id,omitempty"`
 }
 
-// VpcpeeringrouteSpec defines the desired state of Vpcpeeringroute
-type VpcpeeringrouteSpec struct {
+// VPCPeeringRouteSpec defines the desired state of VPCPeeringRoute
+type VPCPeeringRouteSpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     VpcpeeringrouteParameters `json:"forProvider"`
+	ForProvider     VPCPeeringRouteParameters `json:"forProvider"`
 	// THIS IS A BETA FIELD. It will be honored
 	// unless the Management Policies feature flag is disabled.
 	// InitProvider holds the same fields as ForProvider, with the exception
@@ -147,26 +147,26 @@ type VpcpeeringrouteSpec struct {
 	// required on creation, but we do not desire to update them after creation,
 	// for example because of an external controller is managing them, like an
 	// autoscaler.
-	InitProvider VpcpeeringrouteInitParameters `json:"initProvider,omitempty"`
+	InitProvider VPCPeeringRouteInitParameters `json:"initProvider,omitempty"`
 }
 
-// VpcpeeringrouteStatus defines the observed state of Vpcpeeringroute.
-type VpcpeeringrouteStatus struct {
+// VPCPeeringRouteStatus defines the observed state of VPCPeeringRoute.
+type VPCPeeringRouteStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        VpcpeeringrouteObservation `json:"atProvider,omitempty"`
+	AtProvider        VPCPeeringRouteObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// Vpcpeeringroute is the Schema for the Vpcpeeringroutes API. Manages an ArubaCloud VPC Peering Route.
+// VPCPeeringRoute is the Schema for the VPCPeeringRoutes API. Manages an ArubaCloud VPC Peering Route.
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,arubacloud}
-type Vpcpeeringroute struct {
+type VPCPeeringRoute struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.billingPeriod) || (has(self.initProvider) && has(self.initProvider.billingPeriod))",message="spec.forProvider.billingPeriod is a required parameter"
@@ -176,27 +176,27 @@ type Vpcpeeringroute struct {
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.remoteNetworkAddress) || (has(self.initProvider) && has(self.initProvider.remoteNetworkAddress))",message="spec.forProvider.remoteNetworkAddress is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.vpcId) || (has(self.initProvider) && has(self.initProvider.vpcId))",message="spec.forProvider.vpcId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.vpcPeeringId) || (has(self.initProvider) && has(self.initProvider.vpcPeeringId))",message="spec.forProvider.vpcPeeringId is a required parameter"
-	Spec   VpcpeeringrouteSpec   `json:"spec"`
-	Status VpcpeeringrouteStatus `json:"status,omitempty"`
+	Spec   VPCPeeringRouteSpec   `json:"spec"`
+	Status VPCPeeringRouteStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// VpcpeeringrouteList contains a list of Vpcpeeringroutes
-type VpcpeeringrouteList struct {
+// VPCPeeringRouteList contains a list of VPCPeeringRoutes
+type VPCPeeringRouteList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []Vpcpeeringroute `json:"items"`
+	Items           []VPCPeeringRoute `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	Vpcpeeringroute_Kind             = "Vpcpeeringroute"
-	Vpcpeeringroute_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: Vpcpeeringroute_Kind}.String()
-	Vpcpeeringroute_KindAPIVersion   = Vpcpeeringroute_Kind + "." + CRDGroupVersion.String()
-	Vpcpeeringroute_GroupVersionKind = CRDGroupVersion.WithKind(Vpcpeeringroute_Kind)
+	VPCPeeringRoute_Kind             = "VPCPeeringRoute"
+	VPCPeeringRoute_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: VPCPeeringRoute_Kind}.String()
+	VPCPeeringRoute_KindAPIVersion   = VPCPeeringRoute_Kind + "." + CRDGroupVersion.String()
+	VPCPeeringRoute_GroupVersionKind = CRDGroupVersion.WithKind(VPCPeeringRoute_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&Vpcpeeringroute{}, &VpcpeeringrouteList{})
+	SchemeBuilder.Register(&VPCPeeringRoute{}, &VPCPeeringRouteList{})
 }

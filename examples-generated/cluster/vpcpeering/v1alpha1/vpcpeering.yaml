@@ -1,5 +1,5 @@
 apiVersion: vpcpeering.arubacloud.crossplane.io/v1alpha1
-kind: Vpcpeering
+kind: VPCPeering
 metadata:
   annotations:
     meta.upbound.io/example-id: vpcpeering/v1alpha1/vpcpeering

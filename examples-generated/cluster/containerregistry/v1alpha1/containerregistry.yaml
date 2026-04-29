@@ -1,5 +1,5 @@
 apiVersion: containerregistry.arubacloud.crossplane.io/v1alpha1
-kind: Containerregistry
+kind: ContainerRegistry
 metadata:
   annotations:
     meta.upbound.io/example-id: containerregistry/v1alpha1/containerregistry

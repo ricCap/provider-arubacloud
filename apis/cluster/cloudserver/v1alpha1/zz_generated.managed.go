@@ -8,52 +8,52 @@ package v1alpha1
 
 import xpv1 "github.com/crossplane/crossplane-runtime/v2/apis/common/v1"
 
-// GetCondition of this Cloudserver.
-func (mg *Cloudserver) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
+// GetCondition of this CloudServer.
+func (mg *CloudServer) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
 	return mg.Status.GetCondition(ct)
 }
 
-// GetDeletionPolicy of this Cloudserver.
-func (mg *Cloudserver) GetDeletionPolicy() xpv1.DeletionPolicy {
+// GetDeletionPolicy of this CloudServer.
+func (mg *CloudServer) GetDeletionPolicy() xpv1.DeletionPolicy {
 	return mg.Spec.DeletionPolicy
 }
 
-// GetManagementPolicies of this Cloudserver.
-func (mg *Cloudserver) GetManagementPolicies() xpv1.ManagementPolicies {
+// GetManagementPolicies of this CloudServer.
+func (mg *CloudServer) GetManagementPolicies() xpv1.ManagementPolicies {
 	return mg.Spec.ManagementPolicies
 }
 
-// GetProviderConfigReference of this Cloudserver.
-func (mg *Cloudserver) GetProviderConfigReference() *xpv1.Reference {
+// GetProviderConfigReference of this CloudServer.
+func (mg *CloudServer) GetProviderConfigReference() *xpv1.Reference {
 	return mg.Spec.ProviderConfigReference
 }
 
-// GetWriteConnectionSecretToReference of this Cloudserver.
-func (mg *Cloudserver) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
+// GetWriteConnectionSecretToReference of this CloudServer.
+func (mg *CloudServer) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
 	return mg.Spec.WriteConnectionSecretToReference
 }
 
-// SetConditions of this Cloudserver.
-func (mg *Cloudserver) SetConditions(c ...xpv1.Condition) {
+// SetConditions of this CloudServer.
+func (mg *CloudServer) SetConditions(c ...xpv1.Condition) {
 	mg.Status.SetConditions(c...)
 }
 
-// SetDeletionPolicy of this Cloudserver.
-func (mg *Cloudserver) SetDeletionPolicy(r xpv1.DeletionPolicy) {
+// SetDeletionPolicy of this CloudServer.
+func (mg *CloudServer) SetDeletionPolicy(r xpv1.DeletionPolicy) {
 	mg.Spec.DeletionPolicy = r
 }
 
-// SetManagementPolicies of this Cloudserver.
-func (mg *Cloudserver) SetManagementPolicies(r xpv1.ManagementPolicies) {
+// SetManagementPolicies of this CloudServer.
+func (mg *CloudServer) SetManagementPolicies(r xpv1.ManagementPolicies) {
 	mg.Spec.ManagementPolicies = r
 }
 
-// SetProviderConfigReference of this Cloudserver.
-func (mg *Cloudserver) SetProviderConfigReference(r *xpv1.Reference) {
+// SetProviderConfigReference of this CloudServer.
+func (mg *CloudServer) SetProviderConfigReference(r *xpv1.Reference) {
 	mg.Spec.ProviderConfigReference = r
 }
 
-// SetWriteConnectionSecretToReference of this Cloudserver.
-func (mg *Cloudserver) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
+// SetWriteConnectionSecretToReference of this CloudServer.
+func (mg *CloudServer) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
 	mg.Spec.WriteConnectionSecretToReference = r
 }

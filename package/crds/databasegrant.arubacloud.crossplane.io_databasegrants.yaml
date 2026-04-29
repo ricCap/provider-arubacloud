@@ -12,8 +12,8 @@ spec:
     - crossplane
     - managed
     - arubacloud
-    kind: Databasegrant
-    listKind: DatabasegrantList
+    kind: DatabaseGrant
+    listKind: DatabaseGrantList
     plural: databasegrants
     singular: databasegrant
   scope: Cluster
@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Databasegrant is the Schema for the Databasegrants API. Manages
+        description: DatabaseGrant is the Schema for the DatabaseGrants API. Manages
           an ArubaCloud Database Grant.
         properties:
           apiVersion:
@@ -55,7 +55,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: DatabasegrantSpec defines the desired state of Databasegrant
+            description: DatabaseGrantSpec defines the desired state of DatabaseGrant
             properties:
               deletionPolicy:
                 default: Delete
@@ -252,7 +252,7 @@ spec:
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.userId)
                 || (has(self.initProvider) && has(self.initProvider.userId))'
           status:
-            description: DatabasegrantStatus defines the observed state of Databasegrant.
+            description: DatabaseGrantStatus defines the observed state of DatabaseGrant.
             properties:
               atProvider:
                 properties:

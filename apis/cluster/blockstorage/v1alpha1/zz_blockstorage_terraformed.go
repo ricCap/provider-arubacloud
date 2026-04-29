@@ -14,18 +14,18 @@ import (
 	"github.com/crossplane/upjet/v2/pkg/resource/json"
 )
 
-// GetTerraformResourceType returns Terraform resource type for this Blockstorage
-func (mg *Blockstorage) GetTerraformResourceType() string {
+// GetTerraformResourceType returns Terraform resource type for this BlockStorage
+func (mg *BlockStorage) GetTerraformResourceType() string {
 	return "arubacloud_blockstorage"
 }
 
-// GetConnectionDetailsMapping for this Blockstorage
-func (tr *Blockstorage) GetConnectionDetailsMapping() map[string]string {
+// GetConnectionDetailsMapping for this BlockStorage
+func (tr *BlockStorage) GetConnectionDetailsMapping() map[string]string {
 	return nil
 }
 
-// GetObservation of this Blockstorage
-func (tr *Blockstorage) GetObservation() (map[string]any, error) {
+// GetObservation of this BlockStorage
+func (tr *BlockStorage) GetObservation() (map[string]any, error) {
 	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
 	if err != nil {
 		return nil, err
@@ -34,8 +34,8 @@ func (tr *Blockstorage) GetObservation() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(o, &base)
 }
 
-// SetObservation for this Blockstorage
-func (tr *Blockstorage) SetObservation(obs map[string]any) error {
+// SetObservation for this BlockStorage
+func (tr *BlockStorage) SetObservation(obs map[string]any) error {
 	p, err := json.TFParser.Marshal(obs)
 	if err != nil {
 		return err
@@ -43,16 +43,16 @@ func (tr *Blockstorage) SetObservation(obs map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
 }
 
-// GetID returns ID of underlying Terraform resource of this Blockstorage
-func (tr *Blockstorage) GetID() string {
+// GetID returns ID of underlying Terraform resource of this BlockStorage
+func (tr *BlockStorage) GetID() string {
 	if tr.Status.AtProvider.ID == nil {
 		return ""
 	}
 	return *tr.Status.AtProvider.ID
 }
 
-// GetParameters of this Blockstorage
-func (tr *Blockstorage) GetParameters() (map[string]any, error) {
+// GetParameters of this BlockStorage
+func (tr *BlockStorage) GetParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
 	if err != nil {
 		return nil, err
@@ -61,8 +61,8 @@ func (tr *Blockstorage) GetParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// SetParameters for this Blockstorage
-func (tr *Blockstorage) SetParameters(params map[string]any) error {
+// SetParameters for this BlockStorage
+func (tr *BlockStorage) SetParameters(params map[string]any) error {
 	p, err := json.TFParser.Marshal(params)
 	if err != nil {
 		return err
@@ -70,8 +70,8 @@ func (tr *Blockstorage) SetParameters(params map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
 }
 
-// GetInitParameters of this Blockstorage
-func (tr *Blockstorage) GetInitParameters() (map[string]any, error) {
+// GetInitParameters of this BlockStorage
+func (tr *BlockStorage) GetInitParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.InitProvider)
 	if err != nil {
 		return nil, err
@@ -80,8 +80,8 @@ func (tr *Blockstorage) GetInitParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// GetInitParameters of this Blockstorage
-func (tr *Blockstorage) GetMergedParameters(shouldMergeInitProvider bool) (map[string]any, error) {
+// GetInitParameters of this BlockStorage
+func (tr *BlockStorage) GetMergedParameters(shouldMergeInitProvider bool) (map[string]any, error) {
 	params, err := tr.GetParameters()
 	if err != nil {
 		return nil, errors.Wrapf(err, "cannot get parameters for resource \"%s/%s\"", tr.GetNamespace(), tr.GetName())
@@ -110,10 +110,10 @@ func (tr *Blockstorage) GetMergedParameters(shouldMergeInitProvider bool) (map[s
 	return params, nil
 }
 
-// LateInitialize this Blockstorage using its observed tfState.
+// LateInitialize this BlockStorage using its observed tfState.
 // returns True if there are any spec changes for the resource.
-func (tr *Blockstorage) LateInitialize(attrs []byte) (bool, error) {
-	params := &BlockstorageParameters{}
+func (tr *BlockStorage) LateInitialize(attrs []byte) (bool, error) {
+	params := &BlockStorageParameters{}
 	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
 		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
 	}
@@ -124,6 +124,6 @@ func (tr *Blockstorage) LateInitialize(attrs []byte) (bool, error) {
 }
 
 // GetTerraformSchemaVersion returns the associated Terraform schema version
-func (tr *Blockstorage) GetTerraformSchemaVersion() int {
+func (tr *BlockStorage) GetTerraformSchemaVersion() int {
 	return 0
 }

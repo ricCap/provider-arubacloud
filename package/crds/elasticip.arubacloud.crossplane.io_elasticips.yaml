@@ -12,8 +12,8 @@ spec:
     - crossplane
     - managed
     - arubacloud
-    kind: Elasticip
-    listKind: ElasticipList
+    kind: ElasticIP
+    listKind: ElasticIPList
     plural: elasticips
     singular: elasticip
   scope: Cluster
@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Elasticip is the Schema for the Elasticips API. Manages an ArubaCloud
+        description: ElasticIP is the Schema for the ElasticIPs API. Manages an ArubaCloud
           Elastic IP.
         properties:
           apiVersion:
@@ -55,7 +55,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: ElasticipSpec defines the desired state of Elasticip
+            description: ElasticIPSpec defines the desired state of ElasticIP
             properties:
               deletionPolicy:
                 default: Delete
@@ -246,7 +246,7 @@ spec:
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.projectId)
                 || (has(self.initProvider) && has(self.initProvider.projectId))'
           status:
-            description: ElasticipStatus defines the observed state of Elasticip.
+            description: ElasticIPStatus defines the observed state of ElasticIP.
             properties:
               atProvider:
                 properties:

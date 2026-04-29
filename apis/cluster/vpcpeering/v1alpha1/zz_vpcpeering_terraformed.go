@@ -14,18 +14,18 @@ import (
 	"github.com/crossplane/upjet/v2/pkg/resource/json"
 )
 
-// GetTerraformResourceType returns Terraform resource type for this Vpcpeering
-func (mg *Vpcpeering) GetTerraformResourceType() string {
+// GetTerraformResourceType returns Terraform resource type for this VPCPeering
+func (mg *VPCPeering) GetTerraformResourceType() string {
 	return "arubacloud_vpcpeering"
 }
 
-// GetConnectionDetailsMapping for this Vpcpeering
-func (tr *Vpcpeering) GetConnectionDetailsMapping() map[string]string {
+// GetConnectionDetailsMapping for this VPCPeering
+func (tr *VPCPeering) GetConnectionDetailsMapping() map[string]string {
 	return nil
 }
 
-// GetObservation of this Vpcpeering
-func (tr *Vpcpeering) GetObservation() (map[string]any, error) {
+// GetObservation of this VPCPeering
+func (tr *VPCPeering) GetObservation() (map[string]any, error) {
 	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
 	if err != nil {
 		return nil, err
@@ -34,8 +34,8 @@ func (tr *Vpcpeering) GetObservation() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(o, &base)
 }
 
-// SetObservation for this Vpcpeering
-func (tr *Vpcpeering) SetObservation(obs map[string]any) error {
+// SetObservation for this VPCPeering
+func (tr *VPCPeering) SetObservation(obs map[string]any) error {
 	p, err := json.TFParser.Marshal(obs)
 	if err != nil {
 		return err
@@ -43,16 +43,16 @@ func (tr *Vpcpeering) SetObservation(obs map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
 }
 
-// GetID returns ID of underlying Terraform resource of this Vpcpeering
-func (tr *Vpcpeering) GetID() string {
+// GetID returns ID of underlying Terraform resource of this VPCPeering
+func (tr *VPCPeering) GetID() string {
 	if tr.Status.AtProvider.ID == nil {
 		return ""
 	}
 	return *tr.Status.AtProvider.ID
 }
 
-// GetParameters of this Vpcpeering
-func (tr *Vpcpeering) GetParameters() (map[string]any, error) {
+// GetParameters of this VPCPeering
+func (tr *VPCPeering) GetParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
 	if err != nil {
 		return nil, err
@@ -61,8 +61,8 @@ func (tr *Vpcpeering) GetParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// SetParameters for this Vpcpeering
-func (tr *Vpcpeering) SetParameters(params map[string]any) error {
+// SetParameters for this VPCPeering
+func (tr *VPCPeering) SetParameters(params map[string]any) error {
 	p, err := json.TFParser.Marshal(params)
 	if err != nil {
 		return err
@@ -70,8 +70,8 @@ func (tr *Vpcpeering) SetParameters(params map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
 }
 
-// GetInitParameters of this Vpcpeering
-func (tr *Vpcpeering) GetInitParameters() (map[string]any, error) {
+// GetInitParameters of this VPCPeering
+func (tr *VPCPeering) GetInitParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.InitProvider)
 	if err != nil {
 		return nil, err
@@ -80,8 +80,8 @@ func (tr *Vpcpeering) GetInitParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// GetInitParameters of this Vpcpeering
-func (tr *Vpcpeering) GetMergedParameters(shouldMergeInitProvider bool) (map[string]any, error) {
+// GetInitParameters of this VPCPeering
+func (tr *VPCPeering) GetMergedParameters(shouldMergeInitProvider bool) (map[string]any, error) {
 	params, err := tr.GetParameters()
 	if err != nil {
 		return nil, errors.Wrapf(err, "cannot get parameters for resource \"%s/%s\"", tr.GetNamespace(), tr.GetName())
@@ -110,10 +110,10 @@ func (tr *Vpcpeering) GetMergedParameters(shouldMergeInitProvider bool) (map[str
 	return params, nil
 }
 
-// LateInitialize this Vpcpeering using its observed tfState.
+// LateInitialize this VPCPeering using its observed tfState.
 // returns True if there are any spec changes for the resource.
-func (tr *Vpcpeering) LateInitialize(attrs []byte) (bool, error) {
-	params := &VpcpeeringParameters{}
+func (tr *VPCPeering) LateInitialize(attrs []byte) (bool, error) {
+	params := &VPCPeeringParameters{}
 	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
 		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
 	}
@@ -124,6 +124,6 @@ func (tr *Vpcpeering) LateInitialize(attrs []byte) (bool, error) {
 }
 
 // GetTerraformSchemaVersion returns the associated Terraform schema version
-func (tr *Vpcpeering) GetTerraformSchemaVersion() int {
+func (tr *VPCPeering) GetTerraformSchemaVersion() int {
 	return 0
 }

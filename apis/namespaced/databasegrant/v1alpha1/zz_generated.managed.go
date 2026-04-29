@@ -8,42 +8,42 @@ package v1alpha1
 
 import xpv1 "github.com/crossplane/crossplane-runtime/v2/apis/common/v1"
 
-// GetCondition of this Databasegrant.
-func (mg *Databasegrant) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
+// GetCondition of this DatabaseGrant.
+func (mg *DatabaseGrant) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
 	return mg.Status.GetCondition(ct)
 }
 
-// GetManagementPolicies of this Databasegrant.
-func (mg *Databasegrant) GetManagementPolicies() xpv1.ManagementPolicies {
+// GetManagementPolicies of this DatabaseGrant.
+func (mg *DatabaseGrant) GetManagementPolicies() xpv1.ManagementPolicies {
 	return mg.Spec.ManagementPolicies
 }
 
-// GetProviderConfigReference of this Databasegrant.
-func (mg *Databasegrant) GetProviderConfigReference() *xpv1.ProviderConfigReference {
+// GetProviderConfigReference of this DatabaseGrant.
+func (mg *DatabaseGrant) GetProviderConfigReference() *xpv1.ProviderConfigReference {
 	return mg.Spec.ProviderConfigReference
 }
 
-// GetWriteConnectionSecretToReference of this Databasegrant.
-func (mg *Databasegrant) GetWriteConnectionSecretToReference() *xpv1.LocalSecretReference {
+// GetWriteConnectionSecretToReference of this DatabaseGrant.
+func (mg *DatabaseGrant) GetWriteConnectionSecretToReference() *xpv1.LocalSecretReference {
 	return mg.Spec.WriteConnectionSecretToReference
 }
 
-// SetConditions of this Databasegrant.
-func (mg *Databasegrant) SetConditions(c ...xpv1.Condition) {
+// SetConditions of this DatabaseGrant.
+func (mg *DatabaseGrant) SetConditions(c ...xpv1.Condition) {
 	mg.Status.SetConditions(c...)
 }
 
-// SetManagementPolicies of this Databasegrant.
-func (mg *Databasegrant) SetManagementPolicies(r xpv1.ManagementPolicies) {
+// SetManagementPolicies of this DatabaseGrant.
+func (mg *DatabaseGrant) SetManagementPolicies(r xpv1.ManagementPolicies) {
 	mg.Spec.ManagementPolicies = r
 }
 
-// SetProviderConfigReference of this Databasegrant.
-func (mg *Databasegrant) SetProviderConfigReference(r *xpv1.ProviderConfigReference) {
+// SetProviderConfigReference of this DatabaseGrant.
+func (mg *DatabaseGrant) SetProviderConfigReference(r *xpv1.ProviderConfigReference) {
 	mg.Spec.ProviderConfigReference = r
 }
 
-// SetWriteConnectionSecretToReference of this Databasegrant.
-func (mg *Databasegrant) SetWriteConnectionSecretToReference(r *xpv1.LocalSecretReference) {
+// SetWriteConnectionSecretToReference of this DatabaseGrant.
+func (mg *DatabaseGrant) SetWriteConnectionSecretToReference(r *xpv1.LocalSecretReference) {
 	mg.Spec.WriteConnectionSecretToReference = r
 }

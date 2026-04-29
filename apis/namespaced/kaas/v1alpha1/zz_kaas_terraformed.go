@@ -14,18 +14,18 @@ import (
 	"github.com/crossplane/upjet/v2/pkg/resource/json"
 )
 
-// GetTerraformResourceType returns Terraform resource type for this Kaas
-func (mg *Kaas) GetTerraformResourceType() string {
+// GetTerraformResourceType returns Terraform resource type for this KaaS
+func (mg *KaaS) GetTerraformResourceType() string {
 	return "arubacloud_kaas"
 }
 
-// GetConnectionDetailsMapping for this Kaas
-func (tr *Kaas) GetConnectionDetailsMapping() map[string]string {
+// GetConnectionDetailsMapping for this KaaS
+func (tr *KaaS) GetConnectionDetailsMapping() map[string]string {
 	return map[string]string{"kubeconfig": "status.atProvider.kubeconfig"}
 }
 
-// GetObservation of this Kaas
-func (tr *Kaas) GetObservation() (map[string]any, error) {
+// GetObservation of this KaaS
+func (tr *KaaS) GetObservation() (map[string]any, error) {
 	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
 	if err != nil {
 		return nil, err
@@ -34,8 +34,8 @@ func (tr *Kaas) GetObservation() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(o, &base)
 }
 
-// SetObservation for this Kaas
-func (tr *Kaas) SetObservation(obs map[string]any) error {
+// SetObservation for this KaaS
+func (tr *KaaS) SetObservation(obs map[string]any) error {
 	p, err := json.TFParser.Marshal(obs)
 	if err != nil {
 		return err
@@ -43,16 +43,16 @@ func (tr *Kaas) SetObservation(obs map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
 }
 
-// GetID returns ID of underlying Terraform resource of this Kaas
-func (tr *Kaas) GetID() string {
+// GetID returns ID of underlying Terraform resource of this KaaS
+func (tr *KaaS) GetID() string {
 	if tr.Status.AtProvider.ID == nil {
 		return ""
 	}
 	return *tr.Status.AtProvider.ID
 }
 
-// GetParameters of this Kaas
-func (tr *Kaas) GetParameters() (map[string]any, error) {
+// GetParameters of this KaaS
+func (tr *KaaS) GetParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
 	if err != nil {
 		return nil, err
@@ -61,8 +61,8 @@ func (tr *Kaas) GetParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// SetParameters for this Kaas
-func (tr *Kaas) SetParameters(params map[string]any) error {
+// SetParameters for this KaaS
+func (tr *KaaS) SetParameters(params map[string]any) error {
 	p, err := json.TFParser.Marshal(params)
 	if err != nil {
 		return err
@@ -70,8 +70,8 @@ func (tr *Kaas) SetParameters(params map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
 }
 
-// GetInitParameters of this Kaas
-func (tr *Kaas) GetInitParameters() (map[string]any, error) {
+// GetInitParameters of this KaaS
+func (tr *KaaS) GetInitParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.InitProvider)
 	if err != nil {
 		return nil, err
@@ -80,8 +80,8 @@ func (tr *Kaas) GetInitParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// GetInitParameters of this Kaas
-func (tr *Kaas) GetMergedParameters(shouldMergeInitProvider bool) (map[string]any, error) {
+// GetInitParameters of this KaaS
+func (tr *KaaS) GetMergedParameters(shouldMergeInitProvider bool) (map[string]any, error) {
 	params, err := tr.GetParameters()
 	if err != nil {
 		return nil, errors.Wrapf(err, "cannot get parameters for resource \"%s/%s\"", tr.GetNamespace(), tr.GetName())
@@ -110,10 +110,10 @@ func (tr *Kaas) GetMergedParameters(shouldMergeInitProvider bool) (map[string]an
 	return params, nil
 }
 
-// LateInitialize this Kaas using its observed tfState.
+// LateInitialize this KaaS using its observed tfState.
 // returns True if there are any spec changes for the resource.
-func (tr *Kaas) LateInitialize(attrs []byte) (bool, error) {
-	params := &KaasParameters{}
+func (tr *KaaS) LateInitialize(attrs []byte) (bool, error) {
+	params := &KaaSParameters{}
 	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
 		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
 	}
@@ -124,6 +124,6 @@ func (tr *Kaas) LateInitialize(attrs []byte) (bool, error) {
 }
 
 // GetTerraformSchemaVersion returns the associated Terraform schema version
-func (tr *Kaas) GetTerraformSchemaVersion() int {
+func (tr *KaaS) GetTerraformSchemaVersion() int {
 	return 0
 }

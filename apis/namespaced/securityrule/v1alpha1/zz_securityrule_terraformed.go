@@ -14,18 +14,18 @@ import (
 	"github.com/crossplane/upjet/v2/pkg/resource/json"
 )
 
-// GetTerraformResourceType returns Terraform resource type for this Securityrule
-func (mg *Securityrule) GetTerraformResourceType() string {
+// GetTerraformResourceType returns Terraform resource type for this SecurityRule
+func (mg *SecurityRule) GetTerraformResourceType() string {
 	return "arubacloud_securityrule"
 }
 
-// GetConnectionDetailsMapping for this Securityrule
-func (tr *Securityrule) GetConnectionDetailsMapping() map[string]string {
+// GetConnectionDetailsMapping for this SecurityRule
+func (tr *SecurityRule) GetConnectionDetailsMapping() map[string]string {
 	return nil
 }
 
-// GetObservation of this Securityrule
-func (tr *Securityrule) GetObservation() (map[string]any, error) {
+// GetObservation of this SecurityRule
+func (tr *SecurityRule) GetObservation() (map[string]any, error) {
 	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
 	if err != nil {
 		return nil, err
@@ -34,8 +34,8 @@ func (tr *Securityrule) GetObservation() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(o, &base)
 }
 
-// SetObservation for this Securityrule
-func (tr *Securityrule) SetObservation(obs map[string]any) error {
+// SetObservation for this SecurityRule
+func (tr *SecurityRule) SetObservation(obs map[string]any) error {
 	p, err := json.TFParser.Marshal(obs)
 	if err != nil {
 		return err
@@ -43,16 +43,16 @@ func (tr *Securityrule) SetObservation(obs map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
 }
 
-// GetID returns ID of underlying Terraform resource of this Securityrule
-func (tr *Securityrule) GetID() string {
+// GetID returns ID of underlying Terraform resource of this SecurityRule
+func (tr *SecurityRule) GetID() string {
 	if tr.Status.AtProvider.ID == nil {
 		return ""
 	}
 	return *tr.Status.AtProvider.ID
 }
 
-// GetParameters of this Securityrule
-func (tr *Securityrule) GetParameters() (map[string]any, error) {
+// GetParameters of this SecurityRule
+func (tr *SecurityRule) GetParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
 	if err != nil {
 		return nil, err
@@ -61,8 +61,8 @@ func (tr *Securityrule) GetParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// SetParameters for this Securityrule
-func (tr *Securityrule) SetParameters(params map[string]any) error {
+// SetParameters for this SecurityRule
+func (tr *SecurityRule) SetParameters(params map[string]any) error {
 	p, err := json.TFParser.Marshal(params)
 	if err != nil {
 		return err
@@ -70,8 +70,8 @@ func (tr *Securityrule) SetParameters(params map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
 }
 
-// GetInitParameters of this Securityrule
-func (tr *Securityrule) GetInitParameters() (map[string]any, error) {
+// GetInitParameters of this SecurityRule
+func (tr *SecurityRule) GetInitParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.InitProvider)
 	if err != nil {
 		return nil, err
@@ -80,8 +80,8 @@ func (tr *Securityrule) GetInitParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// GetInitParameters of this Securityrule
-func (tr *Securityrule) GetMergedParameters(shouldMergeInitProvider bool) (map[string]any, error) {
+// GetInitParameters of this SecurityRule
+func (tr *SecurityRule) GetMergedParameters(shouldMergeInitProvider bool) (map[string]any, error) {
 	params, err := tr.GetParameters()
 	if err != nil {
 		return nil, errors.Wrapf(err, "cannot get parameters for resource \"%s/%s\"", tr.GetNamespace(), tr.GetName())
@@ -110,10 +110,10 @@ func (tr *Securityrule) GetMergedParameters(shouldMergeInitProvider bool) (map[s
 	return params, nil
 }
 
-// LateInitialize this Securityrule using its observed tfState.
+// LateInitialize this SecurityRule using its observed tfState.
 // returns True if there are any spec changes for the resource.
-func (tr *Securityrule) LateInitialize(attrs []byte) (bool, error) {
-	params := &SecurityruleParameters{}
+func (tr *SecurityRule) LateInitialize(attrs []byte) (bool, error) {
+	params := &SecurityRuleParameters{}
 	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
 		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
 	}
@@ -124,6 +124,6 @@ func (tr *Securityrule) LateInitialize(attrs []byte) (bool, error) {
 }
 
 // GetTerraformSchemaVersion returns the associated Terraform schema version
-func (tr *Securityrule) GetTerraformSchemaVersion() int {
+func (tr *SecurityRule) GetTerraformSchemaVersion() int {
 	return 0
 }

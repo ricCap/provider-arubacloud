@@ -14,18 +14,18 @@ import (
 	"github.com/crossplane/upjet/v2/pkg/resource/json"
 )
 
-// GetTerraformResourceType returns Terraform resource type for this Securitygroup
-func (mg *Securitygroup) GetTerraformResourceType() string {
+// GetTerraformResourceType returns Terraform resource type for this SecurityGroup
+func (mg *SecurityGroup) GetTerraformResourceType() string {
 	return "arubacloud_securitygroup"
 }
 
-// GetConnectionDetailsMapping for this Securitygroup
-func (tr *Securitygroup) GetConnectionDetailsMapping() map[string]string {
+// GetConnectionDetailsMapping for this SecurityGroup
+func (tr *SecurityGroup) GetConnectionDetailsMapping() map[string]string {
 	return nil
 }
 
-// GetObservation of this Securitygroup
-func (tr *Securitygroup) GetObservation() (map[string]any, error) {
+// GetObservation of this SecurityGroup
+func (tr *SecurityGroup) GetObservation() (map[string]any, error) {
 	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
 	if err != nil {
 		return nil, err
@@ -34,8 +34,8 @@ func (tr *Securitygroup) GetObservation() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(o, &base)
 }
 
-// SetObservation for this Securitygroup
-func (tr *Securitygroup) SetObservation(obs map[string]any) error {
+// SetObservation for this SecurityGroup
+func (tr *SecurityGroup) SetObservation(obs map[string]any) error {
 	p, err := json.TFParser.Marshal(obs)
 	if err != nil {
 		return err
@@ -43,16 +43,16 @@ func (tr *Securitygroup) SetObservation(obs map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
 }
 
-// GetID returns ID of underlying Terraform resource of this Securitygroup
-func (tr *Securitygroup) GetID() string {
+// GetID returns ID of underlying Terraform resource of this SecurityGroup
+func (tr *SecurityGroup) GetID() string {
 	if tr.Status.AtProvider.ID == nil {
 		return ""
 	}
 	return *tr.Status.AtProvider.ID
 }
 
-// GetParameters of this Securitygroup
-func (tr *Securitygroup) GetParameters() (map[string]any, error) {
+// GetParameters of this SecurityGroup
+func (tr *SecurityGroup) GetParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
 	if err != nil {
 		return nil, err
@@ -61,8 +61,8 @@ func (tr *Securitygroup) GetParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// SetParameters for this Securitygroup
-func (tr *Securitygroup) SetParameters(params map[string]any) error {
+// SetParameters for this SecurityGroup
+func (tr *SecurityGroup) SetParameters(params map[string]any) error {
 	p, err := json.TFParser.Marshal(params)
 	if err != nil {
 		return err
@@ -70,8 +70,8 @@ func (tr *Securitygroup) SetParameters(params map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
 }
 
-// GetInitParameters of this Securitygroup
-func (tr *Securitygroup) GetInitParameters() (map[string]any, error) {
+// GetInitParameters of this SecurityGroup
+func (tr *SecurityGroup) GetInitParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.InitProvider)
 	if err != nil {
 		return nil, err
@@ -80,8 +80,8 @@ func (tr *Securitygroup) GetInitParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// GetInitParameters of this Securitygroup
-func (tr *Securitygroup) GetMergedParameters(shouldMergeInitProvider bool) (map[string]any, error) {
+// GetInitParameters of this SecurityGroup
+func (tr *SecurityGroup) GetMergedParameters(shouldMergeInitProvider bool) (map[string]any, error) {
 	params, err := tr.GetParameters()
 	if err != nil {
 		return nil, errors.Wrapf(err, "cannot get parameters for resource \"%s/%s\"", tr.GetNamespace(), tr.GetName())
@@ -110,10 +110,10 @@ func (tr *Securitygroup) GetMergedParameters(shouldMergeInitProvider bool) (map[
 	return params, nil
 }
 
-// LateInitialize this Securitygroup using its observed tfState.
+// LateInitialize this SecurityGroup using its observed tfState.
 // returns True if there are any spec changes for the resource.
-func (tr *Securitygroup) LateInitialize(attrs []byte) (bool, error) {
-	params := &SecuritygroupParameters{}
+func (tr *SecurityGroup) LateInitialize(attrs []byte) (bool, error) {
+	params := &SecurityGroupParameters{}
 	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
 		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
 	}
@@ -124,6 +124,6 @@ func (tr *Securitygroup) LateInitialize(attrs []byte) (bool, error) {
 }
 
 // GetTerraformSchemaVersion returns the associated Terraform schema version
-func (tr *Securitygroup) GetTerraformSchemaVersion() int {
+func (tr *SecurityGroup) GetTerraformSchemaVersion() int {
 	return 0
 }

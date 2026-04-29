@@ -8,52 +8,52 @@ package v1alpha1
 
 import xpv1 "github.com/crossplane/crossplane-runtime/v2/apis/common/v1"
 
-// GetCondition of this Databasebackup.
-func (mg *Databasebackup) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
+// GetCondition of this DatabaseBackup.
+func (mg *DatabaseBackup) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
 	return mg.Status.GetCondition(ct)
 }
 
-// GetDeletionPolicy of this Databasebackup.
-func (mg *Databasebackup) GetDeletionPolicy() xpv1.DeletionPolicy {
+// GetDeletionPolicy of this DatabaseBackup.
+func (mg *DatabaseBackup) GetDeletionPolicy() xpv1.DeletionPolicy {
 	return mg.Spec.DeletionPolicy
 }
 
-// GetManagementPolicies of this Databasebackup.
-func (mg *Databasebackup) GetManagementPolicies() xpv1.ManagementPolicies {
+// GetManagementPolicies of this DatabaseBackup.
+func (mg *DatabaseBackup) GetManagementPolicies() xpv1.ManagementPolicies {
 	return mg.Spec.ManagementPolicies
 }
 
-// GetProviderConfigReference of this Databasebackup.
-func (mg *Databasebackup) GetProviderConfigReference() *xpv1.Reference {
+// GetProviderConfigReference of this DatabaseBackup.
+func (mg *DatabaseBackup) GetProviderConfigReference() *xpv1.Reference {
 	return mg.Spec.ProviderConfigReference
 }
 
-// GetWriteConnectionSecretToReference of this Databasebackup.
-func (mg *Databasebackup) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
+// GetWriteConnectionSecretToReference of this DatabaseBackup.
+func (mg *DatabaseBackup) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
 	return mg.Spec.WriteConnectionSecretToReference
 }
 
-// SetConditions of this Databasebackup.
-func (mg *Databasebackup) SetConditions(c ...xpv1.Condition) {
+// SetConditions of this DatabaseBackup.
+func (mg *DatabaseBackup) SetConditions(c ...xpv1.Condition) {
 	mg.Status.SetConditions(c...)
 }
 
-// SetDeletionPolicy of this Databasebackup.
-func (mg *Databasebackup) SetDeletionPolicy(r xpv1.DeletionPolicy) {
+// SetDeletionPolicy of this DatabaseBackup.
+func (mg *DatabaseBackup) SetDeletionPolicy(r xpv1.DeletionPolicy) {
 	mg.Spec.DeletionPolicy = r
 }
 
-// SetManagementPolicies of this Databasebackup.
-func (mg *Databasebackup) SetManagementPolicies(r xpv1.ManagementPolicies) {
+// SetManagementPolicies of this DatabaseBackup.
+func (mg *DatabaseBackup) SetManagementPolicies(r xpv1.ManagementPolicies) {
 	mg.Spec.ManagementPolicies = r
 }
 
-// SetProviderConfigReference of this Databasebackup.
-func (mg *Databasebackup) SetProviderConfigReference(r *xpv1.Reference) {
+// SetProviderConfigReference of this DatabaseBackup.
+func (mg *DatabaseBackup) SetProviderConfigReference(r *xpv1.Reference) {
 	mg.Spec.ProviderConfigReference = r
 }
 
-// SetWriteConnectionSecretToReference of this Databasebackup.
-func (mg *Databasebackup) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
+// SetWriteConnectionSecretToReference of this DatabaseBackup.
+func (mg *DatabaseBackup) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
 	mg.Spec.WriteConnectionSecretToReference = r
 }

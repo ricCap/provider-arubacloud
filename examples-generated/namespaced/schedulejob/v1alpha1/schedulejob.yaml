@@ -1,5 +1,5 @@
 apiVersion: schedulejob.arubacloud.m.crossplane.io/v1alpha1
-kind: Schedulejob
+kind: ScheduleJob
 metadata:
   annotations:
     meta.upbound.io/example-id: schedulejob/v1alpha1/schedulejob

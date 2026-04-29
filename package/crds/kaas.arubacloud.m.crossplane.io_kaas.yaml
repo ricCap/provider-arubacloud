@@ -12,8 +12,8 @@ spec:
     - crossplane
     - managed
     - arubacloud
-    kind: Kaas
-    listKind: KaasList
+    kind: KaaS
+    listKind: KaaSList
     plural: kaas
     singular: kaas
   scope: Namespaced
@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Kaas is the Schema for the Kaass API. Manages an ArubaCloud Kubernetes
+        description: KaaS is the Schema for the KaaSs API. Manages an ArubaCloud Kubernetes
           as a Service (KaaS) cluster. Once the cluster is ready, the provider downloads
           and exposes the kubeconfig (decoded from the API) so you can use it with
           kubectl or write it to a file.
@@ -57,7 +57,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: KaasSpec defines the desired state of Kaas
+            description: KaaSSpec defines the desired state of KaaS
             properties:
               forProvider:
                 properties:
@@ -410,7 +410,7 @@ spec:
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.settings)
                 || (has(self.initProvider) && has(self.initProvider.settings))'
           status:
-            description: KaasStatus defines the observed state of Kaas.
+            description: KaaSStatus defines the observed state of KaaS.
             properties:
               atProvider:
                 properties:

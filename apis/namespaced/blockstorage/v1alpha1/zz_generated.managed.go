@@ -8,42 +8,42 @@ package v1alpha1
 
 import xpv1 "github.com/crossplane/crossplane-runtime/v2/apis/common/v1"
 
-// GetCondition of this Blockstorage.
-func (mg *Blockstorage) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
+// GetCondition of this BlockStorage.
+func (mg *BlockStorage) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
 	return mg.Status.GetCondition(ct)
 }
 
-// GetManagementPolicies of this Blockstorage.
-func (mg *Blockstorage) GetManagementPolicies() xpv1.ManagementPolicies {
+// GetManagementPolicies of this BlockStorage.
+func (mg *BlockStorage) GetManagementPolicies() xpv1.ManagementPolicies {
 	return mg.Spec.ManagementPolicies
 }
 
-// GetProviderConfigReference of this Blockstorage.
-func (mg *Blockstorage) GetProviderConfigReference() *xpv1.ProviderConfigReference {
+// GetProviderConfigReference of this BlockStorage.
+func (mg *BlockStorage) GetProviderConfigReference() *xpv1.ProviderConfigReference {
 	return mg.Spec.ProviderConfigReference
 }
 
-// GetWriteConnectionSecretToReference of this Blockstorage.
-func (mg *Blockstorage) GetWriteConnectionSecretToReference() *xpv1.LocalSecretReference {
+// GetWriteConnectionSecretToReference of this BlockStorage.
+func (mg *BlockStorage) GetWriteConnectionSecretToReference() *xpv1.LocalSecretReference {
 	return mg.Spec.WriteConnectionSecretToReference
 }
 
-// SetConditions of this Blockstorage.
-func (mg *Blockstorage) SetConditions(c ...xpv1.Condition) {
+// SetConditions of this BlockStorage.
+func (mg *BlockStorage) SetConditions(c ...xpv1.Condition) {
 	mg.Status.SetConditions(c...)
 }
 
-// SetManagementPolicies of this Blockstorage.
-func (mg *Blockstorage) SetManagementPolicies(r xpv1.ManagementPolicies) {
+// SetManagementPolicies of this BlockStorage.
+func (mg *BlockStorage) SetManagementPolicies(r xpv1.ManagementPolicies) {
 	mg.Spec.ManagementPolicies = r
 }
 
-// SetProviderConfigReference of this Blockstorage.
-func (mg *Blockstorage) SetProviderConfigReference(r *xpv1.ProviderConfigReference) {
+// SetProviderConfigReference of this BlockStorage.
+func (mg *BlockStorage) SetProviderConfigReference(r *xpv1.ProviderConfigReference) {
 	mg.Spec.ProviderConfigReference = r
 }
 
-// SetWriteConnectionSecretToReference of this Blockstorage.
-func (mg *Blockstorage) SetWriteConnectionSecretToReference(r *xpv1.LocalSecretReference) {
+// SetWriteConnectionSecretToReference of this BlockStorage.
+func (mg *BlockStorage) SetWriteConnectionSecretToReference(r *xpv1.LocalSecretReference) {
 	mg.Spec.WriteConnectionSecretToReference = r
 }

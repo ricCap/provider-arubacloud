@@ -12,8 +12,8 @@ spec:
     - crossplane
     - managed
     - arubacloud
-    kind: Dbaasuser
-    listKind: DbaasuserList
+    kind: DBaaSUser
+    listKind: DBaaSUserList
     plural: dbaasusers
     singular: dbaasuser
   scope: Namespaced
@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Dbaasuser is the Schema for the Dbaasusers API. Manages an ArubaCloud
+        description: DBaaSUser is the Schema for the DBaaSUsers API. Manages an ArubaCloud
           DBaaS User.
         properties:
           apiVersion:
@@ -55,7 +55,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: DbaasuserSpec defines the desired state of Dbaasuser
+            description: DBaaSUserSpec defines the desired state of DBaaSUser
             properties:
               forProvider:
                 properties:
@@ -213,7 +213,7 @@ spec:
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.username)
                 || (has(self.initProvider) && has(self.initProvider.username))'
           status:
-            description: DbaasuserStatus defines the observed state of Dbaasuser.
+            description: DBaaSUserStatus defines the observed state of DBaaSUser.
             properties:
               atProvider:
                 properties:

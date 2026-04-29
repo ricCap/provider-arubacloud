@@ -12,8 +12,8 @@ spec:
     - crossplane
     - managed
     - arubacloud
-    kind: Schedulejob
-    listKind: SchedulejobList
+    kind: ScheduleJob
+    listKind: ScheduleJobList
     plural: schedulejobs
     singular: schedulejob
   scope: Namespaced
@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Schedulejob is the Schema for the Schedulejobs API. Manages an
+        description: ScheduleJob is the Schema for the ScheduleJobs API. Manages an
           ArubaCloud Schedule Job.
         properties:
           apiVersion:
@@ -55,7 +55,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: SchedulejobSpec defines the desired state of Schedulejob
+            description: ScheduleJobSpec defines the desired state of ScheduleJob
             properties:
               forProvider:
                 properties:
@@ -319,7 +319,7 @@ spec:
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.properties)
                 || (has(self.initProvider) && has(self.initProvider.properties))'
           status:
-            description: SchedulejobStatus defines the observed state of Schedulejob.
+            description: ScheduleJobStatus defines the observed state of ScheduleJob.
             properties:
               atProvider:
                 properties:

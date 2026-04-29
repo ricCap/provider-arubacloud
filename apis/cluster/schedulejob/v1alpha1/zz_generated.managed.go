@@ -8,52 +8,52 @@ package v1alpha1
 
 import xpv1 "github.com/crossplane/crossplane-runtime/v2/apis/common/v1"
 
-// GetCondition of this Schedulejob.
-func (mg *Schedulejob) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
+// GetCondition of this ScheduleJob.
+func (mg *ScheduleJob) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
 	return mg.Status.GetCondition(ct)
 }
 
-// GetDeletionPolicy of this Schedulejob.
-func (mg *Schedulejob) GetDeletionPolicy() xpv1.DeletionPolicy {
+// GetDeletionPolicy of this ScheduleJob.
+func (mg *ScheduleJob) GetDeletionPolicy() xpv1.DeletionPolicy {
 	return mg.Spec.DeletionPolicy
 }
 
-// GetManagementPolicies of this Schedulejob.
-func (mg *Schedulejob) GetManagementPolicies() xpv1.ManagementPolicies {
+// GetManagementPolicies of this ScheduleJob.
+func (mg *ScheduleJob) GetManagementPolicies() xpv1.ManagementPolicies {
 	return mg.Spec.ManagementPolicies
 }
 
-// GetProviderConfigReference of this Schedulejob.
-func (mg *Schedulejob) GetProviderConfigReference() *xpv1.Reference {
+// GetProviderConfigReference of this ScheduleJob.
+func (mg *ScheduleJob) GetProviderConfigReference() *xpv1.Reference {
 	return mg.Spec.ProviderConfigReference
 }
 
-// GetWriteConnectionSecretToReference of this Schedulejob.
-func (mg *Schedulejob) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
+// GetWriteConnectionSecretToReference of this ScheduleJob.
+func (mg *ScheduleJob) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
 	return mg.Spec.WriteConnectionSecretToReference
 }
 
-// SetConditions of this Schedulejob.
-func (mg *Schedulejob) SetConditions(c ...xpv1.Condition) {
+// SetConditions of this ScheduleJob.
+func (mg *ScheduleJob) SetConditions(c ...xpv1.Condition) {
 	mg.Status.SetConditions(c...)
 }
 
-// SetDeletionPolicy of this Schedulejob.
-func (mg *Schedulejob) SetDeletionPolicy(r xpv1.DeletionPolicy) {
+// SetDeletionPolicy of this ScheduleJob.
+func (mg *ScheduleJob) SetDeletionPolicy(r xpv1.DeletionPolicy) {
 	mg.Spec.DeletionPolicy = r
 }
 
-// SetManagementPolicies of this Schedulejob.
-func (mg *Schedulejob) SetManagementPolicies(r xpv1.ManagementPolicies) {
+// SetManagementPolicies of this ScheduleJob.
+func (mg *ScheduleJob) SetManagementPolicies(r xpv1.ManagementPolicies) {
 	mg.Spec.ManagementPolicies = r
 }
 
-// SetProviderConfigReference of this Schedulejob.
-func (mg *Schedulejob) SetProviderConfigReference(r *xpv1.Reference) {
+// SetProviderConfigReference of this ScheduleJob.
+func (mg *ScheduleJob) SetProviderConfigReference(r *xpv1.Reference) {
 	mg.Spec.ProviderConfigReference = r
 }
 
-// SetWriteConnectionSecretToReference of this Schedulejob.
-func (mg *Schedulejob) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
+// SetWriteConnectionSecretToReference of this ScheduleJob.
+func (mg *ScheduleJob) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
 	mg.Spec.WriteConnectionSecretToReference = r
 }

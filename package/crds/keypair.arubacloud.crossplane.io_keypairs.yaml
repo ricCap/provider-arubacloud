@@ -12,8 +12,8 @@ spec:
     - crossplane
     - managed
     - arubacloud
-    kind: Keypair
-    listKind: KeypairList
+    kind: KeyPair
+    listKind: KeyPairList
     plural: keypairs
     singular: keypair
   scope: Cluster
@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Keypair is the Schema for the Keypairs API. Manages an ArubaCloud
+        description: KeyPair is the Schema for the KeyPairs API. Manages an ArubaCloud
           KeyPair.
         properties:
           apiVersion:
@@ -55,7 +55,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: KeypairSpec defines the desired state of Keypair
+            description: KeyPairSpec defines the desired state of KeyPair
             properties:
               deletionPolicy:
                 default: Delete
@@ -279,7 +279,7 @@ spec:
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.valueSecretRef)'
           status:
-            description: KeypairStatus defines the observed state of Keypair.
+            description: KeyPairStatus defines the observed state of KeyPair.
             properties:
               atProvider:
                 properties:

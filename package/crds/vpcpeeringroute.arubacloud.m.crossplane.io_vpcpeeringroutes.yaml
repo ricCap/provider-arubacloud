@@ -12,8 +12,8 @@ spec:
     - crossplane
     - managed
     - arubacloud
-    kind: Vpcpeeringroute
-    listKind: VpcpeeringrouteList
+    kind: VPCPeeringRoute
+    listKind: VPCPeeringRouteList
     plural: vpcpeeringroutes
     singular: vpcpeeringroute
   scope: Namespaced
@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Vpcpeeringroute is the Schema for the Vpcpeeringroutes API. Manages
+        description: VPCPeeringRoute is the Schema for the VPCPeeringRoutes API. Manages
           an ArubaCloud VPC Peering Route.
         properties:
           apiVersion:
@@ -55,7 +55,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: VpcpeeringrouteSpec defines the desired state of Vpcpeeringroute
+            description: VPCPeeringRouteSpec defines the desired state of VPCPeeringRoute
             properties:
               forProvider:
                 properties:
@@ -254,7 +254,7 @@ spec:
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.vpcPeeringId)
                 || (has(self.initProvider) && has(self.initProvider.vpcPeeringId))'
           status:
-            description: VpcpeeringrouteStatus defines the observed state of Vpcpeeringroute.
+            description: VPCPeeringRouteStatus defines the observed state of VPCPeeringRoute.
             properties:
               atProvider:
                 properties:

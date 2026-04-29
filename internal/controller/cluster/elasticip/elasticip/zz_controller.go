@@ -25,22 +25,22 @@ import (
 	features "github.com/riccap/provider-arubacloud/internal/features"
 )
 
-// SetupGated adds a controller that reconciles Elasticip managed resources.
+// SetupGated adds a controller that reconciles ElasticIP managed resources.
 func SetupGated(mgr ctrl.Manager, o tjcontroller.Options) error {
 	o.Options.Gate.Register(func() {
 		if err := Setup(mgr, o); err != nil {
-			mgr.GetLogger().Error(err, "unable to setup reconciler", "gvk", v1alpha1.Elasticip_GroupVersionKind.String())
+			mgr.GetLogger().Error(err, "unable to setup reconciler", "gvk", v1alpha1.ElasticIP_GroupVersionKind.String())
 		}
-	}, v1alpha1.Elasticip_GroupVersionKind)
+	}, v1alpha1.ElasticIP_GroupVersionKind)
 	return nil
 }
 
-// Setup adds a controller that reconciles Elasticip managed resources.
+// Setup adds a controller that reconciles ElasticIP managed resources.
 func Setup(mgr ctrl.Manager, o tjcontroller.Options) error {
-	name := managed.ControllerName(v1alpha1.Elasticip_GroupVersionKind.String())
+	name := managed.ControllerName(v1alpha1.ElasticIP_GroupVersionKind.String())
 	var initializers managed.InitializerChain
-	eventHandler := handler.NewEventHandler(handler.WithLogger(o.Logger.WithValues("gvk", v1alpha1.Elasticip_GroupVersionKind)))
-	ac := tjcontroller.NewAPICallbacks(mgr, xpresource.ManagedKind(v1alpha1.Elasticip_GroupVersionKind), tjcontroller.WithEventHandler(eventHandler))
+	eventHandler := handler.NewEventHandler(handler.WithLogger(o.Logger.WithValues("gvk", v1alpha1.ElasticIP_GroupVersionKind)))
+	ac := tjcontroller.NewAPICallbacks(mgr, xpresource.ManagedKind(v1alpha1.ElasticIP_GroupVersionKind), tjcontroller.WithEventHandler(eventHandler))
 	opts := []managed.ReconcilerOption{
 		managed.WithExternalConnecter(tjcontroller.NewConnector(mgr.GetClient(), o.WorkspaceStore, o.SetupFn, o.Provider.Resources["arubacloud_elasticip"], tjcontroller.WithLogger(o.Logger), tjcontroller.WithConnectorEventHandler(eventHandler),
 			tjcontroller.WithCallbackProvider(ac),
@@ -62,22 +62,22 @@ func Setup(mgr ctrl.Manager, o tjcontroller.Options) error {
 		opts = append(opts, managed.WithMetricRecorder(o.MetricOptions.MRMetrics))
 	}
 
-	// register webhooks for the kind v1alpha1.Elasticip
+	// register webhooks for the kind v1alpha1.ElasticIP
 	// if they're enabled.
 	if o.StartWebhooks {
 		if err := ctrl.NewWebhookManagedBy(mgr).
-			For(&v1alpha1.Elasticip{}).
+			For(&v1alpha1.ElasticIP{}).
 			Complete(); err != nil {
-			return errors.Wrap(err, "cannot register webhook for the kind v1alpha1.Elasticip")
+			return errors.Wrap(err, "cannot register webhook for the kind v1alpha1.ElasticIP")
 		}
 	}
 
 	if o.MetricOptions != nil && o.MetricOptions.MRStateMetrics != nil {
 		stateMetricsRecorder := statemetrics.NewMRStateRecorder(
-			mgr.GetClient(), o.Logger, o.MetricOptions.MRStateMetrics, &v1alpha1.ElasticipList{}, o.MetricOptions.PollStateMetricInterval,
+			mgr.GetClient(), o.Logger, o.MetricOptions.MRStateMetrics, &v1alpha1.ElasticIPList{}, o.MetricOptions.PollStateMetricInterval,
 		)
 		if err := mgr.Add(stateMetricsRecorder); err != nil {
-			return errors.Wrap(err, "cannot register MR state metrics recorder for kind v1alpha1.ElasticipList")
+			return errors.Wrap(err, "cannot register MR state metrics recorder for kind v1alpha1.ElasticIPList")
 		}
 	}
 
@@ -85,12 +85,12 @@ func Setup(mgr ctrl.Manager, o tjcontroller.Options) error {
 		opts = append(opts, managed.WithChangeLogger(o.ChangeLogOptions.ChangeLogger))
 	}
 
-	r := managed.NewReconciler(mgr, xpresource.ManagedKind(v1alpha1.Elasticip_GroupVersionKind), opts...)
+	r := managed.NewReconciler(mgr, xpresource.ManagedKind(v1alpha1.ElasticIP_GroupVersionKind), opts...)
 
 	return ctrl.NewControllerManagedBy(mgr).
 		Named(name).
 		WithOptions(o.ForControllerRuntime()).
 		WithEventFilter(xpresource.DesiredStateChanged()).
-		Watches(&v1alpha1.Elasticip{}, eventHandler).
+		Watches(&v1alpha1.ElasticIP{}, eventHandler).
 		Complete(ratelimiter.NewReconciler(name, r, o.GlobalRateLimiter))
 }

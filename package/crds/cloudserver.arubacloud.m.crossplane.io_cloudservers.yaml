@@ -12,8 +12,8 @@ spec:
     - crossplane
     - managed
     - arubacloud
-    kind: Cloudserver
-    listKind: CloudserverList
+    kind: CloudServer
+    listKind: CloudServerList
     plural: cloudservers
     singular: cloudserver
   scope: Namespaced
@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Cloudserver is the Schema for the Cloudservers API. Manages an
+        description: CloudServer is the Schema for the CloudServers API. Manages an
           ArubaCloud CloudServer.
         properties:
           apiVersion:
@@ -55,7 +55,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: CloudserverSpec defines the desired state of Cloudserver
+            description: CloudServerSpec defines the desired state of CloudServer
             properties:
               forProvider:
                 properties:
@@ -360,7 +360,7 @@ spec:
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.zone)
                 || (has(self.initProvider) && has(self.initProvider.zone))'
           status:
-            description: CloudserverStatus defines the observed state of Cloudserver.
+            description: CloudServerStatus defines the observed state of CloudServer.
             properties:
               atProvider:
                 properties:

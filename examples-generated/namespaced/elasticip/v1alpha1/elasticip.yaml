@@ -1,5 +1,5 @@
 apiVersion: elasticip.arubacloud.m.crossplane.io/v1alpha1
-kind: Elasticip
+kind: ElasticIP
 metadata:
   annotations:
     meta.upbound.io/example-id: elasticip/v1alpha1/elasticip

@@ -72,7 +72,7 @@ type PropertiesParameters struct {
 	Target *TargetParameters `json:"target" tf:"target,omitempty"`
 }
 
-type SecurityruleInitParameters struct {
+type SecurityRuleInitParameters struct {
 
 	// (String) Security Rule location
 	// Security Rule location
@@ -102,7 +102,7 @@ type SecurityruleInitParameters struct {
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 }
 
-type SecurityruleObservation struct {
+type SecurityRuleObservation struct {
 
 	// (String) Security Rule identifier
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
@@ -139,7 +139,7 @@ type SecurityruleObservation struct {
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 }
 
-type SecurityruleParameters struct {
+type SecurityRuleParameters struct {
 
 	// (String) Security Rule location
 	// Security Rule location
@@ -211,10 +211,10 @@ type TargetParameters struct {
 	Value *string `json:"value" tf:"value,omitempty"`
 }
 
-// SecurityruleSpec defines the desired state of Securityrule
-type SecurityruleSpec struct {
+// SecurityRuleSpec defines the desired state of SecurityRule
+type SecurityRuleSpec struct {
 	v2.ManagedResourceSpec `json:",inline"`
-	ForProvider            SecurityruleParameters `json:"forProvider"`
+	ForProvider            SecurityRuleParameters `json:"forProvider"`
 	// THIS IS A BETA FIELD. It will be honored
 	// unless the Management Policies feature flag is disabled.
 	// InitProvider holds the same fields as ForProvider, with the exception
@@ -225,26 +225,26 @@ type SecurityruleSpec struct {
 	// required on creation, but we do not desire to update them after creation,
 	// for example because of an external controller is managing them, like an
 	// autoscaler.
-	InitProvider SecurityruleInitParameters `json:"initProvider,omitempty"`
+	InitProvider SecurityRuleInitParameters `json:"initProvider,omitempty"`
 }
 
-// SecurityruleStatus defines the observed state of Securityrule.
-type SecurityruleStatus struct {
+// SecurityRuleStatus defines the observed state of SecurityRule.
+type SecurityRuleStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        SecurityruleObservation `json:"atProvider,omitempty"`
+	AtProvider        SecurityRuleObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// Securityrule is the Schema for the Securityrules API. Manages an ArubaCloud Security Rule.
+// SecurityRule is the Schema for the SecurityRules API. Manages an ArubaCloud Security Rule.
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:resource:scope=Namespaced,categories={crossplane,managed,arubacloud}
-type Securityrule struct {
+type SecurityRule struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.location) || (has(self.initProvider) && has(self.initProvider.location))",message="spec.forProvider.location is a required parameter"
@@ -253,27 +253,27 @@ type Securityrule struct {
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.properties) || (has(self.initProvider) && has(self.initProvider.properties))",message="spec.forProvider.properties is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.securityGroupId) || (has(self.initProvider) && has(self.initProvider.securityGroupId))",message="spec.forProvider.securityGroupId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.vpcId) || (has(self.initProvider) && has(self.initProvider.vpcId))",message="spec.forProvider.vpcId is a required parameter"
-	Spec   SecurityruleSpec   `json:"spec"`
-	Status SecurityruleStatus `json:"status,omitempty"`
+	Spec   SecurityRuleSpec   `json:"spec"`
+	Status SecurityRuleStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// SecurityruleList contains a list of Securityrules
-type SecurityruleList struct {
+// SecurityRuleList contains a list of SecurityRules
+type SecurityRuleList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []Securityrule `json:"items"`
+	Items           []SecurityRule `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	Securityrule_Kind             = "Securityrule"
-	Securityrule_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: Securityrule_Kind}.String()
-	Securityrule_KindAPIVersion   = Securityrule_Kind + "." + CRDGroupVersion.String()
-	Securityrule_GroupVersionKind = CRDGroupVersion.WithKind(Securityrule_Kind)
+	SecurityRule_Kind             = "SecurityRule"
+	SecurityRule_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: SecurityRule_Kind}.String()
+	SecurityRule_KindAPIVersion   = SecurityRule_Kind + "." + CRDGroupVersion.String()
+	SecurityRule_GroupVersionKind = CRDGroupVersion.WithKind(SecurityRule_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&Securityrule{}, &SecurityruleList{})
+	SchemeBuilder.Register(&SecurityRule{}, &SecurityRuleList{})
 }

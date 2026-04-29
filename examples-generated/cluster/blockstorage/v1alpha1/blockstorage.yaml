@@ -1,5 +1,5 @@
 apiVersion: blockstorage.arubacloud.crossplane.io/v1alpha1
-kind: Blockstorage
+kind: BlockStorage
 metadata:
   annotations:
     meta.upbound.io/example-id: blockstorage/v1alpha1/blockstorage

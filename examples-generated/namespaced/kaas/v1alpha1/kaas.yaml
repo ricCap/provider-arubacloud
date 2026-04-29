@@ -1,5 +1,5 @@
 apiVersion: kaas.arubacloud.m.crossplane.io/v1alpha1
-kind: Kaas
+kind: KaaS
 metadata:
   annotations:
     meta.upbound.io/example-id: kaas/v1alpha1/kaas

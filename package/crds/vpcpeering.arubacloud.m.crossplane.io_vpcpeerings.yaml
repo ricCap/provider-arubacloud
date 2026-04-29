@@ -12,8 +12,8 @@ spec:
     - crossplane
     - managed
     - arubacloud
-    kind: Vpcpeering
-    listKind: VpcpeeringList
+    kind: VPCPeering
+    listKind: VPCPeeringList
     plural: vpcpeerings
     singular: vpcpeering
   scope: Namespaced
@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Vpcpeering is the Schema for the Vpcpeerings API. Manages an
+        description: VPCPeering is the Schema for the VPCPeerings API. Manages an
           ArubaCloud VPC Peering.
         properties:
           apiVersion:
@@ -55,7 +55,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: VpcpeeringSpec defines the desired state of Vpcpeering
+            description: VPCPeeringSpec defines the desired state of VPCPeering
             properties:
               forProvider:
                 properties:
@@ -224,7 +224,7 @@ spec:
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.vpcId)
                 || (has(self.initProvider) && has(self.initProvider.vpcId))'
           status:
-            description: VpcpeeringStatus defines the observed state of Vpcpeering.
+            description: VPCPeeringStatus defines the observed state of VPCPeering.
             properties:
               atProvider:
                 properties:

@@ -6,5 +6,7 @@ import "github.com/crossplane/upjet/v2/pkg/config"
 func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("arubacloud_kaas", func(r *config.Resource) {
 		r.ShortGroup = "kaas"
+		r.Kind = "KaaS"
+		r.Path = "kaas"
 	})
 }

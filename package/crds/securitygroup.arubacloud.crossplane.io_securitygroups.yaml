@@ -12,8 +12,8 @@ spec:
     - crossplane
     - managed
     - arubacloud
-    kind: Securitygroup
-    listKind: SecuritygroupList
+    kind: SecurityGroup
+    listKind: SecurityGroupList
     plural: securitygroups
     singular: securitygroup
   scope: Cluster
@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Securitygroup is the Schema for the Securitygroups API. Manages
+        description: SecurityGroup is the Schema for the SecurityGroups API. Manages
           an ArubaCloud SecurityGroup.
         properties:
           apiVersion:
@@ -55,7 +55,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: SecuritygroupSpec defines the desired state of Securitygroup
+            description: SecurityGroupSpec defines the desired state of SecurityGroup
             properties:
               deletionPolicy:
                 default: Delete
@@ -251,7 +251,7 @@ spec:
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.vpcId)
                 || (has(self.initProvider) && has(self.initProvider.vpcId))'
           status:
-            description: SecuritygroupStatus defines the observed state of Securitygroup.
+            description: SecurityGroupStatus defines the observed state of SecurityGroup.
             properties:
               atProvider:
                 properties:

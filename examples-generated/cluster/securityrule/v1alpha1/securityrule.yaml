@@ -1,5 +1,5 @@
 apiVersion: securityrule.arubacloud.crossplane.io/v1alpha1
-kind: Securityrule
+kind: SecurityRule
 metadata:
   annotations:
     meta.upbound.io/example-id: securityrule/v1alpha1/securityrule

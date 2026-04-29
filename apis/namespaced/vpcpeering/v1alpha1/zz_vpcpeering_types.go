@@ -14,7 +14,7 @@ import (
 	v2 "github.com/crossplane/crossplane-runtime/v2/apis/common/v2"
 )
 
-type VpcpeeringInitParameters struct {
+type VPCPeeringInitParameters struct {
 
 	// (String) VPC Peering location
 	// VPC Peering location
@@ -41,7 +41,7 @@ type VpcpeeringInitParameters struct {
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 }
 
-type VpcpeeringObservation struct {
+type VPCPeeringObservation struct {
 
 	// (String) VPC Peering identifier
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
@@ -75,7 +75,7 @@ type VpcpeeringObservation struct {
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 }
 
-type VpcpeeringParameters struct {
+type VPCPeeringParameters struct {
 
 	// (String) VPC Peering location
 	// VPC Peering location
@@ -108,10 +108,10 @@ type VpcpeeringParameters struct {
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 }
 
-// VpcpeeringSpec defines the desired state of Vpcpeering
-type VpcpeeringSpec struct {
+// VPCPeeringSpec defines the desired state of VPCPeering
+type VPCPeeringSpec struct {
 	v2.ManagedResourceSpec `json:",inline"`
-	ForProvider            VpcpeeringParameters `json:"forProvider"`
+	ForProvider            VPCPeeringParameters `json:"forProvider"`
 	// THIS IS A BETA FIELD. It will be honored
 	// unless the Management Policies feature flag is disabled.
 	// InitProvider holds the same fields as ForProvider, with the exception
@@ -122,26 +122,26 @@ type VpcpeeringSpec struct {
 	// required on creation, but we do not desire to update them after creation,
 	// for example because of an external controller is managing them, like an
 	// autoscaler.
-	InitProvider VpcpeeringInitParameters `json:"initProvider,omitempty"`
+	InitProvider VPCPeeringInitParameters `json:"initProvider,omitempty"`
 }
 
-// VpcpeeringStatus defines the observed state of Vpcpeering.
-type VpcpeeringStatus struct {
+// VPCPeeringStatus defines the observed state of VPCPeering.
+type VPCPeeringStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        VpcpeeringObservation `json:"atProvider,omitempty"`
+	AtProvider        VPCPeeringObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// Vpcpeering is the Schema for the Vpcpeerings API. Manages an ArubaCloud VPC Peering.
+// VPCPeering is the Schema for the VPCPeerings API. Manages an ArubaCloud VPC Peering.
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:resource:scope=Namespaced,categories={crossplane,managed,arubacloud}
-type Vpcpeering struct {
+type VPCPeering struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.location) || (has(self.initProvider) && has(self.initProvider.location))",message="spec.forProvider.location is a required parameter"
@@ -149,27 +149,27 @@ type Vpcpeering struct {
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.peerVpc) || (has(self.initProvider) && has(self.initProvider.peerVpc))",message="spec.forProvider.peerVpc is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.projectId) || (has(self.initProvider) && has(self.initProvider.projectId))",message="spec.forProvider.projectId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.vpcId) || (has(self.initProvider) && has(self.initProvider.vpcId))",message="spec.forProvider.vpcId is a required parameter"
-	Spec   VpcpeeringSpec   `json:"spec"`
-	Status VpcpeeringStatus `json:"status,omitempty"`
+	Spec   VPCPeeringSpec   `json:"spec"`
+	Status VPCPeeringStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// VpcpeeringList contains a list of Vpcpeerings
-type VpcpeeringList struct {
+// VPCPeeringList contains a list of VPCPeerings
+type VPCPeeringList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []Vpcpeering `json:"items"`
+	Items           []VPCPeering `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	Vpcpeering_Kind             = "Vpcpeering"
-	Vpcpeering_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: Vpcpeering_Kind}.String()
-	Vpcpeering_KindAPIVersion   = Vpcpeering_Kind + "." + CRDGroupVersion.String()
-	Vpcpeering_GroupVersionKind = CRDGroupVersion.WithKind(Vpcpeering_Kind)
+	VPCPeering_Kind             = "VPCPeering"
+	VPCPeering_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: VPCPeering_Kind}.String()
+	VPCPeering_KindAPIVersion   = VPCPeering_Kind + "." + CRDGroupVersion.String()
+	VPCPeering_GroupVersionKind = CRDGroupVersion.WithKind(VPCPeering_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&Vpcpeering{}, &VpcpeeringList{})
+	SchemeBuilder.Register(&VPCPeering{}, &VPCPeeringList{})
 }

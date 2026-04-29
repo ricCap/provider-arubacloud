@@ -8,52 +8,52 @@ package v1alpha1
 
 import xpv1 "github.com/crossplane/crossplane-runtime/v2/apis/common/v1"
 
-// GetCondition of this Keypair.
-func (mg *Keypair) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
+// GetCondition of this KeyPair.
+func (mg *KeyPair) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
 	return mg.Status.GetCondition(ct)
 }
 
-// GetDeletionPolicy of this Keypair.
-func (mg *Keypair) GetDeletionPolicy() xpv1.DeletionPolicy {
+// GetDeletionPolicy of this KeyPair.
+func (mg *KeyPair) GetDeletionPolicy() xpv1.DeletionPolicy {
 	return mg.Spec.DeletionPolicy
 }
 
-// GetManagementPolicies of this Keypair.
-func (mg *Keypair) GetManagementPolicies() xpv1.ManagementPolicies {
+// GetManagementPolicies of this KeyPair.
+func (mg *KeyPair) GetManagementPolicies() xpv1.ManagementPolicies {
 	return mg.Spec.ManagementPolicies
 }
 
-// GetProviderConfigReference of this Keypair.
-func (mg *Keypair) GetProviderConfigReference() *xpv1.Reference {
+// GetProviderConfigReference of this KeyPair.
+func (mg *KeyPair) GetProviderConfigReference() *xpv1.Reference {
 	return mg.Spec.ProviderConfigReference
 }
 
-// GetWriteConnectionSecretToReference of this Keypair.
-func (mg *Keypair) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
+// GetWriteConnectionSecretToReference of this KeyPair.
+func (mg *KeyPair) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
 	return mg.Spec.WriteConnectionSecretToReference
 }
 
-// SetConditions of this Keypair.
-func (mg *Keypair) SetConditions(c ...xpv1.Condition) {
+// SetConditions of this KeyPair.
+func (mg *KeyPair) SetConditions(c ...xpv1.Condition) {
 	mg.Status.SetConditions(c...)
 }
 
-// SetDeletionPolicy of this Keypair.
-func (mg *Keypair) SetDeletionPolicy(r xpv1.DeletionPolicy) {
+// SetDeletionPolicy of this KeyPair.
+func (mg *KeyPair) SetDeletionPolicy(r xpv1.DeletionPolicy) {
 	mg.Spec.DeletionPolicy = r
 }
 
-// SetManagementPolicies of this Keypair.
-func (mg *Keypair) SetManagementPolicies(r xpv1.ManagementPolicies) {
+// SetManagementPolicies of this KeyPair.
+func (mg *KeyPair) SetManagementPolicies(r xpv1.ManagementPolicies) {
 	mg.Spec.ManagementPolicies = r
 }
 
-// SetProviderConfigReference of this Keypair.
-func (mg *Keypair) SetProviderConfigReference(r *xpv1.Reference) {
+// SetProviderConfigReference of this KeyPair.
+func (mg *KeyPair) SetProviderConfigReference(r *xpv1.Reference) {
 	mg.Spec.ProviderConfigReference = r
 }
 
-// SetWriteConnectionSecretToReference of this Keypair.
-func (mg *Keypair) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
+// SetWriteConnectionSecretToReference of this KeyPair.
+func (mg *KeyPair) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
 	mg.Spec.WriteConnectionSecretToReference = r
 }
