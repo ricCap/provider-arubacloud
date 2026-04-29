@@ -166,6 +166,75 @@ func hasStruct(f *ast.File, name string) bool {
 	return false
 }
 
+// edit is a half-open byte range [start, end) inside the source file.
+type edit struct{ start, end int }
+
+// fieldTFName returns the snake-case Terraform name encoded in field's
+// `tf:"<snake>,..."` struct tag, or "" if the tag is missing/unparseable.
+func fieldTFName(field *ast.Field) string {
+	if field.Tag == nil {
+		return ""
+	}
+	tagVal, err := strconv.Unquote(field.Tag.Value)
+	if err != nil {
+		return ""
+	}
+	tfTag := reflect.StructTag(tagVal).Get("tf")
+	if tfTag == "" {
+		return ""
+	}
+	return strings.SplitN(tfTag, ",", 2)[0]
+}
+
+// optionalMarkerEdit returns the byte range of the Optional marker line
+// preceding field, or (edit{}, false) if no such line exists.
+func optionalMarkerEdit(field *ast.Field, fset *token.FileSet) (edit, bool) {
+	if field.Doc == nil {
+		return edit{}, false
+	}
+	for _, c := range field.Doc.List {
+		if strings.TrimSpace(c.Text) != optionalMarker {
+			continue
+		}
+		return edit{
+			start: fset.Position(c.Slash).Offset,
+			end:   fset.Position(c.End()).Offset,
+		}, true
+	}
+	return edit{}, false
+}
+
+// collectEdits returns the byte ranges of every Optional marker on a field
+// of st whose TF tag is a key in requiredFields.
+func collectEdits(st *ast.StructType, fset *token.FileSet, requiredFields map[string]struct{}) []edit {
+	var edits []edit
+	for _, field := range st.Fields.List {
+		snake := fieldTFName(field)
+		if snake == "" {
+			continue
+		}
+		if _, ok := requiredFields[snake]; !ok {
+			continue
+		}
+		if e, ok := optionalMarkerEdit(field, fset); ok {
+			edits = append(edits, e)
+		}
+	}
+	return edits
+}
+
+// applyEdits returns a copy of src with each edit's [start, end) range
+// replaced by repl. Edits must be non-overlapping.
+func applyEdits(src, repl []byte, edits []edit) []byte {
+	// Apply back-to-front so earlier offsets remain valid.
+	sort.Slice(edits, func(i, j int) bool { return edits[i].start > edits[j].start })
+	out := append([]byte(nil), src...)
+	for _, e := range edits {
+		out = append(out[:e.start], append(append([]byte{}, repl...), out[e.end:]...)...)
+	}
+	return out
+}
+
 // promoteFieldsInFile rewrites the Optional kubebuilder marker to Required
 // for each field of structName whose `tf:"<snake>,..."` tag matches a key
 // in requiredFields. Returns true iff the file was modified.
@@ -174,66 +243,20 @@ func promoteFieldsInFile(path, structName string, requiredFields map[string]stru
 	if err != nil {
 		return false, err
 	}
-
 	fset := token.NewFileSet()
 	file, err := parser.ParseFile(fset, path, src, parser.ParseComments)
 	if err != nil {
 		return false, fmt.Errorf("parse: %w", err)
 	}
-
 	st := findStruct(file, structName)
 	if st == nil {
 		return false, nil
 	}
-
-	type edit struct{ start, end int }
-	var edits []edit
-
-	for _, field := range st.Fields.List {
-		if field.Tag == nil {
-			continue
-		}
-		tagVal, err := strconv.Unquote(field.Tag.Value)
-		if err != nil {
-			continue
-		}
-		tfTag := reflect.StructTag(tagVal).Get("tf")
-		if tfTag == "" {
-			continue
-		}
-		snake := strings.SplitN(tfTag, ",", 2)[0]
-		if _, ok := requiredFields[snake]; !ok {
-			continue
-		}
-		if field.Doc == nil {
-			continue
-		}
-
-		for _, c := range field.Doc.List {
-			if strings.TrimSpace(c.Text) != optionalMarker {
-				continue
-			}
-			startPos := fset.Position(c.Slash)
-			endPos := fset.Position(c.End())
-			edits = append(edits, edit{startPos.Offset, endPos.Offset})
-			break
-		}
-	}
-
+	edits := collectEdits(st, fset, requiredFields)
 	if len(edits) == 0 {
 		return false, nil
 	}
-
-	// Apply edits back-to-front so earlier offsets remain valid.
-	sort.Slice(edits, func(i, j int) bool { return edits[i].start > edits[j].start })
-
-	out := make([]byte, len(src))
-	copy(out, src)
-	repl := []byte(requiredMarker)
-	for _, e := range edits {
-		out = append(out[:e.start], append(append([]byte{}, repl...), out[e.end:]...)...)
-	}
-
+	out := applyEdits(src, []byte(requiredMarker), edits)
 	if err := os.WriteFile(path, out, 0o644); err != nil { //nolint:gosec // generated path
 		return false, err
 	}

@@ -5,6 +5,7 @@
 package genfix
 
 import (
+	"bytes"
 	"os"
 	"path/filepath"
 	"strings"
@@ -133,7 +134,7 @@ func TestPromoteFieldsInFile_NoMatchingFieldsLeavesFileUntouched(t *testing.T) {
 	}
 
 	got, _ := os.ReadFile(path)
-	if string(got) != string(orig) {
+	if !bytes.Equal(got, orig) {
 		t.Errorf("file content changed despite changed=false")
 	}
 }
