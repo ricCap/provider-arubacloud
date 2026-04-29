@@ -78,22 +78,22 @@ type VpcpeeringParameters struct {
 
 	// (String) VPC Peering location
 	// VPC Peering location
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
 	// (String) VPC Peering name
 	// VPC Peering name
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// (String) ID or URI of the peer VPC to connect to
 	// ID or URI of the peer VPC to connect to
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	PeerVPC *string `json:"peerVpc,omitempty" tf:"peer_vpc,omitempty"`
 
 	// (String) ID of the project this VPC Peering belongs to
 	// ID of the project this VPC Peering belongs to
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
 	// (List of String) List of tags for the VPC Peering
@@ -103,7 +103,7 @@ type VpcpeeringParameters struct {
 
 	// (String) ID of the VPC this peering belongs to
 	// ID of the VPC this peering belongs to
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 }
 

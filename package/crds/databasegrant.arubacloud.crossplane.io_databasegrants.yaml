@@ -98,6 +98,12 @@ spec:
                       (String) User ID (username) to grant access
                       User ID (username) to grant access
                     type: string
+                required:
+                - database
+                - dbaasId
+                - projectId
+                - role
+                - userId
                 type: object
               initProvider:
                 description: |-

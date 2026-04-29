@@ -502,21 +502,21 @@ type VpntunnelParameters struct {
 
 	// (String) VPN Tunnel location
 	// VPN Tunnel location
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
 	// (String) VPN Tunnel name
 	// VPN Tunnel name
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// (String) ID of the project this VPN Tunnel belongs to
 	// ID of the project this VPN Tunnel belongs to
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
 	// (Attributes) Properties of the VPN Tunnel (see below for nested schema)
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Properties *PropertiesParameters `json:"properties,omitempty" tf:"properties,omitempty"`
 
 	// (List of String) List of tags for the VPN Tunnel

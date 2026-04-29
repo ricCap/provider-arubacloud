@@ -101,6 +101,14 @@ spec:
                       (String) ID of the VPC Peering this route belongs to
                       ID of the VPC Peering this route belongs to
                     type: string
+                required:
+                - billingPeriod
+                - localNetworkAddress
+                - name
+                - projectId
+                - remoteNetworkAddress
+                - vpcId
+                - vpcPeeringId
                 type: object
               initProvider:
                 description: |-

@@ -173,6 +173,14 @@ spec:
                       (String) Zone
                       Zone
                     type: string
+                required:
+                - location
+                - name
+                - network
+                - projectId
+                - settings
+                - storage
+                - zone
                 type: object
               initProvider:
                 description: |-

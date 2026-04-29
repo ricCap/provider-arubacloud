@@ -100,17 +100,17 @@ type BackupParameters struct {
 
 	// (String) Backup location
 	// Backup location
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
 	// (String) Backup name
 	// Backup name
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// (String) ID of the project this backup belongs to
 	// ID of the project this backup belongs to
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
 	// (Number) Retention days for the backup
@@ -125,12 +125,12 @@ type BackupParameters struct {
 
 	// (String) Type of backup (Full, Incremental)
 	// Type of backup (Full, Incremental)
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 
 	// (String) Volume ID for the backup
 	// Volume ID for the backup
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	VolumeID *string `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 

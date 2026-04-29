@@ -80,17 +80,17 @@ type ElasticipParameters struct {
 
 	// (String) Elastic IP location
 	// Elastic IP location
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
 	// (String) Elastic IP name
 	// Elastic IP name
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// (String) ID of the project this Elastic IP belongs to
 	// ID of the project this Elastic IP belongs to
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
 	// (List of String) List of tags for the Elastic IP

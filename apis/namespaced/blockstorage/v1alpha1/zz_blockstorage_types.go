@@ -111,7 +111,7 @@ type BlockstorageParameters struct {
 
 	// (String) Billing period (Hour, Month, Year)
 	// Billing period (Hour, Month, Year)
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	BillingPeriod *string `json:"billingPeriod,omitempty" tf:"billing_period,omitempty"`
 
 	// (Boolean) Whether the block storage is bootable. Must be set to true along with image to create a bootable disk.
@@ -126,22 +126,22 @@ type BlockstorageParameters struct {
 
 	// (String) Block Storage location/region
 	// Block Storage location/region
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
 	// (String) Block Storage name
 	// Block Storage name
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// (String) ID of the project this Block Storage belongs to
 	// ID of the project this Block Storage belongs to
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
 	// (Number) Size of the block storage in GB
 	// Size of the block storage in GB
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	SizeGb *float64 `json:"sizeGb,omitempty" tf:"size_gb,omitempty"`
 
 	// (List of String) List of tags for the block storage
@@ -151,7 +151,7 @@ type BlockstorageParameters struct {
 
 	// (String) Type of block storage (Standard, Performance)
 	// Type of block storage (Standard, Performance)
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 
 	// (String) Zone where blockstorage will be created. If not specified, the block storage will be regional (available across all zones in the location). If specified, the block storage will be zonal (tied to a specific zone).

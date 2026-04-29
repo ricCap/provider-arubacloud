@@ -74,6 +74,10 @@ spec:
                       (String) ID of the project this database belongs to
                       ID of the project this database belongs to
                     type: string
+                required:
+                - dbaasId
+                - name
+                - projectId
                 type: object
               initProvider:
                 description: |-

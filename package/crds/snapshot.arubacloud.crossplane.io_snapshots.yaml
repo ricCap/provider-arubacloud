@@ -105,6 +105,12 @@ spec:
                       (String) URI of the volume this snapshot is for. Should be the volume URI (e.g., /projects/{project_id}/providers/Aruba.Storage/volumes/{volume_id}). You can reference the uri attribute from an arubacloud_blockstorage resource.
                       URI of the volume this snapshot is for. Should be the volume URI (e.g., `/projects/{project_id}/providers/Aruba.Storage/volumes/{volume_id}`). You can reference the `uri` attribute from an `arubacloud_blockstorage` resource.
                     type: string
+                required:
+                - billingPeriod
+                - location
+                - name
+                - projectId
+                - volumeUri
                 type: object
               initProvider:
                 description: |-

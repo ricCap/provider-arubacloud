@@ -91,6 +91,12 @@ spec:
                       (String) Volume ID to restore to
                       Volume ID to restore to
                     type: string
+                required:
+                - backupId
+                - location
+                - name
+                - projectId
+                - volumeId
                 type: object
               initProvider:
                 description: |-

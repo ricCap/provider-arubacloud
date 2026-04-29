@@ -71,17 +71,17 @@ type SecuritygroupParameters struct {
 
 	// (String) Security Group location
 	// Security Group location
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
 	// (String) Security Group name
 	// Security Group name
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// (String) ID of the project this Security Group belongs to
 	// ID of the project this Security Group belongs to
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
 	// (List of String) List of tags for the Security Group
@@ -91,7 +91,7 @@ type SecuritygroupParameters struct {
 
 	// (String) ID of the VPC this Security Group belongs to
 	// ID of the VPC this Security Group belongs to
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 }
 

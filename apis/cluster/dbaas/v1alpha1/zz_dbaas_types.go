@@ -159,35 +159,35 @@ type DbaasParameters struct {
 
 	// 8.0 for MySQL version 8.0.
 	// Database engine ID. Available engines are described in the [ArubaCloud API documentation](https://api.arubacloud.com/docs/metadata/#dbaas-engines). For example, `mysql-8.0` for MySQL version 8.0.
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	EngineID *string `json:"engineId,omitempty" tf:"engine_id,omitempty"`
 
 	// (String) DBaaS flavor name. Available flavors are described in the ArubaCloud API documentation. For example, DBO2A4 means 2 CPU and 4GB RAM.
 	// DBaaS flavor name. Available flavors are described in the [ArubaCloud API documentation](https://api.arubacloud.com/docs/metadata/#dbaas-flavors). For example, `DBO2A4` means 2 CPU and 4GB RAM.
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Flavor *string `json:"flavor,omitempty" tf:"flavor,omitempty"`
 
 	// (String) DBaaS location
 	// DBaaS location
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
 	// (String) DBaaS name
 	// DBaaS name
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// (Attributes) Network configuration for the DBaaS instance (see below for nested schema)
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Network *NetworkParameters `json:"network,omitempty" tf:"network,omitempty"`
 
 	// (String) ID of the project this DBaaS belongs to
 	// ID of the project this DBaaS belongs to
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
 	// (Attributes) Storage configuration for the DBaaS instance (see below for nested schema)
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Storage *StorageParameters `json:"storage,omitempty" tf:"storage,omitempty"`
 
 	// (List of String) List of tags for the DBaaS resource
@@ -197,7 +197,7 @@ type DbaasParameters struct {
 
 	// (String) Zone
 	// Zone
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
 

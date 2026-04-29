@@ -142,26 +142,26 @@ type SecurityruleParameters struct {
 
 	// (String) Security Rule location
 	// Security Rule location
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
 	// (String) Security Rule name
 	// Security Rule name
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// (String) ID of the project this Security Rule belongs to
 	// ID of the project this Security Rule belongs to
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
 	// (Attributes) Properties of the security rule (see below for nested schema)
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Properties *PropertiesParameters `json:"properties,omitempty" tf:"properties,omitempty"`
 
 	// (String) ID of the Security Group this rule belongs to
 	// ID of the Security Group this rule belongs to
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	SecurityGroupID *string `json:"securityGroupId,omitempty" tf:"security_group_id,omitempty"`
 
 	// (List of String) List of tags for the Security Rule
@@ -171,7 +171,7 @@ type SecurityruleParameters struct {
 
 	// (String) ID of the VPC this Security Rule belongs to
 	// ID of the VPC this Security Rule belongs to
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 }
 

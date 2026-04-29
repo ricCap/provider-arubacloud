@@ -242,12 +242,12 @@ type SubnetParameters struct {
 
 	// (String) Subnet location
 	// Subnet location
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
 	// (String) Subnet name
 	// Subnet name
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// block
@@ -256,7 +256,7 @@ type SubnetParameters struct {
 
 	// (String) ID of the project this subnet belongs to
 	// ID of the project this subnet belongs to
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
 	// (List of String) List of tags for the subnet
@@ -266,12 +266,12 @@ type SubnetParameters struct {
 
 	// is set to "Basic", the network block is not required.
 	// Subnet type (Basic or Advanced)
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 
 	// (String) ID of the VPC this subnet belongs to
 	// ID of the VPC this subnet belongs to
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 }
 

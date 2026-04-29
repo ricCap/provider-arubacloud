@@ -156,6 +156,15 @@ spec:
                       (String) Zone
                       Zone
                     type: string
+                required:
+                - engineId
+                - flavor
+                - location
+                - name
+                - network
+                - projectId
+                - storage
+                - zone
                 type: object
               initProvider:
                 description: |-

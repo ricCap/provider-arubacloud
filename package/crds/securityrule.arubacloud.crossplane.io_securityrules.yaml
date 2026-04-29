@@ -140,6 +140,13 @@ spec:
                       (String) ID of the VPC this Security Rule belongs to
                       ID of the VPC this Security Rule belongs to
                     type: string
+                required:
+                - location
+                - name
+                - projectId
+                - properties
+                - securityGroupId
+                - vpcId
                 type: object
               initProvider:
                 description: |-

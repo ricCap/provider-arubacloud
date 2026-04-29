@@ -79,22 +79,22 @@ type RestoreParameters struct {
 
 	// (String) Backup ID to restore from
 	// Backup ID to restore from
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	BackupID *string `json:"backupId,omitempty" tf:"backup_id,omitempty"`
 
 	// (String) Restore location
 	// Restore location
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
 	// (String) Restore name
 	// Restore name
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// (String) ID of the project this restore belongs to
 	// ID of the project this restore belongs to
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
 	// (List of String) List of tags for the restore resource
@@ -104,7 +104,7 @@ type RestoreParameters struct {
 
 	// (String) Volume ID to restore to
 	// Volume ID to restore to
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	VolumeID *string `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 

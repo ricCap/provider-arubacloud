@@ -160,6 +160,12 @@ spec:
                       (String) ID of the VPC this subnet belongs to
                       ID of the VPC this subnet belongs to
                     type: string
+                required:
+                - location
+                - name
+                - projectId
+                - type
+                - vpcId
                 type: object
               initProvider:
                 description: |-

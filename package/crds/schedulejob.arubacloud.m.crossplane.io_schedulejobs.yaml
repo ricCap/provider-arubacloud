@@ -141,6 +141,11 @@ spec:
                     items:
                       type: string
                     type: array
+                required:
+                - location
+                - name
+                - projectId
+                - properties
                 type: object
               initProvider:
                 description: |-

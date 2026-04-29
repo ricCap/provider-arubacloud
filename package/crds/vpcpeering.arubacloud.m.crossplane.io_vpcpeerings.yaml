@@ -91,6 +91,12 @@ spec:
                       (String) ID of the VPC this peering belongs to
                       ID of the VPC this peering belongs to
                     type: string
+                required:
+                - location
+                - name
+                - peerVpc
+                - projectId
+                - vpcId
                 type: object
               initProvider:
                 description: |-

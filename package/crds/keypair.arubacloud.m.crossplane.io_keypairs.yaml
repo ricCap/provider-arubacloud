@@ -95,6 +95,10 @@ spec:
                     - key
                     - name
                     type: object
+                required:
+                - location
+                - name
+                - projectId
                 type: object
               initProvider:
                 description: |-

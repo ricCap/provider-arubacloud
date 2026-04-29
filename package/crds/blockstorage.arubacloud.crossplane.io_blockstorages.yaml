@@ -125,6 +125,13 @@ spec:
                       (String) Zone where blockstorage will be created. If not specified, the block storage will be regional (available across all zones in the location). If specified, the block storage will be zonal (tied to a specific zone).
                       Zone where blockstorage will be created. If not specified, the block storage will be regional (available across all zones in the location). If specified, the block storage will be zonal (tied to a specific zone).
                     type: string
+                required:
+                - billingPeriod
+                - location
+                - name
+                - projectId
+                - sizeGb
+                - type
                 type: object
               initProvider:
                 description: |-
