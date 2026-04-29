@@ -12,8 +12,8 @@ spec:
     - crossplane
     - managed
     - arubacloud
-    kind: Vpnroute
-    listKind: VpnrouteList
+    kind: VPNRoute
+    listKind: VPNRouteList
     plural: vpnroutes
     singular: vpnroute
   scope: Cluster
@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Vpnroute is the Schema for the Vpnroutes API. Retrieves an ArubaCloud
+        description: VPNRoute is the Schema for the VPNRoutes API. Retrieves an ArubaCloud
           VPN Route.
         properties:
           apiVersion:
@@ -55,7 +55,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: VpnrouteSpec defines the desired state of Vpnroute
+            description: VPNRouteSpec defines the desired state of VPNRoute
             properties:
               deletionPolicy:
                 default: Delete
@@ -286,7 +286,7 @@ spec:
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.vpnTunnelId)
                 || (has(self.initProvider) && has(self.initProvider.vpnTunnelId))'
           status:
-            description: VpnrouteStatus defines the observed state of Vpnroute.
+            description: VPNRouteStatus defines the observed state of VPNRoute.
             properties:
               atProvider:
                 properties:

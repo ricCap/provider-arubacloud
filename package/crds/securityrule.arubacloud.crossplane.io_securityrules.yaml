@@ -12,8 +12,8 @@ spec:
     - crossplane
     - managed
     - arubacloud
-    kind: Securityrule
-    listKind: SecurityruleList
+    kind: SecurityRule
+    listKind: SecurityRuleList
     plural: securityrules
     singular: securityrule
   scope: Cluster
@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Securityrule is the Schema for the Securityrules API. Manages
+        description: SecurityRule is the Schema for the SecurityRules API. Manages
           an ArubaCloud Security Rule.
         properties:
           apiVersion:
@@ -55,7 +55,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: SecurityruleSpec defines the desired state of Securityrule
+            description: SecurityRuleSpec defines the desired state of SecurityRule
             properties:
               deletionPolicy:
                 default: Delete
@@ -341,7 +341,7 @@ spec:
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.vpcId)
                 || (has(self.initProvider) && has(self.initProvider.vpcId))'
           status:
-            description: SecurityruleStatus defines the observed state of Securityrule.
+            description: SecurityRuleStatus defines the observed state of SecurityRule.
             properties:
               atProvider:
                 properties:

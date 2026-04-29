@@ -12,8 +12,8 @@ spec:
     - crossplane
     - managed
     - arubacloud
-    kind: Dbaas
-    listKind: DbaasList
+    kind: DBaaS
+    listKind: DBaaSList
     plural: dbaas
     singular: dbaas
   scope: Namespaced
@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Dbaas is the Schema for the Dbaass API. Manages an ArubaCloud
+        description: DBaaS is the Schema for the DBaaSs API. Manages an ArubaCloud
           DBaaS.
         properties:
           apiVersion:
@@ -55,7 +55,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: DbaasSpec defines the desired state of Dbaas
+            description: DBaaSSpec defines the desired state of DBaaS
             properties:
               forProvider:
                 properties:
@@ -369,7 +369,7 @@ spec:
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.zone)
                 || (has(self.initProvider) && has(self.initProvider.zone))'
           status:
-            description: DbaasStatus defines the observed state of Dbaas.
+            description: DBaaSStatus defines the observed state of DBaaS.
             properties:
               atProvider:
                 properties:

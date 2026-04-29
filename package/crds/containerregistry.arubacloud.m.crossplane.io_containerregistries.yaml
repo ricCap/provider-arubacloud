@@ -12,8 +12,8 @@ spec:
     - crossplane
     - managed
     - arubacloud
-    kind: Containerregistry
-    listKind: ContainerregistryList
+    kind: ContainerRegistry
+    listKind: ContainerRegistryList
     plural: containerregistries
     singular: containerregistry
   scope: Namespaced
@@ -34,7 +34,7 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: Containerregistry is the Schema for the Containerregistrys API.
+        description: ContainerRegistry is the Schema for the ContainerRegistrys API.
           Manages an ArubaCloud Container Registry resource.
         properties:
           apiVersion:
@@ -55,7 +55,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: ContainerregistrySpec defines the desired state of Containerregistry
+            description: ContainerRegistrySpec defines the desired state of ContainerRegistry
             properties:
               forProvider:
                 properties:
@@ -314,7 +314,7 @@ spec:
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.storage)
                 || (has(self.initProvider) && has(self.initProvider.storage))'
           status:
-            description: ContainerregistryStatus defines the observed state of Containerregistry.
+            description: ContainerRegistryStatus defines the observed state of ContainerRegistry.
             properties:
               atProvider:
                 properties:
