@@ -8,42 +8,42 @@ package v1alpha1
 
 import xpv1 "github.com/crossplane/crossplane-runtime/v2/apis/common/v1"
 
-// GetCondition of this Schedulejob.
-func (mg *Schedulejob) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
+// GetCondition of this ScheduleJob.
+func (mg *ScheduleJob) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
 	return mg.Status.GetCondition(ct)
 }
 
-// GetManagementPolicies of this Schedulejob.
-func (mg *Schedulejob) GetManagementPolicies() xpv1.ManagementPolicies {
+// GetManagementPolicies of this ScheduleJob.
+func (mg *ScheduleJob) GetManagementPolicies() xpv1.ManagementPolicies {
 	return mg.Spec.ManagementPolicies
 }
 
-// GetProviderConfigReference of this Schedulejob.
-func (mg *Schedulejob) GetProviderConfigReference() *xpv1.ProviderConfigReference {
+// GetProviderConfigReference of this ScheduleJob.
+func (mg *ScheduleJob) GetProviderConfigReference() *xpv1.ProviderConfigReference {
 	return mg.Spec.ProviderConfigReference
 }
 
-// GetWriteConnectionSecretToReference of this Schedulejob.
-func (mg *Schedulejob) GetWriteConnectionSecretToReference() *xpv1.LocalSecretReference {
+// GetWriteConnectionSecretToReference of this ScheduleJob.
+func (mg *ScheduleJob) GetWriteConnectionSecretToReference() *xpv1.LocalSecretReference {
 	return mg.Spec.WriteConnectionSecretToReference
 }
 
-// SetConditions of this Schedulejob.
-func (mg *Schedulejob) SetConditions(c ...xpv1.Condition) {
+// SetConditions of this ScheduleJob.
+func (mg *ScheduleJob) SetConditions(c ...xpv1.Condition) {
 	mg.Status.SetConditions(c...)
 }
 
-// SetManagementPolicies of this Schedulejob.
-func (mg *Schedulejob) SetManagementPolicies(r xpv1.ManagementPolicies) {
+// SetManagementPolicies of this ScheduleJob.
+func (mg *ScheduleJob) SetManagementPolicies(r xpv1.ManagementPolicies) {
 	mg.Spec.ManagementPolicies = r
 }
 
-// SetProviderConfigReference of this Schedulejob.
-func (mg *Schedulejob) SetProviderConfigReference(r *xpv1.ProviderConfigReference) {
+// SetProviderConfigReference of this ScheduleJob.
+func (mg *ScheduleJob) SetProviderConfigReference(r *xpv1.ProviderConfigReference) {
 	mg.Spec.ProviderConfigReference = r
 }
 
-// SetWriteConnectionSecretToReference of this Schedulejob.
-func (mg *Schedulejob) SetWriteConnectionSecretToReference(r *xpv1.LocalSecretReference) {
+// SetWriteConnectionSecretToReference of this ScheduleJob.
+func (mg *ScheduleJob) SetWriteConnectionSecretToReference(r *xpv1.LocalSecretReference) {
 	mg.Spec.WriteConnectionSecretToReference = r
 }

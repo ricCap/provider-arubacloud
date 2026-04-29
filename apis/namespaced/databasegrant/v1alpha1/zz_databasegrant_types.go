@@ -14,7 +14,7 @@ import (
 	v2 "github.com/crossplane/crossplane-runtime/v2/apis/common/v2"
 )
 
-type DatabasegrantInitParameters struct {
+type DatabaseGrantInitParameters struct {
 
 	// (String) Database name
 	// Database name
@@ -37,7 +37,7 @@ type DatabasegrantInitParameters struct {
 	UserID *string `json:"userId,omitempty" tf:"user_id,omitempty"`
 }
 
-type DatabasegrantObservation struct {
+type DatabaseGrantObservation struct {
 
 	// (String) Database name
 	// Database name
@@ -67,7 +67,7 @@ type DatabasegrantObservation struct {
 	UserID *string `json:"userId,omitempty" tf:"user_id,omitempty"`
 }
 
-type DatabasegrantParameters struct {
+type DatabaseGrantParameters struct {
 
 	// (String) Database name
 	// Database name
@@ -95,10 +95,10 @@ type DatabasegrantParameters struct {
 	UserID *string `json:"userId,omitempty" tf:"user_id,omitempty"`
 }
 
-// DatabasegrantSpec defines the desired state of Databasegrant
-type DatabasegrantSpec struct {
+// DatabaseGrantSpec defines the desired state of DatabaseGrant
+type DatabaseGrantSpec struct {
 	v2.ManagedResourceSpec `json:",inline"`
-	ForProvider            DatabasegrantParameters `json:"forProvider"`
+	ForProvider            DatabaseGrantParameters `json:"forProvider"`
 	// THIS IS A BETA FIELD. It will be honored
 	// unless the Management Policies feature flag is disabled.
 	// InitProvider holds the same fields as ForProvider, with the exception
@@ -109,26 +109,26 @@ type DatabasegrantSpec struct {
 	// required on creation, but we do not desire to update them after creation,
 	// for example because of an external controller is managing them, like an
 	// autoscaler.
-	InitProvider DatabasegrantInitParameters `json:"initProvider,omitempty"`
+	InitProvider DatabaseGrantInitParameters `json:"initProvider,omitempty"`
 }
 
-// DatabasegrantStatus defines the observed state of Databasegrant.
-type DatabasegrantStatus struct {
+// DatabaseGrantStatus defines the observed state of DatabaseGrant.
+type DatabaseGrantStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        DatabasegrantObservation `json:"atProvider,omitempty"`
+	AtProvider        DatabaseGrantObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// Databasegrant is the Schema for the Databasegrants API. Manages an ArubaCloud Database Grant.
+// DatabaseGrant is the Schema for the DatabaseGrants API. Manages an ArubaCloud Database Grant.
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:resource:scope=Namespaced,categories={crossplane,managed,arubacloud}
-type Databasegrant struct {
+type DatabaseGrant struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.database) || (has(self.initProvider) && has(self.initProvider.database))",message="spec.forProvider.database is a required parameter"
@@ -136,27 +136,27 @@ type Databasegrant struct {
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.projectId) || (has(self.initProvider) && has(self.initProvider.projectId))",message="spec.forProvider.projectId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.role) || (has(self.initProvider) && has(self.initProvider.role))",message="spec.forProvider.role is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.userId) || (has(self.initProvider) && has(self.initProvider.userId))",message="spec.forProvider.userId is a required parameter"
-	Spec   DatabasegrantSpec   `json:"spec"`
-	Status DatabasegrantStatus `json:"status,omitempty"`
+	Spec   DatabaseGrantSpec   `json:"spec"`
+	Status DatabaseGrantStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// DatabasegrantList contains a list of Databasegrants
-type DatabasegrantList struct {
+// DatabaseGrantList contains a list of DatabaseGrants
+type DatabaseGrantList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []Databasegrant `json:"items"`
+	Items           []DatabaseGrant `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	Databasegrant_Kind             = "Databasegrant"
-	Databasegrant_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: Databasegrant_Kind}.String()
-	Databasegrant_KindAPIVersion   = Databasegrant_Kind + "." + CRDGroupVersion.String()
-	Databasegrant_GroupVersionKind = CRDGroupVersion.WithKind(Databasegrant_Kind)
+	DatabaseGrant_Kind             = "DatabaseGrant"
+	DatabaseGrant_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: DatabaseGrant_Kind}.String()
+	DatabaseGrant_KindAPIVersion   = DatabaseGrant_Kind + "." + CRDGroupVersion.String()
+	DatabaseGrant_GroupVersionKind = CRDGroupVersion.WithKind(DatabaseGrant_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&Databasegrant{}, &DatabasegrantList{})
+	SchemeBuilder.Register(&DatabaseGrant{}, &DatabaseGrantList{})
 }

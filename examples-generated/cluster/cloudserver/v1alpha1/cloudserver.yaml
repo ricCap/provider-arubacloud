@@ -1,5 +1,5 @@
 apiVersion: cloudserver.arubacloud.crossplane.io/v1alpha1
-kind: Cloudserver
+kind: CloudServer
 metadata:
   annotations:
     meta.upbound.io/example-id: cloudserver/v1alpha1/cloudserver

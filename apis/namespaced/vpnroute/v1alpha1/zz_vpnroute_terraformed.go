@@ -14,18 +14,18 @@ import (
 	"github.com/crossplane/upjet/v2/pkg/resource/json"
 )
 
-// GetTerraformResourceType returns Terraform resource type for this Vpnroute
-func (mg *Vpnroute) GetTerraformResourceType() string {
+// GetTerraformResourceType returns Terraform resource type for this VPNRoute
+func (mg *VPNRoute) GetTerraformResourceType() string {
 	return "arubacloud_vpnroute"
 }
 
-// GetConnectionDetailsMapping for this Vpnroute
-func (tr *Vpnroute) GetConnectionDetailsMapping() map[string]string {
+// GetConnectionDetailsMapping for this VPNRoute
+func (tr *VPNRoute) GetConnectionDetailsMapping() map[string]string {
 	return nil
 }
 
-// GetObservation of this Vpnroute
-func (tr *Vpnroute) GetObservation() (map[string]any, error) {
+// GetObservation of this VPNRoute
+func (tr *VPNRoute) GetObservation() (map[string]any, error) {
 	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
 	if err != nil {
 		return nil, err
@@ -34,8 +34,8 @@ func (tr *Vpnroute) GetObservation() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(o, &base)
 }
 
-// SetObservation for this Vpnroute
-func (tr *Vpnroute) SetObservation(obs map[string]any) error {
+// SetObservation for this VPNRoute
+func (tr *VPNRoute) SetObservation(obs map[string]any) error {
 	p, err := json.TFParser.Marshal(obs)
 	if err != nil {
 		return err
@@ -43,16 +43,16 @@ func (tr *Vpnroute) SetObservation(obs map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
 }
 
-// GetID returns ID of underlying Terraform resource of this Vpnroute
-func (tr *Vpnroute) GetID() string {
+// GetID returns ID of underlying Terraform resource of this VPNRoute
+func (tr *VPNRoute) GetID() string {
 	if tr.Status.AtProvider.ID == nil {
 		return ""
 	}
 	return *tr.Status.AtProvider.ID
 }
 
-// GetParameters of this Vpnroute
-func (tr *Vpnroute) GetParameters() (map[string]any, error) {
+// GetParameters of this VPNRoute
+func (tr *VPNRoute) GetParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
 	if err != nil {
 		return nil, err
@@ -61,8 +61,8 @@ func (tr *Vpnroute) GetParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// SetParameters for this Vpnroute
-func (tr *Vpnroute) SetParameters(params map[string]any) error {
+// SetParameters for this VPNRoute
+func (tr *VPNRoute) SetParameters(params map[string]any) error {
 	p, err := json.TFParser.Marshal(params)
 	if err != nil {
 		return err
@@ -70,8 +70,8 @@ func (tr *Vpnroute) SetParameters(params map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
 }
 
-// GetInitParameters of this Vpnroute
-func (tr *Vpnroute) GetInitParameters() (map[string]any, error) {
+// GetInitParameters of this VPNRoute
+func (tr *VPNRoute) GetInitParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.InitProvider)
 	if err != nil {
 		return nil, err
@@ -80,8 +80,8 @@ func (tr *Vpnroute) GetInitParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// GetInitParameters of this Vpnroute
-func (tr *Vpnroute) GetMergedParameters(shouldMergeInitProvider bool) (map[string]any, error) {
+// GetInitParameters of this VPNRoute
+func (tr *VPNRoute) GetMergedParameters(shouldMergeInitProvider bool) (map[string]any, error) {
 	params, err := tr.GetParameters()
 	if err != nil {
 		return nil, errors.Wrapf(err, "cannot get parameters for resource \"%s/%s\"", tr.GetNamespace(), tr.GetName())
@@ -110,10 +110,10 @@ func (tr *Vpnroute) GetMergedParameters(shouldMergeInitProvider bool) (map[strin
 	return params, nil
 }
 
-// LateInitialize this Vpnroute using its observed tfState.
+// LateInitialize this VPNRoute using its observed tfState.
 // returns True if there are any spec changes for the resource.
-func (tr *Vpnroute) LateInitialize(attrs []byte) (bool, error) {
-	params := &VpnrouteParameters{}
+func (tr *VPNRoute) LateInitialize(attrs []byte) (bool, error) {
+	params := &VPNRouteParameters{}
 	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
 		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
 	}
@@ -124,6 +124,6 @@ func (tr *Vpnroute) LateInitialize(attrs []byte) (bool, error) {
 }
 
 // GetTerraformSchemaVersion returns the associated Terraform schema version
-func (tr *Vpnroute) GetTerraformSchemaVersion() int {
+func (tr *VPNRoute) GetTerraformSchemaVersion() int {
 	return 0
 }

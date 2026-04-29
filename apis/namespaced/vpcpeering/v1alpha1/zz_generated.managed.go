@@ -8,42 +8,42 @@ package v1alpha1
 
 import xpv1 "github.com/crossplane/crossplane-runtime/v2/apis/common/v1"
 
-// GetCondition of this Vpcpeering.
-func (mg *Vpcpeering) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
+// GetCondition of this VPCPeering.
+func (mg *VPCPeering) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
 	return mg.Status.GetCondition(ct)
 }
 
-// GetManagementPolicies of this Vpcpeering.
-func (mg *Vpcpeering) GetManagementPolicies() xpv1.ManagementPolicies {
+// GetManagementPolicies of this VPCPeering.
+func (mg *VPCPeering) GetManagementPolicies() xpv1.ManagementPolicies {
 	return mg.Spec.ManagementPolicies
 }
 
-// GetProviderConfigReference of this Vpcpeering.
-func (mg *Vpcpeering) GetProviderConfigReference() *xpv1.ProviderConfigReference {
+// GetProviderConfigReference of this VPCPeering.
+func (mg *VPCPeering) GetProviderConfigReference() *xpv1.ProviderConfigReference {
 	return mg.Spec.ProviderConfigReference
 }
 
-// GetWriteConnectionSecretToReference of this Vpcpeering.
-func (mg *Vpcpeering) GetWriteConnectionSecretToReference() *xpv1.LocalSecretReference {
+// GetWriteConnectionSecretToReference of this VPCPeering.
+func (mg *VPCPeering) GetWriteConnectionSecretToReference() *xpv1.LocalSecretReference {
 	return mg.Spec.WriteConnectionSecretToReference
 }
 
-// SetConditions of this Vpcpeering.
-func (mg *Vpcpeering) SetConditions(c ...xpv1.Condition) {
+// SetConditions of this VPCPeering.
+func (mg *VPCPeering) SetConditions(c ...xpv1.Condition) {
 	mg.Status.SetConditions(c...)
 }
 
-// SetManagementPolicies of this Vpcpeering.
-func (mg *Vpcpeering) SetManagementPolicies(r xpv1.ManagementPolicies) {
+// SetManagementPolicies of this VPCPeering.
+func (mg *VPCPeering) SetManagementPolicies(r xpv1.ManagementPolicies) {
 	mg.Spec.ManagementPolicies = r
 }
 
-// SetProviderConfigReference of this Vpcpeering.
-func (mg *Vpcpeering) SetProviderConfigReference(r *xpv1.ProviderConfigReference) {
+// SetProviderConfigReference of this VPCPeering.
+func (mg *VPCPeering) SetProviderConfigReference(r *xpv1.ProviderConfigReference) {
 	mg.Spec.ProviderConfigReference = r
 }
 
-// SetWriteConnectionSecretToReference of this Vpcpeering.
-func (mg *Vpcpeering) SetWriteConnectionSecretToReference(r *xpv1.LocalSecretReference) {
+// SetWriteConnectionSecretToReference of this VPCPeering.
+func (mg *VPCPeering) SetWriteConnectionSecretToReference(r *xpv1.LocalSecretReference) {
 	mg.Spec.WriteConnectionSecretToReference = r
 }

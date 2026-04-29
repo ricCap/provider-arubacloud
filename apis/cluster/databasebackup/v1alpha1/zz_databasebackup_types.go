@@ -13,7 +13,7 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/v2/apis/common/v1"
 )
 
-type DatabasebackupInitParameters struct {
+type DatabaseBackupInitParameters struct {
 
 	// (String) Billing period
 	// Billing period
@@ -48,7 +48,7 @@ type DatabasebackupInitParameters struct {
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
 
-type DatabasebackupObservation struct {
+type DatabaseBackupObservation struct {
 
 	// (String) Billing period
 	// Billing period
@@ -90,7 +90,7 @@ type DatabasebackupObservation struct {
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
 
-type DatabasebackupParameters struct {
+type DatabaseBackupParameters struct {
 
 	// (String) Billing period
 	// Billing period
@@ -133,10 +133,10 @@ type DatabasebackupParameters struct {
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
 
-// DatabasebackupSpec defines the desired state of Databasebackup
-type DatabasebackupSpec struct {
+// DatabaseBackupSpec defines the desired state of DatabaseBackup
+type DatabaseBackupSpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     DatabasebackupParameters `json:"forProvider"`
+	ForProvider     DatabaseBackupParameters `json:"forProvider"`
 	// THIS IS A BETA FIELD. It will be honored
 	// unless the Management Policies feature flag is disabled.
 	// InitProvider holds the same fields as ForProvider, with the exception
@@ -147,26 +147,26 @@ type DatabasebackupSpec struct {
 	// required on creation, but we do not desire to update them after creation,
 	// for example because of an external controller is managing them, like an
 	// autoscaler.
-	InitProvider DatabasebackupInitParameters `json:"initProvider,omitempty"`
+	InitProvider DatabaseBackupInitParameters `json:"initProvider,omitempty"`
 }
 
-// DatabasebackupStatus defines the observed state of Databasebackup.
-type DatabasebackupStatus struct {
+// DatabaseBackupStatus defines the observed state of DatabaseBackup.
+type DatabaseBackupStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        DatabasebackupObservation `json:"atProvider,omitempty"`
+	AtProvider        DatabaseBackupObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// Databasebackup is the Schema for the Databasebackups API. Manages an ArubaCloud Database Backup.
+// DatabaseBackup is the Schema for the DatabaseBackups API. Manages an ArubaCloud Database Backup.
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,arubacloud}
-type Databasebackup struct {
+type DatabaseBackup struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.billingPeriod) || (has(self.initProvider) && has(self.initProvider.billingPeriod))",message="spec.forProvider.billingPeriod is a required parameter"
@@ -176,27 +176,27 @@ type Databasebackup struct {
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.projectId) || (has(self.initProvider) && has(self.initProvider.projectId))",message="spec.forProvider.projectId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.zone) || (has(self.initProvider) && has(self.initProvider.zone))",message="spec.forProvider.zone is a required parameter"
-	Spec   DatabasebackupSpec   `json:"spec"`
-	Status DatabasebackupStatus `json:"status,omitempty"`
+	Spec   DatabaseBackupSpec   `json:"spec"`
+	Status DatabaseBackupStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// DatabasebackupList contains a list of Databasebackups
-type DatabasebackupList struct {
+// DatabaseBackupList contains a list of DatabaseBackups
+type DatabaseBackupList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []Databasebackup `json:"items"`
+	Items           []DatabaseBackup `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	Databasebackup_Kind             = "Databasebackup"
-	Databasebackup_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: Databasebackup_Kind}.String()
-	Databasebackup_KindAPIVersion   = Databasebackup_Kind + "." + CRDGroupVersion.String()
-	Databasebackup_GroupVersionKind = CRDGroupVersion.WithKind(Databasebackup_Kind)
+	DatabaseBackup_Kind             = "DatabaseBackup"
+	DatabaseBackup_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: DatabaseBackup_Kind}.String()
+	DatabaseBackup_KindAPIVersion   = DatabaseBackup_Kind + "." + CRDGroupVersion.String()
+	DatabaseBackup_GroupVersionKind = CRDGroupVersion.WithKind(DatabaseBackup_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&Databasebackup{}, &DatabasebackupList{})
+	SchemeBuilder.Register(&DatabaseBackup{}, &DatabaseBackupList{})
 }

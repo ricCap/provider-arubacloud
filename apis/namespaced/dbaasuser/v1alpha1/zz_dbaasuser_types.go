@@ -14,7 +14,7 @@ import (
 	v2 "github.com/crossplane/crossplane-runtime/v2/apis/common/v2"
 )
 
-type DbaasuserInitParameters struct {
+type DBaaSUserInitParameters struct {
 
 	// (String) DBaaS ID this user belongs to
 	// DBaaS ID this user belongs to
@@ -33,7 +33,7 @@ type DbaasuserInitParameters struct {
 	Username *string `json:"username,omitempty" tf:"username,omitempty"`
 }
 
-type DbaasuserObservation struct {
+type DBaaSUserObservation struct {
 
 	// (String) DBaaS ID this user belongs to
 	// DBaaS ID this user belongs to
@@ -55,7 +55,7 @@ type DbaasuserObservation struct {
 	Username *string `json:"username,omitempty" tf:"username,omitempty"`
 }
 
-type DbaasuserParameters struct {
+type DBaaSUserParameters struct {
 
 	// (String) DBaaS ID this user belongs to
 	// DBaaS ID this user belongs to
@@ -78,10 +78,10 @@ type DbaasuserParameters struct {
 	Username *string `json:"username,omitempty" tf:"username,omitempty"`
 }
 
-// DbaasuserSpec defines the desired state of Dbaasuser
-type DbaasuserSpec struct {
+// DBaaSUserSpec defines the desired state of DBaaSUser
+type DBaaSUserSpec struct {
 	v2.ManagedResourceSpec `json:",inline"`
-	ForProvider            DbaasuserParameters `json:"forProvider"`
+	ForProvider            DBaaSUserParameters `json:"forProvider"`
 	// THIS IS A BETA FIELD. It will be honored
 	// unless the Management Policies feature flag is disabled.
 	// InitProvider holds the same fields as ForProvider, with the exception
@@ -92,53 +92,53 @@ type DbaasuserSpec struct {
 	// required on creation, but we do not desire to update them after creation,
 	// for example because of an external controller is managing them, like an
 	// autoscaler.
-	InitProvider DbaasuserInitParameters `json:"initProvider,omitempty"`
+	InitProvider DBaaSUserInitParameters `json:"initProvider,omitempty"`
 }
 
-// DbaasuserStatus defines the observed state of Dbaasuser.
-type DbaasuserStatus struct {
+// DBaaSUserStatus defines the observed state of DBaaSUser.
+type DBaaSUserStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        DbaasuserObservation `json:"atProvider,omitempty"`
+	AtProvider        DBaaSUserObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// Dbaasuser is the Schema for the Dbaasusers API. Manages an ArubaCloud DBaaS User.
+// DBaaSUser is the Schema for the DBaaSUsers API. Manages an ArubaCloud DBaaS User.
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:resource:scope=Namespaced,categories={crossplane,managed,arubacloud}
-type Dbaasuser struct {
+type DBaaSUser struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.dbaasId) || (has(self.initProvider) && has(self.initProvider.dbaasId))",message="spec.forProvider.dbaasId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.passwordSecretRef)",message="spec.forProvider.passwordSecretRef is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.projectId) || (has(self.initProvider) && has(self.initProvider.projectId))",message="spec.forProvider.projectId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.username) || (has(self.initProvider) && has(self.initProvider.username))",message="spec.forProvider.username is a required parameter"
-	Spec   DbaasuserSpec   `json:"spec"`
-	Status DbaasuserStatus `json:"status,omitempty"`
+	Spec   DBaaSUserSpec   `json:"spec"`
+	Status DBaaSUserStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// DbaasuserList contains a list of Dbaasusers
-type DbaasuserList struct {
+// DBaaSUserList contains a list of DBaaSUsers
+type DBaaSUserList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []Dbaasuser `json:"items"`
+	Items           []DBaaSUser `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	Dbaasuser_Kind             = "Dbaasuser"
-	Dbaasuser_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: Dbaasuser_Kind}.String()
-	Dbaasuser_KindAPIVersion   = Dbaasuser_Kind + "." + CRDGroupVersion.String()
-	Dbaasuser_GroupVersionKind = CRDGroupVersion.WithKind(Dbaasuser_Kind)
+	DBaaSUser_Kind             = "DBaaSUser"
+	DBaaSUser_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: DBaaSUser_Kind}.String()
+	DBaaSUser_KindAPIVersion   = DBaaSUser_Kind + "." + CRDGroupVersion.String()
+	DBaaSUser_GroupVersionKind = CRDGroupVersion.WithKind(DBaaSUser_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&Dbaasuser{}, &DbaasuserList{})
+	SchemeBuilder.Register(&DBaaSUser{}, &DBaaSUserList{})
 }

@@ -14,7 +14,7 @@ import (
 	v2 "github.com/crossplane/crossplane-runtime/v2/apis/common/v2"
 )
 
-type BlockstorageInitParameters struct {
+type BlockStorageInitParameters struct {
 
 	// (String) Billing period (Hour, Month, Year)
 	// Billing period (Hour, Month, Year)
@@ -57,7 +57,7 @@ type BlockstorageInitParameters struct {
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
 
-type BlockstorageObservation struct {
+type BlockStorageObservation struct {
 
 	// (String) Billing period (Hour, Month, Year)
 	// Billing period (Hour, Month, Year)
@@ -107,7 +107,7 @@ type BlockstorageObservation struct {
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
 
-type BlockstorageParameters struct {
+type BlockStorageParameters struct {
 
 	// (String) Billing period (Hour, Month, Year)
 	// Billing period (Hour, Month, Year)
@@ -160,10 +160,10 @@ type BlockstorageParameters struct {
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
 
-// BlockstorageSpec defines the desired state of Blockstorage
-type BlockstorageSpec struct {
+// BlockStorageSpec defines the desired state of BlockStorage
+type BlockStorageSpec struct {
 	v2.ManagedResourceSpec `json:",inline"`
-	ForProvider            BlockstorageParameters `json:"forProvider"`
+	ForProvider            BlockStorageParameters `json:"forProvider"`
 	// THIS IS A BETA FIELD. It will be honored
 	// unless the Management Policies feature flag is disabled.
 	// InitProvider holds the same fields as ForProvider, with the exception
@@ -174,26 +174,26 @@ type BlockstorageSpec struct {
 	// required on creation, but we do not desire to update them after creation,
 	// for example because of an external controller is managing them, like an
 	// autoscaler.
-	InitProvider BlockstorageInitParameters `json:"initProvider,omitempty"`
+	InitProvider BlockStorageInitParameters `json:"initProvider,omitempty"`
 }
 
-// BlockstorageStatus defines the observed state of Blockstorage.
-type BlockstorageStatus struct {
+// BlockStorageStatus defines the observed state of BlockStorage.
+type BlockStorageStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        BlockstorageObservation `json:"atProvider,omitempty"`
+	AtProvider        BlockStorageObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// Blockstorage is the Schema for the Blockstorages API. Manages an ArubaCloud Block Storage.
+// BlockStorage is the Schema for the BlockStorages API. Manages an ArubaCloud Block Storage.
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:resource:scope=Namespaced,categories={crossplane,managed,arubacloud}
-type Blockstorage struct {
+type BlockStorage struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.billingPeriod) || (has(self.initProvider) && has(self.initProvider.billingPeriod))",message="spec.forProvider.billingPeriod is a required parameter"
@@ -202,27 +202,27 @@ type Blockstorage struct {
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.projectId) || (has(self.initProvider) && has(self.initProvider.projectId))",message="spec.forProvider.projectId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.sizeGb) || (has(self.initProvider) && has(self.initProvider.sizeGb))",message="spec.forProvider.sizeGb is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.type) || (has(self.initProvider) && has(self.initProvider.type))",message="spec.forProvider.type is a required parameter"
-	Spec   BlockstorageSpec   `json:"spec"`
-	Status BlockstorageStatus `json:"status,omitempty"`
+	Spec   BlockStorageSpec   `json:"spec"`
+	Status BlockStorageStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// BlockstorageList contains a list of Blockstorages
-type BlockstorageList struct {
+// BlockStorageList contains a list of BlockStorages
+type BlockStorageList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []Blockstorage `json:"items"`
+	Items           []BlockStorage `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	Blockstorage_Kind             = "Blockstorage"
-	Blockstorage_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: Blockstorage_Kind}.String()
-	Blockstorage_KindAPIVersion   = Blockstorage_Kind + "." + CRDGroupVersion.String()
-	Blockstorage_GroupVersionKind = CRDGroupVersion.WithKind(Blockstorage_Kind)
+	BlockStorage_Kind             = "BlockStorage"
+	BlockStorage_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: BlockStorage_Kind}.String()
+	BlockStorage_KindAPIVersion   = BlockStorage_Kind + "." + CRDGroupVersion.String()
+	BlockStorage_GroupVersionKind = CRDGroupVersion.WithKind(BlockStorage_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&Blockstorage{}, &BlockstorageList{})
+	SchemeBuilder.Register(&BlockStorage{}, &BlockStorageList{})
 }

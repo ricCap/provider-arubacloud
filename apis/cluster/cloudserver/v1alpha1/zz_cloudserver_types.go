@@ -13,7 +13,7 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/v2/apis/common/v1"
 )
 
-type CloudserverInitParameters struct {
+type CloudServerInitParameters struct {
 
 	// (String) CloudServer location
 	// CloudServer location
@@ -45,7 +45,7 @@ type CloudserverInitParameters struct {
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
 
-type CloudserverObservation struct {
+type CloudServerObservation struct {
 
 	// (String) CloudServer identifier
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
@@ -84,7 +84,7 @@ type CloudserverObservation struct {
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
 
-type CloudserverParameters struct {
+type CloudServerParameters struct {
 
 	// (String) CloudServer location
 	// CloudServer location
@@ -251,10 +251,10 @@ type StorageParameters struct {
 	BootVolumeURIRef *string `json:"bootVolumeUriRef" tf:"boot_volume_uri_ref,omitempty"`
 }
 
-// CloudserverSpec defines the desired state of Cloudserver
-type CloudserverSpec struct {
+// CloudServerSpec defines the desired state of CloudServer
+type CloudServerSpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     CloudserverParameters `json:"forProvider"`
+	ForProvider     CloudServerParameters `json:"forProvider"`
 	// THIS IS A BETA FIELD. It will be honored
 	// unless the Management Policies feature flag is disabled.
 	// InitProvider holds the same fields as ForProvider, with the exception
@@ -265,26 +265,26 @@ type CloudserverSpec struct {
 	// required on creation, but we do not desire to update them after creation,
 	// for example because of an external controller is managing them, like an
 	// autoscaler.
-	InitProvider CloudserverInitParameters `json:"initProvider,omitempty"`
+	InitProvider CloudServerInitParameters `json:"initProvider,omitempty"`
 }
 
-// CloudserverStatus defines the observed state of Cloudserver.
-type CloudserverStatus struct {
+// CloudServerStatus defines the observed state of CloudServer.
+type CloudServerStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        CloudserverObservation `json:"atProvider,omitempty"`
+	AtProvider        CloudServerObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// Cloudserver is the Schema for the Cloudservers API. Manages an ArubaCloud CloudServer.
+// CloudServer is the Schema for the CloudServers API. Manages an ArubaCloud CloudServer.
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,arubacloud}
-type Cloudserver struct {
+type CloudServer struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.location) || (has(self.initProvider) && has(self.initProvider.location))",message="spec.forProvider.location is a required parameter"
@@ -294,27 +294,27 @@ type Cloudserver struct {
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.settings) || (has(self.initProvider) && has(self.initProvider.settings))",message="spec.forProvider.settings is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.storage) || (has(self.initProvider) && has(self.initProvider.storage))",message="spec.forProvider.storage is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.zone) || (has(self.initProvider) && has(self.initProvider.zone))",message="spec.forProvider.zone is a required parameter"
-	Spec   CloudserverSpec   `json:"spec"`
-	Status CloudserverStatus `json:"status,omitempty"`
+	Spec   CloudServerSpec   `json:"spec"`
+	Status CloudServerStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// CloudserverList contains a list of Cloudservers
-type CloudserverList struct {
+// CloudServerList contains a list of CloudServers
+type CloudServerList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []Cloudserver `json:"items"`
+	Items           []CloudServer `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	Cloudserver_Kind             = "Cloudserver"
-	Cloudserver_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: Cloudserver_Kind}.String()
-	Cloudserver_KindAPIVersion   = Cloudserver_Kind + "." + CRDGroupVersion.String()
-	Cloudserver_GroupVersionKind = CRDGroupVersion.WithKind(Cloudserver_Kind)
+	CloudServer_Kind             = "CloudServer"
+	CloudServer_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: CloudServer_Kind}.String()
+	CloudServer_KindAPIVersion   = CloudServer_Kind + "." + CRDGroupVersion.String()
+	CloudServer_GroupVersionKind = CRDGroupVersion.WithKind(CloudServer_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&Cloudserver{}, &CloudserverList{})
+	SchemeBuilder.Register(&CloudServer{}, &CloudServerList{})
 }

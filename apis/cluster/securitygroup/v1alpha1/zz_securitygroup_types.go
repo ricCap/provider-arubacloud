@@ -13,7 +13,7 @@ import (
 	v1 "github.com/crossplane/crossplane-runtime/v2/apis/common/v1"
 )
 
-type SecuritygroupInitParameters struct {
+type SecurityGroupInitParameters struct {
 
 	// (String) Security Group location
 	// Security Group location
@@ -36,7 +36,7 @@ type SecuritygroupInitParameters struct {
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 }
 
-type SecuritygroupObservation struct {
+type SecurityGroupObservation struct {
 
 	// (String) Security Group identifier
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
@@ -66,7 +66,7 @@ type SecuritygroupObservation struct {
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 }
 
-type SecuritygroupParameters struct {
+type SecurityGroupParameters struct {
 
 	// (String) Security Group location
 	// Security Group location
@@ -94,10 +94,10 @@ type SecuritygroupParameters struct {
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 }
 
-// SecuritygroupSpec defines the desired state of Securitygroup
-type SecuritygroupSpec struct {
+// SecurityGroupSpec defines the desired state of SecurityGroup
+type SecurityGroupSpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     SecuritygroupParameters `json:"forProvider"`
+	ForProvider     SecurityGroupParameters `json:"forProvider"`
 	// THIS IS A BETA FIELD. It will be honored
 	// unless the Management Policies feature flag is disabled.
 	// InitProvider holds the same fields as ForProvider, with the exception
@@ -108,53 +108,53 @@ type SecuritygroupSpec struct {
 	// required on creation, but we do not desire to update them after creation,
 	// for example because of an external controller is managing them, like an
 	// autoscaler.
-	InitProvider SecuritygroupInitParameters `json:"initProvider,omitempty"`
+	InitProvider SecurityGroupInitParameters `json:"initProvider,omitempty"`
 }
 
-// SecuritygroupStatus defines the observed state of Securitygroup.
-type SecuritygroupStatus struct {
+// SecurityGroupStatus defines the observed state of SecurityGroup.
+type SecurityGroupStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        SecuritygroupObservation `json:"atProvider,omitempty"`
+	AtProvider        SecurityGroupObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// Securitygroup is the Schema for the Securitygroups API. Manages an ArubaCloud SecurityGroup.
+// SecurityGroup is the Schema for the SecurityGroups API. Manages an ArubaCloud SecurityGroup.
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,arubacloud}
-type Securitygroup struct {
+type SecurityGroup struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.location) || (has(self.initProvider) && has(self.initProvider.location))",message="spec.forProvider.location is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.projectId) || (has(self.initProvider) && has(self.initProvider.projectId))",message="spec.forProvider.projectId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.vpcId) || (has(self.initProvider) && has(self.initProvider.vpcId))",message="spec.forProvider.vpcId is a required parameter"
-	Spec   SecuritygroupSpec   `json:"spec"`
-	Status SecuritygroupStatus `json:"status,omitempty"`
+	Spec   SecurityGroupSpec   `json:"spec"`
+	Status SecurityGroupStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// SecuritygroupList contains a list of Securitygroups
-type SecuritygroupList struct {
+// SecurityGroupList contains a list of SecurityGroups
+type SecurityGroupList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []Securitygroup `json:"items"`
+	Items           []SecurityGroup `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	Securitygroup_Kind             = "Securitygroup"
-	Securitygroup_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: Securitygroup_Kind}.String()
-	Securitygroup_KindAPIVersion   = Securitygroup_Kind + "." + CRDGroupVersion.String()
-	Securitygroup_GroupVersionKind = CRDGroupVersion.WithKind(Securitygroup_Kind)
+	SecurityGroup_Kind             = "SecurityGroup"
+	SecurityGroup_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: SecurityGroup_Kind}.String()
+	SecurityGroup_KindAPIVersion   = SecurityGroup_Kind + "." + CRDGroupVersion.String()
+	SecurityGroup_GroupVersionKind = CRDGroupVersion.WithKind(SecurityGroup_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&Securitygroup{}, &SecuritygroupList{})
+	SchemeBuilder.Register(&SecurityGroup{}, &SecurityGroupList{})
 }

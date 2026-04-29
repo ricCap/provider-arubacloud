@@ -14,18 +14,18 @@ import (
 	"github.com/crossplane/upjet/v2/pkg/resource/json"
 )
 
-// GetTerraformResourceType returns Terraform resource type for this Cloudserver
-func (mg *Cloudserver) GetTerraformResourceType() string {
+// GetTerraformResourceType returns Terraform resource type for this CloudServer
+func (mg *CloudServer) GetTerraformResourceType() string {
 	return "arubacloud_cloudserver"
 }
 
-// GetConnectionDetailsMapping for this Cloudserver
-func (tr *Cloudserver) GetConnectionDetailsMapping() map[string]string {
+// GetConnectionDetailsMapping for this CloudServer
+func (tr *CloudServer) GetConnectionDetailsMapping() map[string]string {
 	return map[string]string{"settings.user_data": "settings.userDataSecretRef"}
 }
 
-// GetObservation of this Cloudserver
-func (tr *Cloudserver) GetObservation() (map[string]any, error) {
+// GetObservation of this CloudServer
+func (tr *CloudServer) GetObservation() (map[string]any, error) {
 	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
 	if err != nil {
 		return nil, err
@@ -34,8 +34,8 @@ func (tr *Cloudserver) GetObservation() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(o, &base)
 }
 
-// SetObservation for this Cloudserver
-func (tr *Cloudserver) SetObservation(obs map[string]any) error {
+// SetObservation for this CloudServer
+func (tr *CloudServer) SetObservation(obs map[string]any) error {
 	p, err := json.TFParser.Marshal(obs)
 	if err != nil {
 		return err
@@ -43,16 +43,16 @@ func (tr *Cloudserver) SetObservation(obs map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
 }
 
-// GetID returns ID of underlying Terraform resource of this Cloudserver
-func (tr *Cloudserver) GetID() string {
+// GetID returns ID of underlying Terraform resource of this CloudServer
+func (tr *CloudServer) GetID() string {
 	if tr.Status.AtProvider.ID == nil {
 		return ""
 	}
 	return *tr.Status.AtProvider.ID
 }
 
-// GetParameters of this Cloudserver
-func (tr *Cloudserver) GetParameters() (map[string]any, error) {
+// GetParameters of this CloudServer
+func (tr *CloudServer) GetParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
 	if err != nil {
 		return nil, err
@@ -61,8 +61,8 @@ func (tr *Cloudserver) GetParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// SetParameters for this Cloudserver
-func (tr *Cloudserver) SetParameters(params map[string]any) error {
+// SetParameters for this CloudServer
+func (tr *CloudServer) SetParameters(params map[string]any) error {
 	p, err := json.TFParser.Marshal(params)
 	if err != nil {
 		return err
@@ -70,8 +70,8 @@ func (tr *Cloudserver) SetParameters(params map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
 }
 
-// GetInitParameters of this Cloudserver
-func (tr *Cloudserver) GetInitParameters() (map[string]any, error) {
+// GetInitParameters of this CloudServer
+func (tr *CloudServer) GetInitParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.InitProvider)
 	if err != nil {
 		return nil, err
@@ -80,8 +80,8 @@ func (tr *Cloudserver) GetInitParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// GetInitParameters of this Cloudserver
-func (tr *Cloudserver) GetMergedParameters(shouldMergeInitProvider bool) (map[string]any, error) {
+// GetInitParameters of this CloudServer
+func (tr *CloudServer) GetMergedParameters(shouldMergeInitProvider bool) (map[string]any, error) {
 	params, err := tr.GetParameters()
 	if err != nil {
 		return nil, errors.Wrapf(err, "cannot get parameters for resource \"%s/%s\"", tr.GetNamespace(), tr.GetName())
@@ -110,10 +110,10 @@ func (tr *Cloudserver) GetMergedParameters(shouldMergeInitProvider bool) (map[st
 	return params, nil
 }
 
-// LateInitialize this Cloudserver using its observed tfState.
+// LateInitialize this CloudServer using its observed tfState.
 // returns True if there are any spec changes for the resource.
-func (tr *Cloudserver) LateInitialize(attrs []byte) (bool, error) {
-	params := &CloudserverParameters{}
+func (tr *CloudServer) LateInitialize(attrs []byte) (bool, error) {
+	params := &CloudServerParameters{}
 	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
 		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
 	}
@@ -124,6 +124,6 @@ func (tr *Cloudserver) LateInitialize(attrs []byte) (bool, error) {
 }
 
 // GetTerraformSchemaVersion returns the associated Terraform schema version
-func (tr *Cloudserver) GetTerraformSchemaVersion() int {
+func (tr *CloudServer) GetTerraformSchemaVersion() int {
 	return 0
 }

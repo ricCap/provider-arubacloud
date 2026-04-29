@@ -14,18 +14,18 @@ import (
 	"github.com/crossplane/upjet/v2/pkg/resource/json"
 )
 
-// GetTerraformResourceType returns Terraform resource type for this Dbaasuser
-func (mg *Dbaasuser) GetTerraformResourceType() string {
+// GetTerraformResourceType returns Terraform resource type for this DBaaSUser
+func (mg *DBaaSUser) GetTerraformResourceType() string {
 	return "arubacloud_dbaasuser"
 }
 
-// GetConnectionDetailsMapping for this Dbaasuser
-func (tr *Dbaasuser) GetConnectionDetailsMapping() map[string]string {
+// GetConnectionDetailsMapping for this DBaaSUser
+func (tr *DBaaSUser) GetConnectionDetailsMapping() map[string]string {
 	return map[string]string{"password": "passwordSecretRef"}
 }
 
-// GetObservation of this Dbaasuser
-func (tr *Dbaasuser) GetObservation() (map[string]any, error) {
+// GetObservation of this DBaaSUser
+func (tr *DBaaSUser) GetObservation() (map[string]any, error) {
 	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
 	if err != nil {
 		return nil, err
@@ -34,8 +34,8 @@ func (tr *Dbaasuser) GetObservation() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(o, &base)
 }
 
-// SetObservation for this Dbaasuser
-func (tr *Dbaasuser) SetObservation(obs map[string]any) error {
+// SetObservation for this DBaaSUser
+func (tr *DBaaSUser) SetObservation(obs map[string]any) error {
 	p, err := json.TFParser.Marshal(obs)
 	if err != nil {
 		return err
@@ -43,16 +43,16 @@ func (tr *Dbaasuser) SetObservation(obs map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
 }
 
-// GetID returns ID of underlying Terraform resource of this Dbaasuser
-func (tr *Dbaasuser) GetID() string {
+// GetID returns ID of underlying Terraform resource of this DBaaSUser
+func (tr *DBaaSUser) GetID() string {
 	if tr.Status.AtProvider.ID == nil {
 		return ""
 	}
 	return *tr.Status.AtProvider.ID
 }
 
-// GetParameters of this Dbaasuser
-func (tr *Dbaasuser) GetParameters() (map[string]any, error) {
+// GetParameters of this DBaaSUser
+func (tr *DBaaSUser) GetParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
 	if err != nil {
 		return nil, err
@@ -61,8 +61,8 @@ func (tr *Dbaasuser) GetParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// SetParameters for this Dbaasuser
-func (tr *Dbaasuser) SetParameters(params map[string]any) error {
+// SetParameters for this DBaaSUser
+func (tr *DBaaSUser) SetParameters(params map[string]any) error {
 	p, err := json.TFParser.Marshal(params)
 	if err != nil {
 		return err
@@ -70,8 +70,8 @@ func (tr *Dbaasuser) SetParameters(params map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
 }
 
-// GetInitParameters of this Dbaasuser
-func (tr *Dbaasuser) GetInitParameters() (map[string]any, error) {
+// GetInitParameters of this DBaaSUser
+func (tr *DBaaSUser) GetInitParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.InitProvider)
 	if err != nil {
 		return nil, err
@@ -80,8 +80,8 @@ func (tr *Dbaasuser) GetInitParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// GetInitParameters of this Dbaasuser
-func (tr *Dbaasuser) GetMergedParameters(shouldMergeInitProvider bool) (map[string]any, error) {
+// GetInitParameters of this DBaaSUser
+func (tr *DBaaSUser) GetMergedParameters(shouldMergeInitProvider bool) (map[string]any, error) {
 	params, err := tr.GetParameters()
 	if err != nil {
 		return nil, errors.Wrapf(err, "cannot get parameters for resource \"%s/%s\"", tr.GetNamespace(), tr.GetName())
@@ -110,10 +110,10 @@ func (tr *Dbaasuser) GetMergedParameters(shouldMergeInitProvider bool) (map[stri
 	return params, nil
 }
 
-// LateInitialize this Dbaasuser using its observed tfState.
+// LateInitialize this DBaaSUser using its observed tfState.
 // returns True if there are any spec changes for the resource.
-func (tr *Dbaasuser) LateInitialize(attrs []byte) (bool, error) {
-	params := &DbaasuserParameters{}
+func (tr *DBaaSUser) LateInitialize(attrs []byte) (bool, error) {
+	params := &DBaaSUserParameters{}
 	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
 		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
 	}
@@ -124,6 +124,6 @@ func (tr *Dbaasuser) LateInitialize(attrs []byte) (bool, error) {
 }
 
 // GetTerraformSchemaVersion returns the associated Terraform schema version
-func (tr *Dbaasuser) GetTerraformSchemaVersion() int {
+func (tr *DBaaSUser) GetTerraformSchemaVersion() int {
 	return 0
 }

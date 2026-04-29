@@ -14,7 +14,7 @@ import (
 	v2 "github.com/crossplane/crossplane-runtime/v2/apis/common/v2"
 )
 
-type KaasInitParameters struct {
+type KaaSInitParameters struct {
 
 	// (String) Billing period (Hour, Month, Year)
 	// Billing period (Hour, Month, Year)
@@ -43,7 +43,7 @@ type KaasInitParameters struct {
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 }
 
-type KaasObservation struct {
+type KaaSObservation struct {
 
 	// (String) Billing period (Hour, Month, Year)
 	// Billing period (Hour, Month, Year)
@@ -83,7 +83,7 @@ type KaasObservation struct {
 	URI *string `json:"uri,omitempty" tf:"uri,omitempty"`
 }
 
-type KaasParameters struct {
+type KaaSParameters struct {
 
 	// (String) Billing period (Hour, Month, Year)
 	// Billing period (Hour, Month, Year)
@@ -370,10 +370,10 @@ type SettingsParameters struct {
 	NodePools []NodePoolsParameters `json:"nodePools" tf:"node_pools,omitempty"`
 }
 
-// KaasSpec defines the desired state of Kaas
-type KaasSpec struct {
+// KaaSSpec defines the desired state of KaaS
+type KaaSSpec struct {
 	v2.ManagedResourceSpec `json:",inline"`
-	ForProvider            KaasParameters `json:"forProvider"`
+	ForProvider            KaaSParameters `json:"forProvider"`
 	// THIS IS A BETA FIELD. It will be honored
 	// unless the Management Policies feature flag is disabled.
 	// InitProvider holds the same fields as ForProvider, with the exception
@@ -384,26 +384,26 @@ type KaasSpec struct {
 	// required on creation, but we do not desire to update them after creation,
 	// for example because of an external controller is managing them, like an
 	// autoscaler.
-	InitProvider KaasInitParameters `json:"initProvider,omitempty"`
+	InitProvider KaaSInitParameters `json:"initProvider,omitempty"`
 }
 
-// KaasStatus defines the observed state of Kaas.
-type KaasStatus struct {
+// KaaSStatus defines the observed state of KaaS.
+type KaaSStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        KaasObservation `json:"atProvider,omitempty"`
+	AtProvider        KaaSObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// Kaas is the Schema for the Kaass API. Manages an ArubaCloud Kubernetes as a Service (KaaS) cluster. Once the cluster is ready, the provider downloads and exposes the kubeconfig (decoded from the API) so you can use it with kubectl or write it to a file.
+// KaaS is the Schema for the KaaSs API. Manages an ArubaCloud Kubernetes as a Service (KaaS) cluster. Once the cluster is ready, the provider downloads and exposes the kubeconfig (decoded from the API) so you can use it with kubectl or write it to a file.
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:resource:scope=Namespaced,categories={crossplane,managed,arubacloud}
-type Kaas struct {
+type KaaS struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.location) || (has(self.initProvider) && has(self.initProvider.location))",message="spec.forProvider.location is a required parameter"
@@ -411,27 +411,27 @@ type Kaas struct {
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.network) || (has(self.initProvider) && has(self.initProvider.network))",message="spec.forProvider.network is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.projectId) || (has(self.initProvider) && has(self.initProvider.projectId))",message="spec.forProvider.projectId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.settings) || (has(self.initProvider) && has(self.initProvider.settings))",message="spec.forProvider.settings is a required parameter"
-	Spec   KaasSpec   `json:"spec"`
-	Status KaasStatus `json:"status,omitempty"`
+	Spec   KaaSSpec   `json:"spec"`
+	Status KaaSStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// KaasList contains a list of Kaass
-type KaasList struct {
+// KaaSList contains a list of KaaSs
+type KaaSList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []Kaas `json:"items"`
+	Items           []KaaS `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	Kaas_Kind             = "Kaas"
-	Kaas_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: Kaas_Kind}.String()
-	Kaas_KindAPIVersion   = Kaas_Kind + "." + CRDGroupVersion.String()
-	Kaas_GroupVersionKind = CRDGroupVersion.WithKind(Kaas_Kind)
+	KaaS_Kind             = "KaaS"
+	KaaS_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: KaaS_Kind}.String()
+	KaaS_KindAPIVersion   = KaaS_Kind + "." + CRDGroupVersion.String()
+	KaaS_GroupVersionKind = CRDGroupVersion.WithKind(KaaS_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&Kaas{}, &KaasList{})
+	SchemeBuilder.Register(&KaaS{}, &KaaSList{})
 }

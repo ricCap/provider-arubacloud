@@ -1,5 +1,5 @@
 apiVersion: keypair.arubacloud.m.crossplane.io/v1alpha1
-kind: Keypair
+kind: KeyPair
 metadata:
   annotations:
     meta.upbound.io/example-id: keypair/v1alpha1/keypair

@@ -97,7 +97,7 @@ type PropertiesParameters struct {
 	Steps []StepsParameters `json:"steps,omitempty" tf:"steps,omitempty"`
 }
 
-type SchedulejobInitParameters struct {
+type ScheduleJobInitParameters struct {
 
 	// (String) Location for the job
 	// Location for the job
@@ -119,7 +119,7 @@ type SchedulejobInitParameters struct {
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 }
 
-type SchedulejobObservation struct {
+type ScheduleJobObservation struct {
 
 	// (String) Schedule Job identifier
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
@@ -148,7 +148,7 @@ type SchedulejobObservation struct {
 	URI *string `json:"uri,omitempty" tf:"uri,omitempty"`
 }
 
-type SchedulejobParameters struct {
+type ScheduleJobParameters struct {
 
 	// (String) Location for the job
 	// Location for the job
@@ -249,10 +249,10 @@ type StepsParameters struct {
 	ResourceURI *string `json:"resourceUri" tf:"resource_uri,omitempty"`
 }
 
-// SchedulejobSpec defines the desired state of Schedulejob
-type SchedulejobSpec struct {
+// ScheduleJobSpec defines the desired state of ScheduleJob
+type ScheduleJobSpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider     SchedulejobParameters `json:"forProvider"`
+	ForProvider     ScheduleJobParameters `json:"forProvider"`
 	// THIS IS A BETA FIELD. It will be honored
 	// unless the Management Policies feature flag is disabled.
 	// InitProvider holds the same fields as ForProvider, with the exception
@@ -263,53 +263,53 @@ type SchedulejobSpec struct {
 	// required on creation, but we do not desire to update them after creation,
 	// for example because of an external controller is managing them, like an
 	// autoscaler.
-	InitProvider SchedulejobInitParameters `json:"initProvider,omitempty"`
+	InitProvider ScheduleJobInitParameters `json:"initProvider,omitempty"`
 }
 
-// SchedulejobStatus defines the observed state of Schedulejob.
-type SchedulejobStatus struct {
+// ScheduleJobStatus defines the observed state of ScheduleJob.
+type ScheduleJobStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        SchedulejobObservation `json:"atProvider,omitempty"`
+	AtProvider        ScheduleJobObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// Schedulejob is the Schema for the Schedulejobs API. Manages an ArubaCloud Schedule Job.
+// ScheduleJob is the Schema for the ScheduleJobs API. Manages an ArubaCloud Schedule Job.
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:resource:scope=Cluster,categories={crossplane,managed,arubacloud}
-type Schedulejob struct {
+type ScheduleJob struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.location) || (has(self.initProvider) && has(self.initProvider.location))",message="spec.forProvider.location is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.projectId) || (has(self.initProvider) && has(self.initProvider.projectId))",message="spec.forProvider.projectId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.properties) || (has(self.initProvider) && has(self.initProvider.properties))",message="spec.forProvider.properties is a required parameter"
-	Spec   SchedulejobSpec   `json:"spec"`
-	Status SchedulejobStatus `json:"status,omitempty"`
+	Spec   ScheduleJobSpec   `json:"spec"`
+	Status ScheduleJobStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// SchedulejobList contains a list of Schedulejobs
-type SchedulejobList struct {
+// ScheduleJobList contains a list of ScheduleJobs
+type ScheduleJobList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []Schedulejob `json:"items"`
+	Items           []ScheduleJob `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	Schedulejob_Kind             = "Schedulejob"
-	Schedulejob_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: Schedulejob_Kind}.String()
-	Schedulejob_KindAPIVersion   = Schedulejob_Kind + "." + CRDGroupVersion.String()
-	Schedulejob_GroupVersionKind = CRDGroupVersion.WithKind(Schedulejob_Kind)
+	ScheduleJob_Kind             = "ScheduleJob"
+	ScheduleJob_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: ScheduleJob_Kind}.String()
+	ScheduleJob_KindAPIVersion   = ScheduleJob_Kind + "." + CRDGroupVersion.String()
+	ScheduleJob_GroupVersionKind = CRDGroupVersion.WithKind(ScheduleJob_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&Schedulejob{}, &SchedulejobList{})
+	SchemeBuilder.Register(&ScheduleJob{}, &ScheduleJobList{})
 }

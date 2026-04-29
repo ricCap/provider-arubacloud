@@ -14,18 +14,18 @@ import (
 	"github.com/crossplane/upjet/v2/pkg/resource/json"
 )
 
-// GetTerraformResourceType returns Terraform resource type for this Keypair
-func (mg *Keypair) GetTerraformResourceType() string {
+// GetTerraformResourceType returns Terraform resource type for this KeyPair
+func (mg *KeyPair) GetTerraformResourceType() string {
 	return "arubacloud_keypair"
 }
 
-// GetConnectionDetailsMapping for this Keypair
-func (tr *Keypair) GetConnectionDetailsMapping() map[string]string {
+// GetConnectionDetailsMapping for this KeyPair
+func (tr *KeyPair) GetConnectionDetailsMapping() map[string]string {
 	return map[string]string{"value": "valueSecretRef"}
 }
 
-// GetObservation of this Keypair
-func (tr *Keypair) GetObservation() (map[string]any, error) {
+// GetObservation of this KeyPair
+func (tr *KeyPair) GetObservation() (map[string]any, error) {
 	o, err := json.TFParser.Marshal(tr.Status.AtProvider)
 	if err != nil {
 		return nil, err
@@ -34,8 +34,8 @@ func (tr *Keypair) GetObservation() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(o, &base)
 }
 
-// SetObservation for this Keypair
-func (tr *Keypair) SetObservation(obs map[string]any) error {
+// SetObservation for this KeyPair
+func (tr *KeyPair) SetObservation(obs map[string]any) error {
 	p, err := json.TFParser.Marshal(obs)
 	if err != nil {
 		return err
@@ -43,16 +43,16 @@ func (tr *Keypair) SetObservation(obs map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Status.AtProvider)
 }
 
-// GetID returns ID of underlying Terraform resource of this Keypair
-func (tr *Keypair) GetID() string {
+// GetID returns ID of underlying Terraform resource of this KeyPair
+func (tr *KeyPair) GetID() string {
 	if tr.Status.AtProvider.ID == nil {
 		return ""
 	}
 	return *tr.Status.AtProvider.ID
 }
 
-// GetParameters of this Keypair
-func (tr *Keypair) GetParameters() (map[string]any, error) {
+// GetParameters of this KeyPair
+func (tr *KeyPair) GetParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.ForProvider)
 	if err != nil {
 		return nil, err
@@ -61,8 +61,8 @@ func (tr *Keypair) GetParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// SetParameters for this Keypair
-func (tr *Keypair) SetParameters(params map[string]any) error {
+// SetParameters for this KeyPair
+func (tr *KeyPair) SetParameters(params map[string]any) error {
 	p, err := json.TFParser.Marshal(params)
 	if err != nil {
 		return err
@@ -70,8 +70,8 @@ func (tr *Keypair) SetParameters(params map[string]any) error {
 	return json.TFParser.Unmarshal(p, &tr.Spec.ForProvider)
 }
 
-// GetInitParameters of this Keypair
-func (tr *Keypair) GetInitParameters() (map[string]any, error) {
+// GetInitParameters of this KeyPair
+func (tr *KeyPair) GetInitParameters() (map[string]any, error) {
 	p, err := json.TFParser.Marshal(tr.Spec.InitProvider)
 	if err != nil {
 		return nil, err
@@ -80,8 +80,8 @@ func (tr *Keypair) GetInitParameters() (map[string]any, error) {
 	return base, json.TFParser.Unmarshal(p, &base)
 }
 
-// GetInitParameters of this Keypair
-func (tr *Keypair) GetMergedParameters(shouldMergeInitProvider bool) (map[string]any, error) {
+// GetInitParameters of this KeyPair
+func (tr *KeyPair) GetMergedParameters(shouldMergeInitProvider bool) (map[string]any, error) {
 	params, err := tr.GetParameters()
 	if err != nil {
 		return nil, errors.Wrapf(err, "cannot get parameters for resource \"%s/%s\"", tr.GetNamespace(), tr.GetName())
@@ -110,10 +110,10 @@ func (tr *Keypair) GetMergedParameters(shouldMergeInitProvider bool) (map[string
 	return params, nil
 }
 
-// LateInitialize this Keypair using its observed tfState.
+// LateInitialize this KeyPair using its observed tfState.
 // returns True if there are any spec changes for the resource.
-func (tr *Keypair) LateInitialize(attrs []byte) (bool, error) {
-	params := &KeypairParameters{}
+func (tr *KeyPair) LateInitialize(attrs []byte) (bool, error) {
+	params := &KeyPairParameters{}
 	if err := json.TFParser.Unmarshal(attrs, params); err != nil {
 		return false, errors.Wrap(err, "failed to unmarshal Terraform state parameters for late-initialization")
 	}
@@ -124,6 +124,6 @@ func (tr *Keypair) LateInitialize(attrs []byte) (bool, error) {
 }
 
 // GetTerraformSchemaVersion returns the associated Terraform schema version
-func (tr *Keypair) GetTerraformSchemaVersion() int {
+func (tr *KeyPair) GetTerraformSchemaVersion() int {
 	return 0
 }

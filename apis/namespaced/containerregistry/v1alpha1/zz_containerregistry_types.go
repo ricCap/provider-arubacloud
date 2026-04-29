@@ -14,7 +14,7 @@ import (
 	v2 "github.com/crossplane/crossplane-runtime/v2/apis/common/v2"
 )
 
-type ContainerregistryInitParameters struct {
+type ContainerRegistryInitParameters struct {
 
 	// (String) Billing period (Hour, Month, Year)
 	// Billing period (Hour, Month, Year)
@@ -46,7 +46,7 @@ type ContainerregistryInitParameters struct {
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 }
 
-type ContainerregistryObservation struct {
+type ContainerRegistryObservation struct {
 
 	// (String) Billing period (Hour, Month, Year)
 	// Billing period (Hour, Month, Year)
@@ -85,7 +85,7 @@ type ContainerregistryObservation struct {
 	URI *string `json:"uri,omitempty" tf:"uri,omitempty"`
 }
 
-type ContainerregistryParameters struct {
+type ContainerRegistryParameters struct {
 
 	// (String) Billing period (Hour, Month, Year)
 	// Billing period (Hour, Month, Year)
@@ -243,10 +243,10 @@ type StorageParameters struct {
 	BlockStorageURIRef *string `json:"blockStorageUriRef" tf:"block_storage_uri_ref,omitempty"`
 }
 
-// ContainerregistrySpec defines the desired state of Containerregistry
-type ContainerregistrySpec struct {
+// ContainerRegistrySpec defines the desired state of ContainerRegistry
+type ContainerRegistrySpec struct {
 	v2.ManagedResourceSpec `json:",inline"`
-	ForProvider            ContainerregistryParameters `json:"forProvider"`
+	ForProvider            ContainerRegistryParameters `json:"forProvider"`
 	// THIS IS A BETA FIELD. It will be honored
 	// unless the Management Policies feature flag is disabled.
 	// InitProvider holds the same fields as ForProvider, with the exception
@@ -257,26 +257,26 @@ type ContainerregistrySpec struct {
 	// required on creation, but we do not desire to update them after creation,
 	// for example because of an external controller is managing them, like an
 	// autoscaler.
-	InitProvider ContainerregistryInitParameters `json:"initProvider,omitempty"`
+	InitProvider ContainerRegistryInitParameters `json:"initProvider,omitempty"`
 }
 
-// ContainerregistryStatus defines the observed state of Containerregistry.
-type ContainerregistryStatus struct {
+// ContainerRegistryStatus defines the observed state of ContainerRegistry.
+type ContainerRegistryStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider        ContainerregistryObservation `json:"atProvider,omitempty"`
+	AtProvider        ContainerRegistryObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// Containerregistry is the Schema for the Containerregistrys API. Manages an ArubaCloud Container Registry resource.
+// ContainerRegistry is the Schema for the ContainerRegistrys API. Manages an ArubaCloud Container Registry resource.
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"
 // +kubebuilder:printcolumn:name="AGE",type="date",JSONPath=".metadata.creationTimestamp"
 // +kubebuilder:resource:scope=Namespaced,categories={crossplane,managed,arubacloud}
-type Containerregistry struct {
+type ContainerRegistry struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.location) || (has(self.initProvider) && has(self.initProvider.location))",message="spec.forProvider.location is a required parameter"
@@ -284,27 +284,27 @@ type Containerregistry struct {
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.network) || (has(self.initProvider) && has(self.initProvider.network))",message="spec.forProvider.network is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.projectId) || (has(self.initProvider) && has(self.initProvider.projectId))",message="spec.forProvider.projectId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.storage) || (has(self.initProvider) && has(self.initProvider.storage))",message="spec.forProvider.storage is a required parameter"
-	Spec   ContainerregistrySpec   `json:"spec"`
-	Status ContainerregistryStatus `json:"status,omitempty"`
+	Spec   ContainerRegistrySpec   `json:"spec"`
+	Status ContainerRegistryStatus `json:"status,omitempty"`
 }
 
 // +kubebuilder:object:root=true
 
-// ContainerregistryList contains a list of Containerregistrys
-type ContainerregistryList struct {
+// ContainerRegistryList contains a list of ContainerRegistrys
+type ContainerRegistryList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []Containerregistry `json:"items"`
+	Items           []ContainerRegistry `json:"items"`
 }
 
 // Repository type metadata.
 var (
-	Containerregistry_Kind             = "Containerregistry"
-	Containerregistry_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: Containerregistry_Kind}.String()
-	Containerregistry_KindAPIVersion   = Containerregistry_Kind + "." + CRDGroupVersion.String()
-	Containerregistry_GroupVersionKind = CRDGroupVersion.WithKind(Containerregistry_Kind)
+	ContainerRegistry_Kind             = "ContainerRegistry"
+	ContainerRegistry_GroupKind        = schema.GroupKind{Group: CRDGroup, Kind: ContainerRegistry_Kind}.String()
+	ContainerRegistry_KindAPIVersion   = ContainerRegistry_Kind + "." + CRDGroupVersion.String()
+	ContainerRegistry_GroupVersionKind = CRDGroupVersion.WithKind(ContainerRegistry_Kind)
 )
 
 func init() {
-	SchemeBuilder.Register(&Containerregistry{}, &ContainerregistryList{})
+	SchemeBuilder.Register(&ContainerRegistry{}, &ContainerRegistryList{})
 }

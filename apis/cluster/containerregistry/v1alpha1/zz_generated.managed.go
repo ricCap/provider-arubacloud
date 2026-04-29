@@ -8,52 +8,52 @@ package v1alpha1
 
 import xpv1 "github.com/crossplane/crossplane-runtime/v2/apis/common/v1"
 
-// GetCondition of this Containerregistry.
-func (mg *Containerregistry) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
+// GetCondition of this ContainerRegistry.
+func (mg *ContainerRegistry) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
 	return mg.Status.GetCondition(ct)
 }
 
-// GetDeletionPolicy of this Containerregistry.
-func (mg *Containerregistry) GetDeletionPolicy() xpv1.DeletionPolicy {
+// GetDeletionPolicy of this ContainerRegistry.
+func (mg *ContainerRegistry) GetDeletionPolicy() xpv1.DeletionPolicy {
 	return mg.Spec.DeletionPolicy
 }
 
-// GetManagementPolicies of this Containerregistry.
-func (mg *Containerregistry) GetManagementPolicies() xpv1.ManagementPolicies {
+// GetManagementPolicies of this ContainerRegistry.
+func (mg *ContainerRegistry) GetManagementPolicies() xpv1.ManagementPolicies {
 	return mg.Spec.ManagementPolicies
 }
 
-// GetProviderConfigReference of this Containerregistry.
-func (mg *Containerregistry) GetProviderConfigReference() *xpv1.Reference {
+// GetProviderConfigReference of this ContainerRegistry.
+func (mg *ContainerRegistry) GetProviderConfigReference() *xpv1.Reference {
 	return mg.Spec.ProviderConfigReference
 }
 
-// GetWriteConnectionSecretToReference of this Containerregistry.
-func (mg *Containerregistry) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
+// GetWriteConnectionSecretToReference of this ContainerRegistry.
+func (mg *ContainerRegistry) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
 	return mg.Spec.WriteConnectionSecretToReference
 }
 
-// SetConditions of this Containerregistry.
-func (mg *Containerregistry) SetConditions(c ...xpv1.Condition) {
+// SetConditions of this ContainerRegistry.
+func (mg *ContainerRegistry) SetConditions(c ...xpv1.Condition) {
 	mg.Status.SetConditions(c...)
 }
 
-// SetDeletionPolicy of this Containerregistry.
-func (mg *Containerregistry) SetDeletionPolicy(r xpv1.DeletionPolicy) {
+// SetDeletionPolicy of this ContainerRegistry.
+func (mg *ContainerRegistry) SetDeletionPolicy(r xpv1.DeletionPolicy) {
 	mg.Spec.DeletionPolicy = r
 }
 
-// SetManagementPolicies of this Containerregistry.
-func (mg *Containerregistry) SetManagementPolicies(r xpv1.ManagementPolicies) {
+// SetManagementPolicies of this ContainerRegistry.
+func (mg *ContainerRegistry) SetManagementPolicies(r xpv1.ManagementPolicies) {
 	mg.Spec.ManagementPolicies = r
 }
 
-// SetProviderConfigReference of this Containerregistry.
-func (mg *Containerregistry) SetProviderConfigReference(r *xpv1.Reference) {
+// SetProviderConfigReference of this ContainerRegistry.
+func (mg *ContainerRegistry) SetProviderConfigReference(r *xpv1.Reference) {
 	mg.Spec.ProviderConfigReference = r
 }
 
-// SetWriteConnectionSecretToReference of this Containerregistry.
-func (mg *Containerregistry) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
+// SetWriteConnectionSecretToReference of this ContainerRegistry.
+func (mg *ContainerRegistry) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
 	mg.Spec.WriteConnectionSecretToReference = r
 }

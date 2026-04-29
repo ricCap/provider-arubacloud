@@ -8,52 +8,52 @@ package v1alpha1
 
 import xpv1 "github.com/crossplane/crossplane-runtime/v2/apis/common/v1"
 
-// GetCondition of this Vpcpeeringroute.
-func (mg *Vpcpeeringroute) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
+// GetCondition of this VPCPeeringRoute.
+func (mg *VPCPeeringRoute) GetCondition(ct xpv1.ConditionType) xpv1.Condition {
 	return mg.Status.GetCondition(ct)
 }
 
-// GetDeletionPolicy of this Vpcpeeringroute.
-func (mg *Vpcpeeringroute) GetDeletionPolicy() xpv1.DeletionPolicy {
+// GetDeletionPolicy of this VPCPeeringRoute.
+func (mg *VPCPeeringRoute) GetDeletionPolicy() xpv1.DeletionPolicy {
 	return mg.Spec.DeletionPolicy
 }
 
-// GetManagementPolicies of this Vpcpeeringroute.
-func (mg *Vpcpeeringroute) GetManagementPolicies() xpv1.ManagementPolicies {
+// GetManagementPolicies of this VPCPeeringRoute.
+func (mg *VPCPeeringRoute) GetManagementPolicies() xpv1.ManagementPolicies {
 	return mg.Spec.ManagementPolicies
 }
 
-// GetProviderConfigReference of this Vpcpeeringroute.
-func (mg *Vpcpeeringroute) GetProviderConfigReference() *xpv1.Reference {
+// GetProviderConfigReference of this VPCPeeringRoute.
+func (mg *VPCPeeringRoute) GetProviderConfigReference() *xpv1.Reference {
 	return mg.Spec.ProviderConfigReference
 }
 
-// GetWriteConnectionSecretToReference of this Vpcpeeringroute.
-func (mg *Vpcpeeringroute) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
+// GetWriteConnectionSecretToReference of this VPCPeeringRoute.
+func (mg *VPCPeeringRoute) GetWriteConnectionSecretToReference() *xpv1.SecretReference {
 	return mg.Spec.WriteConnectionSecretToReference
 }
 
-// SetConditions of this Vpcpeeringroute.
-func (mg *Vpcpeeringroute) SetConditions(c ...xpv1.Condition) {
+// SetConditions of this VPCPeeringRoute.
+func (mg *VPCPeeringRoute) SetConditions(c ...xpv1.Condition) {
 	mg.Status.SetConditions(c...)
 }
 
-// SetDeletionPolicy of this Vpcpeeringroute.
-func (mg *Vpcpeeringroute) SetDeletionPolicy(r xpv1.DeletionPolicy) {
+// SetDeletionPolicy of this VPCPeeringRoute.
+func (mg *VPCPeeringRoute) SetDeletionPolicy(r xpv1.DeletionPolicy) {
 	mg.Spec.DeletionPolicy = r
 }
 
-// SetManagementPolicies of this Vpcpeeringroute.
-func (mg *Vpcpeeringroute) SetManagementPolicies(r xpv1.ManagementPolicies) {
+// SetManagementPolicies of this VPCPeeringRoute.
+func (mg *VPCPeeringRoute) SetManagementPolicies(r xpv1.ManagementPolicies) {
 	mg.Spec.ManagementPolicies = r
 }
 
-// SetProviderConfigReference of this Vpcpeeringroute.
-func (mg *Vpcpeeringroute) SetProviderConfigReference(r *xpv1.Reference) {
+// SetProviderConfigReference of this VPCPeeringRoute.
+func (mg *VPCPeeringRoute) SetProviderConfigReference(r *xpv1.Reference) {
 	mg.Spec.ProviderConfigReference = r
 }
 
-// SetWriteConnectionSecretToReference of this Vpcpeeringroute.
-func (mg *Vpcpeeringroute) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
+// SetWriteConnectionSecretToReference of this VPCPeeringRoute.
+func (mg *VPCPeeringRoute) SetWriteConnectionSecretToReference(r *xpv1.SecretReference) {
 	mg.Spec.WriteConnectionSecretToReference = r
 }
