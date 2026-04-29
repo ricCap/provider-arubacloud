@@ -94,32 +94,32 @@ type DatabasebackupParameters struct {
 
 	// (String) Billing period
 	// Billing period
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	BillingPeriod *string `json:"billingPeriod,omitempty" tf:"billing_period,omitempty"`
 
 	// (String) Database name to backup
 	// Database name to backup
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Database *string `json:"database,omitempty" tf:"database,omitempty"`
 
 	// (String) DBaaS ID this backup belongs to
 	// DBaaS ID this backup belongs to
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	DbaasID *string `json:"dbaasId,omitempty" tf:"dbaas_id,omitempty"`
 
 	// (String) Database Backup location
 	// Database Backup location
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
 	// (String) Database Backup name
 	// Database Backup name
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// (String) ID of the project this backup belongs to
 	// ID of the project this backup belongs to
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
 	// (List of String) List of tags for the Database Backup resource
@@ -129,7 +129,7 @@ type DatabasebackupParameters struct {
 
 	// (String) Zone for the Database Backup
 	// Zone for the Database Backup
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
 

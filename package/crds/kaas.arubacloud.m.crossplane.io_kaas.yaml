@@ -185,6 +185,12 @@ spec:
                     items:
                       type: string
                     type: array
+                required:
+                - location
+                - name
+                - network
+                - projectId
+                - settings
                 type: object
               initProvider:
                 description: |-

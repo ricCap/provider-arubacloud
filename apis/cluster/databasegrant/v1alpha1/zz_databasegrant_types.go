@@ -70,27 +70,27 @@ type DatabasegrantParameters struct {
 
 	// (String) Database name
 	// Database name
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Database *string `json:"database,omitempty" tf:"database,omitempty"`
 
 	// (String) DBaaS ID this grant belongs to
 	// DBaaS ID this grant belongs to
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	DbaasID *string `json:"dbaasId,omitempty" tf:"dbaas_id,omitempty"`
 
 	// (String) ID of the project this grant belongs to
 	// ID of the project this grant belongs to
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
 	// (String) Role to grant (e.g., read, write, admin)
 	// Role to grant (e.g., read, write, admin)
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Role *string `json:"role,omitempty" tf:"role,omitempty"`
 
 	// (String) User ID (username) to grant access
 	// User ID (username) to grant access
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	UserID *string `json:"userId,omitempty" tf:"user_id,omitempty"`
 }
 

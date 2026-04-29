@@ -136,6 +136,12 @@ spec:
                     items:
                       type: string
                     type: array
+                required:
+                - location
+                - name
+                - network
+                - projectId
+                - storage
                 type: object
               initProvider:
                 description: |-

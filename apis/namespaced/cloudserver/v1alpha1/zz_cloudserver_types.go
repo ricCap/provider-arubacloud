@@ -89,29 +89,29 @@ type CloudserverParameters struct {
 
 	// (String) CloudServer location
 	// CloudServer location
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
 	// (String) CloudServer name
 	// CloudServer name
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// (Attributes) Network configuration for the cloud server (see below for nested schema)
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Network *NetworkParameters `json:"network,omitempty" tf:"network,omitempty"`
 
 	// (String) Project ID
 	// Project ID
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
 	// (Attributes) Cloud server settings (see below for nested schema)
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Settings *SettingsParameters `json:"settings,omitempty" tf:"settings,omitempty"`
 
 	// (Attributes) Storage configuration for the cloud server (see below for nested schema)
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Storage *StorageParameters `json:"storage,omitempty" tf:"storage,omitempty"`
 
 	// (List of String) List of tags for the Cloud Server
@@ -121,7 +121,7 @@ type CloudserverParameters struct {
 
 	// (String) Zone
 	// Zone
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
 

@@ -80,12 +80,12 @@ type KMSParameters struct {
 
 	// (String) KMS name
 	// KMS name
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// (String) ID of the project this KMS belongs to
 	// ID of the project this KMS belongs to
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
 	// (List of String) List of tags for the KMS

@@ -115,6 +115,12 @@ spec:
                       (String) Volume ID for the backup
                       Volume ID for the backup
                     type: string
+                required:
+                - location
+                - name
+                - projectId
+                - type
+                - volumeId
                 type: object
               initProvider:
                 description: |-

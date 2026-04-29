@@ -107,6 +107,10 @@ spec:
                       (String) Username for the DBaaS user
                       Username for the DBaaS user
                     type: string
+                required:
+                - dbaasId
+                - projectId
+                - username
                 type: object
               initProvider:
                 description: |-

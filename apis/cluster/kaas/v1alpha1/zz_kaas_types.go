@@ -91,25 +91,25 @@ type KaasParameters struct {
 
 	// (String) KaaS location
 	// KaaS location
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
 	// (String) KaaS name
 	// KaaS name
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// (Attributes) Network configuration for the KaaS cluster (see below for nested schema)
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Network *NetworkParameters `json:"network,omitempty" tf:"network,omitempty"`
 
 	// (String) ID of the project this KaaS resource belongs to
 	// ID of the project this KaaS resource belongs to
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
 	// (Attributes) Kubernetes cluster settings (see below for nested schema)
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Settings *SettingsParameters `json:"settings,omitempty" tf:"settings,omitempty"`
 
 	// (List of String) List of tags for the KaaS resource

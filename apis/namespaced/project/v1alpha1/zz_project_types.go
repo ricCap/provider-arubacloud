@@ -56,7 +56,7 @@ type ProjectParameters struct {
 
 	// (String) Project name
 	// Project name
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// (List of String) List of tags for the project

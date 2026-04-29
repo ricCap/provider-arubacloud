@@ -115,6 +115,14 @@ spec:
                       (String) Zone for the Database Backup
                       Zone for the Database Backup
                     type: string
+                required:
+                - billingPeriod
+                - database
+                - dbaasId
+                - location
+                - name
+                - projectId
+                - zone
                 type: object
               initProvider:
                 description: |-

@@ -54,17 +54,17 @@ type DatabaseParameters struct {
 
 	// (String) DBaaS ID this database belongs to
 	// DBaaS ID this database belongs to
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	DbaasID *string `json:"dbaasId,omitempty" tf:"dbaas_id,omitempty"`
 
 	// (String) Database name
 	// Database name
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// (String) ID of the project this database belongs to
 	// ID of the project this database belongs to
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 }
 

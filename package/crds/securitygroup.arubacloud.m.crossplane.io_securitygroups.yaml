@@ -86,6 +86,11 @@ spec:
                       (String) ID of the VPC this Security Group belongs to
                       ID of the VPC this Security Group belongs to
                     type: string
+                required:
+                - location
+                - name
+                - projectId
+                - vpcId
                 type: object
               initProvider:
                 description: |-

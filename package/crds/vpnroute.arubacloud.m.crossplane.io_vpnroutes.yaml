@@ -101,6 +101,12 @@ spec:
                       (String) ID of the VPN Tunnel this route belongs to
                       ID of the VPN Tunnel this route belongs to
                     type: string
+                required:
+                - location
+                - name
+                - projectId
+                - properties
+                - vpnTunnelId
                 type: object
               initProvider:
                 description: |-

@@ -79,22 +79,22 @@ type SnapshotParameters struct {
 
 	// (String) Billing period (only 'Hour' allowed)
 	// Billing period (only 'Hour' allowed)
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	BillingPeriod *string `json:"billingPeriod,omitempty" tf:"billing_period,omitempty"`
 
 	// (String) Snapshot location
 	// Snapshot location
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
 	// (String) Snapshot name
 	// Snapshot name
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// (String) ID of the project this Snapshot belongs to
 	// ID of the project this Snapshot belongs to
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
 	// (List of String) List of tags for the snapshot
@@ -104,7 +104,7 @@ type SnapshotParameters struct {
 
 	// (String) URI of the volume this snapshot is for. Should be the volume URI (e.g., /projects/{project_id}/providers/Aruba.Storage/volumes/{volume_id}). You can reference the uri attribute from an arubacloud_blockstorage resource.
 	// URI of the volume this snapshot is for. Should be the volume URI (e.g., `/projects/{project_id}/providers/Aruba.Storage/volumes/{volume_id}`). You can reference the `uri` attribute from an `arubacloud_blockstorage` resource.
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	VolumeURI *string `json:"volumeUri,omitempty" tf:"volume_uri,omitempty"`
 }
 

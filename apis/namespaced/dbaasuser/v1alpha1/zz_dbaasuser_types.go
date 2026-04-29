@@ -59,7 +59,7 @@ type DbaasuserParameters struct {
 
 	// (String) DBaaS ID this user belongs to
 	// DBaaS ID this user belongs to
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	DbaasID *string `json:"dbaasId,omitempty" tf:"dbaas_id,omitempty"`
 
 	// (String, Sensitive) Password for the DBaaS user
@@ -69,12 +69,12 @@ type DbaasuserParameters struct {
 
 	// (String) ID of the project this user belongs to
 	// ID of the project this user belongs to
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
 	// (String) Username for the DBaaS user
 	// Username for the DBaaS user
-	// +kubebuilder:validation:Optional
+	// +kubebuilder:validation:Required
 	Username *string `json:"username,omitempty" tf:"username,omitempty"`
 }
 
