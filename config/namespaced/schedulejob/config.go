@@ -6,5 +6,6 @@ import "github.com/crossplane/upjet/v2/pkg/config"
 func Configure(p *config.Provider) {
 	p.AddResourceConfigurator("arubacloud_schedulejob", func(r *config.Resource) {
 		r.ShortGroup = "schedulejob"
+		r.Kind = "ScheduleJob"
 	})
 }
