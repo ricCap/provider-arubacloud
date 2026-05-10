@@ -1,13 +1,11 @@
 #
 # Publish provider-arubacloud OCI package to ghcr.io for the Crossplane
-# workshop. Triggered on tags matching v*-workshop on this fork. The image
-# lands at ghcr.io/<owner>/provider-arubacloud:<tag> and is consumed by the
+# workshop. Triggered on tags matching v*-workshop. The image lands at
+# ghcr.io/<owner>/provider-arubacloud:<tag> and is consumed by the
 # workshop's per-vcluster ApplicationSet.
 #
 # Distinct from publish-provider-package.yml (Upbound xpkg mirror) and
-# ci.yml's publish-artifacts (GitHub Actions artifacts only). When upstream
-# Arubacloud cuts a release that includes the patched Read semantics, we
-# can retire this workflow and re-target the workshop to upstream.
+# ci.yml's publish-artifacts (GitHub Actions artifacts only).
 
 name: Publish Workshop Package
 
