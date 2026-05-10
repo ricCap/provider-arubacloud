@@ -15,281 +15,281 @@ import (
 
 type AutoscalingInitParameters struct {
 
-	// (Number) Minimum available space threshold in GB. When the available storage falls below this value, autoscaling will increase the storage by the step_size amount.
-	// Minimum available space threshold in GB. When the available storage falls below this value, autoscaling will increase the storage by the step_size amount.
+	// (Number) Minimum available space threshold in GB. When the available storage falls below this value, autoscaling increases storage by the step_size amount.
+	// Minimum available space threshold in GB. When the available storage falls below this value, autoscaling increases storage by the `step_size` amount.
 	AvailableSpace *float64 `json:"availableSpace,omitempty" tf:"available_space,omitempty"`
 
-	// (Boolean) Enable autoscaling
-	// Enable autoscaling
+	// (Boolean) Whether storage autoscaling is enabled.
+	// Whether storage autoscaling is enabled.
 	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
 
-	// (Number) Step size for autoscaling (in GB)
-	// Step size for autoscaling (in GB)
+	// (Number) Amount of storage (in GB) added on each autoscaling event.
+	// Amount of storage (in GB) added on each autoscaling event.
 	StepSize *float64 `json:"stepSize,omitempty" tf:"step_size,omitempty"`
 }
 
 type AutoscalingObservation struct {
 
-	// (Number) Minimum available space threshold in GB. When the available storage falls below this value, autoscaling will increase the storage by the step_size amount.
-	// Minimum available space threshold in GB. When the available storage falls below this value, autoscaling will increase the storage by the step_size amount.
+	// (Number) Minimum available space threshold in GB. When the available storage falls below this value, autoscaling increases storage by the step_size amount.
+	// Minimum available space threshold in GB. When the available storage falls below this value, autoscaling increases storage by the `step_size` amount.
 	AvailableSpace *float64 `json:"availableSpace,omitempty" tf:"available_space,omitempty"`
 
-	// (Boolean) Enable autoscaling
-	// Enable autoscaling
+	// (Boolean) Whether storage autoscaling is enabled.
+	// Whether storage autoscaling is enabled.
 	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
 
-	// (Number) Step size for autoscaling (in GB)
-	// Step size for autoscaling (in GB)
+	// (Number) Amount of storage (in GB) added on each autoscaling event.
+	// Amount of storage (in GB) added on each autoscaling event.
 	StepSize *float64 `json:"stepSize,omitempty" tf:"step_size,omitempty"`
 }
 
 type AutoscalingParameters struct {
 
-	// (Number) Minimum available space threshold in GB. When the available storage falls below this value, autoscaling will increase the storage by the step_size amount.
-	// Minimum available space threshold in GB. When the available storage falls below this value, autoscaling will increase the storage by the step_size amount.
+	// (Number) Minimum available space threshold in GB. When the available storage falls below this value, autoscaling increases storage by the step_size amount.
+	// Minimum available space threshold in GB. When the available storage falls below this value, autoscaling increases storage by the `step_size` amount.
 	// +kubebuilder:validation:Optional
 	AvailableSpace *float64 `json:"availableSpace" tf:"available_space,omitempty"`
 
-	// (Boolean) Enable autoscaling
-	// Enable autoscaling
+	// (Boolean) Whether storage autoscaling is enabled.
+	// Whether storage autoscaling is enabled.
 	// +kubebuilder:validation:Optional
 	Enabled *bool `json:"enabled" tf:"enabled,omitempty"`
 
-	// (Number) Step size for autoscaling (in GB)
-	// Step size for autoscaling (in GB)
+	// (Number) Amount of storage (in GB) added on each autoscaling event.
+	// Amount of storage (in GB) added on each autoscaling event.
 	// +kubebuilder:validation:Optional
 	StepSize *float64 `json:"stepSize" tf:"step_size,omitempty"`
 }
 
 type DBaaSInitParameters struct {
 
-	// (String) Billing period (Hour, Month, Year)
-	// Billing period (Hour, Month, Year)
+	// (String) Billing cycle. Accepted values: Hour, Month, Year.
+	// Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
 	BillingPeriod *string `json:"billingPeriod,omitempty" tf:"billing_period,omitempty"`
 
-	// 8.0 for MySQL version 8.0.
-	// Database engine ID. Available engines are described in the [ArubaCloud API documentation](https://api.arubacloud.com/docs/metadata/#dbaas-engines). For example, `mysql-8.0` for MySQL version 8.0.
+	// 8.0 for MySQL 8.0, postgresql-15 for PostgreSQL 15). See the available engines.
+	// Database engine type and version identifier (e.g., `mysql-8.0` for MySQL 8.0, `postgresql-15` for PostgreSQL 15). See the [available engines](https://api.arubacloud.com/docs/metadata/#dbaas-engines).
 	EngineID *string `json:"engineId,omitempty" tf:"engine_id,omitempty"`
 
-	// (String) DBaaS flavor name. Available flavors are described in the ArubaCloud API documentation. For example, DBO2A4 means 2 CPU and 4GB RAM.
-	// DBaaS flavor name. Available flavors are described in the [ArubaCloud API documentation](https://api.arubacloud.com/docs/metadata/#dbaas-flavors). For example, `DBO2A4` means 2 CPU and 4GB RAM.
+	// (String) Compute flavour for the DBaaS cluster nodes. See available flavours. For example, DBO2A4 means 2 vCPU and 4 GB RAM.
+	// Compute flavour for the DBaaS cluster nodes. See [available flavours](https://api.arubacloud.com/docs/metadata/#dbaas-flavors). For example, `DBO2A4` means 2 vCPU and 4 GB RAM.
 	Flavor *string `json:"flavor,omitempty" tf:"flavor,omitempty"`
 
-	// (String) DBaaS location
-	// DBaaS location
+	// Bergamo). See the available locations and zones.
+	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) DBaaS name
-	// DBaaS name
+	// (String) Display name for the DBaaS cluster.
+	// Display name for the DBaaS cluster.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (Attributes) Network configuration for the DBaaS instance (see below for nested schema)
+	// (Attributes) Network configuration for the DBaaS instance. All URI references are immutable after creation. (see below for nested schema)
 	Network *NetworkInitParameters `json:"network,omitempty" tf:"network,omitempty"`
 
-	// (String) ID of the project this DBaaS belongs to
-	// ID of the project this DBaaS belongs to
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (Attributes) Storage configuration for the DBaaS instance (see below for nested schema)
+	// (Attributes) Storage configuration for the DBaaS instance. (see below for nested schema)
 	Storage *StorageInitParameters `json:"storage,omitempty" tf:"storage,omitempty"`
 
-	// (List of String) List of tags for the DBaaS resource
-	// List of tags for the DBaaS resource
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String) Zone
-	// Zone
+	// (String) Availability zone within the region where the DBaaS cluster is deployed.
+	// Availability zone within the region where the DBaaS cluster is deployed.
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
 
 type DBaaSObservation struct {
 
-	// (String) Billing period (Hour, Month, Year)
-	// Billing period (Hour, Month, Year)
+	// (String) Billing cycle. Accepted values: Hour, Month, Year.
+	// Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
 	BillingPeriod *string `json:"billingPeriod,omitempty" tf:"billing_period,omitempty"`
 
-	// 8.0 for MySQL version 8.0.
-	// Database engine ID. Available engines are described in the [ArubaCloud API documentation](https://api.arubacloud.com/docs/metadata/#dbaas-engines). For example, `mysql-8.0` for MySQL version 8.0.
+	// 8.0 for MySQL 8.0, postgresql-15 for PostgreSQL 15). See the available engines.
+	// Database engine type and version identifier (e.g., `mysql-8.0` for MySQL 8.0, `postgresql-15` for PostgreSQL 15). See the [available engines](https://api.arubacloud.com/docs/metadata/#dbaas-engines).
 	EngineID *string `json:"engineId,omitempty" tf:"engine_id,omitempty"`
 
-	// (String) DBaaS flavor name. Available flavors are described in the ArubaCloud API documentation. For example, DBO2A4 means 2 CPU and 4GB RAM.
-	// DBaaS flavor name. Available flavors are described in the [ArubaCloud API documentation](https://api.arubacloud.com/docs/metadata/#dbaas-flavors). For example, `DBO2A4` means 2 CPU and 4GB RAM.
+	// (String) Compute flavour for the DBaaS cluster nodes. See available flavours. For example, DBO2A4 means 2 vCPU and 4 GB RAM.
+	// Compute flavour for the DBaaS cluster nodes. See [available flavours](https://api.arubacloud.com/docs/metadata/#dbaas-flavors). For example, `DBO2A4` means 2 vCPU and 4 GB RAM.
 	Flavor *string `json:"flavor,omitempty" tf:"flavor,omitempty"`
 
-	// (String) DBaaS identifier
+	// (String) Computed by the API. Unique identifier for the resource.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// (String) DBaaS location
-	// DBaaS location
+	// Bergamo). See the available locations and zones.
+	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) DBaaS name
-	// DBaaS name
+	// (String) Display name for the DBaaS cluster.
+	// Display name for the DBaaS cluster.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (Attributes) Network configuration for the DBaaS instance (see below for nested schema)
+	// (Attributes) Network configuration for the DBaaS instance. All URI references are immutable after creation. (see below for nested schema)
 	Network *NetworkObservation `json:"network,omitempty" tf:"network,omitempty"`
 
-	// (String) ID of the project this DBaaS belongs to
-	// ID of the project this DBaaS belongs to
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (Attributes) Storage configuration for the DBaaS instance (see below for nested schema)
+	// (Attributes) Storage configuration for the DBaaS instance. (see below for nested schema)
 	Storage *StorageObservation `json:"storage,omitempty" tf:"storage,omitempty"`
 
-	// (List of String) List of tags for the DBaaS resource
-	// List of tags for the DBaaS resource
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String) DBaaS URI
-	// DBaaS URI
+	// (String) Computed by the API. Full resource URI used as a reference value in other resources.
+	// Computed by the API. Full resource URI used as a reference value in other resources.
 	URI *string `json:"uri,omitempty" tf:"uri,omitempty"`
 
-	// (String) Zone
-	// Zone
+	// (String) Availability zone within the region where the DBaaS cluster is deployed.
+	// Availability zone within the region where the DBaaS cluster is deployed.
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
 
 type DBaaSParameters struct {
 
-	// (String) Billing period (Hour, Month, Year)
-	// Billing period (Hour, Month, Year)
+	// (String) Billing cycle. Accepted values: Hour, Month, Year.
+	// Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
 	// +kubebuilder:validation:Optional
 	BillingPeriod *string `json:"billingPeriod,omitempty" tf:"billing_period,omitempty"`
 
-	// 8.0 for MySQL version 8.0.
-	// Database engine ID. Available engines are described in the [ArubaCloud API documentation](https://api.arubacloud.com/docs/metadata/#dbaas-engines). For example, `mysql-8.0` for MySQL version 8.0.
+	// 8.0 for MySQL 8.0, postgresql-15 for PostgreSQL 15). See the available engines.
+	// Database engine type and version identifier (e.g., `mysql-8.0` for MySQL 8.0, `postgresql-15` for PostgreSQL 15). See the [available engines](https://api.arubacloud.com/docs/metadata/#dbaas-engines).
 	// +kubebuilder:validation:Required
 	EngineID *string `json:"engineId,omitempty" tf:"engine_id,omitempty"`
 
-	// (String) DBaaS flavor name. Available flavors are described in the ArubaCloud API documentation. For example, DBO2A4 means 2 CPU and 4GB RAM.
-	// DBaaS flavor name. Available flavors are described in the [ArubaCloud API documentation](https://api.arubacloud.com/docs/metadata/#dbaas-flavors). For example, `DBO2A4` means 2 CPU and 4GB RAM.
+	// (String) Compute flavour for the DBaaS cluster nodes. See available flavours. For example, DBO2A4 means 2 vCPU and 4 GB RAM.
+	// Compute flavour for the DBaaS cluster nodes. See [available flavours](https://api.arubacloud.com/docs/metadata/#dbaas-flavors). For example, `DBO2A4` means 2 vCPU and 4 GB RAM.
 	// +kubebuilder:validation:Required
 	Flavor *string `json:"flavor,omitempty" tf:"flavor,omitempty"`
 
-	// (String) DBaaS location
-	// DBaaS location
+	// Bergamo). See the available locations and zones.
+	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
 	// +kubebuilder:validation:Required
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) DBaaS name
-	// DBaaS name
+	// (String) Display name for the DBaaS cluster.
+	// Display name for the DBaaS cluster.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (Attributes) Network configuration for the DBaaS instance (see below for nested schema)
+	// (Attributes) Network configuration for the DBaaS instance. All URI references are immutable after creation. (see below for nested schema)
 	// +kubebuilder:validation:Required
 	Network *NetworkParameters `json:"network,omitempty" tf:"network,omitempty"`
 
-	// (String) ID of the project this DBaaS belongs to
-	// ID of the project this DBaaS belongs to
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (Attributes) Storage configuration for the DBaaS instance (see below for nested schema)
+	// (Attributes) Storage configuration for the DBaaS instance. (see below for nested schema)
 	// +kubebuilder:validation:Required
 	Storage *StorageParameters `json:"storage,omitempty" tf:"storage,omitempty"`
 
-	// (List of String) List of tags for the DBaaS resource
-	// List of tags for the DBaaS resource
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	// +kubebuilder:validation:Optional
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String) Zone
-	// Zone
+	// (String) Availability zone within the region where the DBaaS cluster is deployed.
+	// Availability zone within the region where the DBaaS cluster is deployed.
 	// +kubebuilder:validation:Required
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
 
 type NetworkInitParameters struct {
 
-	// (String) URI reference to the Elastic IP resource (e.g., arubacloud_elasticip.example.uri)
-	// URI reference to the Elastic IP resource (e.g., `arubacloud_elasticip.example.uri`)
+	// (String) Optional URI reference to an Elastic IP resource. References the uri attribute of an arubacloud_elasticip resource (e.g., arubacloud_elasticip.example.uri).
+	// Optional URI reference to an Elastic IP resource. References the `uri` attribute of an `arubacloud_elasticip` resource (e.g., `arubacloud_elasticip.example.uri`).
 	ElasticIPURIRef *string `json:"elasticIpUriRef,omitempty" tf:"elastic_ip_uri_ref,omitempty"`
 
-	// (String) URI reference to the Security Group resource (e.g., arubacloud_securitygroup.example.uri)
-	// URI reference to the Security Group resource (e.g., `arubacloud_securitygroup.example.uri`)
+	// (String) URI reference to the Security Group resource. References the uri attribute of an arubacloud_securitygroup resource (e.g., arubacloud_securitygroup.example.uri).
+	// URI reference to the Security Group resource. References the `uri` attribute of an `arubacloud_securitygroup` resource (e.g., `arubacloud_securitygroup.example.uri`).
 	SecurityGroupURIRef *string `json:"securityGroupUriRef,omitempty" tf:"security_group_uri_ref,omitempty"`
 
-	// (String) URI reference to the Subnet resource (e.g., arubacloud_subnet.example.uri)
-	// URI reference to the Subnet resource (e.g., `arubacloud_subnet.example.uri`)
+	// (String) URI reference to the Subnet resource. References the uri attribute of an arubacloud_subnet resource (e.g., arubacloud_subnet.example.uri).
+	// URI reference to the Subnet resource. References the `uri` attribute of an `arubacloud_subnet` resource (e.g., `arubacloud_subnet.example.uri`).
 	SubnetURIRef *string `json:"subnetUriRef,omitempty" tf:"subnet_uri_ref,omitempty"`
 
-	// (String) URI reference to the VPC resource (e.g., arubacloud_vpc.example.uri)
-	// URI reference to the VPC resource (e.g., `arubacloud_vpc.example.uri`)
+	// (String) URI reference to the VPC resource. References the uri attribute of an arubacloud_vpc resource (e.g., arubacloud_vpc.example.uri).
+	// URI reference to the VPC resource. References the `uri` attribute of an `arubacloud_vpc` resource (e.g., `arubacloud_vpc.example.uri`).
 	VPCURIRef *string `json:"vpcUriRef,omitempty" tf:"vpc_uri_ref,omitempty"`
 }
 
 type NetworkObservation struct {
 
-	// (String) URI reference to the Elastic IP resource (e.g., arubacloud_elasticip.example.uri)
-	// URI reference to the Elastic IP resource (e.g., `arubacloud_elasticip.example.uri`)
+	// (String) Optional URI reference to an Elastic IP resource. References the uri attribute of an arubacloud_elasticip resource (e.g., arubacloud_elasticip.example.uri).
+	// Optional URI reference to an Elastic IP resource. References the `uri` attribute of an `arubacloud_elasticip` resource (e.g., `arubacloud_elasticip.example.uri`).
 	ElasticIPURIRef *string `json:"elasticIpUriRef,omitempty" tf:"elastic_ip_uri_ref,omitempty"`
 
-	// (String) URI reference to the Security Group resource (e.g., arubacloud_securitygroup.example.uri)
-	// URI reference to the Security Group resource (e.g., `arubacloud_securitygroup.example.uri`)
+	// (String) URI reference to the Security Group resource. References the uri attribute of an arubacloud_securitygroup resource (e.g., arubacloud_securitygroup.example.uri).
+	// URI reference to the Security Group resource. References the `uri` attribute of an `arubacloud_securitygroup` resource (e.g., `arubacloud_securitygroup.example.uri`).
 	SecurityGroupURIRef *string `json:"securityGroupUriRef,omitempty" tf:"security_group_uri_ref,omitempty"`
 
-	// (String) URI reference to the Subnet resource (e.g., arubacloud_subnet.example.uri)
-	// URI reference to the Subnet resource (e.g., `arubacloud_subnet.example.uri`)
+	// (String) URI reference to the Subnet resource. References the uri attribute of an arubacloud_subnet resource (e.g., arubacloud_subnet.example.uri).
+	// URI reference to the Subnet resource. References the `uri` attribute of an `arubacloud_subnet` resource (e.g., `arubacloud_subnet.example.uri`).
 	SubnetURIRef *string `json:"subnetUriRef,omitempty" tf:"subnet_uri_ref,omitempty"`
 
-	// (String) URI reference to the VPC resource (e.g., arubacloud_vpc.example.uri)
-	// URI reference to the VPC resource (e.g., `arubacloud_vpc.example.uri`)
+	// (String) URI reference to the VPC resource. References the uri attribute of an arubacloud_vpc resource (e.g., arubacloud_vpc.example.uri).
+	// URI reference to the VPC resource. References the `uri` attribute of an `arubacloud_vpc` resource (e.g., `arubacloud_vpc.example.uri`).
 	VPCURIRef *string `json:"vpcUriRef,omitempty" tf:"vpc_uri_ref,omitempty"`
 }
 
 type NetworkParameters struct {
 
-	// (String) URI reference to the Elastic IP resource (e.g., arubacloud_elasticip.example.uri)
-	// URI reference to the Elastic IP resource (e.g., `arubacloud_elasticip.example.uri`)
+	// (String) Optional URI reference to an Elastic IP resource. References the uri attribute of an arubacloud_elasticip resource (e.g., arubacloud_elasticip.example.uri).
+	// Optional URI reference to an Elastic IP resource. References the `uri` attribute of an `arubacloud_elasticip` resource (e.g., `arubacloud_elasticip.example.uri`).
 	// +kubebuilder:validation:Optional
 	ElasticIPURIRef *string `json:"elasticIpUriRef,omitempty" tf:"elastic_ip_uri_ref,omitempty"`
 
-	// (String) URI reference to the Security Group resource (e.g., arubacloud_securitygroup.example.uri)
-	// URI reference to the Security Group resource (e.g., `arubacloud_securitygroup.example.uri`)
+	// (String) URI reference to the Security Group resource. References the uri attribute of an arubacloud_securitygroup resource (e.g., arubacloud_securitygroup.example.uri).
+	// URI reference to the Security Group resource. References the `uri` attribute of an `arubacloud_securitygroup` resource (e.g., `arubacloud_securitygroup.example.uri`).
 	// +kubebuilder:validation:Optional
 	SecurityGroupURIRef *string `json:"securityGroupUriRef" tf:"security_group_uri_ref,omitempty"`
 
-	// (String) URI reference to the Subnet resource (e.g., arubacloud_subnet.example.uri)
-	// URI reference to the Subnet resource (e.g., `arubacloud_subnet.example.uri`)
+	// (String) URI reference to the Subnet resource. References the uri attribute of an arubacloud_subnet resource (e.g., arubacloud_subnet.example.uri).
+	// URI reference to the Subnet resource. References the `uri` attribute of an `arubacloud_subnet` resource (e.g., `arubacloud_subnet.example.uri`).
 	// +kubebuilder:validation:Optional
 	SubnetURIRef *string `json:"subnetUriRef" tf:"subnet_uri_ref,omitempty"`
 
-	// (String) URI reference to the VPC resource (e.g., arubacloud_vpc.example.uri)
-	// URI reference to the VPC resource (e.g., `arubacloud_vpc.example.uri`)
+	// (String) URI reference to the VPC resource. References the uri attribute of an arubacloud_vpc resource (e.g., arubacloud_vpc.example.uri).
+	// URI reference to the VPC resource. References the `uri` attribute of an `arubacloud_vpc` resource (e.g., `arubacloud_vpc.example.uri`).
 	// +kubebuilder:validation:Optional
 	VPCURIRef *string `json:"vpcUriRef" tf:"vpc_uri_ref,omitempty"`
 }
 
 type StorageInitParameters struct {
 
-	// (Attributes) Autoscaling configuration for the DBaaS instance (see below for nested schema)
+	// (Attributes) Optional autoscaling configuration for the DBaaS storage. (see below for nested schema)
 	Autoscaling *AutoscalingInitParameters `json:"autoscaling,omitempty" tf:"autoscaling,omitempty"`
 
-	// (Number) Storage size in GB for the DBaaS instance
-	// Storage size in GB for the DBaaS instance
+	// (Number) Storage size in GB for the DBaaS instance.
+	// Storage size in GB for the DBaaS instance.
 	SizeGb *float64 `json:"sizeGb,omitempty" tf:"size_gb,omitempty"`
 }
 
 type StorageObservation struct {
 
-	// (Attributes) Autoscaling configuration for the DBaaS instance (see below for nested schema)
+	// (Attributes) Optional autoscaling configuration for the DBaaS storage. (see below for nested schema)
 	Autoscaling *AutoscalingObservation `json:"autoscaling,omitempty" tf:"autoscaling,omitempty"`
 
-	// (Number) Storage size in GB for the DBaaS instance
-	// Storage size in GB for the DBaaS instance
+	// (Number) Storage size in GB for the DBaaS instance.
+	// Storage size in GB for the DBaaS instance.
 	SizeGb *float64 `json:"sizeGb,omitempty" tf:"size_gb,omitempty"`
 }
 
 type StorageParameters struct {
 
-	// (Attributes) Autoscaling configuration for the DBaaS instance (see below for nested schema)
+	// (Attributes) Optional autoscaling configuration for the DBaaS storage. (see below for nested schema)
 	// +kubebuilder:validation:Optional
 	Autoscaling *AutoscalingParameters `json:"autoscaling,omitempty" tf:"autoscaling,omitempty"`
 
-	// (Number) Storage size in GB for the DBaaS instance
-	// Storage size in GB for the DBaaS instance
+	// (Number) Storage size in GB for the DBaaS instance.
+	// Storage size in GB for the DBaaS instance.
 	// +kubebuilder:validation:Optional
 	SizeGb *float64 `json:"sizeGb" tf:"size_gb,omitempty"`
 }
@@ -321,7 +321,7 @@ type DBaaSStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// DBaaS is the Schema for the DBaaSs API. Manages an ArubaCloud DBaaS.
+// DBaaS is the Schema for the DBaaSs API. Manages an ArubaCloud DBaaS cluster — a managed database cluster with automated backups and high availability.
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

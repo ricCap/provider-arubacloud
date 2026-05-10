@@ -15,197 +15,197 @@ import (
 
 type PropertiesInitParameters struct {
 
-	// (String) Direction of the rule (Ingress/Egress)
-	// Direction of the rule (Ingress/Egress)
+	// created.)
+	// Traffic direction the rule applies to. Accepted values: `Inbound`, `Outbound`. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Direction *string `json:"direction,omitempty" tf:"direction,omitempty"`
 
-	// (String) Port or port range (for TCP/UDP)
-	// Port or port range (for TCP/UDP)
+	// 8090). Use 0 for ICMP or ANY.
+	// Port or port range for TCP/UDP (e.g., `80` or `8080-8090`). Use `0` for ICMP or ANY.
 	Port *string `json:"port,omitempty" tf:"port,omitempty"`
 
-	// (String) Protocol (ANY, TCP, UDP, ICMP)
-	// Protocol (ANY, TCP, UDP, ICMP)
+	// (String) IP protocol. Accepted values: TCP, UDP, ICMP, ANY. (Immutable if marked.)
+	// IP protocol. Accepted values: `TCP`, `UDP`, `ICMP`, `ANY`. (Immutable if marked.)
 	Protocol *string `json:"protocol,omitempty" tf:"protocol,omitempty"`
 
-	// (Attributes) Target of the rule (source or destination) (see below for nested schema)
+	// (Attributes) Source (inbound) or destination (outbound) endpoint for this rule. (see below for nested schema)
 	Target *TargetInitParameters `json:"target,omitempty" tf:"target,omitempty"`
 }
 
 type PropertiesObservation struct {
 
-	// (String) Direction of the rule (Ingress/Egress)
-	// Direction of the rule (Ingress/Egress)
+	// created.)
+	// Traffic direction the rule applies to. Accepted values: `Inbound`, `Outbound`. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Direction *string `json:"direction,omitempty" tf:"direction,omitempty"`
 
-	// (String) Port or port range (for TCP/UDP)
-	// Port or port range (for TCP/UDP)
+	// 8090). Use 0 for ICMP or ANY.
+	// Port or port range for TCP/UDP (e.g., `80` or `8080-8090`). Use `0` for ICMP or ANY.
 	Port *string `json:"port,omitempty" tf:"port,omitempty"`
 
-	// (String) Protocol (ANY, TCP, UDP, ICMP)
-	// Protocol (ANY, TCP, UDP, ICMP)
+	// (String) IP protocol. Accepted values: TCP, UDP, ICMP, ANY. (Immutable if marked.)
+	// IP protocol. Accepted values: `TCP`, `UDP`, `ICMP`, `ANY`. (Immutable if marked.)
 	Protocol *string `json:"protocol,omitempty" tf:"protocol,omitempty"`
 
-	// (Attributes) Target of the rule (source or destination) (see below for nested schema)
+	// (Attributes) Source (inbound) or destination (outbound) endpoint for this rule. (see below for nested schema)
 	Target *TargetObservation `json:"target,omitempty" tf:"target,omitempty"`
 }
 
 type PropertiesParameters struct {
 
-	// (String) Direction of the rule (Ingress/Egress)
-	// Direction of the rule (Ingress/Egress)
+	// created.)
+	// Traffic direction the rule applies to. Accepted values: `Inbound`, `Outbound`. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Optional
 	Direction *string `json:"direction" tf:"direction,omitempty"`
 
-	// (String) Port or port range (for TCP/UDP)
-	// Port or port range (for TCP/UDP)
+	// 8090). Use 0 for ICMP or ANY.
+	// Port or port range for TCP/UDP (e.g., `80` or `8080-8090`). Use `0` for ICMP or ANY.
 	// +kubebuilder:validation:Optional
 	Port *string `json:"port,omitempty" tf:"port,omitempty"`
 
-	// (String) Protocol (ANY, TCP, UDP, ICMP)
-	// Protocol (ANY, TCP, UDP, ICMP)
+	// (String) IP protocol. Accepted values: TCP, UDP, ICMP, ANY. (Immutable if marked.)
+	// IP protocol. Accepted values: `TCP`, `UDP`, `ICMP`, `ANY`. (Immutable if marked.)
 	// +kubebuilder:validation:Optional
 	Protocol *string `json:"protocol" tf:"protocol,omitempty"`
 
-	// (Attributes) Target of the rule (source or destination) (see below for nested schema)
+	// (Attributes) Source (inbound) or destination (outbound) endpoint for this rule. (see below for nested schema)
 	// +kubebuilder:validation:Optional
 	Target *TargetParameters `json:"target" tf:"target,omitempty"`
 }
 
 type SecurityRuleInitParameters struct {
 
-	// (String) Security Rule location
-	// Security Rule location
+	// Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) Security Rule name
-	// Security Rule name
+	// (String) Display name for the security rule.
+	// Display name for the security rule.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID of the project this Security Rule belongs to
-	// ID of the project this Security Rule belongs to
+	// created.)
+	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (Attributes) Properties of the security rule (see below for nested schema)
+	// matching properties of the security rule. Most fields are immutable after creation. (see below for nested schema)
 	Properties *PropertiesInitParameters `json:"properties,omitempty" tf:"properties,omitempty"`
 
-	// (String) ID of the Security Group this rule belongs to
-	// ID of the Security Group this rule belongs to
+	// created.)
+	// ID of the security group this rule belongs to. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	SecurityGroupID *string `json:"securityGroupId,omitempty" tf:"security_group_id,omitempty"`
 
-	// (List of String) List of tags for the Security Rule
-	// List of tags for the Security Rule
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String) ID of the VPC this Security Rule belongs to
-	// ID of the VPC this Security Rule belongs to
+	// created.)
+	// ID of the VPC this security rule belongs to. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 }
 
 type SecurityRuleObservation struct {
 
-	// (String) Security Rule identifier
+	// (String) Computed by the API. Unique identifier for the resource.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// (String) Security Rule location
-	// Security Rule location
+	// Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) Security Rule name
-	// Security Rule name
+	// (String) Display name for the security rule.
+	// Display name for the security rule.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID of the project this Security Rule belongs to
-	// ID of the project this Security Rule belongs to
+	// created.)
+	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (Attributes) Properties of the security rule (see below for nested schema)
+	// matching properties of the security rule. Most fields are immutable after creation. (see below for nested schema)
 	Properties *PropertiesObservation `json:"properties,omitempty" tf:"properties,omitempty"`
 
-	// (String) ID of the Security Group this rule belongs to
-	// ID of the Security Group this rule belongs to
+	// created.)
+	// ID of the security group this rule belongs to. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	SecurityGroupID *string `json:"securityGroupId,omitempty" tf:"security_group_id,omitempty"`
 
-	// (List of String) List of tags for the Security Rule
-	// List of tags for the Security Rule
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String) Security Rule URI
-	// Security Rule URI
+	// (String) Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a *_uri_ref attribute).
+	// Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a `*_uri_ref` attribute).
 	URI *string `json:"uri,omitempty" tf:"uri,omitempty"`
 
-	// (String) ID of the VPC this Security Rule belongs to
-	// ID of the VPC this Security Rule belongs to
+	// created.)
+	// ID of the VPC this security rule belongs to. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 }
 
 type SecurityRuleParameters struct {
 
-	// (String) Security Rule location
-	// Security Rule location
+	// Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Required
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) Security Rule name
-	// Security Rule name
+	// (String) Display name for the security rule.
+	// Display name for the security rule.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID of the project this Security Rule belongs to
-	// ID of the project this Security Rule belongs to
+	// created.)
+	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (Attributes) Properties of the security rule (see below for nested schema)
+	// matching properties of the security rule. Most fields are immutable after creation. (see below for nested schema)
 	// +kubebuilder:validation:Required
 	Properties *PropertiesParameters `json:"properties,omitempty" tf:"properties,omitempty"`
 
-	// (String) ID of the Security Group this rule belongs to
-	// ID of the Security Group this rule belongs to
+	// created.)
+	// ID of the security group this rule belongs to. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Required
 	SecurityGroupID *string `json:"securityGroupId,omitempty" tf:"security_group_id,omitempty"`
 
-	// (List of String) List of tags for the Security Rule
-	// List of tags for the Security Rule
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	// +kubebuilder:validation:Optional
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String) ID of the VPC this Security Rule belongs to
-	// ID of the VPC this Security Rule belongs to
+	// created.)
+	// ID of the VPC this security rule belongs to. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Required
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 }
 
 type TargetInitParameters struct {
 
-	// (String) Type of the target (Ip/SecurityGroup)
-	// Type of the target (Ip/SecurityGroup)
+	// (String) Type of the target endpoint. Accepted values: IP, SecurityGroup.
+	// Type of the target endpoint. Accepted values: `IP`, `SecurityGroup`.
 	Kind *string `json:"kind,omitempty" tf:"kind,omitempty"`
 
-	// (String) Value of the target (CIDR or SecurityGroup URI)
-	// Value of the target (CIDR or SecurityGroup URI)
+	// (String) Source (inbound) or destination (outbound) CIDR in notation like 0.0.0.0/0, or SecurityGroup URI.
+	// Source (inbound) or destination (outbound) CIDR in notation like `0.0.0.0/0`, or SecurityGroup URI.
 	Value *string `json:"value,omitempty" tf:"value,omitempty"`
 }
 
 type TargetObservation struct {
 
-	// (String) Type of the target (Ip/SecurityGroup)
-	// Type of the target (Ip/SecurityGroup)
+	// (String) Type of the target endpoint. Accepted values: IP, SecurityGroup.
+	// Type of the target endpoint. Accepted values: `IP`, `SecurityGroup`.
 	Kind *string `json:"kind,omitempty" tf:"kind,omitempty"`
 
-	// (String) Value of the target (CIDR or SecurityGroup URI)
-	// Value of the target (CIDR or SecurityGroup URI)
+	// (String) Source (inbound) or destination (outbound) CIDR in notation like 0.0.0.0/0, or SecurityGroup URI.
+	// Source (inbound) or destination (outbound) CIDR in notation like `0.0.0.0/0`, or SecurityGroup URI.
 	Value *string `json:"value,omitempty" tf:"value,omitempty"`
 }
 
 type TargetParameters struct {
 
-	// (String) Type of the target (Ip/SecurityGroup)
-	// Type of the target (Ip/SecurityGroup)
+	// (String) Type of the target endpoint. Accepted values: IP, SecurityGroup.
+	// Type of the target endpoint. Accepted values: `IP`, `SecurityGroup`.
 	// +kubebuilder:validation:Optional
 	Kind *string `json:"kind" tf:"kind,omitempty"`
 
-	// (String) Value of the target (CIDR or SecurityGroup URI)
-	// Value of the target (CIDR or SecurityGroup URI)
+	// (String) Source (inbound) or destination (outbound) CIDR in notation like 0.0.0.0/0, or SecurityGroup URI.
+	// Source (inbound) or destination (outbound) CIDR in notation like `0.0.0.0/0`, or SecurityGroup URI.
 	// +kubebuilder:validation:Optional
 	Value *string `json:"value" tf:"value,omitempty"`
 }
@@ -237,7 +237,7 @@ type SecurityRuleStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// SecurityRule is the Schema for the SecurityRules API. Manages an ArubaCloud Security Rule.
+// SecurityRule is the Schema for the SecurityRules API. Manages an ArubaCloud Security Rule within an arubacloud_securitygroup.
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

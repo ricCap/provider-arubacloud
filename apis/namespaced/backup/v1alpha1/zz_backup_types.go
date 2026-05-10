@@ -16,120 +16,120 @@ import (
 
 type BackupInitParameters struct {
 
-	// (String) Billing period (Hour, Month, Year)
-	// Billing period (Hour, Month, Year)
+	// (String) Billing cycle. Accepted values: Hour, Month, Year.
+	// Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
 	BillingPeriod *string `json:"billingPeriod,omitempty" tf:"billing_period,omitempty"`
 
-	// (String) Backup location
-	// Backup location
+	// Bergamo). See the available locations and zones.
+	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) Backup name
-	// Backup name
+	// (String) Display name for the backup.
+	// Display name for the backup.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID of the project this backup belongs to
-	// ID of the project this backup belongs to
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (Number) Retention days for the backup
-	// Retention days for the backup
+	// (Number) Number of days to retain the backup before automatic deletion. Optional — if omitted, the backup is retained indefinitely.
+	// Number of days to retain the backup before automatic deletion. Optional — if omitted, the backup is retained indefinitely.
 	RetentionDays *float64 `json:"retentionDays,omitempty" tf:"retention_days,omitempty"`
 
-	// (List of String) List of tags for the backup resource
-	// List of tags for the backup resource
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String) Type of backup (Full, Incremental)
-	// Type of backup (Full, Incremental)
+	// (String) Backup type. Accepted values: Full, Incremental.
+	// Backup type. Accepted values: `Full`, `Incremental`.
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 
-	// (String) Volume ID for the backup
-	// Volume ID for the backup
+	// (String) ID of the block storage volume to back up.
+	// ID of the block storage volume to back up.
 	VolumeID *string `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type BackupObservation struct {
 
-	// (String) Billing period (Hour, Month, Year)
-	// Billing period (Hour, Month, Year)
+	// (String) Billing cycle. Accepted values: Hour, Month, Year.
+	// Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
 	BillingPeriod *string `json:"billingPeriod,omitempty" tf:"billing_period,omitempty"`
 
-	// (String) Backup identifier
+	// (String) Computed by the API. Unique identifier for the resource.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// (String) Backup location
-	// Backup location
+	// Bergamo). See the available locations and zones.
+	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) Backup name
-	// Backup name
+	// (String) Display name for the backup.
+	// Display name for the backup.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID of the project this backup belongs to
-	// ID of the project this backup belongs to
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (Number) Retention days for the backup
-	// Retention days for the backup
+	// (Number) Number of days to retain the backup before automatic deletion. Optional — if omitted, the backup is retained indefinitely.
+	// Number of days to retain the backup before automatic deletion. Optional — if omitted, the backup is retained indefinitely.
 	RetentionDays *float64 `json:"retentionDays,omitempty" tf:"retention_days,omitempty"`
 
-	// (List of String) List of tags for the backup resource
-	// List of tags for the backup resource
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String) Type of backup (Full, Incremental)
-	// Type of backup (Full, Incremental)
+	// (String) Backup type. Accepted values: Full, Incremental.
+	// Backup type. Accepted values: `Full`, `Incremental`.
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 
-	// (String) Backup URI
-	// Backup URI
+	// (String) Computed by the API. Full resource URI used as a reference value in other resources.
+	// Computed by the API. Full resource URI used as a reference value in other resources.
 	URI *string `json:"uri,omitempty" tf:"uri,omitempty"`
 
-	// (String) Volume ID for the backup
-	// Volume ID for the backup
+	// (String) ID of the block storage volume to back up.
+	// ID of the block storage volume to back up.
 	VolumeID *string `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type BackupParameters struct {
 
-	// (String) Billing period (Hour, Month, Year)
-	// Billing period (Hour, Month, Year)
+	// (String) Billing cycle. Accepted values: Hour, Month, Year.
+	// Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
 	// +kubebuilder:validation:Optional
 	BillingPeriod *string `json:"billingPeriod,omitempty" tf:"billing_period,omitempty"`
 
-	// (String) Backup location
-	// Backup location
+	// Bergamo). See the available locations and zones.
+	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
 	// +kubebuilder:validation:Required
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) Backup name
-	// Backup name
+	// (String) Display name for the backup.
+	// Display name for the backup.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID of the project this backup belongs to
-	// ID of the project this backup belongs to
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (Number) Retention days for the backup
-	// Retention days for the backup
+	// (Number) Number of days to retain the backup before automatic deletion. Optional — if omitted, the backup is retained indefinitely.
+	// Number of days to retain the backup before automatic deletion. Optional — if omitted, the backup is retained indefinitely.
 	// +kubebuilder:validation:Optional
 	RetentionDays *float64 `json:"retentionDays,omitempty" tf:"retention_days,omitempty"`
 
-	// (List of String) List of tags for the backup resource
-	// List of tags for the backup resource
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	// +kubebuilder:validation:Optional
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String) Type of backup (Full, Incremental)
-	// Type of backup (Full, Incremental)
+	// (String) Backup type. Accepted values: Full, Incremental.
+	// Backup type. Accepted values: `Full`, `Incremental`.
 	// +kubebuilder:validation:Required
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 
-	// (String) Volume ID for the backup
-	// Volume ID for the backup
+	// (String) ID of the block storage volume to back up.
+	// ID of the block storage volume to back up.
 	// +kubebuilder:validation:Required
 	VolumeID *string `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
@@ -161,7 +161,7 @@ type BackupStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// Backup is the Schema for the Backups API. Manages an ArubaCloud Storage Backup.
+// Backup is the Schema for the Backups API. Manages an ArubaCloud Block Storage Backup.
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

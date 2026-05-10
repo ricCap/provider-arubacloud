@@ -15,94 +15,94 @@ import (
 
 type SnapshotInitParameters struct {
 
-	// (String) Billing period (only 'Hour' allowed)
-	// Billing period (only 'Hour' allowed)
+	// (String) Billing cycle. Accepted values: Hour, Month, Year.
+	// Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
 	BillingPeriod *string `json:"billingPeriod,omitempty" tf:"billing_period,omitempty"`
 
-	// (String) Snapshot location
-	// Snapshot location
+	// Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) Snapshot name
-	// Snapshot name
+	// (String) Display name for the snapshot.
+	// Display name for the snapshot.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID of the project this Snapshot belongs to
-	// ID of the project this Snapshot belongs to
+	// created.)
+	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (List of String) List of tags for the snapshot
-	// List of tags for the snapshot
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String) URI of the volume this snapshot is for. Should be the volume URI (e.g., /projects/{project_id}/providers/Aruba.Storage/volumes/{volume_id}). You can reference the uri attribute from an arubacloud_blockstorage resource.
-	// URI of the volume this snapshot is for. Should be the volume URI (e.g., `/projects/{project_id}/providers/Aruba.Storage/volumes/{volume_id}`). You can reference the `uri` attribute from an `arubacloud_blockstorage` resource.
+	// created.)
+	// URI of the block storage volume this snapshot is taken from. Reference the `uri` attribute of an `arubacloud_blockstorage` resource (e.g., `/projects/{project_id}/providers/Aruba.Storage/volumes/{volume_id}`). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	VolumeURI *string `json:"volumeUri,omitempty" tf:"volume_uri,omitempty"`
 }
 
 type SnapshotObservation struct {
 
-	// (String) Billing period (only 'Hour' allowed)
-	// Billing period (only 'Hour' allowed)
+	// (String) Billing cycle. Accepted values: Hour, Month, Year.
+	// Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
 	BillingPeriod *string `json:"billingPeriod,omitempty" tf:"billing_period,omitempty"`
 
-	// (String) Snapshot identifier
+	// (String) Computed by the API. Unique identifier for the resource.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// (String) Snapshot location
-	// Snapshot location
+	// Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) Snapshot name
-	// Snapshot name
+	// (String) Display name for the snapshot.
+	// Display name for the snapshot.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID of the project this Snapshot belongs to
-	// ID of the project this Snapshot belongs to
+	// created.)
+	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (List of String) List of tags for the snapshot
-	// List of tags for the snapshot
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String) Snapshot URI
-	// Snapshot URI
+	// (String) Computed by the API. Full resource URI used as a reference value in other resources.
+	// Computed by the API. Full resource URI used as a reference value in other resources.
 	URI *string `json:"uri,omitempty" tf:"uri,omitempty"`
 
-	// (String) URI of the volume this snapshot is for. Should be the volume URI (e.g., /projects/{project_id}/providers/Aruba.Storage/volumes/{volume_id}). You can reference the uri attribute from an arubacloud_blockstorage resource.
-	// URI of the volume this snapshot is for. Should be the volume URI (e.g., `/projects/{project_id}/providers/Aruba.Storage/volumes/{volume_id}`). You can reference the `uri` attribute from an `arubacloud_blockstorage` resource.
+	// created.)
+	// URI of the block storage volume this snapshot is taken from. Reference the `uri` attribute of an `arubacloud_blockstorage` resource (e.g., `/projects/{project_id}/providers/Aruba.Storage/volumes/{volume_id}`). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	VolumeURI *string `json:"volumeUri,omitempty" tf:"volume_uri,omitempty"`
 }
 
 type SnapshotParameters struct {
 
-	// (String) Billing period (only 'Hour' allowed)
-	// Billing period (only 'Hour' allowed)
+	// (String) Billing cycle. Accepted values: Hour, Month, Year.
+	// Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
 	// +kubebuilder:validation:Required
 	BillingPeriod *string `json:"billingPeriod,omitempty" tf:"billing_period,omitempty"`
 
-	// (String) Snapshot location
-	// Snapshot location
+	// Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Required
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) Snapshot name
-	// Snapshot name
+	// (String) Display name for the snapshot.
+	// Display name for the snapshot.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID of the project this Snapshot belongs to
-	// ID of the project this Snapshot belongs to
+	// created.)
+	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (List of String) List of tags for the snapshot
-	// List of tags for the snapshot
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	// +kubebuilder:validation:Optional
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String) URI of the volume this snapshot is for. Should be the volume URI (e.g., /projects/{project_id}/providers/Aruba.Storage/volumes/{volume_id}). You can reference the uri attribute from an arubacloud_blockstorage resource.
-	// URI of the volume this snapshot is for. Should be the volume URI (e.g., `/projects/{project_id}/providers/Aruba.Storage/volumes/{volume_id}`). You can reference the `uri` attribute from an `arubacloud_blockstorage` resource.
+	// created.)
+	// URI of the block storage volume this snapshot is taken from. Reference the `uri` attribute of an `arubacloud_blockstorage` resource (e.g., `/projects/{project_id}/providers/Aruba.Storage/volumes/{volume_id}`). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Required
 	VolumeURI *string `json:"volumeUri,omitempty" tf:"volume_uri,omitempty"`
 }
@@ -134,7 +134,7 @@ type SnapshotStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// Snapshot is the Schema for the Snapshots API. Manages an ArubaCloud Snapshot.
+// Snapshot is the Schema for the Snapshots API. Manages an ArubaCloud Snapshot — a point-in-time copy of a block storage volume.
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

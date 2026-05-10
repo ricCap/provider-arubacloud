@@ -15,126 +15,126 @@ import (
 
 type PropertiesInitParameters struct {
 
-	// (String) CIDR of the cloud subnet
-	// CIDR of the cloud subnet
+	// side subnet to route over this tunnel (e.g., 10.0.1.0/24).
+	// CIDR of the ArubaCloud-side subnet to route over this tunnel (e.g., `10.0.1.0/24`).
 	CloudSubnet *string `json:"cloudSubnet,omitempty" tf:"cloud_subnet,omitempty"`
 
-	// prem subnet
-	// CIDR of the on-prem subnet
+	// premises subnet reachable through this tunnel (e.g., 192.168.1.0/24).
+	// CIDR of the on-premises subnet reachable through this tunnel (e.g., `192.168.1.0/24`).
 	OnPremSubnet *string `json:"onPremSubnet,omitempty" tf:"on_prem_subnet,omitempty"`
 }
 
 type PropertiesObservation struct {
 
-	// (String) CIDR of the cloud subnet
-	// CIDR of the cloud subnet
+	// side subnet to route over this tunnel (e.g., 10.0.1.0/24).
+	// CIDR of the ArubaCloud-side subnet to route over this tunnel (e.g., `10.0.1.0/24`).
 	CloudSubnet *string `json:"cloudSubnet,omitempty" tf:"cloud_subnet,omitempty"`
 
-	// prem subnet
-	// CIDR of the on-prem subnet
+	// premises subnet reachable through this tunnel (e.g., 192.168.1.0/24).
+	// CIDR of the on-premises subnet reachable through this tunnel (e.g., `192.168.1.0/24`).
 	OnPremSubnet *string `json:"onPremSubnet,omitempty" tf:"on_prem_subnet,omitempty"`
 }
 
 type PropertiesParameters struct {
 
-	// (String) CIDR of the cloud subnet
-	// CIDR of the cloud subnet
+	// side subnet to route over this tunnel (e.g., 10.0.1.0/24).
+	// CIDR of the ArubaCloud-side subnet to route over this tunnel (e.g., `10.0.1.0/24`).
 	// +kubebuilder:validation:Optional
 	CloudSubnet *string `json:"cloudSubnet" tf:"cloud_subnet,omitempty"`
 
-	// prem subnet
-	// CIDR of the on-prem subnet
+	// premises subnet reachable through this tunnel (e.g., 192.168.1.0/24).
+	// CIDR of the on-premises subnet reachable through this tunnel (e.g., `192.168.1.0/24`).
 	// +kubebuilder:validation:Optional
 	OnPremSubnet *string `json:"onPremSubnet" tf:"on_prem_subnet,omitempty"`
 }
 
 type VPNRouteInitParameters struct {
 
-	// (String) VPN Route location
-	// VPN Route location
+	// Bergamo). See the available locations and zones.
+	// Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) VPN Route name
-	// VPN Route name
+	// (String) Display name for the VPN route.
+	// Display name for the VPN route.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID of the project this VPN Route belongs to
-	// ID of the project this VPN Route belongs to
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (Attributes) Properties of the VPN Route (see below for nested schema)
+	// (Attributes) Routing properties for the VPN route. (see below for nested schema)
 	Properties *PropertiesInitParameters `json:"properties,omitempty" tf:"properties,omitempty"`
 
-	// (List of String) List of tags for the VPN Route
-	// List of tags for the VPN Route
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String) ID of the VPN Tunnel this route belongs to
-	// ID of the VPN Tunnel this route belongs to
+	// (String) ID of the VPN tunnel this route is associated with.
+	// ID of the VPN tunnel this route is associated with.
 	VPNTunnelID *string `json:"vpnTunnelId,omitempty" tf:"vpn_tunnel_id,omitempty"`
 }
 
 type VPNRouteObservation struct {
 
-	// (String) VPN Route identifier
+	// (String) Computed by the API. Unique identifier for the resource.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// (String) VPN Route location
-	// VPN Route location
+	// Bergamo). See the available locations and zones.
+	// Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) VPN Route name
-	// VPN Route name
+	// (String) Display name for the VPN route.
+	// Display name for the VPN route.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID of the project this VPN Route belongs to
-	// ID of the project this VPN Route belongs to
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (Attributes) Properties of the VPN Route (see below for nested schema)
+	// (Attributes) Routing properties for the VPN route. (see below for nested schema)
 	Properties *PropertiesObservation `json:"properties,omitempty" tf:"properties,omitempty"`
 
-	// (List of String) List of tags for the VPN Route
-	// List of tags for the VPN Route
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String) VPN Route URI
-	// VPN Route URI
+	// (String) Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a *_uri_ref attribute).
+	// Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a `*_uri_ref` attribute).
 	URI *string `json:"uri,omitempty" tf:"uri,omitempty"`
 
-	// (String) ID of the VPN Tunnel this route belongs to
-	// ID of the VPN Tunnel this route belongs to
+	// (String) ID of the VPN tunnel this route is associated with.
+	// ID of the VPN tunnel this route is associated with.
 	VPNTunnelID *string `json:"vpnTunnelId,omitempty" tf:"vpn_tunnel_id,omitempty"`
 }
 
 type VPNRouteParameters struct {
 
-	// (String) VPN Route location
-	// VPN Route location
+	// Bergamo). See the available locations and zones.
+	// Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
 	// +kubebuilder:validation:Required
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) VPN Route name
-	// VPN Route name
+	// (String) Display name for the VPN route.
+	// Display name for the VPN route.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID of the project this VPN Route belongs to
-	// ID of the project this VPN Route belongs to
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (Attributes) Properties of the VPN Route (see below for nested schema)
+	// (Attributes) Routing properties for the VPN route. (see below for nested schema)
 	// +kubebuilder:validation:Required
 	Properties *PropertiesParameters `json:"properties,omitempty" tf:"properties,omitempty"`
 
-	// (List of String) List of tags for the VPN Route
-	// List of tags for the VPN Route
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	// +kubebuilder:validation:Optional
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String) ID of the VPN Tunnel this route belongs to
-	// ID of the VPN Tunnel this route belongs to
+	// (String) ID of the VPN tunnel this route is associated with.
+	// ID of the VPN tunnel this route is associated with.
 	// +kubebuilder:validation:Required
 	VPNTunnelID *string `json:"vpnTunnelId,omitempty" tf:"vpn_tunnel_id,omitempty"`
 }
@@ -166,7 +166,7 @@ type VPNRouteStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// VPNRoute is the Schema for the VPNRoutes API. Retrieves an ArubaCloud VPN Route.
+// VPNRoute is the Schema for the VPNRoutes API. Manages a static route associated with an ArubaCloud VPN Tunnel.
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

@@ -15,77 +15,77 @@ import (
 
 type KeyPairInitParameters struct {
 
-	// (String) Keypair location
-	// Keypair location
+	// Bergamo). See the available locations and zones.
+	// Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) Keypair name
-	// Keypair name
+	// (String) Display name for the KeyPair.
+	// Display name for the KeyPair.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) Project ID
-	// Project ID
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (List of String) List of tags for the keypair
-	// List of tags for the keypair
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String, Sensitive) Public key value
-	// Public key value
+	// format public key string (e.g., ssh-rsa AAAA...). The provider uploads this to ArubaCloud; the corresponding private key is never stored. Write-only — this value is sent to the API but is not returned in subsequent read responses.
+	// OpenSSH-format public key string (e.g., `ssh-rsa AAAA...`). The provider uploads this to ArubaCloud; the corresponding private key is never stored. Write-only — this value is sent to the API but is not returned in subsequent read responses.
 	ValueSecretRef v1.SecretKeySelector `json:"valueSecretRef" tf:"-"`
 }
 
 type KeyPairObservation struct {
 
-	// (String) Keypair identifier (name)
+	// (String) Computed by the API. Unique identifier for the resource.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// (String) Keypair location
-	// Keypair location
+	// Bergamo). See the available locations and zones.
+	// Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) Keypair name
-	// Keypair name
+	// (String) Display name for the KeyPair.
+	// Display name for the KeyPair.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) Project ID
-	// Project ID
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (List of String) List of tags for the keypair
-	// List of tags for the keypair
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String) Keypair URI
-	// Keypair URI
+	// (String) Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a *_uri_ref attribute).
+	// Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a `*_uri_ref` attribute).
 	URI *string `json:"uri,omitempty" tf:"uri,omitempty"`
 }
 
 type KeyPairParameters struct {
 
-	// (String) Keypair location
-	// Keypair location
+	// Bergamo). See the available locations and zones.
+	// Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
 	// +kubebuilder:validation:Required
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) Keypair name
-	// Keypair name
+	// (String) Display name for the KeyPair.
+	// Display name for the KeyPair.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) Project ID
-	// Project ID
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (List of String) List of tags for the keypair
-	// List of tags for the keypair
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	// +kubebuilder:validation:Optional
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String, Sensitive) Public key value
-	// Public key value
+	// format public key string (e.g., ssh-rsa AAAA...). The provider uploads this to ArubaCloud; the corresponding private key is never stored. Write-only — this value is sent to the API but is not returned in subsequent read responses.
+	// OpenSSH-format public key string (e.g., `ssh-rsa AAAA...`). The provider uploads this to ArubaCloud; the corresponding private key is never stored. Write-only — this value is sent to the API but is not returned in subsequent read responses.
 	// +kubebuilder:validation:Optional
 	ValueSecretRef v1.SecretKeySelector `json:"valueSecretRef" tf:"-"`
 }
@@ -117,7 +117,7 @@ type KeyPairStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// KeyPair is the Schema for the KeyPairs API. Manages an ArubaCloud KeyPair.
+// KeyPair is the Schema for the KeyPairs API. Manages an ArubaCloud SSH KeyPair.
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

@@ -35,7 +35,7 @@ spec:
     schema:
       openAPIV3Schema:
         description: ElasticIP is the Schema for the ElasticIPs API. Manages an ArubaCloud
-          Elastic IP.
+          Elastic IP — a static public IPv4 address.
         properties:
           apiVersion:
             description: |-
@@ -75,28 +75,28 @@ spec:
                 properties:
                   billingPeriod:
                     description: |-
-                      (String) Billing period for the Elastic IP (only 'hourly' allowed)
-                      Billing period for the Elastic IP (only 'hourly' allowed)
+                      (String) Computed by the API. Billing cycle for the resource. Accepted values: Hour, Month, Year.
+                      Computed by the API. Billing cycle for the resource. Accepted values: `Hour`, `Month`, `Year`.
                     type: string
                   location:
                     description: |-
-                      (String) Elastic IP location
-                      Elastic IP location
+                      Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                      Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   name:
                     description: |-
-                      (String) Elastic IP name
-                      Elastic IP name
+                      (String) Display name for the Elastic IP.
+                      Display name for the Elastic IP.
                     type: string
                   projectId:
                     description: |-
-                      (String) ID of the project this Elastic IP belongs to
-                      ID of the project this Elastic IP belongs to
+                      created.)
+                      ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   tags:
                     description: |-
-                      (List of String) List of tags for the Elastic IP
-                      List of tags for the Elastic IP
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
@@ -120,28 +120,28 @@ spec:
                 properties:
                   billingPeriod:
                     description: |-
-                      (String) Billing period for the Elastic IP (only 'hourly' allowed)
-                      Billing period for the Elastic IP (only 'hourly' allowed)
+                      (String) Computed by the API. Billing cycle for the resource. Accepted values: Hour, Month, Year.
+                      Computed by the API. Billing cycle for the resource. Accepted values: `Hour`, `Month`, `Year`.
                     type: string
                   location:
                     description: |-
-                      (String) Elastic IP location
-                      Elastic IP location
+                      Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                      Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   name:
                     description: |-
-                      (String) Elastic IP name
-                      Elastic IP name
+                      (String) Display name for the Elastic IP.
+                      Display name for the Elastic IP.
                     type: string
                   projectId:
                     description: |-
-                      (String) ID of the project this Elastic IP belongs to
-                      ID of the project this Elastic IP belongs to
+                      created.)
+                      ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   tags:
                     description: |-
-                      (List of String) List of tags for the Elastic IP
-                      List of tags for the Elastic IP
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
@@ -252,43 +252,44 @@ spec:
                 properties:
                   address:
                     description: |-
-                      (String) Elastic IP address (computed from ElasticIpPropertiesResponse)
-                      Elastic IP address (computed from ElasticIpPropertiesResponse)
+                      (String) Computed by the API. Public IPv4 address allocated for this Elastic IP.
+                      Computed by the API. Public IPv4 address allocated for this Elastic IP.
                     type: string
                   billingPeriod:
                     description: |-
-                      (String) Billing period for the Elastic IP (only 'hourly' allowed)
-                      Billing period for the Elastic IP (only 'hourly' allowed)
+                      (String) Computed by the API. Billing cycle for the resource. Accepted values: Hour, Month, Year.
+                      Computed by the API. Billing cycle for the resource. Accepted values: `Hour`, `Month`, `Year`.
                     type: string
                   id:
-                    description: (String) Elastic IP Identifier
+                    description: (String) Computed by the API. Unique identifier for
+                      the resource.
                     type: string
                   location:
                     description: |-
-                      (String) Elastic IP location
-                      Elastic IP location
+                      Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                      Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   name:
                     description: |-
-                      (String) Elastic IP name
-                      Elastic IP name
+                      (String) Display name for the Elastic IP.
+                      Display name for the Elastic IP.
                     type: string
                   projectId:
                     description: |-
-                      (String) ID of the project this Elastic IP belongs to
-                      ID of the project this Elastic IP belongs to
+                      created.)
+                      ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   tags:
                     description: |-
-                      (List of String) List of tags for the Elastic IP
-                      List of tags for the Elastic IP
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
                   uri:
                     description: |-
-                      (String) Elastic IP URI
-                      Elastic IP URI
+                      (String) Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a *_uri_ref attribute).
+                      Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a `*_uri_ref` attribute).
                     type: string
                 type: object
               conditions:

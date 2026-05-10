@@ -35,7 +35,8 @@ spec:
     schema:
       openAPIV3Schema:
         description: SecurityGroup is the Schema for the SecurityGroups API. Manages
-          an ArubaCloud SecurityGroup.
+          an ArubaCloud Security Group — a collection of firewall rules applied to
+          CloudServer network interfaces.
         properties:
           apiVersion:
             description: |-
@@ -75,30 +76,30 @@ spec:
                 properties:
                   location:
                     description: |-
-                      (String) Security Group location
-                      Security Group location
+                      Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                      Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   name:
                     description: |-
-                      (String) Security Group name
-                      Security Group name
+                      (String) Display name for the security group.
+                      Display name for the security group.
                     type: string
                   projectId:
                     description: |-
-                      (String) ID of the project this Security Group belongs to
-                      ID of the project this Security Group belongs to
+                      created.)
+                      ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   tags:
                     description: |-
-                      (List of String) List of tags for the Security Group
-                      List of tags for the Security Group
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
                   vpcId:
                     description: |-
-                      (String) ID of the VPC this Security Group belongs to
-                      ID of the VPC this Security Group belongs to
+                      created.)
+                      ID of the VPC this security group is scoped to. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                 required:
                 - location
@@ -121,30 +122,30 @@ spec:
                 properties:
                   location:
                     description: |-
-                      (String) Security Group location
-                      Security Group location
+                      Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                      Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   name:
                     description: |-
-                      (String) Security Group name
-                      Security Group name
+                      (String) Display name for the security group.
+                      Display name for the security group.
                     type: string
                   projectId:
                     description: |-
-                      (String) ID of the project this Security Group belongs to
-                      ID of the project this Security Group belongs to
+                      created.)
+                      ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   tags:
                     description: |-
-                      (List of String) List of tags for the Security Group
-                      List of tags for the Security Group
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
                   vpcId:
                     description: |-
-                      (String) ID of the VPC this Security Group belongs to
-                      ID of the VPC this Security Group belongs to
+                      created.)
+                      ID of the VPC this security group is scoped to. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                 type: object
               managementPolicies:
@@ -256,39 +257,40 @@ spec:
               atProvider:
                 properties:
                   id:
-                    description: (String) Security Group identifier
+                    description: (String) Computed by the API. Unique identifier for
+                      the resource.
                     type: string
                   location:
                     description: |-
-                      (String) Security Group location
-                      Security Group location
+                      Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                      Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   name:
                     description: |-
-                      (String) Security Group name
-                      Security Group name
+                      (String) Display name for the security group.
+                      Display name for the security group.
                     type: string
                   projectId:
                     description: |-
-                      (String) ID of the project this Security Group belongs to
-                      ID of the project this Security Group belongs to
+                      created.)
+                      ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   tags:
                     description: |-
-                      (List of String) List of tags for the Security Group
-                      List of tags for the Security Group
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
                   uri:
                     description: |-
-                      (String) Security Group URI
-                      Security Group URI
+                      (String) Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a *_uri_ref attribute).
+                      Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a `*_uri_ref` attribute).
                     type: string
                   vpcId:
                     description: |-
-                      (String) ID of the VPC this Security Group belongs to
-                      ID of the VPC this Security Group belongs to
+                      created.)
+                      ID of the VPC this security group is scoped to. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                 type: object
               conditions:

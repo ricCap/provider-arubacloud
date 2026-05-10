@@ -15,356 +15,356 @@ import (
 
 type KaaSInitParameters struct {
 
-	// (String) Billing period (Hour, Month, Year)
-	// Billing period (Hour, Month, Year)
+	// (String) Billing cycle. Accepted values: Hour, Month, Year.
+	// Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
 	BillingPeriod *string `json:"billingPeriod,omitempty" tf:"billing_period,omitempty"`
 
-	// (String) KaaS location
-	// KaaS location
+	// Bergamo). See the available locations and zones.
+	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) KaaS name
-	// KaaS name
+	// (String) Display name for the KaaS cluster.
+	// Display name for the KaaS cluster.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (Attributes) Network configuration for the KaaS cluster (see below for nested schema)
+	// (Attributes) Network configuration for the KaaS cluster. (see below for nested schema)
 	Network *NetworkInitParameters `json:"network,omitempty" tf:"network,omitempty"`
 
-	// (String) ID of the project this KaaS resource belongs to
-	// ID of the project this KaaS resource belongs to
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (Attributes) Kubernetes cluster settings (see below for nested schema)
+	// pool configuration. (see below for nested schema)
 	Settings *SettingsInitParameters `json:"settings,omitempty" tf:"settings,omitempty"`
 
-	// (List of String) List of tags for the KaaS resource
-	// List of tags for the KaaS resource
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 }
 
 type KaaSObservation struct {
 
-	// (String) Billing period (Hour, Month, Year)
-	// Billing period (Hour, Month, Year)
+	// (String) Billing cycle. Accepted values: Hour, Month, Year.
+	// Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
 	BillingPeriod *string `json:"billingPeriod,omitempty" tf:"billing_period,omitempty"`
 
-	// (String) KaaS identifier
+	// (String) Computed by the API. Unique identifier for the resource.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// (String) KaaS location
-	// KaaS location
+	// Bergamo). See the available locations and zones.
+	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) Management IP address (available when KaaS is active)
-	// Management IP address (available when KaaS is active)
+	// (String) Computed by the API. Management IP address of the cluster control plane, available once the cluster is active.
+	// Computed by the API. Management IP address of the cluster control plane, available once the cluster is active.
 	ManagementIP *string `json:"managementIp,omitempty" tf:"management_ip,omitempty"`
 
-	// (String) KaaS name
-	// KaaS name
+	// (String) Display name for the KaaS cluster.
+	// Display name for the KaaS cluster.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (Attributes) Network configuration for the KaaS cluster (see below for nested schema)
+	// (Attributes) Network configuration for the KaaS cluster. (see below for nested schema)
 	Network *NetworkObservation `json:"network,omitempty" tf:"network,omitempty"`
 
-	// (String) ID of the project this KaaS resource belongs to
-	// ID of the project this KaaS resource belongs to
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (Attributes) Kubernetes cluster settings (see below for nested schema)
+	// pool configuration. (see below for nested schema)
 	Settings *SettingsObservation `json:"settings,omitempty" tf:"settings,omitempty"`
 
-	// (List of String) List of tags for the KaaS resource
-	// List of tags for the KaaS resource
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String) KaaS URI
-	// KaaS URI
+	// (String) Computed by the API. Full resource URI used as a reference value in other resources.
+	// Computed by the API. Full resource URI used as a reference value in other resources.
 	URI *string `json:"uri,omitempty" tf:"uri,omitempty"`
 }
 
 type KaaSParameters struct {
 
-	// (String) Billing period (Hour, Month, Year)
-	// Billing period (Hour, Month, Year)
+	// (String) Billing cycle. Accepted values: Hour, Month, Year.
+	// Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
 	// +kubebuilder:validation:Optional
 	BillingPeriod *string `json:"billingPeriod,omitempty" tf:"billing_period,omitempty"`
 
-	// (String) KaaS location
-	// KaaS location
+	// Bergamo). See the available locations and zones.
+	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
 	// +kubebuilder:validation:Required
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) KaaS name
-	// KaaS name
+	// (String) Display name for the KaaS cluster.
+	// Display name for the KaaS cluster.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (Attributes) Network configuration for the KaaS cluster (see below for nested schema)
+	// (Attributes) Network configuration for the KaaS cluster. (see below for nested schema)
 	// +kubebuilder:validation:Required
 	Network *NetworkParameters `json:"network,omitempty" tf:"network,omitempty"`
 
-	// (String) ID of the project this KaaS resource belongs to
-	// ID of the project this KaaS resource belongs to
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (Attributes) Kubernetes cluster settings (see below for nested schema)
+	// pool configuration. (see below for nested schema)
 	// +kubebuilder:validation:Required
 	Settings *SettingsParameters `json:"settings,omitempty" tf:"settings,omitempty"`
 
-	// (List of String) List of tags for the KaaS resource
-	// List of tags for the KaaS resource
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	// +kubebuilder:validation:Optional
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 }
 
 type NetworkInitParameters struct {
 
-	// (Attributes) Node CIDR configuration (see below for nested schema)
+	// (Attributes) CIDR block assigned to cluster nodes. (see below for nested schema)
 	NodeCidr *NodeCidrInitParameters `json:"nodeCidr,omitempty" tf:"node_cidr,omitempty"`
 
-	// (String) Pod CIDR in CIDR notation (e.g., 10.0.3.0/24)
-	// Pod CIDR in CIDR notation (e.g., 10.0.3.0/24)
+	// (String) CIDR block used for pod networking within the cluster (e.g., 10.0.3.0/24).
+	// CIDR block used for pod networking within the cluster (e.g., `10.0.3.0/24`).
 	PodCidr *string `json:"podCidr,omitempty" tf:"pod_cidr,omitempty"`
 
-	// (String) Security group name
-	// Security group name
+	// (String) Name of the security group applied to cluster nodes.
+	// Name of the security group applied to cluster nodes.
 	SecurityGroupName *string `json:"securityGroupName,omitempty" tf:"security_group_name,omitempty"`
 
-	// (String) Subnet URI reference for the KaaS resource (e.g., arubacloud_subnet.example.uri)
-	// Subnet URI reference for the KaaS resource (e.g., arubacloud_subnet.example.uri)
+	// (String) URI of the subnet within the VPC (e.g., arubacloud_subnet.example.uri).
+	// URI of the subnet within the VPC (e.g., `arubacloud_subnet.example.uri`).
 	SubnetURIRef *string `json:"subnetUriRef,omitempty" tf:"subnet_uri_ref,omitempty"`
 
-	// (String) VPC URI reference for the KaaS resource (e.g., arubacloud_vpc.example.uri)
-	// VPC URI reference for the KaaS resource (e.g., arubacloud_vpc.example.uri)
+	// (String) URI of the VPC that hosts the cluster (e.g., arubacloud_vpc.example.uri).
+	// URI of the VPC that hosts the cluster (e.g., `arubacloud_vpc.example.uri`).
 	VPCURIRef *string `json:"vpcUriRef,omitempty" tf:"vpc_uri_ref,omitempty"`
 }
 
 type NetworkObservation struct {
 
-	// (Attributes) Node CIDR configuration (see below for nested schema)
+	// (Attributes) CIDR block assigned to cluster nodes. (see below for nested schema)
 	NodeCidr *NodeCidrObservation `json:"nodeCidr,omitempty" tf:"node_cidr,omitempty"`
 
-	// (String) Pod CIDR in CIDR notation (e.g., 10.0.3.0/24)
-	// Pod CIDR in CIDR notation (e.g., 10.0.3.0/24)
+	// (String) CIDR block used for pod networking within the cluster (e.g., 10.0.3.0/24).
+	// CIDR block used for pod networking within the cluster (e.g., `10.0.3.0/24`).
 	PodCidr *string `json:"podCidr,omitempty" tf:"pod_cidr,omitempty"`
 
-	// (String) Security group name
-	// Security group name
+	// (String) Name of the security group applied to cluster nodes.
+	// Name of the security group applied to cluster nodes.
 	SecurityGroupName *string `json:"securityGroupName,omitempty" tf:"security_group_name,omitempty"`
 
-	// (String) Subnet URI reference for the KaaS resource (e.g., arubacloud_subnet.example.uri)
-	// Subnet URI reference for the KaaS resource (e.g., arubacloud_subnet.example.uri)
+	// (String) URI of the subnet within the VPC (e.g., arubacloud_subnet.example.uri).
+	// URI of the subnet within the VPC (e.g., `arubacloud_subnet.example.uri`).
 	SubnetURIRef *string `json:"subnetUriRef,omitempty" tf:"subnet_uri_ref,omitempty"`
 
-	// (String) VPC URI reference for the KaaS resource (e.g., arubacloud_vpc.example.uri)
-	// VPC URI reference for the KaaS resource (e.g., arubacloud_vpc.example.uri)
+	// (String) URI of the VPC that hosts the cluster (e.g., arubacloud_vpc.example.uri).
+	// URI of the VPC that hosts the cluster (e.g., `arubacloud_vpc.example.uri`).
 	VPCURIRef *string `json:"vpcUriRef,omitempty" tf:"vpc_uri_ref,omitempty"`
 }
 
 type NetworkParameters struct {
 
-	// (Attributes) Node CIDR configuration (see below for nested schema)
+	// (Attributes) CIDR block assigned to cluster nodes. (see below for nested schema)
 	// +kubebuilder:validation:Optional
 	NodeCidr *NodeCidrParameters `json:"nodeCidr" tf:"node_cidr,omitempty"`
 
-	// (String) Pod CIDR in CIDR notation (e.g., 10.0.3.0/24)
-	// Pod CIDR in CIDR notation (e.g., 10.0.3.0/24)
+	// (String) CIDR block used for pod networking within the cluster (e.g., 10.0.3.0/24).
+	// CIDR block used for pod networking within the cluster (e.g., `10.0.3.0/24`).
 	// +kubebuilder:validation:Optional
 	PodCidr *string `json:"podCidr,omitempty" tf:"pod_cidr,omitempty"`
 
-	// (String) Security group name
-	// Security group name
+	// (String) Name of the security group applied to cluster nodes.
+	// Name of the security group applied to cluster nodes.
 	// +kubebuilder:validation:Optional
 	SecurityGroupName *string `json:"securityGroupName" tf:"security_group_name,omitempty"`
 
-	// (String) Subnet URI reference for the KaaS resource (e.g., arubacloud_subnet.example.uri)
-	// Subnet URI reference for the KaaS resource (e.g., arubacloud_subnet.example.uri)
+	// (String) URI of the subnet within the VPC (e.g., arubacloud_subnet.example.uri).
+	// URI of the subnet within the VPC (e.g., `arubacloud_subnet.example.uri`).
 	// +kubebuilder:validation:Optional
 	SubnetURIRef *string `json:"subnetUriRef" tf:"subnet_uri_ref,omitempty"`
 
-	// (String) VPC URI reference for the KaaS resource (e.g., arubacloud_vpc.example.uri)
-	// VPC URI reference for the KaaS resource (e.g., arubacloud_vpc.example.uri)
+	// (String) URI of the VPC that hosts the cluster (e.g., arubacloud_vpc.example.uri).
+	// URI of the VPC that hosts the cluster (e.g., `arubacloud_vpc.example.uri`).
 	// +kubebuilder:validation:Optional
 	VPCURIRef *string `json:"vpcUriRef" tf:"vpc_uri_ref,omitempty"`
 }
 
 type NodeCidrInitParameters struct {
 
-	// (String) Node CIDR address in CIDR notation (e.g., 10.0.0.0/24)
-	// Node CIDR address in CIDR notation (e.g., 10.0.0.0/24)
+	// (String) Node CIDR address in CIDR notation (e.g., 10.0.0.0/24).
+	// Node CIDR address in CIDR notation (e.g., `10.0.0.0/24`).
 	Address *string `json:"address,omitempty" tf:"address,omitempty"`
 
-	// (String) KaaS name
-	// Node CIDR name
+	// (String) Display name for the KaaS cluster.
+	// Human-readable label for the node CIDR block.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 }
 
 type NodeCidrObservation struct {
 
-	// (String) Node CIDR address in CIDR notation (e.g., 10.0.0.0/24)
-	// Node CIDR address in CIDR notation (e.g., 10.0.0.0/24)
+	// (String) Node CIDR address in CIDR notation (e.g., 10.0.0.0/24).
+	// Node CIDR address in CIDR notation (e.g., `10.0.0.0/24`).
 	Address *string `json:"address,omitempty" tf:"address,omitempty"`
 
-	// (String) KaaS name
-	// Node CIDR name
+	// (String) Display name for the KaaS cluster.
+	// Human-readable label for the node CIDR block.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 }
 
 type NodeCidrParameters struct {
 
-	// (String) Node CIDR address in CIDR notation (e.g., 10.0.0.0/24)
-	// Node CIDR address in CIDR notation (e.g., 10.0.0.0/24)
+	// (String) Node CIDR address in CIDR notation (e.g., 10.0.0.0/24).
+	// Node CIDR address in CIDR notation (e.g., `10.0.0.0/24`).
 	// +kubebuilder:validation:Optional
 	Address *string `json:"address" tf:"address,omitempty"`
 
-	// (String) KaaS name
-	// Node CIDR name
+	// (String) Display name for the KaaS cluster.
+	// Human-readable label for the node CIDR block.
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name" tf:"name,omitempty"`
 }
 
 type NodePoolsInitParameters struct {
 
-	// (Boolean) Enable autoscaling for node pool
-	// Enable autoscaling for node pool
+	// (Boolean) When true, the node pool scales automatically between min_count and max_count.
+	// When `true`, the node pool scales automatically between `min_count` and `max_count`.
 	Autoscaling *bool `json:"autoscaling,omitempty" tf:"autoscaling,omitempty"`
 
-	// (String) KaaS flavor name for nodes. Available flavors are described in the ArubaCloud API documentation. For example, K2A4 means 2 CPU, 4GB RAM, and 40GB storage.
-	// KaaS flavor name for nodes. Available flavors are described in the [ArubaCloud API documentation](https://api.arubacloud.com/docs/metadata#kaas-flavors). For example, `K2A4` means 2 CPU, 4GB RAM, and 40GB storage.
+	// (String) Compute flavour for cluster nodes (e.g., CSO4A8). See available flavours.
+	// Compute flavour for cluster nodes (e.g., `CSO4A8`). See [available flavours](https://api.arubacloud.com/docs/metadata/#cloudserver-flavors).
 	Instance *string `json:"instance,omitempty" tf:"instance,omitempty"`
 
-	// (Number) Maximum number of nodes for autoscaling
-	// Maximum number of nodes for autoscaling
+	// (Number) Maximum number of nodes when autoscaling is enabled.
+	// Maximum number of nodes when autoscaling is enabled.
 	MaxCount *float64 `json:"maxCount,omitempty" tf:"max_count,omitempty"`
 
-	// (Number) Minimum number of nodes for autoscaling
-	// Minimum number of nodes for autoscaling
+	// (Number) Minimum number of nodes when autoscaling is enabled.
+	// Minimum number of nodes when autoscaling is enabled.
 	MinCount *float64 `json:"minCount,omitempty" tf:"min_count,omitempty"`
 
-	// (String) KaaS name
-	// Node pool name
+	// (String) Display name for the KaaS cluster.
+	// Display name for the node pool.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (Number) Number of nodes in the node pool
-	// Number of nodes in the node pool
+	// (Number) Number of worker nodes in the cluster.
+	// Number of worker nodes in the cluster.
 	Nodes *float64 `json:"nodes,omitempty" tf:"nodes,omitempty"`
 
-	// (String) Datacenter/zone code for nodes
-	// Datacenter/zone code for nodes
+	// (String) Datacenter zone code where the node pool is deployed.
+	// Datacenter zone code where the node pool is deployed.
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
 
 type NodePoolsObservation struct {
 
-	// (Boolean) Enable autoscaling for node pool
-	// Enable autoscaling for node pool
+	// (Boolean) When true, the node pool scales automatically between min_count and max_count.
+	// When `true`, the node pool scales automatically between `min_count` and `max_count`.
 	Autoscaling *bool `json:"autoscaling,omitempty" tf:"autoscaling,omitempty"`
 
-	// (String) KaaS flavor name for nodes. Available flavors are described in the ArubaCloud API documentation. For example, K2A4 means 2 CPU, 4GB RAM, and 40GB storage.
-	// KaaS flavor name for nodes. Available flavors are described in the [ArubaCloud API documentation](https://api.arubacloud.com/docs/metadata#kaas-flavors). For example, `K2A4` means 2 CPU, 4GB RAM, and 40GB storage.
+	// (String) Compute flavour for cluster nodes (e.g., CSO4A8). See available flavours.
+	// Compute flavour for cluster nodes (e.g., `CSO4A8`). See [available flavours](https://api.arubacloud.com/docs/metadata/#cloudserver-flavors).
 	Instance *string `json:"instance,omitempty" tf:"instance,omitempty"`
 
-	// (Number) Maximum number of nodes for autoscaling
-	// Maximum number of nodes for autoscaling
+	// (Number) Maximum number of nodes when autoscaling is enabled.
+	// Maximum number of nodes when autoscaling is enabled.
 	MaxCount *float64 `json:"maxCount,omitempty" tf:"max_count,omitempty"`
 
-	// (Number) Minimum number of nodes for autoscaling
-	// Minimum number of nodes for autoscaling
+	// (Number) Minimum number of nodes when autoscaling is enabled.
+	// Minimum number of nodes when autoscaling is enabled.
 	MinCount *float64 `json:"minCount,omitempty" tf:"min_count,omitempty"`
 
-	// (String) KaaS name
-	// Node pool name
+	// (String) Display name for the KaaS cluster.
+	// Display name for the node pool.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (Number) Number of nodes in the node pool
-	// Number of nodes in the node pool
+	// (Number) Number of worker nodes in the cluster.
+	// Number of worker nodes in the cluster.
 	Nodes *float64 `json:"nodes,omitempty" tf:"nodes,omitempty"`
 
-	// (String) Datacenter/zone code for nodes
-	// Datacenter/zone code for nodes
+	// (String) Datacenter zone code where the node pool is deployed.
+	// Datacenter zone code where the node pool is deployed.
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
 
 type NodePoolsParameters struct {
 
-	// (Boolean) Enable autoscaling for node pool
-	// Enable autoscaling for node pool
+	// (Boolean) When true, the node pool scales automatically between min_count and max_count.
+	// When `true`, the node pool scales automatically between `min_count` and `max_count`.
 	// +kubebuilder:validation:Optional
 	Autoscaling *bool `json:"autoscaling,omitempty" tf:"autoscaling,omitempty"`
 
-	// (String) KaaS flavor name for nodes. Available flavors are described in the ArubaCloud API documentation. For example, K2A4 means 2 CPU, 4GB RAM, and 40GB storage.
-	// KaaS flavor name for nodes. Available flavors are described in the [ArubaCloud API documentation](https://api.arubacloud.com/docs/metadata#kaas-flavors). For example, `K2A4` means 2 CPU, 4GB RAM, and 40GB storage.
+	// (String) Compute flavour for cluster nodes (e.g., CSO4A8). See available flavours.
+	// Compute flavour for cluster nodes (e.g., `CSO4A8`). See [available flavours](https://api.arubacloud.com/docs/metadata/#cloudserver-flavors).
 	// +kubebuilder:validation:Optional
 	Instance *string `json:"instance" tf:"instance,omitempty"`
 
-	// (Number) Maximum number of nodes for autoscaling
-	// Maximum number of nodes for autoscaling
+	// (Number) Maximum number of nodes when autoscaling is enabled.
+	// Maximum number of nodes when autoscaling is enabled.
 	// +kubebuilder:validation:Optional
 	MaxCount *float64 `json:"maxCount,omitempty" tf:"max_count,omitempty"`
 
-	// (Number) Minimum number of nodes for autoscaling
-	// Minimum number of nodes for autoscaling
+	// (Number) Minimum number of nodes when autoscaling is enabled.
+	// Minimum number of nodes when autoscaling is enabled.
 	// +kubebuilder:validation:Optional
 	MinCount *float64 `json:"minCount,omitempty" tf:"min_count,omitempty"`
 
-	// (String) KaaS name
-	// Node pool name
+	// (String) Display name for the KaaS cluster.
+	// Display name for the node pool.
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name" tf:"name,omitempty"`
 
-	// (Number) Number of nodes in the node pool
-	// Number of nodes in the node pool
+	// (Number) Number of worker nodes in the cluster.
+	// Number of worker nodes in the cluster.
 	// +kubebuilder:validation:Optional
 	Nodes *float64 `json:"nodes" tf:"nodes,omitempty"`
 
-	// (String) Datacenter/zone code for nodes
-	// Datacenter/zone code for nodes
+	// (String) Datacenter zone code where the node pool is deployed.
+	// Datacenter zone code where the node pool is deployed.
 	// +kubebuilder:validation:Optional
 	Zone *string `json:"zone" tf:"zone,omitempty"`
 }
 
 type SettingsInitParameters struct {
 
-	// (Boolean) High availability
-	// High availability
+	// availability mode.
+	// When `true`, the control plane is deployed in high-availability mode.
 	Ha *bool `json:"ha,omitempty" tf:"ha,omitempty"`
 
-	// (String) Kubernetes version. Available versions are described in the ArubaCloud API documentation. For example, 1.33.2.
-	// Kubernetes version. Available versions are described in the [ArubaCloud API documentation](https://api.arubacloud.com/docs/metadata#kubernetes-version). For example, `1.33.2`.
+	// (String) Kubernetes version string (e.g., 1.28). Available versions are listed in the ArubaCloud metadata API.
+	// Kubernetes version string (e.g., `1.28`). Available versions are listed in the ArubaCloud metadata API.
 	KubernetesVersion *string `json:"kubernetesVersion,omitempty" tf:"kubernetes_version,omitempty"`
 
-	// (Attributes List) Node pools configuration (see below for nested schema)
+	// (Attributes List) One or more node pools that make up the cluster worker fleet. (see below for nested schema)
 	NodePools []NodePoolsInitParameters `json:"nodePools,omitempty" tf:"node_pools,omitempty"`
 }
 
 type SettingsObservation struct {
 
-	// (Boolean) High availability
-	// High availability
+	// availability mode.
+	// When `true`, the control plane is deployed in high-availability mode.
 	Ha *bool `json:"ha,omitempty" tf:"ha,omitempty"`
 
-	// (String) Kubernetes version. Available versions are described in the ArubaCloud API documentation. For example, 1.33.2.
-	// Kubernetes version. Available versions are described in the [ArubaCloud API documentation](https://api.arubacloud.com/docs/metadata#kubernetes-version). For example, `1.33.2`.
+	// (String) Kubernetes version string (e.g., 1.28). Available versions are listed in the ArubaCloud metadata API.
+	// Kubernetes version string (e.g., `1.28`). Available versions are listed in the ArubaCloud metadata API.
 	KubernetesVersion *string `json:"kubernetesVersion,omitempty" tf:"kubernetes_version,omitempty"`
 
-	// (Attributes List) Node pools configuration (see below for nested schema)
+	// (Attributes List) One or more node pools that make up the cluster worker fleet. (see below for nested schema)
 	NodePools []NodePoolsObservation `json:"nodePools,omitempty" tf:"node_pools,omitempty"`
 }
 
 type SettingsParameters struct {
 
-	// (Boolean) High availability
-	// High availability
+	// availability mode.
+	// When `true`, the control plane is deployed in high-availability mode.
 	// +kubebuilder:validation:Optional
 	Ha *bool `json:"ha,omitempty" tf:"ha,omitempty"`
 
-	// (String) Kubernetes version. Available versions are described in the ArubaCloud API documentation. For example, 1.33.2.
-	// Kubernetes version. Available versions are described in the [ArubaCloud API documentation](https://api.arubacloud.com/docs/metadata#kubernetes-version). For example, `1.33.2`.
+	// (String) Kubernetes version string (e.g., 1.28). Available versions are listed in the ArubaCloud metadata API.
+	// Kubernetes version string (e.g., `1.28`). Available versions are listed in the ArubaCloud metadata API.
 	// +kubebuilder:validation:Optional
 	KubernetesVersion *string `json:"kubernetesVersion" tf:"kubernetes_version,omitempty"`
 
-	// (Attributes List) Node pools configuration (see below for nested schema)
+	// (Attributes List) One or more node pools that make up the cluster worker fleet. (see below for nested schema)
 	// +kubebuilder:validation:Optional
 	NodePools []NodePoolsParameters `json:"nodePools" tf:"node_pools,omitempty"`
 }
@@ -396,7 +396,7 @@ type KaaSStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// KaaS is the Schema for the KaaSs API. Manages an ArubaCloud Kubernetes as a Service (KaaS) cluster. Once the cluster is ready, the provider downloads and exposes the kubeconfig (decoded from the API) so you can use it with kubectl or write it to a file.
+// KaaS is the Schema for the KaaSs API. Manages an ArubaCloud Kubernetes cluster (KaaS — Kubernetes-as-a-Service).
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

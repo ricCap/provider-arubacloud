@@ -15,94 +15,94 @@ import (
 
 type RestoreInitParameters struct {
 
-	// (String) Backup ID to restore from
-	// Backup ID to restore from
+	// (String) ID of the backup to restore from.
+	// ID of the backup to restore from.
 	BackupID *string `json:"backupId,omitempty" tf:"backup_id,omitempty"`
 
-	// (String) Restore location
-	// Restore location
+	// Bergamo). See the available locations and zones.
+	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) Restore name
-	// Restore name
+	// (String) Display name for the restore operation.
+	// Display name for the restore operation.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID of the project this restore belongs to
-	// ID of the project this restore belongs to
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (List of String) List of tags for the restore resource
-	// List of tags for the restore resource
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String) Volume ID to restore to
-	// Volume ID to restore to
+	// (String) ID of the target block storage volume to restore the backup onto.
+	// ID of the target block storage volume to restore the backup onto.
 	VolumeID *string `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type RestoreObservation struct {
 
-	// (String) Backup ID to restore from
-	// Backup ID to restore from
+	// (String) ID of the backup to restore from.
+	// ID of the backup to restore from.
 	BackupID *string `json:"backupId,omitempty" tf:"backup_id,omitempty"`
 
-	// (String) Restore identifier
+	// (String) Computed by the API. Unique identifier for the resource.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// (String) Restore location
-	// Restore location
+	// Bergamo). See the available locations and zones.
+	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) Restore name
-	// Restore name
+	// (String) Display name for the restore operation.
+	// Display name for the restore operation.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID of the project this restore belongs to
-	// ID of the project this restore belongs to
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (List of String) List of tags for the restore resource
-	// List of tags for the restore resource
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String) Restore URI
-	// Restore URI
+	// (String) Computed by the API. Full resource URI used as a reference value in other resources.
+	// Computed by the API. Full resource URI used as a reference value in other resources.
 	URI *string `json:"uri,omitempty" tf:"uri,omitempty"`
 
-	// (String) Volume ID to restore to
-	// Volume ID to restore to
+	// (String) ID of the target block storage volume to restore the backup onto.
+	// ID of the target block storage volume to restore the backup onto.
 	VolumeID *string `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
 type RestoreParameters struct {
 
-	// (String) Backup ID to restore from
-	// Backup ID to restore from
+	// (String) ID of the backup to restore from.
+	// ID of the backup to restore from.
 	// +kubebuilder:validation:Required
 	BackupID *string `json:"backupId,omitempty" tf:"backup_id,omitempty"`
 
-	// (String) Restore location
-	// Restore location
+	// Bergamo). See the available locations and zones.
+	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
 	// +kubebuilder:validation:Required
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) Restore name
-	// Restore name
+	// (String) Display name for the restore operation.
+	// Display name for the restore operation.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID of the project this restore belongs to
-	// ID of the project this restore belongs to
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (List of String) List of tags for the restore resource
-	// List of tags for the restore resource
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	// +kubebuilder:validation:Optional
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String) Volume ID to restore to
-	// Volume ID to restore to
+	// (String) ID of the target block storage volume to restore the backup onto.
+	// ID of the target block storage volume to restore the backup onto.
 	// +kubebuilder:validation:Required
 	VolumeID *string `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
@@ -134,7 +134,7 @@ type RestoreStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// Restore is the Schema for the Restores API. Manages an ArubaCloud Storage Restore.
+// Restore is the Schema for the Restores API. Manages an ArubaCloud Block Storage Restore operation — restores a backup to a block storage volume.
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

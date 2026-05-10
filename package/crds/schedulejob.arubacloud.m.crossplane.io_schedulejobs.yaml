@@ -35,7 +35,7 @@ spec:
     schema:
       openAPIV3Schema:
         description: ScheduleJob is the Schema for the ScheduleJobs API. Manages an
-          ArubaCloud Schedule Job.
+          ArubaCloud Scheduled Job — a cron-triggered automation task.
         properties:
           apiVersion:
             description: |-
@@ -61,83 +61,85 @@ spec:
                 properties:
                   location:
                     description: |-
-                      (String) Location for the job
-                      Location for the job
+                      Bergamo). See the available locations and zones.
+                      Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
                     type: string
                   name:
                     description: |-
-                      (String) Schedule Job name
-                      Schedule Job name
+                      (String) Display name for the scheduled job.
+                      Display name for the scheduled job.
                     type: string
                   projectId:
                     description: |-
-                      (String) ID of the project this job belongs to
-                      ID of the project this job belongs to
+                      (String) ID of the project that owns this resource.
+                      ID of the project that owns this resource.
                     type: string
                   properties:
-                    description: (Attributes) (see below for nested schema)
+                    description: (Attributes) Job scheduling and execution configuration.
+                      (see below for nested schema)
                     properties:
                       cron:
                         description: |-
-                          (String) CRON expression for recurrence (for Recurring)
-                          CRON expression for recurrence (for Recurring)
+                          field cron format.
+                          Cron expression defining the job schedule (e.g., `0 * * * *` for hourly). Standard 5-field cron format.
                         type: string
                       enabled:
                         description: |-
-                          (Boolean) Whether the job is enabled.
-                          Whether the job is enabled.
+                          (Boolean) When true, the job is active and will trigger on schedule.
+                          When `true`, the job is active and will trigger on schedule.
                         type: boolean
                       executeUntil:
                         description: |-
-                          (String) End date until which the job can run (for Recurring)
-                          End date until which the job can run (for Recurring)
+                          time after which a Recurring job stops executing.
+                          ISO 8601 date-time after which a `Recurring` job stops executing.
                         type: string
                       scheduleAt:
                         description: |-
-                          (String) Date and time when the job should run (for OneShot)
-                          Date and time when the job should run (for OneShot)
+                          time at which the job executes once .
+                          ISO 8601 date-time at which the job executes once (required for `OneShot` type).
                         type: string
                       scheduleJobType:
                         description: |-
-                          (String) Type of job (OneShot, Recurring)
-                          Type of job (OneShot, Recurring)
+                          (String) Execution mode of the job. Accepted values: OneShot (runs once at schedule_at), Recurring (repeats on a cron schedule).
+                          Execution mode of the job. Accepted values: `OneShot` (runs once at `schedule_at`), `Recurring` (repeats on a `cron` schedule).
                         type: string
                       steps:
-                        description: (Attributes List) (see below for nested schema)
+                        description: (Attributes List) Ordered list of API actions
+                          executed when the job triggers. (see below for nested schema)
                         items:
                           properties:
                             actionUri:
                               description: |-
-                                (String) URI of the action to execute.
-                                URI of the action to execute.
+                                (String) URI of the API action to invoke on the target resource.
+                                URI of the API action to invoke on the target resource.
                               type: string
                             body:
                               description: |-
-                                (String) Optional HTTP request body.
-                                Optional HTTP request body.
+                                (String) Optional JSON request body sent with the HTTP call.
+                                Optional JSON request body sent with the HTTP call.
                               type: string
                             httpVerb:
                               description: |-
-                                (String) HTTP verb to use (GET, POST, etc.)
-                                HTTP verb to use (GET, POST, etc.)
+                                (String) HTTP method used to call the action URI (e.g., GET, POST, PUT, DELETE).
+                                HTTP method used to call the action URI (e.g., `GET`, `POST`, `PUT`, `DELETE`).
                               type: string
                             name:
                               description: |-
-                                (String) Schedule Job name
-                                Descriptive name of the step.
+                                (String) Display name for the scheduled job.
+                                Optional human-readable label for the step.
                               type: string
                             resourceUri:
                               description: |-
-                                (String) URI of the resource.
-                                URI of the resource.
+                                (String) URI of the ArubaCloud resource that the step targets.
+                                URI of the ArubaCloud resource that the step targets.
                               type: string
                           type: object
                         type: array
                     type: object
                   tags:
                     description: |-
-                      (List of String) List of tags for the job
-                      List of tags for the job
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
@@ -162,83 +164,85 @@ spec:
                 properties:
                   location:
                     description: |-
-                      (String) Location for the job
-                      Location for the job
+                      Bergamo). See the available locations and zones.
+                      Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
                     type: string
                   name:
                     description: |-
-                      (String) Schedule Job name
-                      Schedule Job name
+                      (String) Display name for the scheduled job.
+                      Display name for the scheduled job.
                     type: string
                   projectId:
                     description: |-
-                      (String) ID of the project this job belongs to
-                      ID of the project this job belongs to
+                      (String) ID of the project that owns this resource.
+                      ID of the project that owns this resource.
                     type: string
                   properties:
-                    description: (Attributes) (see below for nested schema)
+                    description: (Attributes) Job scheduling and execution configuration.
+                      (see below for nested schema)
                     properties:
                       cron:
                         description: |-
-                          (String) CRON expression for recurrence (for Recurring)
-                          CRON expression for recurrence (for Recurring)
+                          field cron format.
+                          Cron expression defining the job schedule (e.g., `0 * * * *` for hourly). Standard 5-field cron format.
                         type: string
                       enabled:
                         description: |-
-                          (Boolean) Whether the job is enabled.
-                          Whether the job is enabled.
+                          (Boolean) When true, the job is active and will trigger on schedule.
+                          When `true`, the job is active and will trigger on schedule.
                         type: boolean
                       executeUntil:
                         description: |-
-                          (String) End date until which the job can run (for Recurring)
-                          End date until which the job can run (for Recurring)
+                          time after which a Recurring job stops executing.
+                          ISO 8601 date-time after which a `Recurring` job stops executing.
                         type: string
                       scheduleAt:
                         description: |-
-                          (String) Date and time when the job should run (for OneShot)
-                          Date and time when the job should run (for OneShot)
+                          time at which the job executes once .
+                          ISO 8601 date-time at which the job executes once (required for `OneShot` type).
                         type: string
                       scheduleJobType:
                         description: |-
-                          (String) Type of job (OneShot, Recurring)
-                          Type of job (OneShot, Recurring)
+                          (String) Execution mode of the job. Accepted values: OneShot (runs once at schedule_at), Recurring (repeats on a cron schedule).
+                          Execution mode of the job. Accepted values: `OneShot` (runs once at `schedule_at`), `Recurring` (repeats on a `cron` schedule).
                         type: string
                       steps:
-                        description: (Attributes List) (see below for nested schema)
+                        description: (Attributes List) Ordered list of API actions
+                          executed when the job triggers. (see below for nested schema)
                         items:
                           properties:
                             actionUri:
                               description: |-
-                                (String) URI of the action to execute.
-                                URI of the action to execute.
+                                (String) URI of the API action to invoke on the target resource.
+                                URI of the API action to invoke on the target resource.
                               type: string
                             body:
                               description: |-
-                                (String) Optional HTTP request body.
-                                Optional HTTP request body.
+                                (String) Optional JSON request body sent with the HTTP call.
+                                Optional JSON request body sent with the HTTP call.
                               type: string
                             httpVerb:
                               description: |-
-                                (String) HTTP verb to use (GET, POST, etc.)
-                                HTTP verb to use (GET, POST, etc.)
+                                (String) HTTP method used to call the action URI (e.g., GET, POST, PUT, DELETE).
+                                HTTP method used to call the action URI (e.g., `GET`, `POST`, `PUT`, `DELETE`).
                               type: string
                             name:
                               description: |-
-                                (String) Schedule Job name
-                                Descriptive name of the step.
+                                (String) Display name for the scheduled job.
+                                Optional human-readable label for the step.
                               type: string
                             resourceUri:
                               description: |-
-                                (String) URI of the resource.
-                                URI of the resource.
+                                (String) URI of the ArubaCloud resource that the step targets.
+                                URI of the ArubaCloud resource that the step targets.
                               type: string
                           type: object
                         type: array
                     type: object
                   tags:
                     description: |-
-                      (List of String) List of tags for the job
-                      List of tags for the job
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
@@ -324,94 +328,97 @@ spec:
               atProvider:
                 properties:
                   id:
-                    description: (String) Schedule Job identifier
+                    description: (String) Computed by the API. Unique identifier for
+                      the resource.
                     type: string
                   location:
                     description: |-
-                      (String) Location for the job
-                      Location for the job
+                      Bergamo). See the available locations and zones.
+                      Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
                     type: string
                   name:
                     description: |-
-                      (String) Schedule Job name
-                      Schedule Job name
+                      (String) Display name for the scheduled job.
+                      Display name for the scheduled job.
                     type: string
                   projectId:
                     description: |-
-                      (String) ID of the project this job belongs to
-                      ID of the project this job belongs to
+                      (String) ID of the project that owns this resource.
+                      ID of the project that owns this resource.
                     type: string
                   properties:
-                    description: (Attributes) (see below for nested schema)
+                    description: (Attributes) Job scheduling and execution configuration.
+                      (see below for nested schema)
                     properties:
                       cron:
                         description: |-
-                          (String) CRON expression for recurrence (for Recurring)
-                          CRON expression for recurrence (for Recurring)
+                          field cron format.
+                          Cron expression defining the job schedule (e.g., `0 * * * *` for hourly). Standard 5-field cron format.
                         type: string
                       enabled:
                         description: |-
-                          (Boolean) Whether the job is enabled.
-                          Whether the job is enabled.
+                          (Boolean) When true, the job is active and will trigger on schedule.
+                          When `true`, the job is active and will trigger on schedule.
                         type: boolean
                       executeUntil:
                         description: |-
-                          (String) End date until which the job can run (for Recurring)
-                          End date until which the job can run (for Recurring)
+                          time after which a Recurring job stops executing.
+                          ISO 8601 date-time after which a `Recurring` job stops executing.
                         type: string
                       scheduleAt:
                         description: |-
-                          (String) Date and time when the job should run (for OneShot)
-                          Date and time when the job should run (for OneShot)
+                          time at which the job executes once .
+                          ISO 8601 date-time at which the job executes once (required for `OneShot` type).
                         type: string
                       scheduleJobType:
                         description: |-
-                          (String) Type of job (OneShot, Recurring)
-                          Type of job (OneShot, Recurring)
+                          (String) Execution mode of the job. Accepted values: OneShot (runs once at schedule_at), Recurring (repeats on a cron schedule).
+                          Execution mode of the job. Accepted values: `OneShot` (runs once at `schedule_at`), `Recurring` (repeats on a `cron` schedule).
                         type: string
                       steps:
-                        description: (Attributes List) (see below for nested schema)
+                        description: (Attributes List) Ordered list of API actions
+                          executed when the job triggers. (see below for nested schema)
                         items:
                           properties:
                             actionUri:
                               description: |-
-                                (String) URI of the action to execute.
-                                URI of the action to execute.
+                                (String) URI of the API action to invoke on the target resource.
+                                URI of the API action to invoke on the target resource.
                               type: string
                             body:
                               description: |-
-                                (String) Optional HTTP request body.
-                                Optional HTTP request body.
+                                (String) Optional JSON request body sent with the HTTP call.
+                                Optional JSON request body sent with the HTTP call.
                               type: string
                             httpVerb:
                               description: |-
-                                (String) HTTP verb to use (GET, POST, etc.)
-                                HTTP verb to use (GET, POST, etc.)
+                                (String) HTTP method used to call the action URI (e.g., GET, POST, PUT, DELETE).
+                                HTTP method used to call the action URI (e.g., `GET`, `POST`, `PUT`, `DELETE`).
                               type: string
                             name:
                               description: |-
-                                (String) Schedule Job name
-                                Descriptive name of the step.
+                                (String) Display name for the scheduled job.
+                                Optional human-readable label for the step.
                               type: string
                             resourceUri:
                               description: |-
-                                (String) URI of the resource.
-                                URI of the resource.
+                                (String) URI of the ArubaCloud resource that the step targets.
+                                URI of the ArubaCloud resource that the step targets.
                               type: string
                           type: object
                         type: array
                     type: object
                   tags:
                     description: |-
-                      (List of String) List of tags for the job
-                      List of tags for the job
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
                   uri:
                     description: |-
-                      (String) Schedule Job URI
-                      Schedule Job URI
+                      (String) Computed by the API. Full resource URI used as a reference value in other resources.
+                      Computed by the API. Full resource URI used as a reference value in other resources.
                     type: string
                 type: object
               conditions:

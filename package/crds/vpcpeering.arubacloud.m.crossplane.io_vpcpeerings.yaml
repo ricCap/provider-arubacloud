@@ -35,7 +35,8 @@ spec:
     schema:
       openAPIV3Schema:
         description: VPCPeering is the Schema for the VPCPeerings API. Manages an
-          ArubaCloud VPC Peering.
+          ArubaCloud VPC Peering connection between two VPCs, enabling private routing
+          between them.
         properties:
           apiVersion:
             description: |-
@@ -61,35 +62,35 @@ spec:
                 properties:
                   location:
                     description: |-
-                      (String) VPC Peering location
-                      VPC Peering location
+                      Bergamo). See the available locations and zones.
+                      Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
                     type: string
                   name:
                     description: |-
-                      (String) VPC Peering name
-                      VPC Peering name
+                      (String) Display name for the VPC peering.
+                      Display name for the VPC peering.
                     type: string
                   peerVpc:
                     description: |-
-                      (String) ID or URI of the peer VPC to connect to
-                      ID or URI of the peer VPC to connect to
+                      (String) ID or URI of the remote peer VPC to connect to.
+                      ID or URI of the remote peer VPC to connect to.
                     type: string
                   projectId:
                     description: |-
-                      (String) ID of the project this VPC Peering belongs to
-                      ID of the project this VPC Peering belongs to
+                      (String) ID of the project that owns this resource.
+                      ID of the project that owns this resource.
                     type: string
                   tags:
                     description: |-
-                      (List of String) List of tags for the VPC Peering
-                      List of tags for the VPC Peering
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
                   vpcId:
                     description: |-
-                      (String) ID of the VPC this peering belongs to
-                      ID of the VPC this peering belongs to
+                      (String) ID of the local VPC initiating this peering connection.
+                      ID of the local VPC initiating this peering connection.
                     type: string
                 required:
                 - location
@@ -113,35 +114,35 @@ spec:
                 properties:
                   location:
                     description: |-
-                      (String) VPC Peering location
-                      VPC Peering location
+                      Bergamo). See the available locations and zones.
+                      Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
                     type: string
                   name:
                     description: |-
-                      (String) VPC Peering name
-                      VPC Peering name
+                      (String) Display name for the VPC peering.
+                      Display name for the VPC peering.
                     type: string
                   peerVpc:
                     description: |-
-                      (String) ID or URI of the peer VPC to connect to
-                      ID or URI of the peer VPC to connect to
+                      (String) ID or URI of the remote peer VPC to connect to.
+                      ID or URI of the remote peer VPC to connect to.
                     type: string
                   projectId:
                     description: |-
-                      (String) ID of the project this VPC Peering belongs to
-                      ID of the project this VPC Peering belongs to
+                      (String) ID of the project that owns this resource.
+                      ID of the project that owns this resource.
                     type: string
                   tags:
                     description: |-
-                      (List of String) List of tags for the VPC Peering
-                      List of tags for the VPC Peering
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
                   vpcId:
                     description: |-
-                      (String) ID of the VPC this peering belongs to
-                      ID of the VPC this peering belongs to
+                      (String) ID of the local VPC initiating this peering connection.
+                      ID of the local VPC initiating this peering connection.
                     type: string
                 type: object
               managementPolicies:
@@ -229,44 +230,45 @@ spec:
               atProvider:
                 properties:
                   id:
-                    description: (String) VPC Peering identifier
+                    description: (String) Computed by the API. Unique identifier for
+                      the resource.
                     type: string
                   location:
                     description: |-
-                      (String) VPC Peering location
-                      VPC Peering location
+                      Bergamo). See the available locations and zones.
+                      Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
                     type: string
                   name:
                     description: |-
-                      (String) VPC Peering name
-                      VPC Peering name
+                      (String) Display name for the VPC peering.
+                      Display name for the VPC peering.
                     type: string
                   peerVpc:
                     description: |-
-                      (String) ID or URI of the peer VPC to connect to
-                      ID or URI of the peer VPC to connect to
+                      (String) ID or URI of the remote peer VPC to connect to.
+                      ID or URI of the remote peer VPC to connect to.
                     type: string
                   projectId:
                     description: |-
-                      (String) ID of the project this VPC Peering belongs to
-                      ID of the project this VPC Peering belongs to
+                      (String) ID of the project that owns this resource.
+                      ID of the project that owns this resource.
                     type: string
                   tags:
                     description: |-
-                      (List of String) List of tags for the VPC Peering
-                      List of tags for the VPC Peering
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
                   uri:
                     description: |-
-                      (String) VPC Peering URI
-                      VPC Peering URI
+                      (String) Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a *_uri_ref attribute).
+                      Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a `*_uri_ref` attribute).
                     type: string
                   vpcId:
                     description: |-
-                      (String) ID of the VPC this peering belongs to
-                      ID of the VPC this peering belongs to
+                      (String) ID of the local VPC initiating this peering connection.
+                      ID of the local VPC initiating this peering connection.
                     type: string
                 type: object
               conditions:

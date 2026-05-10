@@ -35,7 +35,7 @@ spec:
     schema:
       openAPIV3Schema:
         description: CloudServer is the Schema for the CloudServers API. Manages an
-          ArubaCloud CloudServer.
+          ArubaCloud CloudServer virtual machine.
         properties:
           apiVersion:
             description: |-
@@ -75,66 +75,66 @@ spec:
                 properties:
                   location:
                     description: |-
-                      (String) CloudServer location
-                      CloudServer location
+                      Bergamo). See the available locations and zones.
+                      Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
                     type: string
                   name:
                     description: |-
-                      (String) CloudServer name
-                      CloudServer name
+                      (String) Display name for the CloudServer.
+                      Display name for the CloudServer.
                     type: string
                   network:
-                    description: (Attributes) Network configuration for the cloud
-                      server (see below for nested schema)
+                    description: (Attributes) Network configuration for the CloudServer.
+                      (see below for nested schema)
                     properties:
                       elasticIpUriRef:
                         description: |-
-                          (String) Elastic IP URI reference (e.g., arubacloud_elasticip.example.uri)
-                          Elastic IP URI reference (e.g., arubacloud_elasticip.example.uri)
+                          (String) URI of an Elastic IP to associate with this CloudServer. Reference the uri attribute of an arubacloud_elasticip resource. Optional — omit to use a dynamic IP.
+                          URI of an Elastic IP to associate with this CloudServer. Reference the `uri` attribute of an `arubacloud_elasticip` resource. Optional — omit to use a dynamic IP.
                         type: string
                       securitygroupUriRefs:
                         description: |-
-                          (List of String) List of security group URI references (e.g., [arubacloud_securitygroup.example.uri])
-                          List of security group URI references (e.g., [arubacloud_securitygroup.example.uri])
+                          (List of String) List of security group URIs to apply to this CloudServer. Reference the uri attribute of each arubacloud_securitygroup resource.
+                          List of security group URIs to apply to this CloudServer. Reference the `uri` attribute of each `arubacloud_securitygroup` resource.
                         items:
                           type: string
                         type: array
                       subnetUriRefs:
                         description: |-
-                          (List of String) List of subnet URI references (e.g., [arubacloud_subnet.example.uri])
-                          List of subnet URI references (e.g., [arubacloud_subnet.example.uri])
+                          (List of String) List of subnet URIs to attach this CloudServer to. Reference the uri attribute of each arubacloud_subnet resource.
+                          List of subnet URIs to attach this CloudServer to. Reference the `uri` attribute of each `arubacloud_subnet` resource.
                         items:
                           type: string
                         type: array
                       vpcUriRef:
                         description: |-
-                          (String) VPC URI reference (e.g., arubacloud_vpc.example.uri)
-                          VPC URI reference (e.g., arubacloud_vpc.example.uri)
+                          (String) URI of the VPC to attach this CloudServer to. Reference the uri attribute of an arubacloud_vpc resource.
+                          URI of the VPC to attach this CloudServer to. Reference the `uri` attribute of an `arubacloud_vpc` resource.
                         type: string
                     type: object
                   projectId:
                     description: |-
-                      (String) Project ID
-                      Project ID
+                      (String) ID of the project that owns this resource.
+                      ID of the project that owns this resource.
                     type: string
                   settings:
-                    description: (Attributes) Cloud server settings (see below for
-                      nested schema)
+                    description: (Attributes) Compute and access settings for the
+                      CloudServer. (see below for nested schema)
                     properties:
                       flavorName:
                         description: |-
-                          flavors
-                          Flavor name (e.g., CSO4A8 for 4 CPU, 8GB RAM). See https://api.arubacloud.com/docs/metadata/#cloudserver-flavors
+                          (String) Compute flavour name (e.g., CSO4A8 for 4 vCPU / 8 GB RAM). See available flavours.
+                          Compute flavour name (e.g., `CSO4A8` for 4 vCPU / 8 GB RAM). See [available flavours](https://api.arubacloud.com/docs/metadata/#cloudserver-flavors).
                         type: string
                       keyPairUriRef:
                         description: |-
-                          (String) Key Pair URI reference (e.g., arubacloud_keypair.example.uri)
-                          Key Pair URI reference (e.g., arubacloud_keypair.example.uri)
+                          (String) URI of the SSH key pair to inject at boot. Reference the uri attribute of an arubacloud_keypair resource.
+                          URI of the SSH key pair to inject at boot. Reference the `uri` attribute of an `arubacloud_keypair` resource.
                         type: string
                       userDataSecretRef:
                         description: |-
-                          Init user data (raw YAML content)
-                          Cloud-Init user data (raw YAML content)
+                          Init configuration passed verbatim to the instance at first boot (raw YAML or shell-script). Write-only — this value is sent to the API but is not returned in subsequent read responses.
+                          Cloud-Init configuration passed verbatim to the instance at first boot (raw YAML or shell-script). Write-only — this value is sent to the API but is not returned in subsequent read responses.
                         properties:
                           key:
                             description: The key to select.
@@ -152,26 +152,26 @@ spec:
                         type: object
                     type: object
                   storage:
-                    description: (Attributes) Storage configuration for the cloud
-                      server (see below for nested schema)
+                    description: (Attributes) Storage configuration for the CloudServer.
+                      (see below for nested schema)
                     properties:
                       bootVolumeUriRef:
                         description: |-
-                          (String) Boot volume URI reference (e.g., arubacloud_blockstorage.example.uri)
-                          Boot volume URI reference (e.g., arubacloud_blockstorage.example.uri)
+                          (String) URI of the bootable block storage volume. Reference the uri attribute of an arubacloud_blockstorage resource (must be bootable).
+                          URI of the bootable block storage volume. Reference the `uri` attribute of an `arubacloud_blockstorage` resource (must be bootable).
                         type: string
                     type: object
                   tags:
                     description: |-
-                      (List of String) List of tags for the Cloud Server
-                      List of tags for the Cloud Server
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
                   zone:
                     description: |-
-                      (String) Zone
-                      Zone
+                      1). See available zones.
+                      Availability zone within the region (e.g., `ITBG-1`). See [available zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
                     type: string
                 required:
                 - location
@@ -197,66 +197,66 @@ spec:
                 properties:
                   location:
                     description: |-
-                      (String) CloudServer location
-                      CloudServer location
+                      Bergamo). See the available locations and zones.
+                      Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
                     type: string
                   name:
                     description: |-
-                      (String) CloudServer name
-                      CloudServer name
+                      (String) Display name for the CloudServer.
+                      Display name for the CloudServer.
                     type: string
                   network:
-                    description: (Attributes) Network configuration for the cloud
-                      server (see below for nested schema)
+                    description: (Attributes) Network configuration for the CloudServer.
+                      (see below for nested schema)
                     properties:
                       elasticIpUriRef:
                         description: |-
-                          (String) Elastic IP URI reference (e.g., arubacloud_elasticip.example.uri)
-                          Elastic IP URI reference (e.g., arubacloud_elasticip.example.uri)
+                          (String) URI of an Elastic IP to associate with this CloudServer. Reference the uri attribute of an arubacloud_elasticip resource. Optional — omit to use a dynamic IP.
+                          URI of an Elastic IP to associate with this CloudServer. Reference the `uri` attribute of an `arubacloud_elasticip` resource. Optional — omit to use a dynamic IP.
                         type: string
                       securitygroupUriRefs:
                         description: |-
-                          (List of String) List of security group URI references (e.g., [arubacloud_securitygroup.example.uri])
-                          List of security group URI references (e.g., [arubacloud_securitygroup.example.uri])
+                          (List of String) List of security group URIs to apply to this CloudServer. Reference the uri attribute of each arubacloud_securitygroup resource.
+                          List of security group URIs to apply to this CloudServer. Reference the `uri` attribute of each `arubacloud_securitygroup` resource.
                         items:
                           type: string
                         type: array
                       subnetUriRefs:
                         description: |-
-                          (List of String) List of subnet URI references (e.g., [arubacloud_subnet.example.uri])
-                          List of subnet URI references (e.g., [arubacloud_subnet.example.uri])
+                          (List of String) List of subnet URIs to attach this CloudServer to. Reference the uri attribute of each arubacloud_subnet resource.
+                          List of subnet URIs to attach this CloudServer to. Reference the `uri` attribute of each `arubacloud_subnet` resource.
                         items:
                           type: string
                         type: array
                       vpcUriRef:
                         description: |-
-                          (String) VPC URI reference (e.g., arubacloud_vpc.example.uri)
-                          VPC URI reference (e.g., arubacloud_vpc.example.uri)
+                          (String) URI of the VPC to attach this CloudServer to. Reference the uri attribute of an arubacloud_vpc resource.
+                          URI of the VPC to attach this CloudServer to. Reference the `uri` attribute of an `arubacloud_vpc` resource.
                         type: string
                     type: object
                   projectId:
                     description: |-
-                      (String) Project ID
-                      Project ID
+                      (String) ID of the project that owns this resource.
+                      ID of the project that owns this resource.
                     type: string
                   settings:
-                    description: (Attributes) Cloud server settings (see below for
-                      nested schema)
+                    description: (Attributes) Compute and access settings for the
+                      CloudServer. (see below for nested schema)
                     properties:
                       flavorName:
                         description: |-
-                          flavors
-                          Flavor name (e.g., CSO4A8 for 4 CPU, 8GB RAM). See https://api.arubacloud.com/docs/metadata/#cloudserver-flavors
+                          (String) Compute flavour name (e.g., CSO4A8 for 4 vCPU / 8 GB RAM). See available flavours.
+                          Compute flavour name (e.g., `CSO4A8` for 4 vCPU / 8 GB RAM). See [available flavours](https://api.arubacloud.com/docs/metadata/#cloudserver-flavors).
                         type: string
                       keyPairUriRef:
                         description: |-
-                          (String) Key Pair URI reference (e.g., arubacloud_keypair.example.uri)
-                          Key Pair URI reference (e.g., arubacloud_keypair.example.uri)
+                          (String) URI of the SSH key pair to inject at boot. Reference the uri attribute of an arubacloud_keypair resource.
+                          URI of the SSH key pair to inject at boot. Reference the `uri` attribute of an `arubacloud_keypair` resource.
                         type: string
                       userDataSecretRef:
                         description: |-
-                          Init user data (raw YAML content)
-                          Cloud-Init user data (raw YAML content)
+                          Init configuration passed verbatim to the instance at first boot (raw YAML or shell-script). Write-only — this value is sent to the API but is not returned in subsequent read responses.
+                          Cloud-Init configuration passed verbatim to the instance at first boot (raw YAML or shell-script). Write-only — this value is sent to the API but is not returned in subsequent read responses.
                         properties:
                           key:
                             description: The key to select.
@@ -274,26 +274,26 @@ spec:
                         type: object
                     type: object
                   storage:
-                    description: (Attributes) Storage configuration for the cloud
-                      server (see below for nested schema)
+                    description: (Attributes) Storage configuration for the CloudServer.
+                      (see below for nested schema)
                     properties:
                       bootVolumeUriRef:
                         description: |-
-                          (String) Boot volume URI reference (e.g., arubacloud_blockstorage.example.uri)
-                          Boot volume URI reference (e.g., arubacloud_blockstorage.example.uri)
+                          (String) URI of the bootable block storage volume. Reference the uri attribute of an arubacloud_blockstorage resource (must be bootable).
+                          URI of the bootable block storage volume. Reference the `uri` attribute of an `arubacloud_blockstorage` resource (must be bootable).
                         type: string
                     type: object
                   tags:
                     description: |-
-                      (List of String) List of tags for the Cloud Server
-                      List of tags for the Cloud Server
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
                   zone:
                     description: |-
-                      (String) Zone
-                      Zone
+                      1). See available zones.
+                      Availability zone within the region (e.g., `ITBG-1`). See [available zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
                     type: string
                 type: object
               managementPolicies:
@@ -417,93 +417,94 @@ spec:
               atProvider:
                 properties:
                   id:
-                    description: (String) CloudServer identifier
+                    description: (String) Computed by the API. Unique identifier for
+                      the resource.
                     type: string
                   location:
                     description: |-
-                      (String) CloudServer location
-                      CloudServer location
+                      Bergamo). See the available locations and zones.
+                      Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
                     type: string
                   name:
                     description: |-
-                      (String) CloudServer name
-                      CloudServer name
+                      (String) Display name for the CloudServer.
+                      Display name for the CloudServer.
                     type: string
                   network:
-                    description: (Attributes) Network configuration for the cloud
-                      server (see below for nested schema)
+                    description: (Attributes) Network configuration for the CloudServer.
+                      (see below for nested schema)
                     properties:
                       elasticIpUriRef:
                         description: |-
-                          (String) Elastic IP URI reference (e.g., arubacloud_elasticip.example.uri)
-                          Elastic IP URI reference (e.g., arubacloud_elasticip.example.uri)
+                          (String) URI of an Elastic IP to associate with this CloudServer. Reference the uri attribute of an arubacloud_elasticip resource. Optional — omit to use a dynamic IP.
+                          URI of an Elastic IP to associate with this CloudServer. Reference the `uri` attribute of an `arubacloud_elasticip` resource. Optional — omit to use a dynamic IP.
                         type: string
                       securitygroupUriRefs:
                         description: |-
-                          (List of String) List of security group URI references (e.g., [arubacloud_securitygroup.example.uri])
-                          List of security group URI references (e.g., [arubacloud_securitygroup.example.uri])
+                          (List of String) List of security group URIs to apply to this CloudServer. Reference the uri attribute of each arubacloud_securitygroup resource.
+                          List of security group URIs to apply to this CloudServer. Reference the `uri` attribute of each `arubacloud_securitygroup` resource.
                         items:
                           type: string
                         type: array
                       subnetUriRefs:
                         description: |-
-                          (List of String) List of subnet URI references (e.g., [arubacloud_subnet.example.uri])
-                          List of subnet URI references (e.g., [arubacloud_subnet.example.uri])
+                          (List of String) List of subnet URIs to attach this CloudServer to. Reference the uri attribute of each arubacloud_subnet resource.
+                          List of subnet URIs to attach this CloudServer to. Reference the `uri` attribute of each `arubacloud_subnet` resource.
                         items:
                           type: string
                         type: array
                       vpcUriRef:
                         description: |-
-                          (String) VPC URI reference (e.g., arubacloud_vpc.example.uri)
-                          VPC URI reference (e.g., arubacloud_vpc.example.uri)
+                          (String) URI of the VPC to attach this CloudServer to. Reference the uri attribute of an arubacloud_vpc resource.
+                          URI of the VPC to attach this CloudServer to. Reference the `uri` attribute of an `arubacloud_vpc` resource.
                         type: string
                     type: object
                   projectId:
                     description: |-
-                      (String) Project ID
-                      Project ID
+                      (String) ID of the project that owns this resource.
+                      ID of the project that owns this resource.
                     type: string
                   settings:
-                    description: (Attributes) Cloud server settings (see below for
-                      nested schema)
+                    description: (Attributes) Compute and access settings for the
+                      CloudServer. (see below for nested schema)
                     properties:
                       flavorName:
                         description: |-
-                          flavors
-                          Flavor name (e.g., CSO4A8 for 4 CPU, 8GB RAM). See https://api.arubacloud.com/docs/metadata/#cloudserver-flavors
+                          (String) Compute flavour name (e.g., CSO4A8 for 4 vCPU / 8 GB RAM). See available flavours.
+                          Compute flavour name (e.g., `CSO4A8` for 4 vCPU / 8 GB RAM). See [available flavours](https://api.arubacloud.com/docs/metadata/#cloudserver-flavors).
                         type: string
                       keyPairUriRef:
                         description: |-
-                          (String) Key Pair URI reference (e.g., arubacloud_keypair.example.uri)
-                          Key Pair URI reference (e.g., arubacloud_keypair.example.uri)
+                          (String) URI of the SSH key pair to inject at boot. Reference the uri attribute of an arubacloud_keypair resource.
+                          URI of the SSH key pair to inject at boot. Reference the `uri` attribute of an `arubacloud_keypair` resource.
                         type: string
                     type: object
                   storage:
-                    description: (Attributes) Storage configuration for the cloud
-                      server (see below for nested schema)
+                    description: (Attributes) Storage configuration for the CloudServer.
+                      (see below for nested schema)
                     properties:
                       bootVolumeUriRef:
                         description: |-
-                          (String) Boot volume URI reference (e.g., arubacloud_blockstorage.example.uri)
-                          Boot volume URI reference (e.g., arubacloud_blockstorage.example.uri)
+                          (String) URI of the bootable block storage volume. Reference the uri attribute of an arubacloud_blockstorage resource (must be bootable).
+                          URI of the bootable block storage volume. Reference the `uri` attribute of an `arubacloud_blockstorage` resource (must be bootable).
                         type: string
                     type: object
                   tags:
                     description: |-
-                      (List of String) List of tags for the Cloud Server
-                      List of tags for the Cloud Server
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
                   uri:
                     description: |-
-                      (String) CloudServer URI
-                      CloudServer URI
+                      (String) Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a *_uri_ref attribute).
+                      Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a `*_uri_ref` attribute).
                     type: string
                   zone:
                     description: |-
-                      (String) Zone
-                      Zone
+                      1). See available zones.
+                      Availability zone within the region (e.g., `ITBG-1`). See [available zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
                     type: string
                 type: object
               conditions:

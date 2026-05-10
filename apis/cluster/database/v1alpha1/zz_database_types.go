@@ -15,55 +15,55 @@ import (
 
 type DatabaseInitParameters struct {
 
-	// (String) DBaaS ID this database belongs to
-	// DBaaS ID this database belongs to
+	// (String) ID of the parent DBaaS cluster this database belongs to.
+	// ID of the parent DBaaS cluster this database belongs to.
 	DbaasID *string `json:"dbaasId,omitempty" tf:"dbaas_id,omitempty"`
 
-	// (String) Database name
-	// Database name
+	// (String) Display name for the database.
+	// Display name for the database.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID of the project this database belongs to
-	// ID of the project this database belongs to
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 }
 
 type DatabaseObservation struct {
 
-	// (String) DBaaS ID this database belongs to
-	// DBaaS ID this database belongs to
+	// (String) ID of the parent DBaaS cluster this database belongs to.
+	// ID of the parent DBaaS cluster this database belongs to.
 	DbaasID *string `json:"dbaasId,omitempty" tf:"dbaas_id,omitempty"`
 
-	// (String) Database identifier (same as name)
+	// (String) Computed by the API. Unique identifier for the resource (same as the database name).
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// (String) Database name
-	// Database name
+	// (String) Display name for the database.
+	// Display name for the database.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID of the project this database belongs to
-	// ID of the project this database belongs to
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (String) Database URI
-	// Database URI
+	// (String) Computed by the API. Full resource URI used as a reference value in other resources.
+	// Computed by the API. Full resource URI used as a reference value in other resources.
 	URI *string `json:"uri,omitempty" tf:"uri,omitempty"`
 }
 
 type DatabaseParameters struct {
 
-	// (String) DBaaS ID this database belongs to
-	// DBaaS ID this database belongs to
+	// (String) ID of the parent DBaaS cluster this database belongs to.
+	// ID of the parent DBaaS cluster this database belongs to.
 	// +kubebuilder:validation:Required
 	DbaasID *string `json:"dbaasId,omitempty" tf:"dbaas_id,omitempty"`
 
-	// (String) Database name
-	// Database name
+	// (String) Display name for the database.
+	// Display name for the database.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID of the project this database belongs to
-	// ID of the project this database belongs to
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 }
@@ -95,7 +95,7 @@ type DatabaseStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// Database is the Schema for the Databases API. Manages an ArubaCloud Database.
+// Database is the Schema for the Databases API. Manages a logical database within an ArubaCloud DBaaS cluster.
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

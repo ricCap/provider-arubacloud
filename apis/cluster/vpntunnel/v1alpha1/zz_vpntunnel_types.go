@@ -15,512 +15,512 @@ import (
 
 type EspInitParameters struct {
 
-	// (String) ESP encryption algorithm
-	// ESP encryption algorithm
+	// (String) ESP encryption algorithm (e.g., aes256).
+	// ESP encryption algorithm (e.g., `aes256`).
 	Encryption *string `json:"encryption,omitempty" tf:"encryption,omitempty"`
 
-	// (String) ESP hash algorithm
-	// ESP hash algorithm
+	// (String) ESP integrity/hash algorithm (e.g., sha256).
+	// ESP integrity/hash algorithm (e.g., `sha256`).
 	Hash *string `json:"hash,omitempty" tf:"hash,omitempty"`
 
-	// (Number) ESP lifetime
-	// ESP lifetime
+	// 2 lifetime in seconds.
+	// ESP phase-2 lifetime in seconds.
 	Lifetime *float64 `json:"lifetime,omitempty" tf:"lifetime,omitempty"`
 
-	// (String) ESP PFS
-	// ESP PFS
+	// (String) ESP Perfect Forward Secrecy group (e.g., modp2048).
+	// ESP Perfect Forward Secrecy group (e.g., `modp2048`).
 	Pfs *string `json:"pfs,omitempty" tf:"pfs,omitempty"`
 }
 
 type EspObservation struct {
 
-	// (String) ESP encryption algorithm
-	// ESP encryption algorithm
+	// (String) ESP encryption algorithm (e.g., aes256).
+	// ESP encryption algorithm (e.g., `aes256`).
 	Encryption *string `json:"encryption,omitempty" tf:"encryption,omitempty"`
 
-	// (String) ESP hash algorithm
-	// ESP hash algorithm
+	// (String) ESP integrity/hash algorithm (e.g., sha256).
+	// ESP integrity/hash algorithm (e.g., `sha256`).
 	Hash *string `json:"hash,omitempty" tf:"hash,omitempty"`
 
-	// (Number) ESP lifetime
-	// ESP lifetime
+	// 2 lifetime in seconds.
+	// ESP phase-2 lifetime in seconds.
 	Lifetime *float64 `json:"lifetime,omitempty" tf:"lifetime,omitempty"`
 
-	// (String) ESP PFS
-	// ESP PFS
+	// (String) ESP Perfect Forward Secrecy group (e.g., modp2048).
+	// ESP Perfect Forward Secrecy group (e.g., `modp2048`).
 	Pfs *string `json:"pfs,omitempty" tf:"pfs,omitempty"`
 }
 
 type EspParameters struct {
 
-	// (String) ESP encryption algorithm
-	// ESP encryption algorithm
+	// (String) ESP encryption algorithm (e.g., aes256).
+	// ESP encryption algorithm (e.g., `aes256`).
 	// +kubebuilder:validation:Optional
 	Encryption *string `json:"encryption,omitempty" tf:"encryption,omitempty"`
 
-	// (String) ESP hash algorithm
-	// ESP hash algorithm
+	// (String) ESP integrity/hash algorithm (e.g., sha256).
+	// ESP integrity/hash algorithm (e.g., `sha256`).
 	// +kubebuilder:validation:Optional
 	Hash *string `json:"hash,omitempty" tf:"hash,omitempty"`
 
-	// (Number) ESP lifetime
-	// ESP lifetime
+	// 2 lifetime in seconds.
+	// ESP phase-2 lifetime in seconds.
 	// +kubebuilder:validation:Optional
 	Lifetime *float64 `json:"lifetime,omitempty" tf:"lifetime,omitempty"`
 
-	// (String) ESP PFS
-	// ESP PFS
+	// (String) ESP Perfect Forward Secrecy group (e.g., modp2048).
+	// ESP Perfect Forward Secrecy group (e.g., `modp2048`).
 	// +kubebuilder:validation:Optional
 	Pfs *string `json:"pfs,omitempty" tf:"pfs,omitempty"`
 }
 
 type IPConfigurationsInitParameters struct {
 
-	// (Attributes) Public IP reference (see below for nested schema)
+	// (Attributes) Reference to the elastic public IP assigned to this tunnel. (see below for nested schema)
 	PublicIP *PublicIPInitParameters `json:"publicIp,omitempty" tf:"public_ip,omitempty"`
 
-	// (Attributes) Subnet reference (see below for nested schema)
+	// (Attributes) Reference to the subnet used by this tunnel. (see below for nested schema)
 	Subnet *SubnetInitParameters `json:"subnet,omitempty" tf:"subnet,omitempty"`
 
-	// (Attributes) VPC reference (see below for nested schema)
+	// (Attributes) Reference to the VPC this tunnel is attached to. (see below for nested schema)
 	VPC *VPCInitParameters `json:"vpc,omitempty" tf:"vpc,omitempty"`
 }
 
 type IPConfigurationsObservation struct {
 
-	// (Attributes) Public IP reference (see below for nested schema)
+	// (Attributes) Reference to the elastic public IP assigned to this tunnel. (see below for nested schema)
 	PublicIP *PublicIPObservation `json:"publicIp,omitempty" tf:"public_ip,omitempty"`
 
-	// (Attributes) Subnet reference (see below for nested schema)
+	// (Attributes) Reference to the subnet used by this tunnel. (see below for nested schema)
 	Subnet *SubnetObservation `json:"subnet,omitempty" tf:"subnet,omitempty"`
 
-	// (Attributes) VPC reference (see below for nested schema)
+	// (Attributes) Reference to the VPC this tunnel is attached to. (see below for nested schema)
 	VPC *VPCObservation `json:"vpc,omitempty" tf:"vpc,omitempty"`
 }
 
 type IPConfigurationsParameters struct {
 
-	// (Attributes) Public IP reference (see below for nested schema)
+	// (Attributes) Reference to the elastic public IP assigned to this tunnel. (see below for nested schema)
 	// +kubebuilder:validation:Optional
 	PublicIP *PublicIPParameters `json:"publicIp,omitempty" tf:"public_ip,omitempty"`
 
-	// (Attributes) Subnet reference (see below for nested schema)
+	// (Attributes) Reference to the subnet used by this tunnel. (see below for nested schema)
 	// +kubebuilder:validation:Optional
 	Subnet *SubnetParameters `json:"subnet,omitempty" tf:"subnet,omitempty"`
 
-	// (Attributes) VPC reference (see below for nested schema)
+	// (Attributes) Reference to the VPC this tunnel is attached to. (see below for nested schema)
 	// +kubebuilder:validation:Optional
 	VPC *VPCParameters `json:"vpc,omitempty" tf:"vpc,omitempty"`
 }
 
 type IkeInitParameters struct {
 
-	// (String) IKE DH group
-	// IKE DH group
+	// Hellman group (e.g., modp2048).
+	// IKE Diffie-Hellman group (e.g., `modp2048`).
 	DhGroup *string `json:"dhGroup,omitempty" tf:"dh_group,omitempty"`
 
-	// (String) IKE DPD action
-	// IKE DPD action
+	// (String) Dead Peer Detection action on failure (e.g., restart).
+	// Dead Peer Detection action on failure (e.g., `restart`).
 	DpdAction *string `json:"dpdAction,omitempty" tf:"dpd_action,omitempty"`
 
-	// (Number) IKE DPD interval
-	// IKE DPD interval
+	// alive interval in seconds.
+	// DPD keep-alive interval in seconds.
 	DpdInterval *float64 `json:"dpdInterval,omitempty" tf:"dpd_interval,omitempty"`
 
-	// (Number) IKE DPD timeout
-	// IKE DPD timeout
+	// (Number) DPD timeout before the peer is considered dead, in seconds.
+	// DPD timeout before the peer is considered dead, in seconds.
 	DpdTimeout *float64 `json:"dpdTimeout,omitempty" tf:"dpd_timeout,omitempty"`
 
-	// (String) ESP encryption algorithm
-	// IKE encryption algorithm
+	// (String) ESP encryption algorithm (e.g., aes256).
+	// IKE encryption algorithm (e.g., `aes256`).
 	Encryption *string `json:"encryption,omitempty" tf:"encryption,omitempty"`
 
-	// (String) ESP hash algorithm
-	// IKE hash algorithm
+	// (String) ESP integrity/hash algorithm (e.g., sha256).
+	// IKE integrity/hash algorithm (e.g., `sha256`).
 	Hash *string `json:"hash,omitempty" tf:"hash,omitempty"`
 
-	// (Number) ESP lifetime
-	// IKE lifetime
+	// 2 lifetime in seconds.
+	// IKE phase-1 lifetime in seconds.
 	Lifetime *float64 `json:"lifetime,omitempty" tf:"lifetime,omitempty"`
 }
 
 type IkeObservation struct {
 
-	// (String) IKE DH group
-	// IKE DH group
+	// Hellman group (e.g., modp2048).
+	// IKE Diffie-Hellman group (e.g., `modp2048`).
 	DhGroup *string `json:"dhGroup,omitempty" tf:"dh_group,omitempty"`
 
-	// (String) IKE DPD action
-	// IKE DPD action
+	// (String) Dead Peer Detection action on failure (e.g., restart).
+	// Dead Peer Detection action on failure (e.g., `restart`).
 	DpdAction *string `json:"dpdAction,omitempty" tf:"dpd_action,omitempty"`
 
-	// (Number) IKE DPD interval
-	// IKE DPD interval
+	// alive interval in seconds.
+	// DPD keep-alive interval in seconds.
 	DpdInterval *float64 `json:"dpdInterval,omitempty" tf:"dpd_interval,omitempty"`
 
-	// (Number) IKE DPD timeout
-	// IKE DPD timeout
+	// (Number) DPD timeout before the peer is considered dead, in seconds.
+	// DPD timeout before the peer is considered dead, in seconds.
 	DpdTimeout *float64 `json:"dpdTimeout,omitempty" tf:"dpd_timeout,omitempty"`
 
-	// (String) ESP encryption algorithm
-	// IKE encryption algorithm
+	// (String) ESP encryption algorithm (e.g., aes256).
+	// IKE encryption algorithm (e.g., `aes256`).
 	Encryption *string `json:"encryption,omitempty" tf:"encryption,omitempty"`
 
-	// (String) ESP hash algorithm
-	// IKE hash algorithm
+	// (String) ESP integrity/hash algorithm (e.g., sha256).
+	// IKE integrity/hash algorithm (e.g., `sha256`).
 	Hash *string `json:"hash,omitempty" tf:"hash,omitempty"`
 
-	// (Number) ESP lifetime
-	// IKE lifetime
+	// 2 lifetime in seconds.
+	// IKE phase-1 lifetime in seconds.
 	Lifetime *float64 `json:"lifetime,omitempty" tf:"lifetime,omitempty"`
 }
 
 type IkeParameters struct {
 
-	// (String) IKE DH group
-	// IKE DH group
+	// Hellman group (e.g., modp2048).
+	// IKE Diffie-Hellman group (e.g., `modp2048`).
 	// +kubebuilder:validation:Optional
 	DhGroup *string `json:"dhGroup,omitempty" tf:"dh_group,omitempty"`
 
-	// (String) IKE DPD action
-	// IKE DPD action
+	// (String) Dead Peer Detection action on failure (e.g., restart).
+	// Dead Peer Detection action on failure (e.g., `restart`).
 	// +kubebuilder:validation:Optional
 	DpdAction *string `json:"dpdAction,omitempty" tf:"dpd_action,omitempty"`
 
-	// (Number) IKE DPD interval
-	// IKE DPD interval
+	// alive interval in seconds.
+	// DPD keep-alive interval in seconds.
 	// +kubebuilder:validation:Optional
 	DpdInterval *float64 `json:"dpdInterval,omitempty" tf:"dpd_interval,omitempty"`
 
-	// (Number) IKE DPD timeout
-	// IKE DPD timeout
+	// (Number) DPD timeout before the peer is considered dead, in seconds.
+	// DPD timeout before the peer is considered dead, in seconds.
 	// +kubebuilder:validation:Optional
 	DpdTimeout *float64 `json:"dpdTimeout,omitempty" tf:"dpd_timeout,omitempty"`
 
-	// (String) ESP encryption algorithm
-	// IKE encryption algorithm
+	// (String) ESP encryption algorithm (e.g., aes256).
+	// IKE encryption algorithm (e.g., `aes256`).
 	// +kubebuilder:validation:Optional
 	Encryption *string `json:"encryption,omitempty" tf:"encryption,omitempty"`
 
-	// (String) ESP hash algorithm
-	// IKE hash algorithm
+	// (String) ESP integrity/hash algorithm (e.g., sha256).
+	// IKE integrity/hash algorithm (e.g., `sha256`).
 	// +kubebuilder:validation:Optional
 	Hash *string `json:"hash,omitempty" tf:"hash,omitempty"`
 
-	// (Number) ESP lifetime
-	// IKE lifetime
+	// 2 lifetime in seconds.
+	// IKE phase-1 lifetime in seconds.
 	// +kubebuilder:validation:Optional
 	Lifetime *float64 `json:"lifetime,omitempty" tf:"lifetime,omitempty"`
 }
 
 type PropertiesInitParameters struct {
 
-	// (String) Billing period (Hour, Month, Year)
-	// Billing period (Hour, Month, Year)
+	// (String) Billing cycle for the resource. Accepted values: Hour, Month, Year.
+	// Billing cycle for the resource. Accepted values: `Hour`, `Month`, `Year`.
 	BillingPeriod *string `json:"billingPeriod,omitempty" tf:"billing_period,omitempty"`
 
-	// (Attributes) Network configuration of the VPN tunnel (see below for nested schema)
+	// (Attributes) Network references for the VPN tunnel — VPC, subnet, and public IP. (see below for nested schema)
 	IPConfigurations *IPConfigurationsInitParameters `json:"ipConfigurations,omitempty" tf:"ip_configurations,omitempty"`
 
-	// (String) Protocol of the VPN tunnel (ikev2)
-	// Protocol of the VPN tunnel (ikev2)
+	// (String) IKE protocol version. Accepted values: ikev2.
+	// IKE protocol version. Accepted values: `ikev2`.
 	VPNClientProtocol *string `json:"vpnClientProtocol,omitempty" tf:"vpn_client_protocol,omitempty"`
 
-	// (Attributes) Client settings of the VPN tunnel (see below for nested schema)
+	// (Attributes) IKE/ESP/PSK client settings for the VPN tunnel. (see below for nested schema)
 	VPNClientSettings *VPNClientSettingsInitParameters `json:"vpnClientSettings,omitempty" tf:"vpn_client_settings,omitempty"`
 
-	// To-Site)
-	// Type of VPN tunnel (Site-To-Site)
+	// To-Site.
+	// Type of VPN tunnel. Accepted values: `Site-To-Site`.
 	VPNType *string `json:"vpnType,omitempty" tf:"vpn_type,omitempty"`
 }
 
 type PropertiesObservation struct {
 
-	// (String) Billing period (Hour, Month, Year)
-	// Billing period (Hour, Month, Year)
+	// (String) Billing cycle for the resource. Accepted values: Hour, Month, Year.
+	// Billing cycle for the resource. Accepted values: `Hour`, `Month`, `Year`.
 	BillingPeriod *string `json:"billingPeriod,omitempty" tf:"billing_period,omitempty"`
 
-	// (Attributes) Network configuration of the VPN tunnel (see below for nested schema)
+	// (Attributes) Network references for the VPN tunnel — VPC, subnet, and public IP. (see below for nested schema)
 	IPConfigurations *IPConfigurationsObservation `json:"ipConfigurations,omitempty" tf:"ip_configurations,omitempty"`
 
-	// (String) Protocol of the VPN tunnel (ikev2)
-	// Protocol of the VPN tunnel (ikev2)
+	// (String) IKE protocol version. Accepted values: ikev2.
+	// IKE protocol version. Accepted values: `ikev2`.
 	VPNClientProtocol *string `json:"vpnClientProtocol,omitempty" tf:"vpn_client_protocol,omitempty"`
 
-	// (Attributes) Client settings of the VPN tunnel (see below for nested schema)
+	// (Attributes) IKE/ESP/PSK client settings for the VPN tunnel. (see below for nested schema)
 	VPNClientSettings *VPNClientSettingsObservation `json:"vpnClientSettings,omitempty" tf:"vpn_client_settings,omitempty"`
 
-	// To-Site)
-	// Type of VPN tunnel (Site-To-Site)
+	// To-Site.
+	// Type of VPN tunnel. Accepted values: `Site-To-Site`.
 	VPNType *string `json:"vpnType,omitempty" tf:"vpn_type,omitempty"`
 }
 
 type PropertiesParameters struct {
 
-	// (String) Billing period (Hour, Month, Year)
-	// Billing period (Hour, Month, Year)
+	// (String) Billing cycle for the resource. Accepted values: Hour, Month, Year.
+	// Billing cycle for the resource. Accepted values: `Hour`, `Month`, `Year`.
 	// +kubebuilder:validation:Optional
 	BillingPeriod *string `json:"billingPeriod,omitempty" tf:"billing_period,omitempty"`
 
-	// (Attributes) Network configuration of the VPN tunnel (see below for nested schema)
+	// (Attributes) Network references for the VPN tunnel — VPC, subnet, and public IP. (see below for nested schema)
 	// +kubebuilder:validation:Optional
 	IPConfigurations *IPConfigurationsParameters `json:"ipConfigurations,omitempty" tf:"ip_configurations,omitempty"`
 
-	// (String) Protocol of the VPN tunnel (ikev2)
-	// Protocol of the VPN tunnel (ikev2)
+	// (String) IKE protocol version. Accepted values: ikev2.
+	// IKE protocol version. Accepted values: `ikev2`.
 	// +kubebuilder:validation:Optional
 	VPNClientProtocol *string `json:"vpnClientProtocol,omitempty" tf:"vpn_client_protocol,omitempty"`
 
-	// (Attributes) Client settings of the VPN tunnel (see below for nested schema)
+	// (Attributes) IKE/ESP/PSK client settings for the VPN tunnel. (see below for nested schema)
 	// +kubebuilder:validation:Optional
 	VPNClientSettings *VPNClientSettingsParameters `json:"vpnClientSettings,omitempty" tf:"vpn_client_settings,omitempty"`
 
-	// To-Site)
-	// Type of VPN tunnel (Site-To-Site)
+	// To-Site.
+	// Type of VPN tunnel. Accepted values: `Site-To-Site`.
 	// +kubebuilder:validation:Optional
 	VPNType *string `json:"vpnType,omitempty" tf:"vpn_type,omitempty"`
 }
 
 type PskInitParameters struct {
 
-	// (String) PSK cloud site
-	// PSK cloud site
+	// shared key for the ArubaCloud side of the tunnel.
+	// Pre-shared key for the ArubaCloud side of the tunnel.
 	CloudSite *string `json:"cloudSite,omitempty" tf:"cloud_site,omitempty"`
 
-	// prem site
-	// PSK on-prem site
+	// shared key for the on-premises side of the tunnel.
+	// Pre-shared key for the on-premises side of the tunnel.
 	OnPremSite *string `json:"onPremSite,omitempty" tf:"on_prem_site,omitempty"`
 
-	// (String) PSK secret
-	// PSK secret
+	// — sent to the API but not returned in read responses.
+	// Shared secret used to authenticate the VPN tunnel. Write-only — this value is sent to the API but is not returned in subsequent read responses.
 	Secret *string `json:"secret,omitempty" tf:"secret,omitempty"`
 }
 
 type PskObservation struct {
 
-	// (String) PSK cloud site
-	// PSK cloud site
+	// shared key for the ArubaCloud side of the tunnel.
+	// Pre-shared key for the ArubaCloud side of the tunnel.
 	CloudSite *string `json:"cloudSite,omitempty" tf:"cloud_site,omitempty"`
 
-	// prem site
-	// PSK on-prem site
+	// shared key for the on-premises side of the tunnel.
+	// Pre-shared key for the on-premises side of the tunnel.
 	OnPremSite *string `json:"onPremSite,omitempty" tf:"on_prem_site,omitempty"`
 
-	// (String) PSK secret
-	// PSK secret
+	// — sent to the API but not returned in read responses.
+	// Shared secret used to authenticate the VPN tunnel. Write-only — this value is sent to the API but is not returned in subsequent read responses.
 	Secret *string `json:"secret,omitempty" tf:"secret,omitempty"`
 }
 
 type PskParameters struct {
 
-	// (String) PSK cloud site
-	// PSK cloud site
+	// shared key for the ArubaCloud side of the tunnel.
+	// Pre-shared key for the ArubaCloud side of the tunnel.
 	// +kubebuilder:validation:Optional
 	CloudSite *string `json:"cloudSite,omitempty" tf:"cloud_site,omitempty"`
 
-	// prem site
-	// PSK on-prem site
+	// shared key for the on-premises side of the tunnel.
+	// Pre-shared key for the on-premises side of the tunnel.
 	// +kubebuilder:validation:Optional
 	OnPremSite *string `json:"onPremSite,omitempty" tf:"on_prem_site,omitempty"`
 
-	// (String) PSK secret
-	// PSK secret
+	// — sent to the API but not returned in read responses.
+	// Shared secret used to authenticate the VPN tunnel. Write-only — this value is sent to the API but is not returned in subsequent read responses.
 	// +kubebuilder:validation:Optional
 	Secret *string `json:"secret,omitempty" tf:"secret,omitempty"`
 }
 
 type PublicIPInitParameters struct {
 
-	// (String) VPN Tunnel identifier
-	// Public IP id
+	// (String) Computed by the API. Unique identifier for the resource.
+	// ID of the elastic public IP.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 }
 
 type PublicIPObservation struct {
 
-	// (String) VPN Tunnel identifier
-	// Public IP id
+	// (String) Computed by the API. Unique identifier for the resource.
+	// ID of the elastic public IP.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 }
 
 type PublicIPParameters struct {
 
-	// (String) VPN Tunnel identifier
-	// Public IP id
+	// (String) Computed by the API. Unique identifier for the resource.
+	// ID of the elastic public IP.
 	// +kubebuilder:validation:Optional
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 }
 
 type SubnetInitParameters struct {
 
-	// (String) VPN Tunnel identifier
-	// Subnet id
+	// (String) Computed by the API. Unique identifier for the resource.
+	// ID of the subnet.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 }
 
 type SubnetObservation struct {
 
-	// (String) VPN Tunnel identifier
-	// Subnet id
+	// (String) Computed by the API. Unique identifier for the resource.
+	// ID of the subnet.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 }
 
 type SubnetParameters struct {
 
-	// (String) VPN Tunnel identifier
-	// Subnet id
+	// (String) Computed by the API. Unique identifier for the resource.
+	// ID of the subnet.
 	// +kubebuilder:validation:Optional
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 }
 
 type VPCInitParameters struct {
 
-	// (String) VPN Tunnel identifier
-	// VPC id
+	// (String) Computed by the API. Unique identifier for the resource.
+	// ID of the VPC.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 }
 
 type VPCObservation struct {
 
-	// (String) VPN Tunnel identifier
-	// VPC id
+	// (String) Computed by the API. Unique identifier for the resource.
+	// ID of the VPC.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 }
 
 type VPCParameters struct {
 
-	// (String) VPN Tunnel identifier
-	// VPC id
+	// (String) Computed by the API. Unique identifier for the resource.
+	// ID of the VPC.
 	// +kubebuilder:validation:Optional
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 }
 
 type VPNClientSettingsInitParameters struct {
 
-	// (Attributes) ESP settings (see below for nested schema)
+	// 2 settings. (see below for nested schema)
 	Esp *EspInitParameters `json:"esp,omitempty" tf:"esp,omitempty"`
 
-	// (Attributes) IKE settings (see below for nested schema)
+	// 1 settings. (see below for nested schema)
 	Ike *IkeInitParameters `json:"ike,omitempty" tf:"ike,omitempty"`
 
-	// (String) Peer client public IP address
-	// Peer client public IP address
+	// premises gateway).
+	// Public IP address of the remote peer (on-premises gateway).
 	PeerClientPublicIP *string `json:"peerClientPublicIp,omitempty" tf:"peer_client_public_ip,omitempty"`
 
-	// (Attributes) PSK settings (see below for nested schema)
+	// Shared Key (PSK) authentication settings. (see below for nested schema)
 	Psk *PskInitParameters `json:"psk,omitempty" tf:"psk,omitempty"`
 }
 
 type VPNClientSettingsObservation struct {
 
-	// (Attributes) ESP settings (see below for nested schema)
+	// 2 settings. (see below for nested schema)
 	Esp *EspObservation `json:"esp,omitempty" tf:"esp,omitempty"`
 
-	// (Attributes) IKE settings (see below for nested schema)
+	// 1 settings. (see below for nested schema)
 	Ike *IkeObservation `json:"ike,omitempty" tf:"ike,omitempty"`
 
-	// (String) Peer client public IP address
-	// Peer client public IP address
+	// premises gateway).
+	// Public IP address of the remote peer (on-premises gateway).
 	PeerClientPublicIP *string `json:"peerClientPublicIp,omitempty" tf:"peer_client_public_ip,omitempty"`
 
-	// (Attributes) PSK settings (see below for nested schema)
+	// Shared Key (PSK) authentication settings. (see below for nested schema)
 	Psk *PskObservation `json:"psk,omitempty" tf:"psk,omitempty"`
 }
 
 type VPNClientSettingsParameters struct {
 
-	// (Attributes) ESP settings (see below for nested schema)
+	// 2 settings. (see below for nested schema)
 	// +kubebuilder:validation:Optional
 	Esp *EspParameters `json:"esp,omitempty" tf:"esp,omitempty"`
 
-	// (Attributes) IKE settings (see below for nested schema)
+	// 1 settings. (see below for nested schema)
 	// +kubebuilder:validation:Optional
 	Ike *IkeParameters `json:"ike,omitempty" tf:"ike,omitempty"`
 
-	// (String) Peer client public IP address
-	// Peer client public IP address
+	// premises gateway).
+	// Public IP address of the remote peer (on-premises gateway).
 	// +kubebuilder:validation:Optional
 	PeerClientPublicIP *string `json:"peerClientPublicIp,omitempty" tf:"peer_client_public_ip,omitempty"`
 
-	// (Attributes) PSK settings (see below for nested schema)
+	// Shared Key (PSK) authentication settings. (see below for nested schema)
 	// +kubebuilder:validation:Optional
 	Psk *PskParameters `json:"psk,omitempty" tf:"psk,omitempty"`
 }
 
 type VPNTunnelInitParameters struct {
 
-	// (String) VPN Tunnel location
-	// VPN Tunnel location
+	// Bergamo). See the available locations and zones.
+	// Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) VPN Tunnel name
-	// VPN Tunnel name
+	// (String) Display name for the VPN tunnel.
+	// Display name for the VPN tunnel.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID of the project this VPN Tunnel belongs to
-	// ID of the project this VPN Tunnel belongs to
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (Attributes) Properties of the VPN Tunnel (see below for nested schema)
+	// (Attributes) Configuration properties for the VPN tunnel. (see below for nested schema)
 	Properties *PropertiesInitParameters `json:"properties,omitempty" tf:"properties,omitempty"`
 
-	// (List of String) List of tags for the VPN Tunnel
-	// List of tags for the VPN Tunnel
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 }
 
 type VPNTunnelObservation struct {
 
-	// (String) VPN Tunnel identifier
+	// (String) Computed by the API. Unique identifier for the resource.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// (String) VPN Tunnel location
-	// VPN Tunnel location
+	// Bergamo). See the available locations and zones.
+	// Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) VPN Tunnel name
-	// VPN Tunnel name
+	// (String) Display name for the VPN tunnel.
+	// Display name for the VPN tunnel.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID of the project this VPN Tunnel belongs to
-	// ID of the project this VPN Tunnel belongs to
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (Attributes) Properties of the VPN Tunnel (see below for nested schema)
+	// (Attributes) Configuration properties for the VPN tunnel. (see below for nested schema)
 	Properties *PropertiesObservation `json:"properties,omitempty" tf:"properties,omitempty"`
 
-	// (List of String) List of tags for the VPN Tunnel
-	// List of tags for the VPN Tunnel
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String) VPN Tunnel URI
-	// VPN Tunnel URI
+	// (String) Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a *_uri_ref attribute).
+	// Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a `*_uri_ref` attribute).
 	URI *string `json:"uri,omitempty" tf:"uri,omitempty"`
 }
 
 type VPNTunnelParameters struct {
 
-	// (String) VPN Tunnel location
-	// VPN Tunnel location
+	// Bergamo). See the available locations and zones.
+	// Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
 	// +kubebuilder:validation:Required
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) VPN Tunnel name
-	// VPN Tunnel name
+	// (String) Display name for the VPN tunnel.
+	// Display name for the VPN tunnel.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID of the project this VPN Tunnel belongs to
-	// ID of the project this VPN Tunnel belongs to
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (Attributes) Properties of the VPN Tunnel (see below for nested schema)
+	// (Attributes) Configuration properties for the VPN tunnel. (see below for nested schema)
 	// +kubebuilder:validation:Required
 	Properties *PropertiesParameters `json:"properties,omitempty" tf:"properties,omitempty"`
 
-	// (List of String) List of tags for the VPN Tunnel
-	// List of tags for the VPN Tunnel
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	// +kubebuilder:validation:Optional
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 }
@@ -552,7 +552,7 @@ type VPNTunnelStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// VPNTunnel is the Schema for the VPNTunnels API. Retrieves an ArubaCloud VPN Tunnel.
+// VPNTunnel is the Schema for the VPNTunnels API. Manages an ArubaCloud VPN Tunnel — an IPSec site-to-site VPN connection between an ArubaCloud VPC and an external network.
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

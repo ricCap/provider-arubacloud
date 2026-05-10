@@ -16,146 +16,146 @@ import (
 
 type BlockStorageInitParameters struct {
 
-	// (String) Billing period (Hour, Month, Year)
-	// Billing period (Hour, Month, Year)
+	// (String) Billing cycle. Accepted values: Hour, Month, Year.
+	// Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
 	BillingPeriod *string `json:"billingPeriod,omitempty" tf:"billing_period,omitempty"`
 
-	// (Boolean) Whether the block storage is bootable. Must be set to true along with image to create a bootable disk.
-	// Whether the block storage is bootable. Must be set to true along with image to create a bootable disk.
+	// (Boolean) Whether this volume can be used as a boot volume for an arubacloud_cloudserver. Must be true when image is set.
+	// Whether this volume can be used as a boot volume for an `arubacloud_cloudserver`. Must be `true` when `image` is set.
 	Bootable *bool `json:"bootable,omitempty" tf:"bootable,omitempty"`
 
-	// (String) Image ID for bootable block storage. Required when bootable is true. See available images for a list of supported image IDs.
-	// Image ID for bootable block storage. Required when bootable is true. See [available images](https://api.arubacloud.com/docs/metadata/#cloud-server-bootvolume) for a list of supported image IDs.
+	// (String) Image ID to use when creating a bootable volume. Required when bootable is true. See the available images.
+	// Image ID to use when creating a bootable volume. Required when `bootable` is `true`. See the [available images](https://api.arubacloud.com/docs/metadata/#cloud-server-bootvolume).
 	Image *string `json:"image,omitempty" tf:"image,omitempty"`
 
-	// (String) Block Storage location/region
-	// Block Storage location/region
+	// Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) Block Storage name
-	// Block Storage name
+	// (String) Display name for the block storage volume.
+	// Display name for the block storage volume.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID of the project this Block Storage belongs to
-	// ID of the project this Block Storage belongs to
+	// created.)
+	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (Number) Size of the block storage in GB
-	// Size of the block storage in GB
+	// (Number) Size of the block storage volume in GiB. Must be a positive integer.
+	// Size of the block storage volume in GiB. Must be a positive integer.
 	SizeGb *float64 `json:"sizeGb,omitempty" tf:"size_gb,omitempty"`
 
-	// (List of String) List of tags for the block storage
-	// List of tags for the block storage
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String) Type of block storage (Standard, Performance)
-	// Type of block storage (Standard, Performance)
+	// (String) Storage type. Accepted values: Standard, Performance.
+	// Storage type. Accepted values: `Standard`, `Performance`.
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 
-	// (String) Zone where blockstorage will be created. If not specified, the block storage will be regional (available across all zones in the location). If specified, the block storage will be zonal (tied to a specific zone).
-	// Zone where blockstorage will be created. If not specified, the block storage will be regional (available across all zones in the location). If specified, the block storage will be zonal (tied to a specific zone).
+	// (String) Availability zone within the region. If omitted the volume is regional (accessible across all zones).
+	// Availability zone within the region. If omitted the volume is regional (accessible across all zones).
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
 
 type BlockStorageObservation struct {
 
-	// (String) Billing period (Hour, Month, Year)
-	// Billing period (Hour, Month, Year)
+	// (String) Billing cycle. Accepted values: Hour, Month, Year.
+	// Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
 	BillingPeriod *string `json:"billingPeriod,omitempty" tf:"billing_period,omitempty"`
 
-	// (Boolean) Whether the block storage is bootable. Must be set to true along with image to create a bootable disk.
-	// Whether the block storage is bootable. Must be set to true along with image to create a bootable disk.
+	// (Boolean) Whether this volume can be used as a boot volume for an arubacloud_cloudserver. Must be true when image is set.
+	// Whether this volume can be used as a boot volume for an `arubacloud_cloudserver`. Must be `true` when `image` is set.
 	Bootable *bool `json:"bootable,omitempty" tf:"bootable,omitempty"`
 
-	// (String) Block Storage identifier
+	// (String) Computed by the API. Unique identifier for the resource.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// (String) Image ID for bootable block storage. Required when bootable is true. See available images for a list of supported image IDs.
-	// Image ID for bootable block storage. Required when bootable is true. See [available images](https://api.arubacloud.com/docs/metadata/#cloud-server-bootvolume) for a list of supported image IDs.
+	// (String) Image ID to use when creating a bootable volume. Required when bootable is true. See the available images.
+	// Image ID to use when creating a bootable volume. Required when `bootable` is `true`. See the [available images](https://api.arubacloud.com/docs/metadata/#cloud-server-bootvolume).
 	Image *string `json:"image,omitempty" tf:"image,omitempty"`
 
-	// (String) Block Storage location/region
-	// Block Storage location/region
+	// Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) Block Storage name
-	// Block Storage name
+	// (String) Display name for the block storage volume.
+	// Display name for the block storage volume.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID of the project this Block Storage belongs to
-	// ID of the project this Block Storage belongs to
+	// created.)
+	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (Number) Size of the block storage in GB
-	// Size of the block storage in GB
+	// (Number) Size of the block storage volume in GiB. Must be a positive integer.
+	// Size of the block storage volume in GiB. Must be a positive integer.
 	SizeGb *float64 `json:"sizeGb,omitempty" tf:"size_gb,omitempty"`
 
-	// (List of String) List of tags for the block storage
-	// List of tags for the block storage
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String) Type of block storage (Standard, Performance)
-	// Type of block storage (Standard, Performance)
+	// (String) Storage type. Accepted values: Standard, Performance.
+	// Storage type. Accepted values: `Standard`, `Performance`.
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 
-	// (String) Block Storage URI
-	// Block Storage URI
+	// (String) Computed by the API. Full resource URI used as a reference value in other resources.
+	// Computed by the API. Full resource URI used as a reference value in other resources.
 	URI *string `json:"uri,omitempty" tf:"uri,omitempty"`
 
-	// (String) Zone where blockstorage will be created. If not specified, the block storage will be regional (available across all zones in the location). If specified, the block storage will be zonal (tied to a specific zone).
-	// Zone where blockstorage will be created. If not specified, the block storage will be regional (available across all zones in the location). If specified, the block storage will be zonal (tied to a specific zone).
+	// (String) Availability zone within the region. If omitted the volume is regional (accessible across all zones).
+	// Availability zone within the region. If omitted the volume is regional (accessible across all zones).
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
 
 type BlockStorageParameters struct {
 
-	// (String) Billing period (Hour, Month, Year)
-	// Billing period (Hour, Month, Year)
+	// (String) Billing cycle. Accepted values: Hour, Month, Year.
+	// Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
 	// +kubebuilder:validation:Required
 	BillingPeriod *string `json:"billingPeriod,omitempty" tf:"billing_period,omitempty"`
 
-	// (Boolean) Whether the block storage is bootable. Must be set to true along with image to create a bootable disk.
-	// Whether the block storage is bootable. Must be set to true along with image to create a bootable disk.
+	// (Boolean) Whether this volume can be used as a boot volume for an arubacloud_cloudserver. Must be true when image is set.
+	// Whether this volume can be used as a boot volume for an `arubacloud_cloudserver`. Must be `true` when `image` is set.
 	// +kubebuilder:validation:Optional
 	Bootable *bool `json:"bootable,omitempty" tf:"bootable,omitempty"`
 
-	// (String) Image ID for bootable block storage. Required when bootable is true. See available images for a list of supported image IDs.
-	// Image ID for bootable block storage. Required when bootable is true. See [available images](https://api.arubacloud.com/docs/metadata/#cloud-server-bootvolume) for a list of supported image IDs.
+	// (String) Image ID to use when creating a bootable volume. Required when bootable is true. See the available images.
+	// Image ID to use when creating a bootable volume. Required when `bootable` is `true`. See the [available images](https://api.arubacloud.com/docs/metadata/#cloud-server-bootvolume).
 	// +kubebuilder:validation:Optional
 	Image *string `json:"image,omitempty" tf:"image,omitempty"`
 
-	// (String) Block Storage location/region
-	// Block Storage location/region
+	// Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Required
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) Block Storage name
-	// Block Storage name
+	// (String) Display name for the block storage volume.
+	// Display name for the block storage volume.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID of the project this Block Storage belongs to
-	// ID of the project this Block Storage belongs to
+	// created.)
+	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (Number) Size of the block storage in GB
-	// Size of the block storage in GB
+	// (Number) Size of the block storage volume in GiB. Must be a positive integer.
+	// Size of the block storage volume in GiB. Must be a positive integer.
 	// +kubebuilder:validation:Required
 	SizeGb *float64 `json:"sizeGb,omitempty" tf:"size_gb,omitempty"`
 
-	// (List of String) List of tags for the block storage
-	// List of tags for the block storage
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	// +kubebuilder:validation:Optional
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String) Type of block storage (Standard, Performance)
-	// Type of block storage (Standard, Performance)
+	// (String) Storage type. Accepted values: Standard, Performance.
+	// Storage type. Accepted values: `Standard`, `Performance`.
 	// +kubebuilder:validation:Required
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 
-	// (String) Zone where blockstorage will be created. If not specified, the block storage will be regional (available across all zones in the location). If specified, the block storage will be zonal (tied to a specific zone).
-	// Zone where blockstorage will be created. If not specified, the block storage will be regional (available across all zones in the location). If specified, the block storage will be zonal (tied to a specific zone).
+	// (String) Availability zone within the region. If omitted the volume is regional (accessible across all zones).
+	// Availability zone within the region. If omitted the volume is regional (accessible across all zones).
 	// +kubebuilder:validation:Optional
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
@@ -187,7 +187,7 @@ type BlockStorageStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// BlockStorage is the Schema for the BlockStorages API. Manages an ArubaCloud Block Storage.
+// BlockStorage is the Schema for the BlockStorages API. Manages an ArubaCloud Block Storage volume.
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

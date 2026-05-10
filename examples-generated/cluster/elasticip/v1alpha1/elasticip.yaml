@@ -8,7 +8,7 @@ metadata:
   name: example
 spec:
   forProvider:
-    billingPeriod: hourly
+    billingPeriod: Hour
     location: ITBG-Bergamo
     name: example-elastic-ip
     projectId: your-project-id

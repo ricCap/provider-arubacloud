@@ -16,261 +16,261 @@ import (
 
 type DHCPInitParameters struct {
 
-	// : List of DNS server IP addresses
-	// DNS server addresses
+	// (List of String) List of DNS server IP addresses distributed to DHCP clients.
+	// List of DNS server IP addresses distributed to DHCP clients.
 	DNS []*string `json:"dns,omitempty" tf:"dns,omitempty"`
 
-	// : Boolean to enable/disable DHCP
-	// Enable DHCP
+	// (Boolean) Whether DHCP is enabled on this subnet.
+	// Whether DHCP is enabled on this subnet.
 	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
 
-	// block with:
+	// (Attributes) IP address range allocated to DHCP clients. (see below for nested schema)
 	Range *RangeInitParameters `json:"range,omitempty" tf:"range,omitempty"`
 
-	// : List of DHCP routes with:
+	// (Attributes List) Static routes distributed to DHCP clients. (see below for nested schema)
 	Routes []RoutesInitParameters `json:"routes,omitempty" tf:"routes,omitempty"`
 }
 
 type DHCPObservation struct {
 
-	// : List of DNS server IP addresses
-	// DNS server addresses
+	// (List of String) List of DNS server IP addresses distributed to DHCP clients.
+	// List of DNS server IP addresses distributed to DHCP clients.
 	DNS []*string `json:"dns,omitempty" tf:"dns,omitempty"`
 
-	// : Boolean to enable/disable DHCP
-	// Enable DHCP
+	// (Boolean) Whether DHCP is enabled on this subnet.
+	// Whether DHCP is enabled on this subnet.
 	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
 
-	// block with:
+	// (Attributes) IP address range allocated to DHCP clients. (see below for nested schema)
 	Range *RangeObservation `json:"range,omitempty" tf:"range,omitempty"`
 
-	// : List of DHCP routes with:
+	// (Attributes List) Static routes distributed to DHCP clients. (see below for nested schema)
 	Routes []RoutesObservation `json:"routes,omitempty" tf:"routes,omitempty"`
 }
 
 type DHCPParameters struct {
 
-	// : List of DNS server IP addresses
-	// DNS server addresses
+	// (List of String) List of DNS server IP addresses distributed to DHCP clients.
+	// List of DNS server IP addresses distributed to DHCP clients.
 	// +kubebuilder:validation:Optional
 	DNS []*string `json:"dns,omitempty" tf:"dns,omitempty"`
 
-	// : Boolean to enable/disable DHCP
-	// Enable DHCP
+	// (Boolean) Whether DHCP is enabled on this subnet.
+	// Whether DHCP is enabled on this subnet.
 	// +kubebuilder:validation:Optional
 	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
 
-	// block with:
+	// (Attributes) IP address range allocated to DHCP clients. (see below for nested schema)
 	// +kubebuilder:validation:Optional
 	Range *RangeParameters `json:"range,omitempty" tf:"range,omitempty"`
 
-	// : List of DHCP routes with:
+	// (Attributes List) Static routes distributed to DHCP clients. (see below for nested schema)
 	// +kubebuilder:validation:Optional
 	Routes []RoutesParameters `json:"routes,omitempty" tf:"routes,omitempty"`
 }
 
 type NetworkInitParameters struct {
 
-	// : Network CIDR notation (e.g., "10.0.1.0/24")
-	// Address of the network in CIDR notation (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16)
+	// 1918 notation (e.g., 10.0.1.0/24). Must fall within the parent VPC CIDR.
+	// Subnet CIDR in RFC-1918 notation (e.g., `10.0.1.0/24`). Must fall within the parent VPC CIDR.
 	Address *string `json:"address,omitempty" tf:"address,omitempty"`
 
-	// block
+	// (Attributes) DHCP configuration for the subnet. (see below for nested schema)
 	DHCP *DHCPInitParameters `json:"dhcp,omitempty" tf:"dhcp,omitempty"`
 }
 
 type NetworkObservation struct {
 
-	// : Network CIDR notation (e.g., "10.0.1.0/24")
-	// Address of the network in CIDR notation (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16)
+	// 1918 notation (e.g., 10.0.1.0/24). Must fall within the parent VPC CIDR.
+	// Subnet CIDR in RFC-1918 notation (e.g., `10.0.1.0/24`). Must fall within the parent VPC CIDR.
 	Address *string `json:"address,omitempty" tf:"address,omitempty"`
 
-	// block
+	// (Attributes) DHCP configuration for the subnet. (see below for nested schema)
 	DHCP *DHCPObservation `json:"dhcp,omitempty" tf:"dhcp,omitempty"`
 }
 
 type NetworkParameters struct {
 
-	// : Network CIDR notation (e.g., "10.0.1.0/24")
-	// Address of the network in CIDR notation (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16)
+	// 1918 notation (e.g., 10.0.1.0/24). Must fall within the parent VPC CIDR.
+	// Subnet CIDR in RFC-1918 notation (e.g., `10.0.1.0/24`). Must fall within the parent VPC CIDR.
 	// +kubebuilder:validation:Optional
 	Address *string `json:"address,omitempty" tf:"address,omitempty"`
 
-	// block
+	// (Attributes) DHCP configuration for the subnet. (see below for nested schema)
 	// +kubebuilder:validation:Optional
 	DHCP *DHCPParameters `json:"dhcp,omitempty" tf:"dhcp,omitempty"`
 }
 
 type RangeInitParameters struct {
 
-	// : Number of available IP addresses
-	// Number of available IP addresses
+	// (Number) Number of consecutive IP addresses in the DHCP pool.
+	// Number of consecutive IP addresses in the DHCP pool.
 	Count *float64 `json:"count,omitempty" tf:"count,omitempty"`
 
-	// : Starting IP address for DHCP range
-	// Starting IP address
+	// (String) First IP address in the DHCP allocation range.
+	// First IP address in the DHCP allocation range.
 	Start *string `json:"start,omitempty" tf:"start,omitempty"`
 }
 
 type RangeObservation struct {
 
-	// : Number of available IP addresses
-	// Number of available IP addresses
+	// (Number) Number of consecutive IP addresses in the DHCP pool.
+	// Number of consecutive IP addresses in the DHCP pool.
 	Count *float64 `json:"count,omitempty" tf:"count,omitempty"`
 
-	// : Starting IP address for DHCP range
-	// Starting IP address
+	// (String) First IP address in the DHCP allocation range.
+	// First IP address in the DHCP allocation range.
 	Start *string `json:"start,omitempty" tf:"start,omitempty"`
 }
 
 type RangeParameters struct {
 
-	// : Number of available IP addresses
-	// Number of available IP addresses
+	// (Number) Number of consecutive IP addresses in the DHCP pool.
+	// Number of consecutive IP addresses in the DHCP pool.
 	// +kubebuilder:validation:Optional
 	Count *float64 `json:"count,omitempty" tf:"count,omitempty"`
 
-	// : Starting IP address for DHCP range
-	// Starting IP address
+	// (String) First IP address in the DHCP allocation range.
+	// First IP address in the DHCP allocation range.
 	// +kubebuilder:validation:Optional
 	Start *string `json:"start,omitempty" tf:"start,omitempty"`
 }
 
 type RoutesInitParameters struct {
 
-	// : Network CIDR notation (e.g., "10.0.1.0/24")
-	// Destination network address in CIDR notation (e.g., 0.0.0.0/0)
+	// 1918 notation (e.g., 10.0.1.0/24). Must fall within the parent VPC CIDR.
+	// Destination network in CIDR notation (e.g., `0.0.0.0/0` for a default route).
 	Address *string `json:"address,omitempty" tf:"address,omitempty"`
 
-	// : Gateway IP address for the route
-	// Gateway IP address for the route
+	// (String) Gateway IP address for this route.
+	// Gateway IP address for this route.
 	Gateway *string `json:"gateway,omitempty" tf:"gateway,omitempty"`
 }
 
 type RoutesObservation struct {
 
-	// : Network CIDR notation (e.g., "10.0.1.0/24")
-	// Destination network address in CIDR notation (e.g., 0.0.0.0/0)
+	// 1918 notation (e.g., 10.0.1.0/24). Must fall within the parent VPC CIDR.
+	// Destination network in CIDR notation (e.g., `0.0.0.0/0` for a default route).
 	Address *string `json:"address,omitempty" tf:"address,omitempty"`
 
-	// : Gateway IP address for the route
-	// Gateway IP address for the route
+	// (String) Gateway IP address for this route.
+	// Gateway IP address for this route.
 	Gateway *string `json:"gateway,omitempty" tf:"gateway,omitempty"`
 }
 
 type RoutesParameters struct {
 
-	// : Network CIDR notation (e.g., "10.0.1.0/24")
-	// Destination network address in CIDR notation (e.g., 0.0.0.0/0)
+	// 1918 notation (e.g., 10.0.1.0/24). Must fall within the parent VPC CIDR.
+	// Destination network in CIDR notation (e.g., `0.0.0.0/0` for a default route).
 	// +kubebuilder:validation:Optional
 	Address *string `json:"address,omitempty" tf:"address,omitempty"`
 
-	// : Gateway IP address for the route
-	// Gateway IP address for the route
+	// (String) Gateway IP address for this route.
+	// Gateway IP address for this route.
 	// +kubebuilder:validation:Optional
 	Gateway *string `json:"gateway,omitempty" tf:"gateway,omitempty"`
 }
 
 type SubnetInitParameters struct {
 
-	// (String) Subnet location
-	// Subnet location
+	// Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) Subnet name
-	// Subnet name
+	// (String) Display name for the subnet.
+	// Display name for the subnet.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// block
+	// (Attributes) Network configuration block. Required when type is Advanced. (see below for nested schema)
 	Network *NetworkInitParameters `json:"network,omitempty" tf:"network,omitempty"`
 
-	// (String) ID of the project this subnet belongs to
-	// ID of the project this subnet belongs to
+	// created.)
+	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (List of String) List of tags for the subnet
-	// List of tags for the subnet
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// is set to "Basic", the network block is not required.
-	// Subnet type (Basic or Advanced)
+	// created.)
+	// Subnet type. Accepted values: `Basic` (no custom CIDR), `Advanced` (requires the `network` block). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 
-	// (String) ID of the VPC this subnet belongs to
-	// ID of the VPC this subnet belongs to
+	// created.)
+	// ID of the parent VPC this subnet belongs to. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 }
 
 type SubnetObservation struct {
 
-	// (String) Subnet identifier
+	// (String) Computed by the API. Unique identifier for the resource.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// (String) Subnet location
-	// Subnet location
+	// Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) Subnet name
-	// Subnet name
+	// (String) Display name for the subnet.
+	// Display name for the subnet.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// block
+	// (Attributes) Network configuration block. Required when type is Advanced. (see below for nested schema)
 	Network *NetworkObservation `json:"network,omitempty" tf:"network,omitempty"`
 
-	// (String) ID of the project this subnet belongs to
-	// ID of the project this subnet belongs to
+	// created.)
+	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (List of String) List of tags for the subnet
-	// List of tags for the subnet
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// is set to "Basic", the network block is not required.
-	// Subnet type (Basic or Advanced)
+	// created.)
+	// Subnet type. Accepted values: `Basic` (no custom CIDR), `Advanced` (requires the `network` block). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 
-	// (String) Subnet URI
-	// Subnet URI
+	// (String) Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a *_uri_ref attribute).
+	// Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a `*_uri_ref` attribute).
 	URI *string `json:"uri,omitempty" tf:"uri,omitempty"`
 
-	// (String) ID of the VPC this subnet belongs to
-	// ID of the VPC this subnet belongs to
+	// created.)
+	// ID of the parent VPC this subnet belongs to. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 }
 
 type SubnetParameters struct {
 
-	// (String) Subnet location
-	// Subnet location
+	// Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Required
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) Subnet name
-	// Subnet name
+	// (String) Display name for the subnet.
+	// Display name for the subnet.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// block
+	// (Attributes) Network configuration block. Required when type is Advanced. (see below for nested schema)
 	// +kubebuilder:validation:Optional
 	Network *NetworkParameters `json:"network,omitempty" tf:"network,omitempty"`
 
-	// (String) ID of the project this subnet belongs to
-	// ID of the project this subnet belongs to
+	// created.)
+	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (List of String) List of tags for the subnet
-	// List of tags for the subnet
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	// +kubebuilder:validation:Optional
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// is set to "Basic", the network block is not required.
-	// Subnet type (Basic or Advanced)
+	// created.)
+	// Subnet type. Accepted values: `Basic` (no custom CIDR), `Advanced` (requires the `network` block). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Required
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 
-	// (String) ID of the VPC this subnet belongs to
-	// ID of the VPC this subnet belongs to
+	// created.)
+	// ID of the parent VPC this subnet belongs to. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Required
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 }
@@ -302,7 +302,7 @@ type SubnetStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// Subnet is the Schema for the Subnets API. Manages an ArubaCloud Subnet resource.
+// Subnet is the Schema for the Subnets API. Manages an ArubaCloud Subnet within a VPC. Subnets can be Basic (default networking) or Advanced (custom CIDR with configurable DHCP).
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

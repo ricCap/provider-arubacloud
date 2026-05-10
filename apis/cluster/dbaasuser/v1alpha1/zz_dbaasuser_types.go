@@ -15,64 +15,64 @@ import (
 
 type DBaaSUserInitParameters struct {
 
-	// (String) DBaaS ID this user belongs to
-	// DBaaS ID this user belongs to
+	// (String) ID of the parent DBaaS cluster this user belongs to.
+	// ID of the parent DBaaS cluster this user belongs to.
 	DbaasID *string `json:"dbaasId,omitempty" tf:"dbaas_id,omitempty"`
 
-	// (String, Sensitive) Password for the DBaaS user
-	// Password for the DBaaS user
+	// only — this value is sent to the API but is not returned in subsequent read responses.
+	// Password for the DBaaS user. Write-only — this value is sent to the API but is not returned in subsequent read responses.
 	PasswordSecretRef v1.SecretKeySelector `json:"passwordSecretRef" tf:"-"`
 
-	// (String) ID of the project this user belongs to
-	// ID of the project this user belongs to
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (String) Username for the DBaaS user
-	// Username for the DBaaS user
+	// (String) Display name for the DBaaS user.
+	// Display name for the DBaaS user.
 	Username *string `json:"username,omitempty" tf:"username,omitempty"`
 }
 
 type DBaaSUserObservation struct {
 
-	// (String) DBaaS ID this user belongs to
-	// DBaaS ID this user belongs to
+	// (String) ID of the parent DBaaS cluster this user belongs to.
+	// ID of the parent DBaaS cluster this user belongs to.
 	DbaasID *string `json:"dbaasId,omitempty" tf:"dbaas_id,omitempty"`
 
-	// (String) DBaaS User identifier (same as username)
+	// (String) Computed by the API. Unique identifier for the resource (same as the username).
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// (String) ID of the project this user belongs to
-	// ID of the project this user belongs to
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (String) DBaaS User URI
-	// DBaaS User URI
+	// (String) Computed by the API. Full resource URI used as a reference value in other resources.
+	// Computed by the API. Full resource URI used as a reference value in other resources.
 	URI *string `json:"uri,omitempty" tf:"uri,omitempty"`
 
-	// (String) Username for the DBaaS user
-	// Username for the DBaaS user
+	// (String) Display name for the DBaaS user.
+	// Display name for the DBaaS user.
 	Username *string `json:"username,omitempty" tf:"username,omitempty"`
 }
 
 type DBaaSUserParameters struct {
 
-	// (String) DBaaS ID this user belongs to
-	// DBaaS ID this user belongs to
+	// (String) ID of the parent DBaaS cluster this user belongs to.
+	// ID of the parent DBaaS cluster this user belongs to.
 	// +kubebuilder:validation:Required
 	DbaasID *string `json:"dbaasId,omitempty" tf:"dbaas_id,omitempty"`
 
-	// (String, Sensitive) Password for the DBaaS user
-	// Password for the DBaaS user
+	// only — this value is sent to the API but is not returned in subsequent read responses.
+	// Password for the DBaaS user. Write-only — this value is sent to the API but is not returned in subsequent read responses.
 	// +kubebuilder:validation:Optional
 	PasswordSecretRef v1.SecretKeySelector `json:"passwordSecretRef" tf:"-"`
 
-	// (String) ID of the project this user belongs to
-	// ID of the project this user belongs to
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (String) Username for the DBaaS user
-	// Username for the DBaaS user
+	// (String) Display name for the DBaaS user.
+	// Display name for the DBaaS user.
 	// +kubebuilder:validation:Required
 	Username *string `json:"username,omitempty" tf:"username,omitempty"`
 }
@@ -104,7 +104,7 @@ type DBaaSUserStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// DBaaSUser is the Schema for the DBaaSUsers API. Manages an ArubaCloud DBaaS User.
+// DBaaSUser is the Schema for the DBaaSUsers API. Manages a database user within an ArubaCloud DBaaS cluster.
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

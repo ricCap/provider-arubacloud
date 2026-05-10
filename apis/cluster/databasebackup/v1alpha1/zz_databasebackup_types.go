@@ -15,120 +15,120 @@ import (
 
 type DatabaseBackupInitParameters struct {
 
-	// (String) Billing period
-	// Billing period
+	// (String) Billing cycle. Accepted values: Hour, Month, Year.
+	// Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
 	BillingPeriod *string `json:"billingPeriod,omitempty" tf:"billing_period,omitempty"`
 
-	// (String) Database name to backup
-	// Database name to backup
+	// (String) Name of the logical database within the DBaaS cluster to back up.
+	// Name of the logical database within the DBaaS cluster to back up.
 	Database *string `json:"database,omitempty" tf:"database,omitempty"`
 
-	// (String) DBaaS ID this backup belongs to
-	// DBaaS ID this backup belongs to
+	// (String) ID of the DBaaS cluster or database to back up.
+	// ID of the DBaaS cluster or database to back up.
 	DbaasID *string `json:"dbaasId,omitempty" tf:"dbaas_id,omitempty"`
 
-	// (String) Database Backup location
-	// Database Backup location
+	// Bergamo). See the available locations and zones.
+	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) Database Backup name
-	// Database Backup name
+	// (String) Display name for the database backup.
+	// Display name for the database backup.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID of the project this backup belongs to
-	// ID of the project this backup belongs to
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (List of String) List of tags for the Database Backup resource
-	// List of tags for the Database Backup resource
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String) Zone for the Database Backup
-	// Zone for the Database Backup
+	// (String) Availability zone within the region where the backup is stored.
+	// Availability zone within the region where the backup is stored.
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
 
 type DatabaseBackupObservation struct {
 
-	// (String) Billing period
-	// Billing period
+	// (String) Billing cycle. Accepted values: Hour, Month, Year.
+	// Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
 	BillingPeriod *string `json:"billingPeriod,omitempty" tf:"billing_period,omitempty"`
 
-	// (String) Database name to backup
-	// Database name to backup
+	// (String) Name of the logical database within the DBaaS cluster to back up.
+	// Name of the logical database within the DBaaS cluster to back up.
 	Database *string `json:"database,omitempty" tf:"database,omitempty"`
 
-	// (String) DBaaS ID this backup belongs to
-	// DBaaS ID this backup belongs to
+	// (String) ID of the DBaaS cluster or database to back up.
+	// ID of the DBaaS cluster or database to back up.
 	DbaasID *string `json:"dbaasId,omitempty" tf:"dbaas_id,omitempty"`
 
-	// (String) Database Backup identifier
+	// (String) Computed by the API. Unique identifier for the resource.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// (String) Database Backup location
-	// Database Backup location
+	// Bergamo). See the available locations and zones.
+	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) Database Backup name
-	// Database Backup name
+	// (String) Display name for the database backup.
+	// Display name for the database backup.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID of the project this backup belongs to
-	// ID of the project this backup belongs to
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (List of String) List of tags for the Database Backup resource
-	// List of tags for the Database Backup resource
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String) Database Backup URI
-	// Database Backup URI
+	// (String) Computed by the API. Full resource URI used as a reference value in other resources.
+	// Computed by the API. Full resource URI used as a reference value in other resources.
 	URI *string `json:"uri,omitempty" tf:"uri,omitempty"`
 
-	// (String) Zone for the Database Backup
-	// Zone for the Database Backup
+	// (String) Availability zone within the region where the backup is stored.
+	// Availability zone within the region where the backup is stored.
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
 
 type DatabaseBackupParameters struct {
 
-	// (String) Billing period
-	// Billing period
+	// (String) Billing cycle. Accepted values: Hour, Month, Year.
+	// Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
 	// +kubebuilder:validation:Required
 	BillingPeriod *string `json:"billingPeriod,omitempty" tf:"billing_period,omitempty"`
 
-	// (String) Database name to backup
-	// Database name to backup
+	// (String) Name of the logical database within the DBaaS cluster to back up.
+	// Name of the logical database within the DBaaS cluster to back up.
 	// +kubebuilder:validation:Required
 	Database *string `json:"database,omitempty" tf:"database,omitempty"`
 
-	// (String) DBaaS ID this backup belongs to
-	// DBaaS ID this backup belongs to
+	// (String) ID of the DBaaS cluster or database to back up.
+	// ID of the DBaaS cluster or database to back up.
 	// +kubebuilder:validation:Required
 	DbaasID *string `json:"dbaasId,omitempty" tf:"dbaas_id,omitempty"`
 
-	// (String) Database Backup location
-	// Database Backup location
+	// Bergamo). See the available locations and zones.
+	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
 	// +kubebuilder:validation:Required
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) Database Backup name
-	// Database Backup name
+	// (String) Display name for the database backup.
+	// Display name for the database backup.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID of the project this backup belongs to
-	// ID of the project this backup belongs to
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (List of String) List of tags for the Database Backup resource
-	// List of tags for the Database Backup resource
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	// +kubebuilder:validation:Optional
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String) Zone for the Database Backup
-	// Zone for the Database Backup
+	// (String) Availability zone within the region where the backup is stored.
+	// Availability zone within the region where the backup is stored.
 	// +kubebuilder:validation:Required
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
@@ -160,7 +160,7 @@ type DatabaseBackupStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// DatabaseBackup is the Schema for the DatabaseBackups API. Manages an ArubaCloud Database Backup.
+// DatabaseBackup is the Schema for the DatabaseBackups API. Manages a backup of an ArubaCloud DBaaS database.
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

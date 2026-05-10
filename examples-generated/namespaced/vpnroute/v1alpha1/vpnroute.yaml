@@ -1,0 +1,18 @@
+apiVersion: vpnroute.arubacloud.m.crossplane.io/v1alpha1
+kind: VPNRoute
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpnroute/v1alpha1/vpnroute
+  labels:
+    testing.upbound.io/example-name: example
+  name: example
+  namespace: crossplane-system
+spec:
+  forProvider:
+    location: ITBG-Bergamo
+    name: example-vpn-route
+    projectId: your-project-id
+    properties:
+      cloudSubnet: 10.0.1.0/24
+      onPremSubnet: 192.168.1.0/24
+    vpnTunnelId: your-vpn-tunnel-id

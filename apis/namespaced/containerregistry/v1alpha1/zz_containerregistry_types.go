@@ -16,229 +16,229 @@ import (
 
 type ContainerRegistryInitParameters struct {
 
-	// (String) Billing period (Hour, Month, Year)
-	// Billing period (Hour, Month, Year)
+	// (String) Billing cycle. Accepted values: Hour, Month, Year.
+	// Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
 	BillingPeriod *string `json:"billingPeriod,omitempty" tf:"billing_period,omitempty"`
 
-	// (String) Container Registry location
-	// Container Registry location
+	// Bergamo). See the available locations and zones.
+	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) Container Registry name
-	// Container Registry name
+	// (String) Display name for the container registry.
+	// Display name for the container registry.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (Attributes) Network configuration for the container registry (see below for nested schema)
+	// (Attributes) Network resources attached to the registry. (see below for nested schema)
 	Network *NetworkInitParameters `json:"network,omitempty" tf:"network,omitempty"`
 
-	// (String) ID of the project this Container Registry belongs to
-	// ID of the project this Container Registry belongs to
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (Attributes) Container registry settings (see below for nested schema)
+	// (Attributes) Optional registry configuration settings. (see below for nested schema)
 	Settings *SettingsInitParameters `json:"settings,omitempty" tf:"settings,omitempty"`
 
-	// (Attributes) Storage configuration for the container registry (see below for nested schema)
+	// (Attributes) Block storage volume that backs the registry image store. (see below for nested schema)
 	Storage *StorageInitParameters `json:"storage,omitempty" tf:"storage,omitempty"`
 
-	// (List of String) List of tags for the Container Registry resource
-	// List of tags for the Container Registry resource
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 }
 
 type ContainerRegistryObservation struct {
 
-	// (String) Billing period (Hour, Month, Year)
-	// Billing period (Hour, Month, Year)
+	// (String) Billing cycle. Accepted values: Hour, Month, Year.
+	// Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
 	BillingPeriod *string `json:"billingPeriod,omitempty" tf:"billing_period,omitempty"`
 
-	// (String) Container Registry identifier
+	// (String) Computed by the API. Unique identifier for the resource.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// (String) Container Registry location
-	// Container Registry location
+	// Bergamo). See the available locations and zones.
+	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) Container Registry name
-	// Container Registry name
+	// (String) Display name for the container registry.
+	// Display name for the container registry.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (Attributes) Network configuration for the container registry (see below for nested schema)
+	// (Attributes) Network resources attached to the registry. (see below for nested schema)
 	Network *NetworkObservation `json:"network,omitempty" tf:"network,omitempty"`
 
-	// (String) ID of the project this Container Registry belongs to
-	// ID of the project this Container Registry belongs to
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (Attributes) Container registry settings (see below for nested schema)
+	// (Attributes) Optional registry configuration settings. (see below for nested schema)
 	Settings *SettingsObservation `json:"settings,omitempty" tf:"settings,omitempty"`
 
-	// (Attributes) Storage configuration for the container registry (see below for nested schema)
+	// (Attributes) Block storage volume that backs the registry image store. (see below for nested schema)
 	Storage *StorageObservation `json:"storage,omitempty" tf:"storage,omitempty"`
 
-	// (List of String) List of tags for the Container Registry resource
-	// List of tags for the Container Registry resource
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String) Container Registry URI
-	// Container Registry URI
+	// (String) Computed by the API. Full resource URI used as a reference value in other resources.
+	// Computed by the API. Full resource URI used as a reference value in other resources.
 	URI *string `json:"uri,omitempty" tf:"uri,omitempty"`
 }
 
 type ContainerRegistryParameters struct {
 
-	// (String) Billing period (Hour, Month, Year)
-	// Billing period (Hour, Month, Year)
+	// (String) Billing cycle. Accepted values: Hour, Month, Year.
+	// Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
 	// +kubebuilder:validation:Optional
 	BillingPeriod *string `json:"billingPeriod,omitempty" tf:"billing_period,omitempty"`
 
-	// (String) Container Registry location
-	// Container Registry location
+	// Bergamo). See the available locations and zones.
+	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
 	// +kubebuilder:validation:Required
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) Container Registry name
-	// Container Registry name
+	// (String) Display name for the container registry.
+	// Display name for the container registry.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (Attributes) Network configuration for the container registry (see below for nested schema)
+	// (Attributes) Network resources attached to the registry. (see below for nested schema)
 	// +kubebuilder:validation:Required
 	Network *NetworkParameters `json:"network,omitempty" tf:"network,omitempty"`
 
-	// (String) ID of the project this Container Registry belongs to
-	// ID of the project this Container Registry belongs to
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (Attributes) Container registry settings (see below for nested schema)
+	// (Attributes) Optional registry configuration settings. (see below for nested schema)
 	// +kubebuilder:validation:Optional
 	Settings *SettingsParameters `json:"settings,omitempty" tf:"settings,omitempty"`
 
-	// (Attributes) Storage configuration for the container registry (see below for nested schema)
+	// (Attributes) Block storage volume that backs the registry image store. (see below for nested schema)
 	// +kubebuilder:validation:Required
 	Storage *StorageParameters `json:"storage,omitempty" tf:"storage,omitempty"`
 
-	// (List of String) List of tags for the Container Registry resource
-	// List of tags for the Container Registry resource
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	// +kubebuilder:validation:Optional
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 }
 
 type NetworkInitParameters struct {
 
-	// (String) Public IP URI reference (e.g., arubacloud_elasticip.example.uri)
-	// Public IP URI reference (e.g., arubacloud_elasticip.example.uri)
+	// (String) URI of the Elastic IP that exposes the registry endpoint (e.g., arubacloud_elasticip.example.uri).
+	// URI of the Elastic IP that exposes the registry endpoint (e.g., `arubacloud_elasticip.example.uri`).
 	PublicIPURIRef *string `json:"publicIpUriRef,omitempty" tf:"public_ip_uri_ref,omitempty"`
 
-	// (String) Security Group URI reference (e.g., arubacloud_securitygroup.example.uri)
-	// Security Group URI reference (e.g., arubacloud_securitygroup.example.uri)
+	// (String) URI of the security group controlling registry traffic (e.g., arubacloud_securitygroup.example.uri).
+	// URI of the security group controlling registry traffic (e.g., `arubacloud_securitygroup.example.uri`).
 	SecurityGroupURIRef *string `json:"securityGroupUriRef,omitempty" tf:"security_group_uri_ref,omitempty"`
 
-	// (String) Subnet URI reference (e.g., arubacloud_subnet.example.uri)
-	// Subnet URI reference (e.g., arubacloud_subnet.example.uri)
+	// (String) URI of the subnet within the VPC (e.g., arubacloud_subnet.example.uri).
+	// URI of the subnet within the VPC (e.g., `arubacloud_subnet.example.uri`).
 	SubnetURIRef *string `json:"subnetUriRef,omitempty" tf:"subnet_uri_ref,omitempty"`
 
-	// (String) VPC URI reference (e.g., arubacloud_vpc.example.uri)
-	// VPC URI reference (e.g., arubacloud_vpc.example.uri)
+	// (String) URI of the VPC that hosts the registry (e.g., arubacloud_vpc.example.uri).
+	// URI of the VPC that hosts the registry (e.g., `arubacloud_vpc.example.uri`).
 	VPCURIRef *string `json:"vpcUriRef,omitempty" tf:"vpc_uri_ref,omitempty"`
 }
 
 type NetworkObservation struct {
 
-	// (String) Public IP URI reference (e.g., arubacloud_elasticip.example.uri)
-	// Public IP URI reference (e.g., arubacloud_elasticip.example.uri)
+	// (String) URI of the Elastic IP that exposes the registry endpoint (e.g., arubacloud_elasticip.example.uri).
+	// URI of the Elastic IP that exposes the registry endpoint (e.g., `arubacloud_elasticip.example.uri`).
 	PublicIPURIRef *string `json:"publicIpUriRef,omitempty" tf:"public_ip_uri_ref,omitempty"`
 
-	// (String) Security Group URI reference (e.g., arubacloud_securitygroup.example.uri)
-	// Security Group URI reference (e.g., arubacloud_securitygroup.example.uri)
+	// (String) URI of the security group controlling registry traffic (e.g., arubacloud_securitygroup.example.uri).
+	// URI of the security group controlling registry traffic (e.g., `arubacloud_securitygroup.example.uri`).
 	SecurityGroupURIRef *string `json:"securityGroupUriRef,omitempty" tf:"security_group_uri_ref,omitempty"`
 
-	// (String) Subnet URI reference (e.g., arubacloud_subnet.example.uri)
-	// Subnet URI reference (e.g., arubacloud_subnet.example.uri)
+	// (String) URI of the subnet within the VPC (e.g., arubacloud_subnet.example.uri).
+	// URI of the subnet within the VPC (e.g., `arubacloud_subnet.example.uri`).
 	SubnetURIRef *string `json:"subnetUriRef,omitempty" tf:"subnet_uri_ref,omitempty"`
 
-	// (String) VPC URI reference (e.g., arubacloud_vpc.example.uri)
-	// VPC URI reference (e.g., arubacloud_vpc.example.uri)
+	// (String) URI of the VPC that hosts the registry (e.g., arubacloud_vpc.example.uri).
+	// URI of the VPC that hosts the registry (e.g., `arubacloud_vpc.example.uri`).
 	VPCURIRef *string `json:"vpcUriRef,omitempty" tf:"vpc_uri_ref,omitempty"`
 }
 
 type NetworkParameters struct {
 
-	// (String) Public IP URI reference (e.g., arubacloud_elasticip.example.uri)
-	// Public IP URI reference (e.g., arubacloud_elasticip.example.uri)
+	// (String) URI of the Elastic IP that exposes the registry endpoint (e.g., arubacloud_elasticip.example.uri).
+	// URI of the Elastic IP that exposes the registry endpoint (e.g., `arubacloud_elasticip.example.uri`).
 	// +kubebuilder:validation:Optional
 	PublicIPURIRef *string `json:"publicIpUriRef" tf:"public_ip_uri_ref,omitempty"`
 
-	// (String) Security Group URI reference (e.g., arubacloud_securitygroup.example.uri)
-	// Security Group URI reference (e.g., arubacloud_securitygroup.example.uri)
+	// (String) URI of the security group controlling registry traffic (e.g., arubacloud_securitygroup.example.uri).
+	// URI of the security group controlling registry traffic (e.g., `arubacloud_securitygroup.example.uri`).
 	// +kubebuilder:validation:Optional
 	SecurityGroupURIRef *string `json:"securityGroupUriRef" tf:"security_group_uri_ref,omitempty"`
 
-	// (String) Subnet URI reference (e.g., arubacloud_subnet.example.uri)
-	// Subnet URI reference (e.g., arubacloud_subnet.example.uri)
+	// (String) URI of the subnet within the VPC (e.g., arubacloud_subnet.example.uri).
+	// URI of the subnet within the VPC (e.g., `arubacloud_subnet.example.uri`).
 	// +kubebuilder:validation:Optional
 	SubnetURIRef *string `json:"subnetUriRef" tf:"subnet_uri_ref,omitempty"`
 
-	// (String) VPC URI reference (e.g., arubacloud_vpc.example.uri)
-	// VPC URI reference (e.g., arubacloud_vpc.example.uri)
+	// (String) URI of the VPC that hosts the registry (e.g., arubacloud_vpc.example.uri).
+	// URI of the VPC that hosts the registry (e.g., `arubacloud_vpc.example.uri`).
 	// +kubebuilder:validation:Optional
 	VPCURIRef *string `json:"vpcUriRef" tf:"vpc_uri_ref,omitempty"`
 }
 
 type SettingsInitParameters struct {
 
-	// (String) Administrator username
-	// Administrator username
+	// (String) Administrator username for the registry.
+	// Administrator username for the registry.
 	AdminUser *string `json:"adminUser,omitempty" tf:"admin_user,omitempty"`
 
-	// (String) Concurrent users flavor size. Must be one of: Small, Medium, HighPerf
-	// Concurrent users flavor size. Must be one of: Small, Medium, HighPerf
+	// (String) Concurrency tier that determines how many simultaneous push/pull sessions are supported. Accepted values: Small, Medium, HighPerf.
+	// Concurrency tier that determines how many simultaneous push/pull sessions are supported. Accepted values: `Small`, `Medium`, `HighPerf`.
 	ConcurrentUsersFlavor *string `json:"concurrentUsersFlavor,omitempty" tf:"concurrent_users_flavor,omitempty"`
 }
 
 type SettingsObservation struct {
 
-	// (String) Administrator username
-	// Administrator username
+	// (String) Administrator username for the registry.
+	// Administrator username for the registry.
 	AdminUser *string `json:"adminUser,omitempty" tf:"admin_user,omitempty"`
 
-	// (String) Concurrent users flavor size. Must be one of: Small, Medium, HighPerf
-	// Concurrent users flavor size. Must be one of: Small, Medium, HighPerf
+	// (String) Concurrency tier that determines how many simultaneous push/pull sessions are supported. Accepted values: Small, Medium, HighPerf.
+	// Concurrency tier that determines how many simultaneous push/pull sessions are supported. Accepted values: `Small`, `Medium`, `HighPerf`.
 	ConcurrentUsersFlavor *string `json:"concurrentUsersFlavor,omitempty" tf:"concurrent_users_flavor,omitempty"`
 }
 
 type SettingsParameters struct {
 
-	// (String) Administrator username
-	// Administrator username
+	// (String) Administrator username for the registry.
+	// Administrator username for the registry.
 	// +kubebuilder:validation:Optional
 	AdminUser *string `json:"adminUser,omitempty" tf:"admin_user,omitempty"`
 
-	// (String) Concurrent users flavor size. Must be one of: Small, Medium, HighPerf
-	// Concurrent users flavor size. Must be one of: Small, Medium, HighPerf
+	// (String) Concurrency tier that determines how many simultaneous push/pull sessions are supported. Accepted values: Small, Medium, HighPerf.
+	// Concurrency tier that determines how many simultaneous push/pull sessions are supported. Accepted values: `Small`, `Medium`, `HighPerf`.
 	// +kubebuilder:validation:Optional
 	ConcurrentUsersFlavor *string `json:"concurrentUsersFlavor,omitempty" tf:"concurrent_users_flavor,omitempty"`
 }
 
 type StorageInitParameters struct {
 
-	// (String) Block Storage URI reference (e.g., arubacloud_blockstorage.example.uri)
-	// Block Storage URI reference (e.g., arubacloud_blockstorage.example.uri)
+	// (String) URI of the block storage volume (e.g., arubacloud_blockstorage.example.uri).
+	// URI of the block storage volume (e.g., `arubacloud_blockstorage.example.uri`).
 	BlockStorageURIRef *string `json:"blockStorageUriRef,omitempty" tf:"block_storage_uri_ref,omitempty"`
 }
 
 type StorageObservation struct {
 
-	// (String) Block Storage URI reference (e.g., arubacloud_blockstorage.example.uri)
-	// Block Storage URI reference (e.g., arubacloud_blockstorage.example.uri)
+	// (String) URI of the block storage volume (e.g., arubacloud_blockstorage.example.uri).
+	// URI of the block storage volume (e.g., `arubacloud_blockstorage.example.uri`).
 	BlockStorageURIRef *string `json:"blockStorageUriRef,omitempty" tf:"block_storage_uri_ref,omitempty"`
 }
 
 type StorageParameters struct {
 
-	// (String) Block Storage URI reference (e.g., arubacloud_blockstorage.example.uri)
-	// Block Storage URI reference (e.g., arubacloud_blockstorage.example.uri)
+	// (String) URI of the block storage volume (e.g., arubacloud_blockstorage.example.uri).
+	// URI of the block storage volume (e.g., `arubacloud_blockstorage.example.uri`).
 	// +kubebuilder:validation:Optional
 	BlockStorageURIRef *string `json:"blockStorageUriRef" tf:"block_storage_uri_ref,omitempty"`
 }
@@ -270,7 +270,7 @@ type ContainerRegistryStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// ContainerRegistry is the Schema for the ContainerRegistrys API. Manages an ArubaCloud Container Registry resource.
+// ContainerRegistry is the Schema for the ContainerRegistrys API. Manages an ArubaCloud Container Registry — a private OCI-compatible image registry.
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

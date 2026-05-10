@@ -35,7 +35,8 @@ spec:
     schema:
       openAPIV3Schema:
         description: ContainerRegistry is the Schema for the ContainerRegistrys API.
-          Manages an ArubaCloud Container Registry resource.
+          Manages an ArubaCloud Container Registry — a private OCI-compatible image
+          registry.
         properties:
           apiVersion:
             description: |-
@@ -75,78 +76,78 @@ spec:
                 properties:
                   billingPeriod:
                     description: |-
-                      (String) Billing period (Hour, Month, Year)
-                      Billing period (Hour, Month, Year)
+                      (String) Billing cycle. Accepted values: Hour, Month, Year.
+                      Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
                     type: string
                   location:
                     description: |-
-                      (String) Container Registry location
-                      Container Registry location
+                      Bergamo). See the available locations and zones.
+                      Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
                     type: string
                   name:
                     description: |-
-                      (String) Container Registry name
-                      Container Registry name
+                      (String) Display name for the container registry.
+                      Display name for the container registry.
                     type: string
                   network:
-                    description: (Attributes) Network configuration for the container
-                      registry (see below for nested schema)
+                    description: (Attributes) Network resources attached to the registry.
+                      (see below for nested schema)
                     properties:
                       publicIpUriRef:
                         description: |-
-                          (String) Public IP URI reference (e.g., arubacloud_elasticip.example.uri)
-                          Public IP URI reference (e.g., arubacloud_elasticip.example.uri)
+                          (String) URI of the Elastic IP that exposes the registry endpoint (e.g., arubacloud_elasticip.example.uri).
+                          URI of the Elastic IP that exposes the registry endpoint (e.g., `arubacloud_elasticip.example.uri`).
                         type: string
                       securityGroupUriRef:
                         description: |-
-                          (String) Security Group URI reference (e.g., arubacloud_securitygroup.example.uri)
-                          Security Group URI reference (e.g., arubacloud_securitygroup.example.uri)
+                          (String) URI of the security group controlling registry traffic (e.g., arubacloud_securitygroup.example.uri).
+                          URI of the security group controlling registry traffic (e.g., `arubacloud_securitygroup.example.uri`).
                         type: string
                       subnetUriRef:
                         description: |-
-                          (String) Subnet URI reference (e.g., arubacloud_subnet.example.uri)
-                          Subnet URI reference (e.g., arubacloud_subnet.example.uri)
+                          (String) URI of the subnet within the VPC (e.g., arubacloud_subnet.example.uri).
+                          URI of the subnet within the VPC (e.g., `arubacloud_subnet.example.uri`).
                         type: string
                       vpcUriRef:
                         description: |-
-                          (String) VPC URI reference (e.g., arubacloud_vpc.example.uri)
-                          VPC URI reference (e.g., arubacloud_vpc.example.uri)
+                          (String) URI of the VPC that hosts the registry (e.g., arubacloud_vpc.example.uri).
+                          URI of the VPC that hosts the registry (e.g., `arubacloud_vpc.example.uri`).
                         type: string
                     type: object
                   projectId:
                     description: |-
-                      (String) ID of the project this Container Registry belongs to
-                      ID of the project this Container Registry belongs to
+                      (String) ID of the project that owns this resource.
+                      ID of the project that owns this resource.
                     type: string
                   settings:
-                    description: (Attributes) Container registry settings (see below
-                      for nested schema)
+                    description: (Attributes) Optional registry configuration settings.
+                      (see below for nested schema)
                     properties:
                       adminUser:
                         description: |-
-                          (String) Administrator username
-                          Administrator username
+                          (String) Administrator username for the registry.
+                          Administrator username for the registry.
                         type: string
                       concurrentUsersFlavor:
                         description: |-
-                          (String) Concurrent users flavor size. Must be one of: Small, Medium, HighPerf
-                          Concurrent users flavor size. Must be one of: Small, Medium, HighPerf
+                          (String) Concurrency tier that determines how many simultaneous push/pull sessions are supported. Accepted values: Small, Medium, HighPerf.
+                          Concurrency tier that determines how many simultaneous push/pull sessions are supported. Accepted values: `Small`, `Medium`, `HighPerf`.
                         type: string
                     type: object
                   storage:
-                    description: (Attributes) Storage configuration for the container
-                      registry (see below for nested schema)
+                    description: (Attributes) Block storage volume that backs the
+                      registry image store. (see below for nested schema)
                     properties:
                       blockStorageUriRef:
                         description: |-
-                          (String) Block Storage URI reference (e.g., arubacloud_blockstorage.example.uri)
-                          Block Storage URI reference (e.g., arubacloud_blockstorage.example.uri)
+                          (String) URI of the block storage volume (e.g., arubacloud_blockstorage.example.uri).
+                          URI of the block storage volume (e.g., `arubacloud_blockstorage.example.uri`).
                         type: string
                     type: object
                   tags:
                     description: |-
-                      (List of String) List of tags for the Container Registry resource
-                      List of tags for the Container Registry resource
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
@@ -172,78 +173,78 @@ spec:
                 properties:
                   billingPeriod:
                     description: |-
-                      (String) Billing period (Hour, Month, Year)
-                      Billing period (Hour, Month, Year)
+                      (String) Billing cycle. Accepted values: Hour, Month, Year.
+                      Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
                     type: string
                   location:
                     description: |-
-                      (String) Container Registry location
-                      Container Registry location
+                      Bergamo). See the available locations and zones.
+                      Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
                     type: string
                   name:
                     description: |-
-                      (String) Container Registry name
-                      Container Registry name
+                      (String) Display name for the container registry.
+                      Display name for the container registry.
                     type: string
                   network:
-                    description: (Attributes) Network configuration for the container
-                      registry (see below for nested schema)
+                    description: (Attributes) Network resources attached to the registry.
+                      (see below for nested schema)
                     properties:
                       publicIpUriRef:
                         description: |-
-                          (String) Public IP URI reference (e.g., arubacloud_elasticip.example.uri)
-                          Public IP URI reference (e.g., arubacloud_elasticip.example.uri)
+                          (String) URI of the Elastic IP that exposes the registry endpoint (e.g., arubacloud_elasticip.example.uri).
+                          URI of the Elastic IP that exposes the registry endpoint (e.g., `arubacloud_elasticip.example.uri`).
                         type: string
                       securityGroupUriRef:
                         description: |-
-                          (String) Security Group URI reference (e.g., arubacloud_securitygroup.example.uri)
-                          Security Group URI reference (e.g., arubacloud_securitygroup.example.uri)
+                          (String) URI of the security group controlling registry traffic (e.g., arubacloud_securitygroup.example.uri).
+                          URI of the security group controlling registry traffic (e.g., `arubacloud_securitygroup.example.uri`).
                         type: string
                       subnetUriRef:
                         description: |-
-                          (String) Subnet URI reference (e.g., arubacloud_subnet.example.uri)
-                          Subnet URI reference (e.g., arubacloud_subnet.example.uri)
+                          (String) URI of the subnet within the VPC (e.g., arubacloud_subnet.example.uri).
+                          URI of the subnet within the VPC (e.g., `arubacloud_subnet.example.uri`).
                         type: string
                       vpcUriRef:
                         description: |-
-                          (String) VPC URI reference (e.g., arubacloud_vpc.example.uri)
-                          VPC URI reference (e.g., arubacloud_vpc.example.uri)
+                          (String) URI of the VPC that hosts the registry (e.g., arubacloud_vpc.example.uri).
+                          URI of the VPC that hosts the registry (e.g., `arubacloud_vpc.example.uri`).
                         type: string
                     type: object
                   projectId:
                     description: |-
-                      (String) ID of the project this Container Registry belongs to
-                      ID of the project this Container Registry belongs to
+                      (String) ID of the project that owns this resource.
+                      ID of the project that owns this resource.
                     type: string
                   settings:
-                    description: (Attributes) Container registry settings (see below
-                      for nested schema)
+                    description: (Attributes) Optional registry configuration settings.
+                      (see below for nested schema)
                     properties:
                       adminUser:
                         description: |-
-                          (String) Administrator username
-                          Administrator username
+                          (String) Administrator username for the registry.
+                          Administrator username for the registry.
                         type: string
                       concurrentUsersFlavor:
                         description: |-
-                          (String) Concurrent users flavor size. Must be one of: Small, Medium, HighPerf
-                          Concurrent users flavor size. Must be one of: Small, Medium, HighPerf
+                          (String) Concurrency tier that determines how many simultaneous push/pull sessions are supported. Accepted values: Small, Medium, HighPerf.
+                          Concurrency tier that determines how many simultaneous push/pull sessions are supported. Accepted values: `Small`, `Medium`, `HighPerf`.
                         type: string
                     type: object
                   storage:
-                    description: (Attributes) Storage configuration for the container
-                      registry (see below for nested schema)
+                    description: (Attributes) Block storage volume that backs the
+                      registry image store. (see below for nested schema)
                     properties:
                       blockStorageUriRef:
                         description: |-
-                          (String) Block Storage URI reference (e.g., arubacloud_blockstorage.example.uri)
-                          Block Storage URI reference (e.g., arubacloud_blockstorage.example.uri)
+                          (String) URI of the block storage volume (e.g., arubacloud_blockstorage.example.uri).
+                          URI of the block storage volume (e.g., `arubacloud_blockstorage.example.uri`).
                         type: string
                     type: object
                   tags:
                     description: |-
-                      (List of String) List of tags for the Container Registry resource
-                      List of tags for the Container Registry resource
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
@@ -362,88 +363,89 @@ spec:
                 properties:
                   billingPeriod:
                     description: |-
-                      (String) Billing period (Hour, Month, Year)
-                      Billing period (Hour, Month, Year)
+                      (String) Billing cycle. Accepted values: Hour, Month, Year.
+                      Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
                     type: string
                   id:
-                    description: (String) Container Registry identifier
+                    description: (String) Computed by the API. Unique identifier for
+                      the resource.
                     type: string
                   location:
                     description: |-
-                      (String) Container Registry location
-                      Container Registry location
+                      Bergamo). See the available locations and zones.
+                      Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
                     type: string
                   name:
                     description: |-
-                      (String) Container Registry name
-                      Container Registry name
+                      (String) Display name for the container registry.
+                      Display name for the container registry.
                     type: string
                   network:
-                    description: (Attributes) Network configuration for the container
-                      registry (see below for nested schema)
+                    description: (Attributes) Network resources attached to the registry.
+                      (see below for nested schema)
                     properties:
                       publicIpUriRef:
                         description: |-
-                          (String) Public IP URI reference (e.g., arubacloud_elasticip.example.uri)
-                          Public IP URI reference (e.g., arubacloud_elasticip.example.uri)
+                          (String) URI of the Elastic IP that exposes the registry endpoint (e.g., arubacloud_elasticip.example.uri).
+                          URI of the Elastic IP that exposes the registry endpoint (e.g., `arubacloud_elasticip.example.uri`).
                         type: string
                       securityGroupUriRef:
                         description: |-
-                          (String) Security Group URI reference (e.g., arubacloud_securitygroup.example.uri)
-                          Security Group URI reference (e.g., arubacloud_securitygroup.example.uri)
+                          (String) URI of the security group controlling registry traffic (e.g., arubacloud_securitygroup.example.uri).
+                          URI of the security group controlling registry traffic (e.g., `arubacloud_securitygroup.example.uri`).
                         type: string
                       subnetUriRef:
                         description: |-
-                          (String) Subnet URI reference (e.g., arubacloud_subnet.example.uri)
-                          Subnet URI reference (e.g., arubacloud_subnet.example.uri)
+                          (String) URI of the subnet within the VPC (e.g., arubacloud_subnet.example.uri).
+                          URI of the subnet within the VPC (e.g., `arubacloud_subnet.example.uri`).
                         type: string
                       vpcUriRef:
                         description: |-
-                          (String) VPC URI reference (e.g., arubacloud_vpc.example.uri)
-                          VPC URI reference (e.g., arubacloud_vpc.example.uri)
+                          (String) URI of the VPC that hosts the registry (e.g., arubacloud_vpc.example.uri).
+                          URI of the VPC that hosts the registry (e.g., `arubacloud_vpc.example.uri`).
                         type: string
                     type: object
                   projectId:
                     description: |-
-                      (String) ID of the project this Container Registry belongs to
-                      ID of the project this Container Registry belongs to
+                      (String) ID of the project that owns this resource.
+                      ID of the project that owns this resource.
                     type: string
                   settings:
-                    description: (Attributes) Container registry settings (see below
-                      for nested schema)
+                    description: (Attributes) Optional registry configuration settings.
+                      (see below for nested schema)
                     properties:
                       adminUser:
                         description: |-
-                          (String) Administrator username
-                          Administrator username
+                          (String) Administrator username for the registry.
+                          Administrator username for the registry.
                         type: string
                       concurrentUsersFlavor:
                         description: |-
-                          (String) Concurrent users flavor size. Must be one of: Small, Medium, HighPerf
-                          Concurrent users flavor size. Must be one of: Small, Medium, HighPerf
+                          (String) Concurrency tier that determines how many simultaneous push/pull sessions are supported. Accepted values: Small, Medium, HighPerf.
+                          Concurrency tier that determines how many simultaneous push/pull sessions are supported. Accepted values: `Small`, `Medium`, `HighPerf`.
                         type: string
                     type: object
                   storage:
-                    description: (Attributes) Storage configuration for the container
-                      registry (see below for nested schema)
+                    description: (Attributes) Block storage volume that backs the
+                      registry image store. (see below for nested schema)
                     properties:
                       blockStorageUriRef:
                         description: |-
-                          (String) Block Storage URI reference (e.g., arubacloud_blockstorage.example.uri)
-                          Block Storage URI reference (e.g., arubacloud_blockstorage.example.uri)
+                          (String) URI of the block storage volume (e.g., arubacloud_blockstorage.example.uri).
+                          URI of the block storage volume (e.g., `arubacloud_blockstorage.example.uri`).
                         type: string
                     type: object
                   tags:
                     description: |-
-                      (List of String) List of tags for the Container Registry resource
-                      List of tags for the Container Registry resource
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
                   uri:
                     description: |-
-                      (String) Container Registry URI
-                      Container Registry URI
+                      (String) Computed by the API. Full resource URI used as a reference value in other resources.
+                      Computed by the API. Full resource URI used as a reference value in other resources.
                     type: string
                 type: object
               conditions:

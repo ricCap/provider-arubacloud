@@ -35,7 +35,7 @@ spec:
     schema:
       openAPIV3Schema:
         description: Restore is the Schema for the Restores API. Manages an ArubaCloud
-          Storage Restore.
+          Block Storage Restore operation — restores a backup to a block storage volume.
         properties:
           apiVersion:
             description: |-
@@ -75,35 +75,35 @@ spec:
                 properties:
                   backupId:
                     description: |-
-                      (String) Backup ID to restore from
-                      Backup ID to restore from
+                      (String) ID of the backup to restore from.
+                      ID of the backup to restore from.
                     type: string
                   location:
                     description: |-
-                      (String) Restore location
-                      Restore location
+                      Bergamo). See the available locations and zones.
+                      Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
                     type: string
                   name:
                     description: |-
-                      (String) Restore name
-                      Restore name
+                      (String) Display name for the restore operation.
+                      Display name for the restore operation.
                     type: string
                   projectId:
                     description: |-
-                      (String) ID of the project this restore belongs to
-                      ID of the project this restore belongs to
+                      (String) ID of the project that owns this resource.
+                      ID of the project that owns this resource.
                     type: string
                   tags:
                     description: |-
-                      (List of String) List of tags for the restore resource
-                      List of tags for the restore resource
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
                   volumeId:
                     description: |-
-                      (String) Volume ID to restore to
-                      Volume ID to restore to
+                      (String) ID of the target block storage volume to restore the backup onto.
+                      ID of the target block storage volume to restore the backup onto.
                     type: string
                 required:
                 - backupId
@@ -127,35 +127,35 @@ spec:
                 properties:
                   backupId:
                     description: |-
-                      (String) Backup ID to restore from
-                      Backup ID to restore from
+                      (String) ID of the backup to restore from.
+                      ID of the backup to restore from.
                     type: string
                   location:
                     description: |-
-                      (String) Restore location
-                      Restore location
+                      Bergamo). See the available locations and zones.
+                      Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
                     type: string
                   name:
                     description: |-
-                      (String) Restore name
-                      Restore name
+                      (String) Display name for the restore operation.
+                      Display name for the restore operation.
                     type: string
                   projectId:
                     description: |-
-                      (String) ID of the project this restore belongs to
-                      ID of the project this restore belongs to
+                      (String) ID of the project that owns this resource.
+                      ID of the project that owns this resource.
                     type: string
                   tags:
                     description: |-
-                      (List of String) List of tags for the restore resource
-                      List of tags for the restore resource
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
                   volumeId:
                     description: |-
-                      (String) Volume ID to restore to
-                      Volume ID to restore to
+                      (String) ID of the target block storage volume to restore the backup onto.
+                      ID of the target block storage volume to restore the backup onto.
                     type: string
                 type: object
               managementPolicies:
@@ -272,43 +272,44 @@ spec:
                 properties:
                   backupId:
                     description: |-
-                      (String) Backup ID to restore from
-                      Backup ID to restore from
+                      (String) ID of the backup to restore from.
+                      ID of the backup to restore from.
                     type: string
                   id:
-                    description: (String) Restore identifier
+                    description: (String) Computed by the API. Unique identifier for
+                      the resource.
                     type: string
                   location:
                     description: |-
-                      (String) Restore location
-                      Restore location
+                      Bergamo). See the available locations and zones.
+                      Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
                     type: string
                   name:
                     description: |-
-                      (String) Restore name
-                      Restore name
+                      (String) Display name for the restore operation.
+                      Display name for the restore operation.
                     type: string
                   projectId:
                     description: |-
-                      (String) ID of the project this restore belongs to
-                      ID of the project this restore belongs to
+                      (String) ID of the project that owns this resource.
+                      ID of the project that owns this resource.
                     type: string
                   tags:
                     description: |-
-                      (List of String) List of tags for the restore resource
-                      List of tags for the restore resource
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
                   uri:
                     description: |-
-                      (String) Restore URI
-                      Restore URI
+                      (String) Computed by the API. Full resource URI used as a reference value in other resources.
+                      Computed by the API. Full resource URI used as a reference value in other resources.
                     type: string
                   volumeId:
                     description: |-
-                      (String) Volume ID to restore to
-                      Volume ID to restore to
+                      (String) ID of the target block storage volume to restore the backup onto.
+                      ID of the target block storage volume to restore the backup onto.
                     type: string
                 type: object
               conditions:

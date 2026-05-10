@@ -16,51 +16,51 @@ import (
 
 type ProjectInitParameters struct {
 
-	// (String) Project description
-	// Project description
+	// readable description of the project.
+	// Optional human-readable description of the project.
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
-	// (String) Project name
-	// Project name
+	// (String) Display name for the Project.
+	// Display name for the Project.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (List of String) List of tags for the project
-	// List of tags for the project
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 }
 
 type ProjectObservation struct {
 
-	// (String) Project description
-	// Project description
+	// readable description of the project.
+	// Optional human-readable description of the project.
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
-	// (String) Project Identifier
+	// (String) Computed by the API. Unique identifier for the resource.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// (String) Project name
-	// Project name
+	// (String) Display name for the Project.
+	// Display name for the Project.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (List of String) List of tags for the project
-	// List of tags for the project
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 }
 
 type ProjectParameters struct {
 
-	// (String) Project description
-	// Project description
+	// readable description of the project.
+	// Optional human-readable description of the project.
 	// +kubebuilder:validation:Optional
 	Description *string `json:"description,omitempty" tf:"description,omitempty"`
 
-	// (String) Project name
-	// Project name
+	// (String) Display name for the Project.
+	// Display name for the Project.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (List of String) List of tags for the project
-	// List of tags for the project
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	// +kubebuilder:validation:Optional
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 }
@@ -92,7 +92,7 @@ type ProjectStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// Project is the Schema for the Projects API. Manages an ArubaCloud Project.
+// Project is the Schema for the Projects API. Manages an ArubaCloud Project — the top-level organisational unit for all resources.
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

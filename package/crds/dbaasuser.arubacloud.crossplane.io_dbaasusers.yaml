@@ -34,8 +34,8 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: DBaaSUser is the Schema for the DBaaSUsers API. Manages an ArubaCloud
-          DBaaS User.
+        description: DBaaSUser is the Schema for the DBaaSUsers API. Manages a database
+          user within an ArubaCloud DBaaS cluster.
         properties:
           apiVersion:
             description: |-
@@ -75,13 +75,13 @@ spec:
                 properties:
                   dbaasId:
                     description: |-
-                      (String) DBaaS ID this user belongs to
-                      DBaaS ID this user belongs to
+                      (String) ID of the parent DBaaS cluster this user belongs to.
+                      ID of the parent DBaaS cluster this user belongs to.
                     type: string
                   passwordSecretRef:
                     description: |-
-                      (String, Sensitive) Password for the DBaaS user
-                      Password for the DBaaS user
+                      only — this value is sent to the API but is not returned in subsequent read responses.
+                      Password for the DBaaS user. Write-only — this value is sent to the API but is not returned in subsequent read responses.
                     properties:
                       key:
                         description: The key to select.
@@ -99,13 +99,13 @@ spec:
                     type: object
                   projectId:
                     description: |-
-                      (String) ID of the project this user belongs to
-                      ID of the project this user belongs to
+                      (String) ID of the project that owns this resource.
+                      ID of the project that owns this resource.
                     type: string
                   username:
                     description: |-
-                      (String) Username for the DBaaS user
-                      Username for the DBaaS user
+                      (String) Display name for the DBaaS user.
+                      Display name for the DBaaS user.
                     type: string
                 required:
                 - dbaasId
@@ -127,13 +127,13 @@ spec:
                 properties:
                   dbaasId:
                     description: |-
-                      (String) DBaaS ID this user belongs to
-                      DBaaS ID this user belongs to
+                      (String) ID of the parent DBaaS cluster this user belongs to.
+                      ID of the parent DBaaS cluster this user belongs to.
                     type: string
                   passwordSecretRef:
                     description: |-
-                      (String, Sensitive) Password for the DBaaS user
-                      Password for the DBaaS user
+                      only — this value is sent to the API but is not returned in subsequent read responses.
+                      Password for the DBaaS user. Write-only — this value is sent to the API but is not returned in subsequent read responses.
                     properties:
                       key:
                         description: The key to select.
@@ -151,13 +151,13 @@ spec:
                     type: object
                   projectId:
                     description: |-
-                      (String) ID of the project this user belongs to
-                      ID of the project this user belongs to
+                      (String) ID of the project that owns this resource.
+                      ID of the project that owns this resource.
                     type: string
                   username:
                     description: |-
-                      (String) Username for the DBaaS user
-                      Username for the DBaaS user
+                      (String) Display name for the DBaaS user.
+                      Display name for the DBaaS user.
                     type: string
                 required:
                 - passwordSecretRef
@@ -271,26 +271,27 @@ spec:
                 properties:
                   dbaasId:
                     description: |-
-                      (String) DBaaS ID this user belongs to
-                      DBaaS ID this user belongs to
+                      (String) ID of the parent DBaaS cluster this user belongs to.
+                      ID of the parent DBaaS cluster this user belongs to.
                     type: string
                   id:
-                    description: (String) DBaaS User identifier (same as username)
+                    description: (String) Computed by the API. Unique identifier for
+                      the resource (same as the username).
                     type: string
                   projectId:
                     description: |-
-                      (String) ID of the project this user belongs to
-                      ID of the project this user belongs to
+                      (String) ID of the project that owns this resource.
+                      ID of the project that owns this resource.
                     type: string
                   uri:
                     description: |-
-                      (String) DBaaS User URI
-                      DBaaS User URI
+                      (String) Computed by the API. Full resource URI used as a reference value in other resources.
+                      Computed by the API. Full resource URI used as a reference value in other resources.
                     type: string
                   username:
                     description: |-
-                      (String) Username for the DBaaS user
-                      Username for the DBaaS user
+                      (String) Display name for the DBaaS user.
+                      Display name for the DBaaS user.
                     type: string
                 type: object
               conditions:

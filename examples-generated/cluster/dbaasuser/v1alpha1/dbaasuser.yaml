@@ -1,0 +1,16 @@
+apiVersion: dbaasuser.arubacloud.crossplane.io/v1alpha1
+kind: DBaaSUser
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dbaasuser/v1alpha1/dbaasuser
+  labels:
+    testing.upbound.io/example-name: example
+  name: example
+spec:
+  forProvider:
+    dbaasId: example-dbaas-id
+    passwordSecretRef:
+      key: example-key
+      name: example-secret
+      namespace: upbound-system
+    username: example-user

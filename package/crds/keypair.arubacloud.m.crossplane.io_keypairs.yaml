@@ -35,7 +35,7 @@ spec:
     schema:
       openAPIV3Schema:
         description: KeyPair is the Schema for the KeyPairs API. Manages an ArubaCloud
-          KeyPair.
+          SSH KeyPair.
         properties:
           apiVersion:
             description: |-
@@ -61,30 +61,30 @@ spec:
                 properties:
                   location:
                     description: |-
-                      (String) Keypair location
-                      Keypair location
+                      Bergamo). See the available locations and zones.
+                      Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
                     type: string
                   name:
                     description: |-
-                      (String) Keypair name
-                      Keypair name
+                      (String) Display name for the KeyPair.
+                      Display name for the KeyPair.
                     type: string
                   projectId:
                     description: |-
-                      (String) Project ID
-                      Project ID
+                      (String) ID of the project that owns this resource.
+                      ID of the project that owns this resource.
                     type: string
                   tags:
                     description: |-
-                      (List of String) List of tags for the keypair
-                      List of tags for the keypair
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
                   valueSecretRef:
                     description: |-
-                      (String, Sensitive) Public key value
-                      Public key value
+                      format public key string (e.g., ssh-rsa AAAA...). The provider uploads this to ArubaCloud; the corresponding private key is never stored. Write-only — this value is sent to the API but is not returned in subsequent read responses.
+                      OpenSSH-format public key string (e.g., `ssh-rsa AAAA...`). The provider uploads this to ArubaCloud; the corresponding private key is never stored. Write-only — this value is sent to the API but is not returned in subsequent read responses.
                     properties:
                       key:
                         type: string
@@ -115,30 +115,30 @@ spec:
                 properties:
                   location:
                     description: |-
-                      (String) Keypair location
-                      Keypair location
+                      Bergamo). See the available locations and zones.
+                      Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
                     type: string
                   name:
                     description: |-
-                      (String) Keypair name
-                      Keypair name
+                      (String) Display name for the KeyPair.
+                      Display name for the KeyPair.
                     type: string
                   projectId:
                     description: |-
-                      (String) Project ID
-                      Project ID
+                      (String) ID of the project that owns this resource.
+                      ID of the project that owns this resource.
                     type: string
                   tags:
                     description: |-
-                      (List of String) List of tags for the keypair
-                      List of tags for the keypair
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
                   valueSecretRef:
                     description: |-
-                      (String, Sensitive) Public key value
-                      Public key value
+                      format public key string (e.g., ssh-rsa AAAA...). The provider uploads this to ArubaCloud; the corresponding private key is never stored. Write-only — this value is sent to the API but is not returned in subsequent read responses.
+                      OpenSSH-format public key string (e.g., `ssh-rsa AAAA...`). The provider uploads this to ArubaCloud; the corresponding private key is never stored. Write-only — this value is sent to the API but is not returned in subsequent read responses.
                     properties:
                       key:
                         type: string
@@ -232,34 +232,35 @@ spec:
               atProvider:
                 properties:
                   id:
-                    description: (String) Keypair identifier (name)
+                    description: (String) Computed by the API. Unique identifier for
+                      the resource.
                     type: string
                   location:
                     description: |-
-                      (String) Keypair location
-                      Keypair location
+                      Bergamo). See the available locations and zones.
+                      Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
                     type: string
                   name:
                     description: |-
-                      (String) Keypair name
-                      Keypair name
+                      (String) Display name for the KeyPair.
+                      Display name for the KeyPair.
                     type: string
                   projectId:
                     description: |-
-                      (String) Project ID
-                      Project ID
+                      (String) ID of the project that owns this resource.
+                      ID of the project that owns this resource.
                     type: string
                   tags:
                     description: |-
-                      (List of String) List of tags for the keypair
-                      List of tags for the keypair
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
                   uri:
                     description: |-
-                      (String) Keypair URI
-                      Keypair URI
+                      (String) Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a *_uri_ref attribute).
+                      Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a `*_uri_ref` attribute).
                     type: string
                 type: object
               conditions:

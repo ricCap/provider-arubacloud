@@ -16,94 +16,94 @@ import (
 
 type VPCPeeringInitParameters struct {
 
-	// (String) VPC Peering location
-	// VPC Peering location
+	// Bergamo). See the available locations and zones.
+	// Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) VPC Peering name
-	// VPC Peering name
+	// (String) Display name for the VPC peering.
+	// Display name for the VPC peering.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID or URI of the peer VPC to connect to
-	// ID or URI of the peer VPC to connect to
+	// (String) ID or URI of the remote peer VPC to connect to.
+	// ID or URI of the remote peer VPC to connect to.
 	PeerVPC *string `json:"peerVpc,omitempty" tf:"peer_vpc,omitempty"`
 
-	// (String) ID of the project this VPC Peering belongs to
-	// ID of the project this VPC Peering belongs to
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (List of String) List of tags for the VPC Peering
-	// List of tags for the VPC Peering
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String) ID of the VPC this peering belongs to
-	// ID of the VPC this peering belongs to
+	// (String) ID of the local VPC initiating this peering connection.
+	// ID of the local VPC initiating this peering connection.
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 }
 
 type VPCPeeringObservation struct {
 
-	// (String) VPC Peering identifier
+	// (String) Computed by the API. Unique identifier for the resource.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// (String) VPC Peering location
-	// VPC Peering location
+	// Bergamo). See the available locations and zones.
+	// Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) VPC Peering name
-	// VPC Peering name
+	// (String) Display name for the VPC peering.
+	// Display name for the VPC peering.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID or URI of the peer VPC to connect to
-	// ID or URI of the peer VPC to connect to
+	// (String) ID or URI of the remote peer VPC to connect to.
+	// ID or URI of the remote peer VPC to connect to.
 	PeerVPC *string `json:"peerVpc,omitempty" tf:"peer_vpc,omitempty"`
 
-	// (String) ID of the project this VPC Peering belongs to
-	// ID of the project this VPC Peering belongs to
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (List of String) List of tags for the VPC Peering
-	// List of tags for the VPC Peering
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String) VPC Peering URI
-	// VPC Peering URI
+	// (String) Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a *_uri_ref attribute).
+	// Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a `*_uri_ref` attribute).
 	URI *string `json:"uri,omitempty" tf:"uri,omitempty"`
 
-	// (String) ID of the VPC this peering belongs to
-	// ID of the VPC this peering belongs to
+	// (String) ID of the local VPC initiating this peering connection.
+	// ID of the local VPC initiating this peering connection.
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 }
 
 type VPCPeeringParameters struct {
 
-	// (String) VPC Peering location
-	// VPC Peering location
+	// Bergamo). See the available locations and zones.
+	// Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
 	// +kubebuilder:validation:Required
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) VPC Peering name
-	// VPC Peering name
+	// (String) Display name for the VPC peering.
+	// Display name for the VPC peering.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID or URI of the peer VPC to connect to
-	// ID or URI of the peer VPC to connect to
+	// (String) ID or URI of the remote peer VPC to connect to.
+	// ID or URI of the remote peer VPC to connect to.
 	// +kubebuilder:validation:Required
 	PeerVPC *string `json:"peerVpc,omitempty" tf:"peer_vpc,omitempty"`
 
-	// (String) ID of the project this VPC Peering belongs to
-	// ID of the project this VPC Peering belongs to
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (List of String) List of tags for the VPC Peering
-	// List of tags for the VPC Peering
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	// +kubebuilder:validation:Optional
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String) ID of the VPC this peering belongs to
-	// ID of the VPC this peering belongs to
+	// (String) ID of the local VPC initiating this peering connection.
+	// ID of the local VPC initiating this peering connection.
 	// +kubebuilder:validation:Required
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 }
@@ -135,7 +135,7 @@ type VPCPeeringStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// VPCPeering is the Schema for the VPCPeerings API. Manages an ArubaCloud VPC Peering.
+// VPCPeering is the Schema for the VPCPeerings API. Manages an ArubaCloud VPC Peering connection between two VPCs, enabling private routing between them.
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

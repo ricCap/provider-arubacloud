@@ -16,238 +16,238 @@ import (
 
 type CloudServerInitParameters struct {
 
-	// (String) CloudServer location
-	// CloudServer location
+	// Bergamo). See the available locations and zones.
+	// Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) CloudServer name
-	// CloudServer name
+	// (String) Display name for the CloudServer.
+	// Display name for the CloudServer.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (Attributes) Network configuration for the cloud server (see below for nested schema)
+	// (Attributes) Network configuration for the CloudServer. (see below for nested schema)
 	Network *NetworkInitParameters `json:"network,omitempty" tf:"network,omitempty"`
 
-	// (String) Project ID
-	// Project ID
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (Attributes) Cloud server settings (see below for nested schema)
+	// (Attributes) Compute and access settings for the CloudServer. (see below for nested schema)
 	Settings *SettingsInitParameters `json:"settings,omitempty" tf:"settings,omitempty"`
 
-	// (Attributes) Storage configuration for the cloud server (see below for nested schema)
+	// (Attributes) Storage configuration for the CloudServer. (see below for nested schema)
 	Storage *StorageInitParameters `json:"storage,omitempty" tf:"storage,omitempty"`
 
-	// (List of String) List of tags for the Cloud Server
-	// List of tags for the Cloud Server
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String) Zone
-	// Zone
+	// 1). See available zones.
+	// Availability zone within the region (e.g., `ITBG-1`). See [available zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
 
 type CloudServerObservation struct {
 
-	// (String) CloudServer identifier
+	// (String) Computed by the API. Unique identifier for the resource.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// (String) CloudServer location
-	// CloudServer location
+	// Bergamo). See the available locations and zones.
+	// Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) CloudServer name
-	// CloudServer name
+	// (String) Display name for the CloudServer.
+	// Display name for the CloudServer.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (Attributes) Network configuration for the cloud server (see below for nested schema)
+	// (Attributes) Network configuration for the CloudServer. (see below for nested schema)
 	Network *NetworkObservation `json:"network,omitempty" tf:"network,omitempty"`
 
-	// (String) Project ID
-	// Project ID
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (Attributes) Cloud server settings (see below for nested schema)
+	// (Attributes) Compute and access settings for the CloudServer. (see below for nested schema)
 	Settings *SettingsObservation `json:"settings,omitempty" tf:"settings,omitempty"`
 
-	// (Attributes) Storage configuration for the cloud server (see below for nested schema)
+	// (Attributes) Storage configuration for the CloudServer. (see below for nested schema)
 	Storage *StorageObservation `json:"storage,omitempty" tf:"storage,omitempty"`
 
-	// (List of String) List of tags for the Cloud Server
-	// List of tags for the Cloud Server
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String) CloudServer URI
-	// CloudServer URI
+	// (String) Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a *_uri_ref attribute).
+	// Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a `*_uri_ref` attribute).
 	URI *string `json:"uri,omitempty" tf:"uri,omitempty"`
 
-	// (String) Zone
-	// Zone
+	// 1). See available zones.
+	// Availability zone within the region (e.g., `ITBG-1`). See [available zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
 
 type CloudServerParameters struct {
 
-	// (String) CloudServer location
-	// CloudServer location
+	// Bergamo). See the available locations and zones.
+	// Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
 	// +kubebuilder:validation:Required
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) CloudServer name
-	// CloudServer name
+	// (String) Display name for the CloudServer.
+	// Display name for the CloudServer.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (Attributes) Network configuration for the cloud server (see below for nested schema)
+	// (Attributes) Network configuration for the CloudServer. (see below for nested schema)
 	// +kubebuilder:validation:Required
 	Network *NetworkParameters `json:"network,omitempty" tf:"network,omitempty"`
 
-	// (String) Project ID
-	// Project ID
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (Attributes) Cloud server settings (see below for nested schema)
+	// (Attributes) Compute and access settings for the CloudServer. (see below for nested schema)
 	// +kubebuilder:validation:Required
 	Settings *SettingsParameters `json:"settings,omitempty" tf:"settings,omitempty"`
 
-	// (Attributes) Storage configuration for the cloud server (see below for nested schema)
+	// (Attributes) Storage configuration for the CloudServer. (see below for nested schema)
 	// +kubebuilder:validation:Required
 	Storage *StorageParameters `json:"storage,omitempty" tf:"storage,omitempty"`
 
-	// (List of String) List of tags for the Cloud Server
-	// List of tags for the Cloud Server
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	// +kubebuilder:validation:Optional
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String) Zone
-	// Zone
+	// 1). See available zones.
+	// Availability zone within the region (e.g., `ITBG-1`). See [available zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
 	// +kubebuilder:validation:Required
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
 
 type NetworkInitParameters struct {
 
-	// (String) Elastic IP URI reference (e.g., arubacloud_elasticip.example.uri)
-	// Elastic IP URI reference (e.g., arubacloud_elasticip.example.uri)
+	// (String) URI of an Elastic IP to associate with this CloudServer. Reference the uri attribute of an arubacloud_elasticip resource. Optional — omit to use a dynamic IP.
+	// URI of an Elastic IP to associate with this CloudServer. Reference the `uri` attribute of an `arubacloud_elasticip` resource. Optional — omit to use a dynamic IP.
 	ElasticIPURIRef *string `json:"elasticIpUriRef,omitempty" tf:"elastic_ip_uri_ref,omitempty"`
 
-	// (List of String) List of security group URI references (e.g., [arubacloud_securitygroup.example.uri])
-	// List of security group URI references (e.g., [arubacloud_securitygroup.example.uri])
+	// (List of String) List of security group URIs to apply to this CloudServer. Reference the uri attribute of each arubacloud_securitygroup resource.
+	// List of security group URIs to apply to this CloudServer. Reference the `uri` attribute of each `arubacloud_securitygroup` resource.
 	SecuritygroupURIRefs []*string `json:"securitygroupUriRefs,omitempty" tf:"securitygroup_uri_refs,omitempty"`
 
-	// (List of String) List of subnet URI references (e.g., [arubacloud_subnet.example.uri])
-	// List of subnet URI references (e.g., [arubacloud_subnet.example.uri])
+	// (List of String) List of subnet URIs to attach this CloudServer to. Reference the uri attribute of each arubacloud_subnet resource.
+	// List of subnet URIs to attach this CloudServer to. Reference the `uri` attribute of each `arubacloud_subnet` resource.
 	SubnetURIRefs []*string `json:"subnetUriRefs,omitempty" tf:"subnet_uri_refs,omitempty"`
 
-	// (String) VPC URI reference (e.g., arubacloud_vpc.example.uri)
-	// VPC URI reference (e.g., arubacloud_vpc.example.uri)
+	// (String) URI of the VPC to attach this CloudServer to. Reference the uri attribute of an arubacloud_vpc resource.
+	// URI of the VPC to attach this CloudServer to. Reference the `uri` attribute of an `arubacloud_vpc` resource.
 	VPCURIRef *string `json:"vpcUriRef,omitempty" tf:"vpc_uri_ref,omitempty"`
 }
 
 type NetworkObservation struct {
 
-	// (String) Elastic IP URI reference (e.g., arubacloud_elasticip.example.uri)
-	// Elastic IP URI reference (e.g., arubacloud_elasticip.example.uri)
+	// (String) URI of an Elastic IP to associate with this CloudServer. Reference the uri attribute of an arubacloud_elasticip resource. Optional — omit to use a dynamic IP.
+	// URI of an Elastic IP to associate with this CloudServer. Reference the `uri` attribute of an `arubacloud_elasticip` resource. Optional — omit to use a dynamic IP.
 	ElasticIPURIRef *string `json:"elasticIpUriRef,omitempty" tf:"elastic_ip_uri_ref,omitempty"`
 
-	// (List of String) List of security group URI references (e.g., [arubacloud_securitygroup.example.uri])
-	// List of security group URI references (e.g., [arubacloud_securitygroup.example.uri])
+	// (List of String) List of security group URIs to apply to this CloudServer. Reference the uri attribute of each arubacloud_securitygroup resource.
+	// List of security group URIs to apply to this CloudServer. Reference the `uri` attribute of each `arubacloud_securitygroup` resource.
 	SecuritygroupURIRefs []*string `json:"securitygroupUriRefs,omitempty" tf:"securitygroup_uri_refs,omitempty"`
 
-	// (List of String) List of subnet URI references (e.g., [arubacloud_subnet.example.uri])
-	// List of subnet URI references (e.g., [arubacloud_subnet.example.uri])
+	// (List of String) List of subnet URIs to attach this CloudServer to. Reference the uri attribute of each arubacloud_subnet resource.
+	// List of subnet URIs to attach this CloudServer to. Reference the `uri` attribute of each `arubacloud_subnet` resource.
 	SubnetURIRefs []*string `json:"subnetUriRefs,omitempty" tf:"subnet_uri_refs,omitempty"`
 
-	// (String) VPC URI reference (e.g., arubacloud_vpc.example.uri)
-	// VPC URI reference (e.g., arubacloud_vpc.example.uri)
+	// (String) URI of the VPC to attach this CloudServer to. Reference the uri attribute of an arubacloud_vpc resource.
+	// URI of the VPC to attach this CloudServer to. Reference the `uri` attribute of an `arubacloud_vpc` resource.
 	VPCURIRef *string `json:"vpcUriRef,omitempty" tf:"vpc_uri_ref,omitempty"`
 }
 
 type NetworkParameters struct {
 
-	// (String) Elastic IP URI reference (e.g., arubacloud_elasticip.example.uri)
-	// Elastic IP URI reference (e.g., arubacloud_elasticip.example.uri)
+	// (String) URI of an Elastic IP to associate with this CloudServer. Reference the uri attribute of an arubacloud_elasticip resource. Optional — omit to use a dynamic IP.
+	// URI of an Elastic IP to associate with this CloudServer. Reference the `uri` attribute of an `arubacloud_elasticip` resource. Optional — omit to use a dynamic IP.
 	// +kubebuilder:validation:Optional
 	ElasticIPURIRef *string `json:"elasticIpUriRef,omitempty" tf:"elastic_ip_uri_ref,omitempty"`
 
-	// (List of String) List of security group URI references (e.g., [arubacloud_securitygroup.example.uri])
-	// List of security group URI references (e.g., [arubacloud_securitygroup.example.uri])
+	// (List of String) List of security group URIs to apply to this CloudServer. Reference the uri attribute of each arubacloud_securitygroup resource.
+	// List of security group URIs to apply to this CloudServer. Reference the `uri` attribute of each `arubacloud_securitygroup` resource.
 	// +kubebuilder:validation:Optional
 	SecuritygroupURIRefs []*string `json:"securitygroupUriRefs" tf:"securitygroup_uri_refs,omitempty"`
 
-	// (List of String) List of subnet URI references (e.g., [arubacloud_subnet.example.uri])
-	// List of subnet URI references (e.g., [arubacloud_subnet.example.uri])
+	// (List of String) List of subnet URIs to attach this CloudServer to. Reference the uri attribute of each arubacloud_subnet resource.
+	// List of subnet URIs to attach this CloudServer to. Reference the `uri` attribute of each `arubacloud_subnet` resource.
 	// +kubebuilder:validation:Optional
 	SubnetURIRefs []*string `json:"subnetUriRefs" tf:"subnet_uri_refs,omitempty"`
 
-	// (String) VPC URI reference (e.g., arubacloud_vpc.example.uri)
-	// VPC URI reference (e.g., arubacloud_vpc.example.uri)
+	// (String) URI of the VPC to attach this CloudServer to. Reference the uri attribute of an arubacloud_vpc resource.
+	// URI of the VPC to attach this CloudServer to. Reference the `uri` attribute of an `arubacloud_vpc` resource.
 	// +kubebuilder:validation:Optional
 	VPCURIRef *string `json:"vpcUriRef" tf:"vpc_uri_ref,omitempty"`
 }
 
 type SettingsInitParameters struct {
 
-	// flavors
-	// Flavor name (e.g., CSO4A8 for 4 CPU, 8GB RAM). See https://api.arubacloud.com/docs/metadata/#cloudserver-flavors
+	// (String) Compute flavour name (e.g., CSO4A8 for 4 vCPU / 8 GB RAM). See available flavours.
+	// Compute flavour name (e.g., `CSO4A8` for 4 vCPU / 8 GB RAM). See [available flavours](https://api.arubacloud.com/docs/metadata/#cloudserver-flavors).
 	FlavorName *string `json:"flavorName,omitempty" tf:"flavor_name,omitempty"`
 
-	// (String) Key Pair URI reference (e.g., arubacloud_keypair.example.uri)
-	// Key Pair URI reference (e.g., arubacloud_keypair.example.uri)
+	// (String) URI of the SSH key pair to inject at boot. Reference the uri attribute of an arubacloud_keypair resource.
+	// URI of the SSH key pair to inject at boot. Reference the `uri` attribute of an `arubacloud_keypair` resource.
 	KeyPairURIRef *string `json:"keyPairUriRef,omitempty" tf:"key_pair_uri_ref,omitempty"`
 
-	// Init user data (raw YAML content)
-	// Cloud-Init user data (raw YAML content)
+	// Init configuration passed verbatim to the instance at first boot (raw YAML or shell-script). Write-only — this value is sent to the API but is not returned in subsequent read responses.
+	// Cloud-Init configuration passed verbatim to the instance at first boot (raw YAML or shell-script). Write-only — this value is sent to the API but is not returned in subsequent read responses.
 	UserDataSecretRef *v1.LocalSecretKeySelector `json:"userDataSecretRef,omitempty" tf:"-"`
 }
 
 type SettingsObservation struct {
 
-	// flavors
-	// Flavor name (e.g., CSO4A8 for 4 CPU, 8GB RAM). See https://api.arubacloud.com/docs/metadata/#cloudserver-flavors
+	// (String) Compute flavour name (e.g., CSO4A8 for 4 vCPU / 8 GB RAM). See available flavours.
+	// Compute flavour name (e.g., `CSO4A8` for 4 vCPU / 8 GB RAM). See [available flavours](https://api.arubacloud.com/docs/metadata/#cloudserver-flavors).
 	FlavorName *string `json:"flavorName,omitempty" tf:"flavor_name,omitempty"`
 
-	// (String) Key Pair URI reference (e.g., arubacloud_keypair.example.uri)
-	// Key Pair URI reference (e.g., arubacloud_keypair.example.uri)
+	// (String) URI of the SSH key pair to inject at boot. Reference the uri attribute of an arubacloud_keypair resource.
+	// URI of the SSH key pair to inject at boot. Reference the `uri` attribute of an `arubacloud_keypair` resource.
 	KeyPairURIRef *string `json:"keyPairUriRef,omitempty" tf:"key_pair_uri_ref,omitempty"`
 }
 
 type SettingsParameters struct {
 
-	// flavors
-	// Flavor name (e.g., CSO4A8 for 4 CPU, 8GB RAM). See https://api.arubacloud.com/docs/metadata/#cloudserver-flavors
+	// (String) Compute flavour name (e.g., CSO4A8 for 4 vCPU / 8 GB RAM). See available flavours.
+	// Compute flavour name (e.g., `CSO4A8` for 4 vCPU / 8 GB RAM). See [available flavours](https://api.arubacloud.com/docs/metadata/#cloudserver-flavors).
 	// +kubebuilder:validation:Optional
 	FlavorName *string `json:"flavorName" tf:"flavor_name,omitempty"`
 
-	// (String) Key Pair URI reference (e.g., arubacloud_keypair.example.uri)
-	// Key Pair URI reference (e.g., arubacloud_keypair.example.uri)
+	// (String) URI of the SSH key pair to inject at boot. Reference the uri attribute of an arubacloud_keypair resource.
+	// URI of the SSH key pair to inject at boot. Reference the `uri` attribute of an `arubacloud_keypair` resource.
 	// +kubebuilder:validation:Optional
 	KeyPairURIRef *string `json:"keyPairUriRef,omitempty" tf:"key_pair_uri_ref,omitempty"`
 
-	// Init user data (raw YAML content)
-	// Cloud-Init user data (raw YAML content)
+	// Init configuration passed verbatim to the instance at first boot (raw YAML or shell-script). Write-only — this value is sent to the API but is not returned in subsequent read responses.
+	// Cloud-Init configuration passed verbatim to the instance at first boot (raw YAML or shell-script). Write-only — this value is sent to the API but is not returned in subsequent read responses.
 	// +kubebuilder:validation:Optional
 	UserDataSecretRef *v1.LocalSecretKeySelector `json:"userDataSecretRef,omitempty" tf:"-"`
 }
 
 type StorageInitParameters struct {
 
-	// (String) Boot volume URI reference (e.g., arubacloud_blockstorage.example.uri)
-	// Boot volume URI reference (e.g., arubacloud_blockstorage.example.uri)
+	// (String) URI of the bootable block storage volume. Reference the uri attribute of an arubacloud_blockstorage resource (must be bootable).
+	// URI of the bootable block storage volume. Reference the `uri` attribute of an `arubacloud_blockstorage` resource (must be bootable).
 	BootVolumeURIRef *string `json:"bootVolumeUriRef,omitempty" tf:"boot_volume_uri_ref,omitempty"`
 }
 
 type StorageObservation struct {
 
-	// (String) Boot volume URI reference (e.g., arubacloud_blockstorage.example.uri)
-	// Boot volume URI reference (e.g., arubacloud_blockstorage.example.uri)
+	// (String) URI of the bootable block storage volume. Reference the uri attribute of an arubacloud_blockstorage resource (must be bootable).
+	// URI of the bootable block storage volume. Reference the `uri` attribute of an `arubacloud_blockstorage` resource (must be bootable).
 	BootVolumeURIRef *string `json:"bootVolumeUriRef,omitempty" tf:"boot_volume_uri_ref,omitempty"`
 }
 
 type StorageParameters struct {
 
-	// (String) Boot volume URI reference (e.g., arubacloud_blockstorage.example.uri)
-	// Boot volume URI reference (e.g., arubacloud_blockstorage.example.uri)
+	// (String) URI of the bootable block storage volume. Reference the uri attribute of an arubacloud_blockstorage resource (must be bootable).
+	// URI of the bootable block storage volume. Reference the `uri` attribute of an `arubacloud_blockstorage` resource (must be bootable).
 	// +kubebuilder:validation:Optional
 	BootVolumeURIRef *string `json:"bootVolumeUriRef" tf:"boot_volume_uri_ref,omitempty"`
 }
@@ -279,7 +279,7 @@ type CloudServerStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// CloudServer is the Schema for the CloudServers API. Manages an ArubaCloud CloudServer.
+// CloudServer is the Schema for the CloudServers API. Manages an ArubaCloud CloudServer virtual machine.
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

@@ -1,0 +1,12 @@
+apiVersion: database.arubacloud.m.crossplane.io/v1alpha1
+kind: Database
+metadata:
+  annotations:
+    meta.upbound.io/example-id: database/v1alpha1/database
+  labels:
+    testing.upbound.io/example-name: basic
+  name: basic
+  namespace: crossplane-system
+spec:
+  forProvider:
+    name: basic-database
