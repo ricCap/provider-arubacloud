@@ -16,236 +16,236 @@ import (
 
 type PropertiesInitParameters struct {
 
-	// (String) CRON expression for recurrence (for Recurring)
-	// CRON expression for recurrence (for Recurring)
+	// field cron format.
+	// Cron expression defining the job schedule (e.g., `0 * * * *` for hourly). Standard 5-field cron format.
 	Cron *string `json:"cron,omitempty" tf:"cron,omitempty"`
 
-	// (Boolean) Whether the job is enabled.
-	// Whether the job is enabled.
+	// (Boolean) When true, the job is active and will trigger on schedule.
+	// When `true`, the job is active and will trigger on schedule.
 	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
 
-	// (String) End date until which the job can run (for Recurring)
-	// End date until which the job can run (for Recurring)
+	// time after which a Recurring job stops executing.
+	// ISO 8601 date-time after which a `Recurring` job stops executing.
 	ExecuteUntil *string `json:"executeUntil,omitempty" tf:"execute_until,omitempty"`
 
-	// (String) Date and time when the job should run (for OneShot)
-	// Date and time when the job should run (for OneShot)
+	// time at which the job executes once .
+	// ISO 8601 date-time at which the job executes once (required for `OneShot` type).
 	ScheduleAt *string `json:"scheduleAt,omitempty" tf:"schedule_at,omitempty"`
 
-	// (String) Type of job (OneShot, Recurring)
-	// Type of job (OneShot, Recurring)
+	// (String) Execution mode of the job. Accepted values: OneShot (runs once at schedule_at), Recurring (repeats on a cron schedule).
+	// Execution mode of the job. Accepted values: `OneShot` (runs once at `schedule_at`), `Recurring` (repeats on a `cron` schedule).
 	ScheduleJobType *string `json:"scheduleJobType,omitempty" tf:"schedule_job_type,omitempty"`
 
-	// (Attributes List) (see below for nested schema)
+	// (Attributes List) Ordered list of API actions executed when the job triggers. (see below for nested schema)
 	Steps []StepsInitParameters `json:"steps,omitempty" tf:"steps,omitempty"`
 }
 
 type PropertiesObservation struct {
 
-	// (String) CRON expression for recurrence (for Recurring)
-	// CRON expression for recurrence (for Recurring)
+	// field cron format.
+	// Cron expression defining the job schedule (e.g., `0 * * * *` for hourly). Standard 5-field cron format.
 	Cron *string `json:"cron,omitempty" tf:"cron,omitempty"`
 
-	// (Boolean) Whether the job is enabled.
-	// Whether the job is enabled.
+	// (Boolean) When true, the job is active and will trigger on schedule.
+	// When `true`, the job is active and will trigger on schedule.
 	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
 
-	// (String) End date until which the job can run (for Recurring)
-	// End date until which the job can run (for Recurring)
+	// time after which a Recurring job stops executing.
+	// ISO 8601 date-time after which a `Recurring` job stops executing.
 	ExecuteUntil *string `json:"executeUntil,omitempty" tf:"execute_until,omitempty"`
 
-	// (String) Date and time when the job should run (for OneShot)
-	// Date and time when the job should run (for OneShot)
+	// time at which the job executes once .
+	// ISO 8601 date-time at which the job executes once (required for `OneShot` type).
 	ScheduleAt *string `json:"scheduleAt,omitempty" tf:"schedule_at,omitempty"`
 
-	// (String) Type of job (OneShot, Recurring)
-	// Type of job (OneShot, Recurring)
+	// (String) Execution mode of the job. Accepted values: OneShot (runs once at schedule_at), Recurring (repeats on a cron schedule).
+	// Execution mode of the job. Accepted values: `OneShot` (runs once at `schedule_at`), `Recurring` (repeats on a `cron` schedule).
 	ScheduleJobType *string `json:"scheduleJobType,omitempty" tf:"schedule_job_type,omitempty"`
 
-	// (Attributes List) (see below for nested schema)
+	// (Attributes List) Ordered list of API actions executed when the job triggers. (see below for nested schema)
 	Steps []StepsObservation `json:"steps,omitempty" tf:"steps,omitempty"`
 }
 
 type PropertiesParameters struct {
 
-	// (String) CRON expression for recurrence (for Recurring)
-	// CRON expression for recurrence (for Recurring)
+	// field cron format.
+	// Cron expression defining the job schedule (e.g., `0 * * * *` for hourly). Standard 5-field cron format.
 	// +kubebuilder:validation:Optional
 	Cron *string `json:"cron,omitempty" tf:"cron,omitempty"`
 
-	// (Boolean) Whether the job is enabled.
-	// Whether the job is enabled.
+	// (Boolean) When true, the job is active and will trigger on schedule.
+	// When `true`, the job is active and will trigger on schedule.
 	// +kubebuilder:validation:Optional
 	Enabled *bool `json:"enabled,omitempty" tf:"enabled,omitempty"`
 
-	// (String) End date until which the job can run (for Recurring)
-	// End date until which the job can run (for Recurring)
+	// time after which a Recurring job stops executing.
+	// ISO 8601 date-time after which a `Recurring` job stops executing.
 	// +kubebuilder:validation:Optional
 	ExecuteUntil *string `json:"executeUntil,omitempty" tf:"execute_until,omitempty"`
 
-	// (String) Date and time when the job should run (for OneShot)
-	// Date and time when the job should run (for OneShot)
+	// time at which the job executes once .
+	// ISO 8601 date-time at which the job executes once (required for `OneShot` type).
 	// +kubebuilder:validation:Optional
 	ScheduleAt *string `json:"scheduleAt,omitempty" tf:"schedule_at,omitempty"`
 
-	// (String) Type of job (OneShot, Recurring)
-	// Type of job (OneShot, Recurring)
+	// (String) Execution mode of the job. Accepted values: OneShot (runs once at schedule_at), Recurring (repeats on a cron schedule).
+	// Execution mode of the job. Accepted values: `OneShot` (runs once at `schedule_at`), `Recurring` (repeats on a `cron` schedule).
 	// +kubebuilder:validation:Optional
 	ScheduleJobType *string `json:"scheduleJobType" tf:"schedule_job_type,omitempty"`
 
-	// (Attributes List) (see below for nested schema)
+	// (Attributes List) Ordered list of API actions executed when the job triggers. (see below for nested schema)
 	// +kubebuilder:validation:Optional
 	Steps []StepsParameters `json:"steps,omitempty" tf:"steps,omitempty"`
 }
 
 type ScheduleJobInitParameters struct {
 
-	// (String) Location for the job
-	// Location for the job
+	// Bergamo). See the available locations and zones.
+	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) Schedule Job name
-	// Schedule Job name
+	// (String) Display name for the scheduled job.
+	// Display name for the scheduled job.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID of the project this job belongs to
-	// ID of the project this job belongs to
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (Attributes) (see below for nested schema)
+	// (Attributes) Job scheduling and execution configuration. (see below for nested schema)
 	Properties *PropertiesInitParameters `json:"properties,omitempty" tf:"properties,omitempty"`
 
-	// (List of String) List of tags for the job
-	// List of tags for the job
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 }
 
 type ScheduleJobObservation struct {
 
-	// (String) Schedule Job identifier
+	// (String) Computed by the API. Unique identifier for the resource.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// (String) Location for the job
-	// Location for the job
+	// Bergamo). See the available locations and zones.
+	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) Schedule Job name
-	// Schedule Job name
+	// (String) Display name for the scheduled job.
+	// Display name for the scheduled job.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID of the project this job belongs to
-	// ID of the project this job belongs to
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (Attributes) (see below for nested schema)
+	// (Attributes) Job scheduling and execution configuration. (see below for nested schema)
 	Properties *PropertiesObservation `json:"properties,omitempty" tf:"properties,omitempty"`
 
-	// (List of String) List of tags for the job
-	// List of tags for the job
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String) Schedule Job URI
-	// Schedule Job URI
+	// (String) Computed by the API. Full resource URI used as a reference value in other resources.
+	// Computed by the API. Full resource URI used as a reference value in other resources.
 	URI *string `json:"uri,omitempty" tf:"uri,omitempty"`
 }
 
 type ScheduleJobParameters struct {
 
-	// (String) Location for the job
-	// Location for the job
+	// Bergamo). See the available locations and zones.
+	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
 	// +kubebuilder:validation:Required
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) Schedule Job name
-	// Schedule Job name
+	// (String) Display name for the scheduled job.
+	// Display name for the scheduled job.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID of the project this job belongs to
-	// ID of the project this job belongs to
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (Attributes) (see below for nested schema)
+	// (Attributes) Job scheduling and execution configuration. (see below for nested schema)
 	// +kubebuilder:validation:Required
 	Properties *PropertiesParameters `json:"properties,omitempty" tf:"properties,omitempty"`
 
-	// (List of String) List of tags for the job
-	// List of tags for the job
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	// +kubebuilder:validation:Optional
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 }
 
 type StepsInitParameters struct {
 
-	// (String) URI of the action to execute.
-	// URI of the action to execute.
+	// (String) URI of the API action to invoke on the target resource.
+	// URI of the API action to invoke on the target resource.
 	ActionURI *string `json:"actionUri,omitempty" tf:"action_uri,omitempty"`
 
-	// (String) Optional HTTP request body.
-	// Optional HTTP request body.
+	// (String) Optional JSON request body sent with the HTTP call.
+	// Optional JSON request body sent with the HTTP call.
 	Body *string `json:"body,omitempty" tf:"body,omitempty"`
 
-	// (String) HTTP verb to use (GET, POST, etc.)
-	// HTTP verb to use (GET, POST, etc.)
+	// (String) HTTP method used to call the action URI (e.g., GET, POST, PUT, DELETE).
+	// HTTP method used to call the action URI (e.g., `GET`, `POST`, `PUT`, `DELETE`).
 	HTTPVerb *string `json:"httpVerb,omitempty" tf:"http_verb,omitempty"`
 
-	// (String) Schedule Job name
-	// Descriptive name of the step.
+	// (String) Display name for the scheduled job.
+	// Optional human-readable label for the step.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) URI of the resource.
-	// URI of the resource.
+	// (String) URI of the ArubaCloud resource that the step targets.
+	// URI of the ArubaCloud resource that the step targets.
 	ResourceURI *string `json:"resourceUri,omitempty" tf:"resource_uri,omitempty"`
 }
 
 type StepsObservation struct {
 
-	// (String) URI of the action to execute.
-	// URI of the action to execute.
+	// (String) URI of the API action to invoke on the target resource.
+	// URI of the API action to invoke on the target resource.
 	ActionURI *string `json:"actionUri,omitempty" tf:"action_uri,omitempty"`
 
-	// (String) Optional HTTP request body.
-	// Optional HTTP request body.
+	// (String) Optional JSON request body sent with the HTTP call.
+	// Optional JSON request body sent with the HTTP call.
 	Body *string `json:"body,omitempty" tf:"body,omitempty"`
 
-	// (String) HTTP verb to use (GET, POST, etc.)
-	// HTTP verb to use (GET, POST, etc.)
+	// (String) HTTP method used to call the action URI (e.g., GET, POST, PUT, DELETE).
+	// HTTP method used to call the action URI (e.g., `GET`, `POST`, `PUT`, `DELETE`).
 	HTTPVerb *string `json:"httpVerb,omitempty" tf:"http_verb,omitempty"`
 
-	// (String) Schedule Job name
-	// Descriptive name of the step.
+	// (String) Display name for the scheduled job.
+	// Optional human-readable label for the step.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) URI of the resource.
-	// URI of the resource.
+	// (String) URI of the ArubaCloud resource that the step targets.
+	// URI of the ArubaCloud resource that the step targets.
 	ResourceURI *string `json:"resourceUri,omitempty" tf:"resource_uri,omitempty"`
 }
 
 type StepsParameters struct {
 
-	// (String) URI of the action to execute.
-	// URI of the action to execute.
+	// (String) URI of the API action to invoke on the target resource.
+	// URI of the API action to invoke on the target resource.
 	// +kubebuilder:validation:Optional
 	ActionURI *string `json:"actionUri" tf:"action_uri,omitempty"`
 
-	// (String) Optional HTTP request body.
-	// Optional HTTP request body.
+	// (String) Optional JSON request body sent with the HTTP call.
+	// Optional JSON request body sent with the HTTP call.
 	// +kubebuilder:validation:Optional
 	Body *string `json:"body,omitempty" tf:"body,omitempty"`
 
-	// (String) HTTP verb to use (GET, POST, etc.)
-	// HTTP verb to use (GET, POST, etc.)
+	// (String) HTTP method used to call the action URI (e.g., GET, POST, PUT, DELETE).
+	// HTTP method used to call the action URI (e.g., `GET`, `POST`, `PUT`, `DELETE`).
 	// +kubebuilder:validation:Optional
 	HTTPVerb *string `json:"httpVerb" tf:"http_verb,omitempty"`
 
-	// (String) Schedule Job name
-	// Descriptive name of the step.
+	// (String) Display name for the scheduled job.
+	// Optional human-readable label for the step.
 	// +kubebuilder:validation:Optional
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) URI of the resource.
-	// URI of the resource.
+	// (String) URI of the ArubaCloud resource that the step targets.
+	// URI of the ArubaCloud resource that the step targets.
 	// +kubebuilder:validation:Optional
 	ResourceURI *string `json:"resourceUri" tf:"resource_uri,omitempty"`
 }
@@ -277,7 +277,7 @@ type ScheduleJobStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// ScheduleJob is the Schema for the ScheduleJobs API. Manages an ArubaCloud Schedule Job.
+// ScheduleJob is the Schema for the ScheduleJobs API. Manages an ArubaCloud Scheduled Job — a cron-triggered automation task.
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

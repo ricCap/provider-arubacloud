@@ -34,8 +34,8 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: KMS is the Schema for the KMSs API. Manages an ArubaCloud Key
-          Management System (KMS).
+        description: KMS is the Schema for the KMSs API. Manages an ArubaCloud KMS
+          (Key Management Service) instance for storing and managing encryption keys.
         properties:
           apiVersion:
             description: |-
@@ -61,28 +61,28 @@ spec:
                 properties:
                   billingPeriod:
                     description: |-
-                      (String) Billing period for the KMS
-                      Billing period for the KMS
+                      (String) Billing cycle. Accepted values: Hour, Month, Year.
+                      Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
                     type: string
                   location:
                     description: |-
-                      (String) Location for the KMS
-                      Location for the KMS
+                      Bergamo). See the available locations and zones.
+                      Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
                     type: string
                   name:
                     description: |-
-                      (String) KMS name
-                      KMS name
+                      (String) Display name for the KMS instance.
+                      Display name for the KMS instance.
                     type: string
                   projectId:
                     description: |-
-                      (String) ID of the project this KMS belongs to
-                      ID of the project this KMS belongs to
+                      (String) ID of the project that owns this resource.
+                      ID of the project that owns this resource.
                     type: string
                   tags:
                     description: |-
-                      (List of String) List of tags for the KMS
-                      List of tags for the KMS
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
@@ -105,28 +105,28 @@ spec:
                 properties:
                   billingPeriod:
                     description: |-
-                      (String) Billing period for the KMS
-                      Billing period for the KMS
+                      (String) Billing cycle. Accepted values: Hour, Month, Year.
+                      Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
                     type: string
                   location:
                     description: |-
-                      (String) Location for the KMS
-                      Location for the KMS
+                      Bergamo). See the available locations and zones.
+                      Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
                     type: string
                   name:
                     description: |-
-                      (String) KMS name
-                      KMS name
+                      (String) Display name for the KMS instance.
+                      Display name for the KMS instance.
                     type: string
                   projectId:
                     description: |-
-                      (String) ID of the project this KMS belongs to
-                      ID of the project this KMS belongs to
+                      (String) ID of the project that owns this resource.
+                      ID of the project that owns this resource.
                     type: string
                   tags:
                     description: |-
-                      (List of String) List of tags for the KMS
-                      List of tags for the KMS
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
@@ -205,38 +205,39 @@ spec:
                 properties:
                   billingPeriod:
                     description: |-
-                      (String) Billing period for the KMS
-                      Billing period for the KMS
+                      (String) Billing cycle. Accepted values: Hour, Month, Year.
+                      Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
                     type: string
                   id:
-                    description: (String) KMS identifier
+                    description: (String) Computed by the API. Unique identifier for
+                      the resource.
                     type: string
                   location:
                     description: |-
-                      (String) Location for the KMS
-                      Location for the KMS
+                      Bergamo). See the available locations and zones.
+                      Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
                     type: string
                   name:
                     description: |-
-                      (String) KMS name
-                      KMS name
+                      (String) Display name for the KMS instance.
+                      Display name for the KMS instance.
                     type: string
                   projectId:
                     description: |-
-                      (String) ID of the project this KMS belongs to
-                      ID of the project this KMS belongs to
+                      (String) ID of the project that owns this resource.
+                      ID of the project that owns this resource.
                     type: string
                   tags:
                     description: |-
-                      (List of String) List of tags for the KMS
-                      List of tags for the KMS
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
                   uri:
                     description: |-
-                      (String) KMS URI
-                      KMS URI
+                      (String) Computed by the API. Full resource URI used as a reference value in other resources.
+                      Computed by the API. Full resource URI used as a reference value in other resources.
                     type: string
                 type: object
               conditions:

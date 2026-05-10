@@ -1,0 +1,31 @@
+apiVersion: dbaas.arubacloud.crossplane.io/v1alpha1
+kind: DBaaS
+metadata:
+  annotations:
+    meta.upbound.io/example-id: dbaas/v1alpha1/dbaas
+  labels:
+    testing.upbound.io/example-name: basic
+  name: basic
+spec:
+  forProvider:
+    billingPeriod: Hour
+    engineId: mysql-8.0
+    flavor: DBO2A4
+    location: ITBG-Bergamo
+    name: basic-dbaas
+    network:
+      elasticIpUriRef: ${arubacloud_elasticip.example.uri}
+      securityGroupUriRef: ${arubacloud_securitygroup.example.uri}
+      subnetUriRef: ${arubacloud_subnet.example.uri}
+      vpcUriRef: ${arubacloud_vpc.example.uri}
+    projectId: ${arubacloud_project.example.id}
+    storage:
+      autoscaling:
+        availableSpace: 100
+        enabled: true
+        stepSize: 10
+      sizeGb: 100
+    tags:
+    - dbaas
+    - test
+    zone: ITBG-1

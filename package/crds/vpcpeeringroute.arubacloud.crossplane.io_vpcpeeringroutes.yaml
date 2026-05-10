@@ -34,8 +34,8 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: VPCPeeringRoute is the Schema for the VPCPeeringRoutes API. Manages
-          an ArubaCloud VPC Peering Route.
+        description: VPCPeeringRoute is the Schema for the VPCPeeringRoutes API. <no
+          value>
         properties:
           apiVersion:
             description: |-
@@ -74,46 +74,35 @@ spec:
               forProvider:
                 properties:
                   billingPeriod:
-                    description: |-
-                      (String) Billing period (Hour, Month, Year)
-                      Billing period (Hour, Month, Year)
+                    description: 'Billing cycle for the resource. Accepted values:
+                      `Hour`, `Month`, `Year`.'
                     type: string
                   localNetworkAddress:
-                    description: |-
-                      (String) Local network address in CIDR notation
-                      Local network address in CIDR notation
+                    description: Local network CIDR that is reachable on this side
+                      of the peering (e.g., `10.0.1.0/24`).
                     type: string
                   name:
-                    description: |-
-                      (String) VPC Peering Route name
-                      VPC Peering Route name
+                    description: Display name for the VPC peering route.
                     type: string
                   projectId:
-                    description: |-
-                      (String) ID of the project this VPC Peering Route belongs to
-                      ID of the project this VPC Peering Route belongs to
+                    description: ID of the project that owns this resource.
                     type: string
                   remoteNetworkAddress:
-                    description: |-
-                      (String) Remote network address in CIDR notation
-                      Remote network address in CIDR notation
+                    description: Remote network CIDR reachable through the peering
+                      connection (e.g., `10.0.2.0/24`).
                     type: string
                   tags:
-                    description: |-
-                      (List of String) List of tags for the VPC Peering Route
-                      List of tags for the VPC Peering Route
+                    description: List of string tags attached to the resource for
+                      filtering and organisation.
                     items:
                       type: string
                     type: array
                   vpcId:
-                    description: |-
-                      (String) ID of the VPC this peering route belongs to
-                      ID of the VPC this peering route belongs to
+                    description: ID of the VPC this peering route belongs to.
                     type: string
                   vpcPeeringId:
-                    description: |-
-                      (String) ID of the VPC Peering this route belongs to
-                      ID of the VPC Peering this route belongs to
+                    description: ID of the VPC peering connection this route belongs
+                      to.
                     type: string
                 required:
                 - billingPeriod
@@ -138,46 +127,35 @@ spec:
                   autoscaler.
                 properties:
                   billingPeriod:
-                    description: |-
-                      (String) Billing period (Hour, Month, Year)
-                      Billing period (Hour, Month, Year)
+                    description: 'Billing cycle for the resource. Accepted values:
+                      `Hour`, `Month`, `Year`.'
                     type: string
                   localNetworkAddress:
-                    description: |-
-                      (String) Local network address in CIDR notation
-                      Local network address in CIDR notation
+                    description: Local network CIDR that is reachable on this side
+                      of the peering (e.g., `10.0.1.0/24`).
                     type: string
                   name:
-                    description: |-
-                      (String) VPC Peering Route name
-                      VPC Peering Route name
+                    description: Display name for the VPC peering route.
                     type: string
                   projectId:
-                    description: |-
-                      (String) ID of the project this VPC Peering Route belongs to
-                      ID of the project this VPC Peering Route belongs to
+                    description: ID of the project that owns this resource.
                     type: string
                   remoteNetworkAddress:
-                    description: |-
-                      (String) Remote network address in CIDR notation
-                      Remote network address in CIDR notation
+                    description: Remote network CIDR reachable through the peering
+                      connection (e.g., `10.0.2.0/24`).
                     type: string
                   tags:
-                    description: |-
-                      (List of String) List of tags for the VPC Peering Route
-                      List of tags for the VPC Peering Route
+                    description: List of string tags attached to the resource for
+                      filtering and organisation.
                     items:
                       type: string
                     type: array
                   vpcId:
-                    description: |-
-                      (String) ID of the VPC this peering route belongs to
-                      ID of the VPC this peering route belongs to
+                    description: ID of the VPC this peering route belongs to.
                     type: string
                   vpcPeeringId:
-                    description: |-
-                      (String) ID of the VPC Peering this route belongs to
-                      ID of the VPC Peering this route belongs to
+                    description: ID of the VPC peering connection this route belongs
+                      to.
                     type: string
                 type: object
               managementPolicies:
@@ -301,54 +279,41 @@ spec:
               atProvider:
                 properties:
                   billingPeriod:
-                    description: |-
-                      (String) Billing period (Hour, Month, Year)
-                      Billing period (Hour, Month, Year)
+                    description: 'Billing cycle for the resource. Accepted values:
+                      `Hour`, `Month`, `Year`.'
                     type: string
                   id:
-                    description: (String) VPC Peering Route identifier
                     type: string
                   localNetworkAddress:
-                    description: |-
-                      (String) Local network address in CIDR notation
-                      Local network address in CIDR notation
+                    description: Local network CIDR that is reachable on this side
+                      of the peering (e.g., `10.0.1.0/24`).
                     type: string
                   name:
-                    description: |-
-                      (String) VPC Peering Route name
-                      VPC Peering Route name
+                    description: Display name for the VPC peering route.
                     type: string
                   projectId:
-                    description: |-
-                      (String) ID of the project this VPC Peering Route belongs to
-                      ID of the project this VPC Peering Route belongs to
+                    description: ID of the project that owns this resource.
                     type: string
                   remoteNetworkAddress:
-                    description: |-
-                      (String) Remote network address in CIDR notation
-                      Remote network address in CIDR notation
+                    description: Remote network CIDR reachable through the peering
+                      connection (e.g., `10.0.2.0/24`).
                     type: string
                   tags:
-                    description: |-
-                      (List of String) List of tags for the VPC Peering Route
-                      List of tags for the VPC Peering Route
+                    description: List of string tags attached to the resource for
+                      filtering and organisation.
                     items:
                       type: string
                     type: array
                   uri:
-                    description: |-
-                      (String) VPC Peering Route URI
-                      VPC Peering Route URI
+                    description: Computed by the API. Full resource URI used as a
+                      reference value in other resources (e.g., as a `*_uri_ref` attribute).
                     type: string
                   vpcId:
-                    description: |-
-                      (String) ID of the VPC this peering route belongs to
-                      ID of the VPC this peering route belongs to
+                    description: ID of the VPC this peering route belongs to.
                     type: string
                   vpcPeeringId:
-                    description: |-
-                      (String) ID of the VPC Peering this route belongs to
-                      ID of the VPC Peering this route belongs to
+                    description: ID of the VPC peering connection this route belongs
+                      to.
                     type: string
                 type: object
               conditions:

@@ -35,7 +35,8 @@ spec:
     schema:
       openAPIV3Schema:
         description: Subnet is the Schema for the Subnets API. Manages an ArubaCloud
-          Subnet resource.
+          Subnet within a VPC. Subnets can be Basic (default networking) or Advanced
+          (custom CIDR with configurable DHCP).
         properties:
           apiVersion:
             description: |-
@@ -75,64 +76,68 @@ spec:
                 properties:
                   location:
                     description: |-
-                      (String) Subnet location
-                      Subnet location
+                      Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                      Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   name:
                     description: |-
-                      (String) Subnet name
-                      Subnet name
+                      (String) Display name for the subnet.
+                      Display name for the subnet.
                     type: string
                   network:
-                    description: block
+                    description: (Attributes) Network configuration block. Required
+                      when type is Advanced. (see below for nested schema)
                     properties:
                       address:
                         description: |-
-                          : Network CIDR notation (e.g., "10.0.1.0/24")
-                          Address of the network in CIDR notation (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16)
+                          1918 notation (e.g., 10.0.1.0/24). Must fall within the parent VPC CIDR.
+                          Subnet CIDR in RFC-1918 notation (e.g., `10.0.1.0/24`). Must fall within the parent VPC CIDR.
                         type: string
                       dhcp:
-                        description: block
+                        description: (Attributes) DHCP configuration for the subnet.
+                          (see below for nested schema)
                         properties:
                           dns:
                             description: |-
-                              : List of DNS server IP addresses
-                              DNS server addresses
+                              (List of String) List of DNS server IP addresses distributed to DHCP clients.
+                              List of DNS server IP addresses distributed to DHCP clients.
                             items:
                               type: string
                             type: array
                           enabled:
                             description: |-
-                              : Boolean to enable/disable DHCP
-                              Enable DHCP
+                              (Boolean) Whether DHCP is enabled on this subnet.
+                              Whether DHCP is enabled on this subnet.
                             type: boolean
                           range:
-                            description: 'block with:'
+                            description: (Attributes) IP address range allocated to
+                              DHCP clients. (see below for nested schema)
                             properties:
                               count:
                                 description: |-
-                                  : Number of available IP addresses
-                                  Number of available IP addresses
+                                  (Number) Number of consecutive IP addresses in the DHCP pool.
+                                  Number of consecutive IP addresses in the DHCP pool.
                                 type: number
                               start:
                                 description: |-
-                                  : Starting IP address for DHCP range
-                                  Starting IP address
+                                  (String) First IP address in the DHCP allocation range.
+                                  First IP address in the DHCP allocation range.
                                 type: string
                             type: object
                           routes:
-                            description: ': List of DHCP routes with:'
+                            description: (Attributes List) Static routes distributed
+                              to DHCP clients. (see below for nested schema)
                             items:
                               properties:
                                 address:
                                   description: |-
-                                    : Network CIDR notation (e.g., "10.0.1.0/24")
-                                    Destination network address in CIDR notation (e.g., 0.0.0.0/0)
+                                    1918 notation (e.g., 10.0.1.0/24). Must fall within the parent VPC CIDR.
+                                    Destination network in CIDR notation (e.g., `0.0.0.0/0` for a default route).
                                   type: string
                                 gateway:
                                   description: |-
-                                    : Gateway IP address for the route
-                                    Gateway IP address for the route
+                                    (String) Gateway IP address for this route.
+                                    Gateway IP address for this route.
                                   type: string
                               type: object
                             type: array
@@ -140,25 +145,25 @@ spec:
                     type: object
                   projectId:
                     description: |-
-                      (String) ID of the project this subnet belongs to
-                      ID of the project this subnet belongs to
+                      created.)
+                      ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   tags:
                     description: |-
-                      (List of String) List of tags for the subnet
-                      List of tags for the subnet
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
                   type:
                     description: |-
-                      is set to "Basic", the network block is not required.
-                      Subnet type (Basic or Advanced)
+                      created.)
+                      Subnet type. Accepted values: `Basic` (no custom CIDR), `Advanced` (requires the `network` block). (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   vpcId:
                     description: |-
-                      (String) ID of the VPC this subnet belongs to
-                      ID of the VPC this subnet belongs to
+                      created.)
+                      ID of the parent VPC this subnet belongs to. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                 required:
                 - location
@@ -182,64 +187,68 @@ spec:
                 properties:
                   location:
                     description: |-
-                      (String) Subnet location
-                      Subnet location
+                      Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                      Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   name:
                     description: |-
-                      (String) Subnet name
-                      Subnet name
+                      (String) Display name for the subnet.
+                      Display name for the subnet.
                     type: string
                   network:
-                    description: block
+                    description: (Attributes) Network configuration block. Required
+                      when type is Advanced. (see below for nested schema)
                     properties:
                       address:
                         description: |-
-                          : Network CIDR notation (e.g., "10.0.1.0/24")
-                          Address of the network in CIDR notation (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16)
+                          1918 notation (e.g., 10.0.1.0/24). Must fall within the parent VPC CIDR.
+                          Subnet CIDR in RFC-1918 notation (e.g., `10.0.1.0/24`). Must fall within the parent VPC CIDR.
                         type: string
                       dhcp:
-                        description: block
+                        description: (Attributes) DHCP configuration for the subnet.
+                          (see below for nested schema)
                         properties:
                           dns:
                             description: |-
-                              : List of DNS server IP addresses
-                              DNS server addresses
+                              (List of String) List of DNS server IP addresses distributed to DHCP clients.
+                              List of DNS server IP addresses distributed to DHCP clients.
                             items:
                               type: string
                             type: array
                           enabled:
                             description: |-
-                              : Boolean to enable/disable DHCP
-                              Enable DHCP
+                              (Boolean) Whether DHCP is enabled on this subnet.
+                              Whether DHCP is enabled on this subnet.
                             type: boolean
                           range:
-                            description: 'block with:'
+                            description: (Attributes) IP address range allocated to
+                              DHCP clients. (see below for nested schema)
                             properties:
                               count:
                                 description: |-
-                                  : Number of available IP addresses
-                                  Number of available IP addresses
+                                  (Number) Number of consecutive IP addresses in the DHCP pool.
+                                  Number of consecutive IP addresses in the DHCP pool.
                                 type: number
                               start:
                                 description: |-
-                                  : Starting IP address for DHCP range
-                                  Starting IP address
+                                  (String) First IP address in the DHCP allocation range.
+                                  First IP address in the DHCP allocation range.
                                 type: string
                             type: object
                           routes:
-                            description: ': List of DHCP routes with:'
+                            description: (Attributes List) Static routes distributed
+                              to DHCP clients. (see below for nested schema)
                             items:
                               properties:
                                 address:
                                   description: |-
-                                    : Network CIDR notation (e.g., "10.0.1.0/24")
-                                    Destination network address in CIDR notation (e.g., 0.0.0.0/0)
+                                    1918 notation (e.g., 10.0.1.0/24). Must fall within the parent VPC CIDR.
+                                    Destination network in CIDR notation (e.g., `0.0.0.0/0` for a default route).
                                   type: string
                                 gateway:
                                   description: |-
-                                    : Gateway IP address for the route
-                                    Gateway IP address for the route
+                                    (String) Gateway IP address for this route.
+                                    Gateway IP address for this route.
                                   type: string
                               type: object
                             type: array
@@ -247,25 +256,25 @@ spec:
                     type: object
                   projectId:
                     description: |-
-                      (String) ID of the project this subnet belongs to
-                      ID of the project this subnet belongs to
+                      created.)
+                      ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   tags:
                     description: |-
-                      (List of String) List of tags for the subnet
-                      List of tags for the subnet
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
                   type:
                     description: |-
-                      is set to "Basic", the network block is not required.
-                      Subnet type (Basic or Advanced)
+                      created.)
+                      Subnet type. Accepted values: `Basic` (no custom CIDR), `Advanced` (requires the `network` block). (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   vpcId:
                     description: |-
-                      (String) ID of the VPC this subnet belongs to
-                      ID of the VPC this subnet belongs to
+                      created.)
+                      ID of the parent VPC this subnet belongs to. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                 type: object
               managementPolicies:
@@ -381,68 +390,73 @@ spec:
               atProvider:
                 properties:
                   id:
-                    description: (String) Subnet identifier
+                    description: (String) Computed by the API. Unique identifier for
+                      the resource.
                     type: string
                   location:
                     description: |-
-                      (String) Subnet location
-                      Subnet location
+                      Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                      Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   name:
                     description: |-
-                      (String) Subnet name
-                      Subnet name
+                      (String) Display name for the subnet.
+                      Display name for the subnet.
                     type: string
                   network:
-                    description: block
+                    description: (Attributes) Network configuration block. Required
+                      when type is Advanced. (see below for nested schema)
                     properties:
                       address:
                         description: |-
-                          : Network CIDR notation (e.g., "10.0.1.0/24")
-                          Address of the network in CIDR notation (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16)
+                          1918 notation (e.g., 10.0.1.0/24). Must fall within the parent VPC CIDR.
+                          Subnet CIDR in RFC-1918 notation (e.g., `10.0.1.0/24`). Must fall within the parent VPC CIDR.
                         type: string
                       dhcp:
-                        description: block
+                        description: (Attributes) DHCP configuration for the subnet.
+                          (see below for nested schema)
                         properties:
                           dns:
                             description: |-
-                              : List of DNS server IP addresses
-                              DNS server addresses
+                              (List of String) List of DNS server IP addresses distributed to DHCP clients.
+                              List of DNS server IP addresses distributed to DHCP clients.
                             items:
                               type: string
                             type: array
                           enabled:
                             description: |-
-                              : Boolean to enable/disable DHCP
-                              Enable DHCP
+                              (Boolean) Whether DHCP is enabled on this subnet.
+                              Whether DHCP is enabled on this subnet.
                             type: boolean
                           range:
-                            description: 'block with:'
+                            description: (Attributes) IP address range allocated to
+                              DHCP clients. (see below for nested schema)
                             properties:
                               count:
                                 description: |-
-                                  : Number of available IP addresses
-                                  Number of available IP addresses
+                                  (Number) Number of consecutive IP addresses in the DHCP pool.
+                                  Number of consecutive IP addresses in the DHCP pool.
                                 type: number
                               start:
                                 description: |-
-                                  : Starting IP address for DHCP range
-                                  Starting IP address
+                                  (String) First IP address in the DHCP allocation range.
+                                  First IP address in the DHCP allocation range.
                                 type: string
                             type: object
                           routes:
-                            description: ': List of DHCP routes with:'
+                            description: (Attributes List) Static routes distributed
+                              to DHCP clients. (see below for nested schema)
                             items:
                               properties:
                                 address:
                                   description: |-
-                                    : Network CIDR notation (e.g., "10.0.1.0/24")
-                                    Destination network address in CIDR notation (e.g., 0.0.0.0/0)
+                                    1918 notation (e.g., 10.0.1.0/24). Must fall within the parent VPC CIDR.
+                                    Destination network in CIDR notation (e.g., `0.0.0.0/0` for a default route).
                                   type: string
                                 gateway:
                                   description: |-
-                                    : Gateway IP address for the route
-                                    Gateway IP address for the route
+                                    (String) Gateway IP address for this route.
+                                    Gateway IP address for this route.
                                   type: string
                               type: object
                             type: array
@@ -450,30 +464,30 @@ spec:
                     type: object
                   projectId:
                     description: |-
-                      (String) ID of the project this subnet belongs to
-                      ID of the project this subnet belongs to
+                      created.)
+                      ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   tags:
                     description: |-
-                      (List of String) List of tags for the subnet
-                      List of tags for the subnet
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
                   type:
                     description: |-
-                      is set to "Basic", the network block is not required.
-                      Subnet type (Basic or Advanced)
+                      created.)
+                      Subnet type. Accepted values: `Basic` (no custom CIDR), `Advanced` (requires the `network` block). (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   uri:
                     description: |-
-                      (String) Subnet URI
-                      Subnet URI
+                      (String) Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a *_uri_ref attribute).
+                      Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a `*_uri_ref` attribute).
                     type: string
                   vpcId:
                     description: |-
-                      (String) ID of the VPC this subnet belongs to
-                      ID of the VPC this subnet belongs to
+                      created.)
+                      ID of the parent VPC this subnet belongs to. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                 type: object
               conditions:

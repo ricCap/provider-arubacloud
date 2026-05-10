@@ -15,81 +15,81 @@ import (
 
 type DatabaseGrantInitParameters struct {
 
-	// (String) Database name
-	// Database name
+	// (String) ID of the database this grant applies to.
+	// ID of the database this grant applies to.
 	Database *string `json:"database,omitempty" tf:"database,omitempty"`
 
-	// (String) DBaaS ID this grant belongs to
-	// DBaaS ID this grant belongs to
+	// (String) ID of the parent DBaaS cluster this grant belongs to.
+	// ID of the parent DBaaS cluster this grant belongs to.
 	DbaasID *string `json:"dbaasId,omitempty" tf:"dbaas_id,omitempty"`
 
-	// (String) ID of the project this grant belongs to
-	// ID of the project this grant belongs to
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (String) Role to grant (e.g., read, write, admin)
-	// Role to grant (e.g., read, write, admin)
+	// (String) Privilege level granted. Accepted values depend on the database engine (e.g., ALL, READ, WRITE).
+	// Privilege level granted. Accepted values depend on the database engine (e.g., `ALL`, `READ`, `WRITE`).
 	Role *string `json:"role,omitempty" tf:"role,omitempty"`
 
-	// (String) User ID (username) to grant access
-	// User ID (username) to grant access
+	// (String) Name or ID of the DBaaS user receiving the grant.
+	// Name or ID of the DBaaS user receiving the grant.
 	UserID *string `json:"userId,omitempty" tf:"user_id,omitempty"`
 }
 
 type DatabaseGrantObservation struct {
 
-	// (String) Database name
-	// Database name
+	// (String) ID of the database this grant applies to.
+	// ID of the database this grant applies to.
 	Database *string `json:"database,omitempty" tf:"database,omitempty"`
 
-	// (String) DBaaS ID this grant belongs to
-	// DBaaS ID this grant belongs to
+	// (String) ID of the parent DBaaS cluster this grant belongs to.
+	// ID of the parent DBaaS cluster this grant belongs to.
 	DbaasID *string `json:"dbaasId,omitempty" tf:"dbaas_id,omitempty"`
 
-	// (String) Database Grant identifier
+	// (String) Computed by the API. Unique identifier for the resource (composite key: project_id/dbaas_id/database/user_id).
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// (String) ID of the project this grant belongs to
-	// ID of the project this grant belongs to
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (String) Role to grant (e.g., read, write, admin)
-	// Role to grant (e.g., read, write, admin)
+	// (String) Privilege level granted. Accepted values depend on the database engine (e.g., ALL, READ, WRITE).
+	// Privilege level granted. Accepted values depend on the database engine (e.g., `ALL`, `READ`, `WRITE`).
 	Role *string `json:"role,omitempty" tf:"role,omitempty"`
 
-	// (String) Database Grant URI
-	// Database Grant URI
+	// (String) Computed by the API. Full resource URI used as a reference value in other resources.
+	// Computed by the API. Full resource URI used as a reference value in other resources.
 	URI *string `json:"uri,omitempty" tf:"uri,omitempty"`
 
-	// (String) User ID (username) to grant access
-	// User ID (username) to grant access
+	// (String) Name or ID of the DBaaS user receiving the grant.
+	// Name or ID of the DBaaS user receiving the grant.
 	UserID *string `json:"userId,omitempty" tf:"user_id,omitempty"`
 }
 
 type DatabaseGrantParameters struct {
 
-	// (String) Database name
-	// Database name
+	// (String) ID of the database this grant applies to.
+	// ID of the database this grant applies to.
 	// +kubebuilder:validation:Required
 	Database *string `json:"database,omitempty" tf:"database,omitempty"`
 
-	// (String) DBaaS ID this grant belongs to
-	// DBaaS ID this grant belongs to
+	// (String) ID of the parent DBaaS cluster this grant belongs to.
+	// ID of the parent DBaaS cluster this grant belongs to.
 	// +kubebuilder:validation:Required
 	DbaasID *string `json:"dbaasId,omitempty" tf:"dbaas_id,omitempty"`
 
-	// (String) ID of the project this grant belongs to
-	// ID of the project this grant belongs to
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (String) Role to grant (e.g., read, write, admin)
-	// Role to grant (e.g., read, write, admin)
+	// (String) Privilege level granted. Accepted values depend on the database engine (e.g., ALL, READ, WRITE).
+	// Privilege level granted. Accepted values depend on the database engine (e.g., `ALL`, `READ`, `WRITE`).
 	// +kubebuilder:validation:Required
 	Role *string `json:"role,omitempty" tf:"role,omitempty"`
 
-	// (String) User ID (username) to grant access
-	// User ID (username) to grant access
+	// (String) Name or ID of the DBaaS user receiving the grant.
+	// Name or ID of the DBaaS user receiving the grant.
 	// +kubebuilder:validation:Required
 	UserID *string `json:"userId,omitempty" tf:"user_id,omitempty"`
 }
@@ -121,7 +121,7 @@ type DatabaseGrantStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// DatabaseGrant is the Schema for the DatabaseGrants API. Manages an ArubaCloud Database Grant.
+// DatabaseGrant is the Schema for the DatabaseGrants API. Manages a privilege grant for an ArubaCloud DBaaS user on a specific database.
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

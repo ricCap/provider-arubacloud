@@ -16,85 +16,85 @@ import (
 
 type ElasticIPInitParameters struct {
 
-	// (String) Billing period for the Elastic IP (only 'hourly' allowed)
-	// Billing period for the Elastic IP (only 'hourly' allowed)
+	// (String) Computed by the API. Billing cycle for the resource. Accepted values: Hour, Month, Year.
+	// Computed by the API. Billing cycle for the resource. Accepted values: `Hour`, `Month`, `Year`.
 	BillingPeriod *string `json:"billingPeriod,omitempty" tf:"billing_period,omitempty"`
 
-	// (String) Elastic IP location
-	// Elastic IP location
+	// Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) Elastic IP name
-	// Elastic IP name
+	// (String) Display name for the Elastic IP.
+	// Display name for the Elastic IP.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID of the project this Elastic IP belongs to
-	// ID of the project this Elastic IP belongs to
+	// created.)
+	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (List of String) List of tags for the Elastic IP
-	// List of tags for the Elastic IP
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 }
 
 type ElasticIPObservation struct {
 
-	// (String) Elastic IP address (computed from ElasticIpPropertiesResponse)
-	// Elastic IP address (computed from ElasticIpPropertiesResponse)
+	// (String) Computed by the API. Public IPv4 address allocated for this Elastic IP.
+	// Computed by the API. Public IPv4 address allocated for this Elastic IP.
 	Address *string `json:"address,omitempty" tf:"address,omitempty"`
 
-	// (String) Billing period for the Elastic IP (only 'hourly' allowed)
-	// Billing period for the Elastic IP (only 'hourly' allowed)
+	// (String) Computed by the API. Billing cycle for the resource. Accepted values: Hour, Month, Year.
+	// Computed by the API. Billing cycle for the resource. Accepted values: `Hour`, `Month`, `Year`.
 	BillingPeriod *string `json:"billingPeriod,omitempty" tf:"billing_period,omitempty"`
 
-	// (String) Elastic IP Identifier
+	// (String) Computed by the API. Unique identifier for the resource.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// (String) Elastic IP location
-	// Elastic IP location
+	// Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) Elastic IP name
-	// Elastic IP name
+	// (String) Display name for the Elastic IP.
+	// Display name for the Elastic IP.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID of the project this Elastic IP belongs to
-	// ID of the project this Elastic IP belongs to
+	// created.)
+	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (List of String) List of tags for the Elastic IP
-	// List of tags for the Elastic IP
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String) Elastic IP URI
-	// Elastic IP URI
+	// (String) Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a *_uri_ref attribute).
+	// Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a `*_uri_ref` attribute).
 	URI *string `json:"uri,omitempty" tf:"uri,omitempty"`
 }
 
 type ElasticIPParameters struct {
 
-	// (String) Billing period for the Elastic IP (only 'hourly' allowed)
-	// Billing period for the Elastic IP (only 'hourly' allowed)
+	// (String) Computed by the API. Billing cycle for the resource. Accepted values: Hour, Month, Year.
+	// Computed by the API. Billing cycle for the resource. Accepted values: `Hour`, `Month`, `Year`.
 	// +kubebuilder:validation:Optional
 	BillingPeriod *string `json:"billingPeriod,omitempty" tf:"billing_period,omitempty"`
 
-	// (String) Elastic IP location
-	// Elastic IP location
+	// Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Required
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) Elastic IP name
-	// Elastic IP name
+	// (String) Display name for the Elastic IP.
+	// Display name for the Elastic IP.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID of the project this Elastic IP belongs to
-	// ID of the project this Elastic IP belongs to
+	// created.)
+	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (List of String) List of tags for the Elastic IP
-	// List of tags for the Elastic IP
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	// +kubebuilder:validation:Optional
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 }
@@ -126,7 +126,7 @@ type ElasticIPStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// ElasticIP is the Schema for the ElasticIPs API. Manages an ArubaCloud Elastic IP.
+// ElasticIP is the Schema for the ElasticIPs API. Manages an ArubaCloud Elastic IP — a static public IPv4 address.
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

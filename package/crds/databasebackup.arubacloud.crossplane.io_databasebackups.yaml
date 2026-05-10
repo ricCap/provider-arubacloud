@@ -35,7 +35,7 @@ spec:
     schema:
       openAPIV3Schema:
         description: DatabaseBackup is the Schema for the DatabaseBackups API. Manages
-          an ArubaCloud Database Backup.
+          a backup of an ArubaCloud DBaaS database.
         properties:
           apiVersion:
             description: |-
@@ -75,45 +75,45 @@ spec:
                 properties:
                   billingPeriod:
                     description: |-
-                      (String) Billing period
-                      Billing period
+                      (String) Billing cycle. Accepted values: Hour, Month, Year.
+                      Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
                     type: string
                   database:
                     description: |-
-                      (String) Database name to backup
-                      Database name to backup
+                      (String) Name of the logical database within the DBaaS cluster to back up.
+                      Name of the logical database within the DBaaS cluster to back up.
                     type: string
                   dbaasId:
                     description: |-
-                      (String) DBaaS ID this backup belongs to
-                      DBaaS ID this backup belongs to
+                      (String) ID of the DBaaS cluster or database to back up.
+                      ID of the DBaaS cluster or database to back up.
                     type: string
                   location:
                     description: |-
-                      (String) Database Backup location
-                      Database Backup location
+                      Bergamo). See the available locations and zones.
+                      Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
                     type: string
                   name:
                     description: |-
-                      (String) Database Backup name
-                      Database Backup name
+                      (String) Display name for the database backup.
+                      Display name for the database backup.
                     type: string
                   projectId:
                     description: |-
-                      (String) ID of the project this backup belongs to
-                      ID of the project this backup belongs to
+                      (String) ID of the project that owns this resource.
+                      ID of the project that owns this resource.
                     type: string
                   tags:
                     description: |-
-                      (List of String) List of tags for the Database Backup resource
-                      List of tags for the Database Backup resource
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
                   zone:
                     description: |-
-                      (String) Zone for the Database Backup
-                      Zone for the Database Backup
+                      (String) Availability zone within the region where the backup is stored.
+                      Availability zone within the region where the backup is stored.
                     type: string
                 required:
                 - billingPeriod
@@ -139,45 +139,45 @@ spec:
                 properties:
                   billingPeriod:
                     description: |-
-                      (String) Billing period
-                      Billing period
+                      (String) Billing cycle. Accepted values: Hour, Month, Year.
+                      Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
                     type: string
                   database:
                     description: |-
-                      (String) Database name to backup
-                      Database name to backup
+                      (String) Name of the logical database within the DBaaS cluster to back up.
+                      Name of the logical database within the DBaaS cluster to back up.
                     type: string
                   dbaasId:
                     description: |-
-                      (String) DBaaS ID this backup belongs to
-                      DBaaS ID this backup belongs to
+                      (String) ID of the DBaaS cluster or database to back up.
+                      ID of the DBaaS cluster or database to back up.
                     type: string
                   location:
                     description: |-
-                      (String) Database Backup location
-                      Database Backup location
+                      Bergamo). See the available locations and zones.
+                      Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
                     type: string
                   name:
                     description: |-
-                      (String) Database Backup name
-                      Database Backup name
+                      (String) Display name for the database backup.
+                      Display name for the database backup.
                     type: string
                   projectId:
                     description: |-
-                      (String) ID of the project this backup belongs to
-                      ID of the project this backup belongs to
+                      (String) ID of the project that owns this resource.
+                      ID of the project that owns this resource.
                     type: string
                   tags:
                     description: |-
-                      (List of String) List of tags for the Database Backup resource
-                      List of tags for the Database Backup resource
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
                   zone:
                     description: |-
-                      (String) Zone for the Database Backup
-                      Zone for the Database Backup
+                      (String) Availability zone within the region where the backup is stored.
+                      Availability zone within the region where the backup is stored.
                     type: string
                 type: object
               managementPolicies:
@@ -302,53 +302,54 @@ spec:
                 properties:
                   billingPeriod:
                     description: |-
-                      (String) Billing period
-                      Billing period
+                      (String) Billing cycle. Accepted values: Hour, Month, Year.
+                      Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
                     type: string
                   database:
                     description: |-
-                      (String) Database name to backup
-                      Database name to backup
+                      (String) Name of the logical database within the DBaaS cluster to back up.
+                      Name of the logical database within the DBaaS cluster to back up.
                     type: string
                   dbaasId:
                     description: |-
-                      (String) DBaaS ID this backup belongs to
-                      DBaaS ID this backup belongs to
+                      (String) ID of the DBaaS cluster or database to back up.
+                      ID of the DBaaS cluster or database to back up.
                     type: string
                   id:
-                    description: (String) Database Backup identifier
+                    description: (String) Computed by the API. Unique identifier for
+                      the resource.
                     type: string
                   location:
                     description: |-
-                      (String) Database Backup location
-                      Database Backup location
+                      Bergamo). See the available locations and zones.
+                      Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
                     type: string
                   name:
                     description: |-
-                      (String) Database Backup name
-                      Database Backup name
+                      (String) Display name for the database backup.
+                      Display name for the database backup.
                     type: string
                   projectId:
                     description: |-
-                      (String) ID of the project this backup belongs to
-                      ID of the project this backup belongs to
+                      (String) ID of the project that owns this resource.
+                      ID of the project that owns this resource.
                     type: string
                   tags:
                     description: |-
-                      (List of String) List of tags for the Database Backup resource
-                      List of tags for the Database Backup resource
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
                   uri:
                     description: |-
-                      (String) Database Backup URI
-                      Database Backup URI
+                      (String) Computed by the API. Full resource URI used as a reference value in other resources.
+                      Computed by the API. Full resource URI used as a reference value in other resources.
                     type: string
                   zone:
                     description: |-
-                      (String) Zone for the Database Backup
-                      Zone for the Database Backup
+                      (String) Availability zone within the region where the backup is stored.
+                      Availability zone within the region where the backup is stored.
                     type: string
                 type: object
               conditions:

@@ -35,7 +35,7 @@ spec:
     schema:
       openAPIV3Schema:
         description: Project is the Schema for the Projects API. Manages an ArubaCloud
-          Project.
+          Project — the top-level organisational unit for all resources.
         properties:
           apiVersion:
             description: |-
@@ -75,18 +75,18 @@ spec:
                 properties:
                   description:
                     description: |-
-                      (String) Project description
-                      Project description
+                      readable description of the project.
+                      Optional human-readable description of the project.
                     type: string
                   name:
                     description: |-
-                      (String) Project name
-                      Project name
+                      (String) Display name for the Project.
+                      Display name for the Project.
                     type: string
                   tags:
                     description: |-
-                      (List of String) List of tags for the project
-                      List of tags for the project
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
@@ -108,18 +108,18 @@ spec:
                 properties:
                   description:
                     description: |-
-                      (String) Project description
-                      Project description
+                      readable description of the project.
+                      Optional human-readable description of the project.
                     type: string
                   name:
                     description: |-
-                      (String) Project name
-                      Project name
+                      (String) Display name for the Project.
+                      Display name for the Project.
                     type: string
                   tags:
                     description: |-
-                      (List of String) List of tags for the project
-                      List of tags for the project
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
@@ -222,21 +222,22 @@ spec:
                 properties:
                   description:
                     description: |-
-                      (String) Project description
-                      Project description
+                      readable description of the project.
+                      Optional human-readable description of the project.
                     type: string
                   id:
-                    description: (String) Project Identifier
+                    description: (String) Computed by the API. Unique identifier for
+                      the resource.
                     type: string
                   name:
                     description: |-
-                      (String) Project name
-                      Project name
+                      (String) Display name for the Project.
+                      Display name for the Project.
                     type: string
                   tags:
                     description: |-
-                      (List of String) List of tags for the project
-                      List of tags for the project
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array

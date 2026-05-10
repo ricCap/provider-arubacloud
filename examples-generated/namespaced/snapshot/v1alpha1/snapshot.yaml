@@ -1,0 +1,14 @@
+apiVersion: snapshot.arubacloud.m.crossplane.io/v1alpha1
+kind: Snapshot
+metadata:
+  annotations:
+    meta.upbound.io/example-id: snapshot/v1alpha1/snapshot
+  labels:
+    testing.upbound.io/example-name: example
+  name: example
+  namespace: crossplane-system
+spec:
+  forProvider:
+    location: ITBG-Bergamo
+    name: example-snapshot
+    projectId: your-project-id

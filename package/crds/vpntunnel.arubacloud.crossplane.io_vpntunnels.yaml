@@ -34,8 +34,9 @@ spec:
     name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: VPNTunnel is the Schema for the VPNTunnels API. Retrieves an
-          ArubaCloud VPN Tunnel.
+        description: VPNTunnel is the Schema for the VPNTunnels API. Manages an ArubaCloud
+          VPN Tunnel — an IPSec site-to-site VPN connection between an ArubaCloud
+          VPC and an external network.
         properties:
           apiVersion:
             description: |-
@@ -75,173 +76,171 @@ spec:
                 properties:
                   location:
                     description: |-
-                      (String) VPN Tunnel location
-                      VPN Tunnel location
+                      Bergamo). See the available locations and zones.
+                      Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
                     type: string
                   name:
                     description: |-
-                      (String) VPN Tunnel name
-                      VPN Tunnel name
+                      (String) Display name for the VPN tunnel.
+                      Display name for the VPN tunnel.
                     type: string
                   projectId:
                     description: |-
-                      (String) ID of the project this VPN Tunnel belongs to
-                      ID of the project this VPN Tunnel belongs to
+                      (String) ID of the project that owns this resource.
+                      ID of the project that owns this resource.
                     type: string
                   properties:
-                    description: (Attributes) Properties of the VPN Tunnel (see below
-                      for nested schema)
+                    description: (Attributes) Configuration properties for the VPN
+                      tunnel. (see below for nested schema)
                     properties:
                       billingPeriod:
                         description: |-
-                          (String) Billing period (Hour, Month, Year)
-                          Billing period (Hour, Month, Year)
+                          (String) Billing cycle for the resource. Accepted values: Hour, Month, Year.
+                          Billing cycle for the resource. Accepted values: `Hour`, `Month`, `Year`.
                         type: string
                       ipConfigurations:
-                        description: (Attributes) Network configuration of the VPN
-                          tunnel (see below for nested schema)
+                        description: (Attributes) Network references for the VPN tunnel
+                          — VPC, subnet, and public IP. (see below for nested schema)
                         properties:
                           publicIp:
-                            description: (Attributes) Public IP reference (see below
-                              for nested schema)
+                            description: (Attributes) Reference to the elastic public
+                              IP assigned to this tunnel. (see below for nested schema)
                             properties:
                               id:
                                 description: |-
-                                  (String) VPN Tunnel identifier
-                                  Public IP id
+                                  (String) Computed by the API. Unique identifier for the resource.
+                                  ID of the elastic public IP.
                                 type: string
                             type: object
                           subnet:
-                            description: (Attributes) Subnet reference (see below
-                              for nested schema)
+                            description: (Attributes) Reference to the subnet used
+                              by this tunnel. (see below for nested schema)
                             properties:
                               id:
                                 description: |-
-                                  (String) VPN Tunnel identifier
-                                  Subnet id
+                                  (String) Computed by the API. Unique identifier for the resource.
+                                  ID of the subnet.
                                 type: string
                             type: object
                           vpc:
-                            description: (Attributes) VPC reference (see below for
-                              nested schema)
+                            description: (Attributes) Reference to the VPC this tunnel
+                              is attached to. (see below for nested schema)
                             properties:
                               id:
                                 description: |-
-                                  (String) VPN Tunnel identifier
-                                  VPC id
+                                  (String) Computed by the API. Unique identifier for the resource.
+                                  ID of the VPC.
                                 type: string
                             type: object
                         type: object
                       vpnClientProtocol:
                         description: |-
-                          (String) Protocol of the VPN tunnel (ikev2)
-                          Protocol of the VPN tunnel (ikev2)
+                          (String) IKE protocol version. Accepted values: ikev2.
+                          IKE protocol version. Accepted values: `ikev2`.
                         type: string
                       vpnClientSettings:
-                        description: (Attributes) Client settings of the VPN tunnel
-                          (see below for nested schema)
+                        description: (Attributes) IKE/ESP/PSK client settings for
+                          the VPN tunnel. (see below for nested schema)
                         properties:
                           esp:
-                            description: (Attributes) ESP settings (see below for
-                              nested schema)
+                            description: 2 settings. (see below for nested schema)
                             properties:
                               encryption:
                                 description: |-
-                                  (String) ESP encryption algorithm
-                                  ESP encryption algorithm
+                                  (String) ESP encryption algorithm (e.g., aes256).
+                                  ESP encryption algorithm (e.g., `aes256`).
                                 type: string
                               hash:
                                 description: |-
-                                  (String) ESP hash algorithm
-                                  ESP hash algorithm
+                                  (String) ESP integrity/hash algorithm (e.g., sha256).
+                                  ESP integrity/hash algorithm (e.g., `sha256`).
                                 type: string
                               lifetime:
                                 description: |-
-                                  (Number) ESP lifetime
-                                  ESP lifetime
+                                  2 lifetime in seconds.
+                                  ESP phase-2 lifetime in seconds.
                                 type: number
                               pfs:
                                 description: |-
-                                  (String) ESP PFS
-                                  ESP PFS
+                                  (String) ESP Perfect Forward Secrecy group (e.g., modp2048).
+                                  ESP Perfect Forward Secrecy group (e.g., `modp2048`).
                                 type: string
                             type: object
                           ike:
-                            description: (Attributes) IKE settings (see below for
-                              nested schema)
+                            description: 1 settings. (see below for nested schema)
                             properties:
                               dhGroup:
                                 description: |-
-                                  (String) IKE DH group
-                                  IKE DH group
+                                  Hellman group (e.g., modp2048).
+                                  IKE Diffie-Hellman group (e.g., `modp2048`).
                                 type: string
                               dpdAction:
                                 description: |-
-                                  (String) IKE DPD action
-                                  IKE DPD action
+                                  (String) Dead Peer Detection action on failure (e.g., restart).
+                                  Dead Peer Detection action on failure (e.g., `restart`).
                                 type: string
                               dpdInterval:
                                 description: |-
-                                  (Number) IKE DPD interval
-                                  IKE DPD interval
+                                  alive interval in seconds.
+                                  DPD keep-alive interval in seconds.
                                 type: number
                               dpdTimeout:
                                 description: |-
-                                  (Number) IKE DPD timeout
-                                  IKE DPD timeout
+                                  (Number) DPD timeout before the peer is considered dead, in seconds.
+                                  DPD timeout before the peer is considered dead, in seconds.
                                 type: number
                               encryption:
                                 description: |-
-                                  (String) ESP encryption algorithm
-                                  IKE encryption algorithm
+                                  (String) ESP encryption algorithm (e.g., aes256).
+                                  IKE encryption algorithm (e.g., `aes256`).
                                 type: string
                               hash:
                                 description: |-
-                                  (String) ESP hash algorithm
-                                  IKE hash algorithm
+                                  (String) ESP integrity/hash algorithm (e.g., sha256).
+                                  IKE integrity/hash algorithm (e.g., `sha256`).
                                 type: string
                               lifetime:
                                 description: |-
-                                  (Number) ESP lifetime
-                                  IKE lifetime
+                                  2 lifetime in seconds.
+                                  IKE phase-1 lifetime in seconds.
                                 type: number
                             type: object
                           peerClientPublicIp:
                             description: |-
-                              (String) Peer client public IP address
-                              Peer client public IP address
+                              premises gateway).
+                              Public IP address of the remote peer (on-premises gateway).
                             type: string
                           psk:
-                            description: (Attributes) PSK settings (see below for
-                              nested schema)
+                            description: Shared Key (PSK) authentication settings.
+                              (see below for nested schema)
                             properties:
                               cloudSite:
                                 description: |-
-                                  (String) PSK cloud site
-                                  PSK cloud site
+                                  shared key for the ArubaCloud side of the tunnel.
+                                  Pre-shared key for the ArubaCloud side of the tunnel.
                                 type: string
                               onPremSite:
                                 description: |-
-                                  prem site
-                                  PSK on-prem site
+                                  shared key for the on-premises side of the tunnel.
+                                  Pre-shared key for the on-premises side of the tunnel.
                                 type: string
                               secret:
                                 description: |-
-                                  (String) PSK secret
-                                  PSK secret
+                                  — sent to the API but not returned in read responses.
+                                  Shared secret used to authenticate the VPN tunnel. Write-only — this value is sent to the API but is not returned in subsequent read responses.
                                 type: string
                             type: object
                         type: object
                       vpnType:
                         description: |-
-                          To-Site)
-                          Type of VPN tunnel (Site-To-Site)
+                          To-Site.
+                          Type of VPN tunnel. Accepted values: `Site-To-Site`.
                         type: string
                     type: object
                   tags:
                     description: |-
-                      (List of String) List of tags for the VPN Tunnel
-                      List of tags for the VPN Tunnel
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
@@ -266,173 +265,171 @@ spec:
                 properties:
                   location:
                     description: |-
-                      (String) VPN Tunnel location
-                      VPN Tunnel location
+                      Bergamo). See the available locations and zones.
+                      Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
                     type: string
                   name:
                     description: |-
-                      (String) VPN Tunnel name
-                      VPN Tunnel name
+                      (String) Display name for the VPN tunnel.
+                      Display name for the VPN tunnel.
                     type: string
                   projectId:
                     description: |-
-                      (String) ID of the project this VPN Tunnel belongs to
-                      ID of the project this VPN Tunnel belongs to
+                      (String) ID of the project that owns this resource.
+                      ID of the project that owns this resource.
                     type: string
                   properties:
-                    description: (Attributes) Properties of the VPN Tunnel (see below
-                      for nested schema)
+                    description: (Attributes) Configuration properties for the VPN
+                      tunnel. (see below for nested schema)
                     properties:
                       billingPeriod:
                         description: |-
-                          (String) Billing period (Hour, Month, Year)
-                          Billing period (Hour, Month, Year)
+                          (String) Billing cycle for the resource. Accepted values: Hour, Month, Year.
+                          Billing cycle for the resource. Accepted values: `Hour`, `Month`, `Year`.
                         type: string
                       ipConfigurations:
-                        description: (Attributes) Network configuration of the VPN
-                          tunnel (see below for nested schema)
+                        description: (Attributes) Network references for the VPN tunnel
+                          — VPC, subnet, and public IP. (see below for nested schema)
                         properties:
                           publicIp:
-                            description: (Attributes) Public IP reference (see below
-                              for nested schema)
+                            description: (Attributes) Reference to the elastic public
+                              IP assigned to this tunnel. (see below for nested schema)
                             properties:
                               id:
                                 description: |-
-                                  (String) VPN Tunnel identifier
-                                  Public IP id
+                                  (String) Computed by the API. Unique identifier for the resource.
+                                  ID of the elastic public IP.
                                 type: string
                             type: object
                           subnet:
-                            description: (Attributes) Subnet reference (see below
-                              for nested schema)
+                            description: (Attributes) Reference to the subnet used
+                              by this tunnel. (see below for nested schema)
                             properties:
                               id:
                                 description: |-
-                                  (String) VPN Tunnel identifier
-                                  Subnet id
+                                  (String) Computed by the API. Unique identifier for the resource.
+                                  ID of the subnet.
                                 type: string
                             type: object
                           vpc:
-                            description: (Attributes) VPC reference (see below for
-                              nested schema)
+                            description: (Attributes) Reference to the VPC this tunnel
+                              is attached to. (see below for nested schema)
                             properties:
                               id:
                                 description: |-
-                                  (String) VPN Tunnel identifier
-                                  VPC id
+                                  (String) Computed by the API. Unique identifier for the resource.
+                                  ID of the VPC.
                                 type: string
                             type: object
                         type: object
                       vpnClientProtocol:
                         description: |-
-                          (String) Protocol of the VPN tunnel (ikev2)
-                          Protocol of the VPN tunnel (ikev2)
+                          (String) IKE protocol version. Accepted values: ikev2.
+                          IKE protocol version. Accepted values: `ikev2`.
                         type: string
                       vpnClientSettings:
-                        description: (Attributes) Client settings of the VPN tunnel
-                          (see below for nested schema)
+                        description: (Attributes) IKE/ESP/PSK client settings for
+                          the VPN tunnel. (see below for nested schema)
                         properties:
                           esp:
-                            description: (Attributes) ESP settings (see below for
-                              nested schema)
+                            description: 2 settings. (see below for nested schema)
                             properties:
                               encryption:
                                 description: |-
-                                  (String) ESP encryption algorithm
-                                  ESP encryption algorithm
+                                  (String) ESP encryption algorithm (e.g., aes256).
+                                  ESP encryption algorithm (e.g., `aes256`).
                                 type: string
                               hash:
                                 description: |-
-                                  (String) ESP hash algorithm
-                                  ESP hash algorithm
+                                  (String) ESP integrity/hash algorithm (e.g., sha256).
+                                  ESP integrity/hash algorithm (e.g., `sha256`).
                                 type: string
                               lifetime:
                                 description: |-
-                                  (Number) ESP lifetime
-                                  ESP lifetime
+                                  2 lifetime in seconds.
+                                  ESP phase-2 lifetime in seconds.
                                 type: number
                               pfs:
                                 description: |-
-                                  (String) ESP PFS
-                                  ESP PFS
+                                  (String) ESP Perfect Forward Secrecy group (e.g., modp2048).
+                                  ESP Perfect Forward Secrecy group (e.g., `modp2048`).
                                 type: string
                             type: object
                           ike:
-                            description: (Attributes) IKE settings (see below for
-                              nested schema)
+                            description: 1 settings. (see below for nested schema)
                             properties:
                               dhGroup:
                                 description: |-
-                                  (String) IKE DH group
-                                  IKE DH group
+                                  Hellman group (e.g., modp2048).
+                                  IKE Diffie-Hellman group (e.g., `modp2048`).
                                 type: string
                               dpdAction:
                                 description: |-
-                                  (String) IKE DPD action
-                                  IKE DPD action
+                                  (String) Dead Peer Detection action on failure (e.g., restart).
+                                  Dead Peer Detection action on failure (e.g., `restart`).
                                 type: string
                               dpdInterval:
                                 description: |-
-                                  (Number) IKE DPD interval
-                                  IKE DPD interval
+                                  alive interval in seconds.
+                                  DPD keep-alive interval in seconds.
                                 type: number
                               dpdTimeout:
                                 description: |-
-                                  (Number) IKE DPD timeout
-                                  IKE DPD timeout
+                                  (Number) DPD timeout before the peer is considered dead, in seconds.
+                                  DPD timeout before the peer is considered dead, in seconds.
                                 type: number
                               encryption:
                                 description: |-
-                                  (String) ESP encryption algorithm
-                                  IKE encryption algorithm
+                                  (String) ESP encryption algorithm (e.g., aes256).
+                                  IKE encryption algorithm (e.g., `aes256`).
                                 type: string
                               hash:
                                 description: |-
-                                  (String) ESP hash algorithm
-                                  IKE hash algorithm
+                                  (String) ESP integrity/hash algorithm (e.g., sha256).
+                                  IKE integrity/hash algorithm (e.g., `sha256`).
                                 type: string
                               lifetime:
                                 description: |-
-                                  (Number) ESP lifetime
-                                  IKE lifetime
+                                  2 lifetime in seconds.
+                                  IKE phase-1 lifetime in seconds.
                                 type: number
                             type: object
                           peerClientPublicIp:
                             description: |-
-                              (String) Peer client public IP address
-                              Peer client public IP address
+                              premises gateway).
+                              Public IP address of the remote peer (on-premises gateway).
                             type: string
                           psk:
-                            description: (Attributes) PSK settings (see below for
-                              nested schema)
+                            description: Shared Key (PSK) authentication settings.
+                              (see below for nested schema)
                             properties:
                               cloudSite:
                                 description: |-
-                                  (String) PSK cloud site
-                                  PSK cloud site
+                                  shared key for the ArubaCloud side of the tunnel.
+                                  Pre-shared key for the ArubaCloud side of the tunnel.
                                 type: string
                               onPremSite:
                                 description: |-
-                                  prem site
-                                  PSK on-prem site
+                                  shared key for the on-premises side of the tunnel.
+                                  Pre-shared key for the on-premises side of the tunnel.
                                 type: string
                               secret:
                                 description: |-
-                                  (String) PSK secret
-                                  PSK secret
+                                  — sent to the API but not returned in read responses.
+                                  Shared secret used to authenticate the VPN tunnel. Write-only — this value is sent to the API but is not returned in subsequent read responses.
                                 type: string
                             type: object
                         type: object
                       vpnType:
                         description: |-
-                          To-Site)
-                          Type of VPN tunnel (Site-To-Site)
+                          To-Site.
+                          Type of VPN tunnel. Accepted values: `Site-To-Site`.
                         type: string
                     type: object
                   tags:
                     description: |-
-                      (List of String) List of tags for the VPN Tunnel
-                      List of tags for the VPN Tunnel
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
@@ -546,184 +543,183 @@ spec:
               atProvider:
                 properties:
                   id:
-                    description: (String) VPN Tunnel identifier
+                    description: (String) Computed by the API. Unique identifier for
+                      the resource.
                     type: string
                   location:
                     description: |-
-                      (String) VPN Tunnel location
-                      VPN Tunnel location
+                      Bergamo). See the available locations and zones.
+                      Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
                     type: string
                   name:
                     description: |-
-                      (String) VPN Tunnel name
-                      VPN Tunnel name
+                      (String) Display name for the VPN tunnel.
+                      Display name for the VPN tunnel.
                     type: string
                   projectId:
                     description: |-
-                      (String) ID of the project this VPN Tunnel belongs to
-                      ID of the project this VPN Tunnel belongs to
+                      (String) ID of the project that owns this resource.
+                      ID of the project that owns this resource.
                     type: string
                   properties:
-                    description: (Attributes) Properties of the VPN Tunnel (see below
-                      for nested schema)
+                    description: (Attributes) Configuration properties for the VPN
+                      tunnel. (see below for nested schema)
                     properties:
                       billingPeriod:
                         description: |-
-                          (String) Billing period (Hour, Month, Year)
-                          Billing period (Hour, Month, Year)
+                          (String) Billing cycle for the resource. Accepted values: Hour, Month, Year.
+                          Billing cycle for the resource. Accepted values: `Hour`, `Month`, `Year`.
                         type: string
                       ipConfigurations:
-                        description: (Attributes) Network configuration of the VPN
-                          tunnel (see below for nested schema)
+                        description: (Attributes) Network references for the VPN tunnel
+                          — VPC, subnet, and public IP. (see below for nested schema)
                         properties:
                           publicIp:
-                            description: (Attributes) Public IP reference (see below
-                              for nested schema)
+                            description: (Attributes) Reference to the elastic public
+                              IP assigned to this tunnel. (see below for nested schema)
                             properties:
                               id:
                                 description: |-
-                                  (String) VPN Tunnel identifier
-                                  Public IP id
+                                  (String) Computed by the API. Unique identifier for the resource.
+                                  ID of the elastic public IP.
                                 type: string
                             type: object
                           subnet:
-                            description: (Attributes) Subnet reference (see below
-                              for nested schema)
+                            description: (Attributes) Reference to the subnet used
+                              by this tunnel. (see below for nested schema)
                             properties:
                               id:
                                 description: |-
-                                  (String) VPN Tunnel identifier
-                                  Subnet id
+                                  (String) Computed by the API. Unique identifier for the resource.
+                                  ID of the subnet.
                                 type: string
                             type: object
                           vpc:
-                            description: (Attributes) VPC reference (see below for
-                              nested schema)
+                            description: (Attributes) Reference to the VPC this tunnel
+                              is attached to. (see below for nested schema)
                             properties:
                               id:
                                 description: |-
-                                  (String) VPN Tunnel identifier
-                                  VPC id
+                                  (String) Computed by the API. Unique identifier for the resource.
+                                  ID of the VPC.
                                 type: string
                             type: object
                         type: object
                       vpnClientProtocol:
                         description: |-
-                          (String) Protocol of the VPN tunnel (ikev2)
-                          Protocol of the VPN tunnel (ikev2)
+                          (String) IKE protocol version. Accepted values: ikev2.
+                          IKE protocol version. Accepted values: `ikev2`.
                         type: string
                       vpnClientSettings:
-                        description: (Attributes) Client settings of the VPN tunnel
-                          (see below for nested schema)
+                        description: (Attributes) IKE/ESP/PSK client settings for
+                          the VPN tunnel. (see below for nested schema)
                         properties:
                           esp:
-                            description: (Attributes) ESP settings (see below for
-                              nested schema)
+                            description: 2 settings. (see below for nested schema)
                             properties:
                               encryption:
                                 description: |-
-                                  (String) ESP encryption algorithm
-                                  ESP encryption algorithm
+                                  (String) ESP encryption algorithm (e.g., aes256).
+                                  ESP encryption algorithm (e.g., `aes256`).
                                 type: string
                               hash:
                                 description: |-
-                                  (String) ESP hash algorithm
-                                  ESP hash algorithm
+                                  (String) ESP integrity/hash algorithm (e.g., sha256).
+                                  ESP integrity/hash algorithm (e.g., `sha256`).
                                 type: string
                               lifetime:
                                 description: |-
-                                  (Number) ESP lifetime
-                                  ESP lifetime
+                                  2 lifetime in seconds.
+                                  ESP phase-2 lifetime in seconds.
                                 type: number
                               pfs:
                                 description: |-
-                                  (String) ESP PFS
-                                  ESP PFS
+                                  (String) ESP Perfect Forward Secrecy group (e.g., modp2048).
+                                  ESP Perfect Forward Secrecy group (e.g., `modp2048`).
                                 type: string
                             type: object
                           ike:
-                            description: (Attributes) IKE settings (see below for
-                              nested schema)
+                            description: 1 settings. (see below for nested schema)
                             properties:
                               dhGroup:
                                 description: |-
-                                  (String) IKE DH group
-                                  IKE DH group
+                                  Hellman group (e.g., modp2048).
+                                  IKE Diffie-Hellman group (e.g., `modp2048`).
                                 type: string
                               dpdAction:
                                 description: |-
-                                  (String) IKE DPD action
-                                  IKE DPD action
+                                  (String) Dead Peer Detection action on failure (e.g., restart).
+                                  Dead Peer Detection action on failure (e.g., `restart`).
                                 type: string
                               dpdInterval:
                                 description: |-
-                                  (Number) IKE DPD interval
-                                  IKE DPD interval
+                                  alive interval in seconds.
+                                  DPD keep-alive interval in seconds.
                                 type: number
                               dpdTimeout:
                                 description: |-
-                                  (Number) IKE DPD timeout
-                                  IKE DPD timeout
+                                  (Number) DPD timeout before the peer is considered dead, in seconds.
+                                  DPD timeout before the peer is considered dead, in seconds.
                                 type: number
                               encryption:
                                 description: |-
-                                  (String) ESP encryption algorithm
-                                  IKE encryption algorithm
+                                  (String) ESP encryption algorithm (e.g., aes256).
+                                  IKE encryption algorithm (e.g., `aes256`).
                                 type: string
                               hash:
                                 description: |-
-                                  (String) ESP hash algorithm
-                                  IKE hash algorithm
+                                  (String) ESP integrity/hash algorithm (e.g., sha256).
+                                  IKE integrity/hash algorithm (e.g., `sha256`).
                                 type: string
                               lifetime:
                                 description: |-
-                                  (Number) ESP lifetime
-                                  IKE lifetime
+                                  2 lifetime in seconds.
+                                  IKE phase-1 lifetime in seconds.
                                 type: number
                             type: object
                           peerClientPublicIp:
                             description: |-
-                              (String) Peer client public IP address
-                              Peer client public IP address
+                              premises gateway).
+                              Public IP address of the remote peer (on-premises gateway).
                             type: string
                           psk:
-                            description: (Attributes) PSK settings (see below for
-                              nested schema)
+                            description: Shared Key (PSK) authentication settings.
+                              (see below for nested schema)
                             properties:
                               cloudSite:
                                 description: |-
-                                  (String) PSK cloud site
-                                  PSK cloud site
+                                  shared key for the ArubaCloud side of the tunnel.
+                                  Pre-shared key for the ArubaCloud side of the tunnel.
                                 type: string
                               onPremSite:
                                 description: |-
-                                  prem site
-                                  PSK on-prem site
+                                  shared key for the on-premises side of the tunnel.
+                                  Pre-shared key for the on-premises side of the tunnel.
                                 type: string
                               secret:
                                 description: |-
-                                  (String) PSK secret
-                                  PSK secret
+                                  — sent to the API but not returned in read responses.
+                                  Shared secret used to authenticate the VPN tunnel. Write-only — this value is sent to the API but is not returned in subsequent read responses.
                                 type: string
                             type: object
                         type: object
                       vpnType:
                         description: |-
-                          To-Site)
-                          Type of VPN tunnel (Site-To-Site)
+                          To-Site.
+                          Type of VPN tunnel. Accepted values: `Site-To-Site`.
                         type: string
                     type: object
                   tags:
                     description: |-
-                      (List of String) List of tags for the VPN Tunnel
-                      List of tags for the VPN Tunnel
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
                   uri:
                     description: |-
-                      (String) VPN Tunnel URI
-                      VPN Tunnel URI
+                      (String) Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a *_uri_ref attribute).
+                      Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a `*_uri_ref` attribute).
                     type: string
                 type: object
               conditions:

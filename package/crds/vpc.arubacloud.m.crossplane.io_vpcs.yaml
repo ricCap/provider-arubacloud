@@ -35,7 +35,8 @@ spec:
     schema:
       openAPIV3Schema:
         description: VPC is the Schema for the VPCs API. Manages an ArubaCloud VPC
-          Network.
+          (Virtual Private Cloud) — the isolated network boundary within a region
+          where subnets, security groups, and server instances are provisioned.
         properties:
           apiVersion:
             description: |-
@@ -61,23 +62,23 @@ spec:
                 properties:
                   location:
                     description: |-
-                      (String) VPC location
-                      VPC location
+                      Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                      Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   name:
                     description: |-
-                      (String) VPC name
-                      VPC name
+                      (String) Display name for the VPC.
+                      Display name for the VPC.
                     type: string
                   projectId:
                     description: |-
-                      (String) Project ID
-                      Project ID
+                      created.)
+                      ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   tags:
                     description: |-
-                      (List of String) List of tags for the VPC
-                      List of tags for the VPC
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
@@ -101,23 +102,23 @@ spec:
                 properties:
                   location:
                     description: |-
-                      (String) VPC location
-                      VPC location
+                      Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                      Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   name:
                     description: |-
-                      (String) VPC name
-                      VPC name
+                      (String) Display name for the VPC.
+                      Display name for the VPC.
                     type: string
                   projectId:
                     description: |-
-                      (String) Project ID
-                      Project ID
+                      created.)
+                      ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   tags:
                     description: |-
-                      (List of String) List of tags for the VPC
-                      List of tags for the VPC
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
@@ -199,34 +200,35 @@ spec:
               atProvider:
                 properties:
                   id:
-                    description: (String) VPC identifier
+                    description: (String) Computed by the API. Unique identifier for
+                      the resource.
                     type: string
                   location:
                     description: |-
-                      (String) VPC location
-                      VPC location
+                      Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                      Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   name:
                     description: |-
-                      (String) VPC name
-                      VPC name
+                      (String) Display name for the VPC.
+                      Display name for the VPC.
                     type: string
                   projectId:
                     description: |-
-                      (String) Project ID
-                      Project ID
+                      created.)
+                      ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   tags:
                     description: |-
-                      (List of String) List of tags for the VPC
-                      List of tags for the VPC
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
                   uri:
                     description: |-
-                      (String) VPC URI
-                      VPC URI
+                      (String) Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a *_uri_ref attribute).
+                      Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a `*_uri_ref` attribute).
                     type: string
                 type: object
               conditions:

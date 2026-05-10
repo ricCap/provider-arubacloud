@@ -10,7 +10,7 @@ metadata:
 spec:
   forProvider:
     billingPeriod: monthly
-    location: de-1
+    location: ITBG-Bergamo
     name: example-backup
     projectId: project-123
     retentionDays: 30

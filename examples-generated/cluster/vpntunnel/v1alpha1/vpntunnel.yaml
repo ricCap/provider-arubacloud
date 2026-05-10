@@ -1,0 +1,16 @@
+apiVersion: vpntunnel.arubacloud.crossplane.io/v1alpha1
+kind: VPNTunnel
+metadata:
+  annotations:
+    meta.upbound.io/example-id: vpntunnel/v1alpha1/vpntunnel
+  labels:
+    testing.upbound.io/example-name: example
+  name: example
+spec:
+  forProvider:
+    location: ITBG-Bergamo
+    name: example-vpn-tunnel
+    projectId: your-project-id
+    properties:
+      vpnClientProtocol: ikev2
+      vpnType: Site-To-Site

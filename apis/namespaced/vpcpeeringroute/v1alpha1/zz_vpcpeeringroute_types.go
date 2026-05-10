@@ -16,120 +16,94 @@ import (
 
 type VPCPeeringRouteInitParameters struct {
 
-	// (String) Billing period (Hour, Month, Year)
-	// Billing period (Hour, Month, Year)
+	// Billing cycle for the resource. Accepted values: `Hour`, `Month`, `Year`.
 	BillingPeriod *string `json:"billingPeriod,omitempty" tf:"billing_period,omitempty"`
 
-	// (String) Local network address in CIDR notation
-	// Local network address in CIDR notation
+	// Local network CIDR that is reachable on this side of the peering (e.g., `10.0.1.0/24`).
 	LocalNetworkAddress *string `json:"localNetworkAddress,omitempty" tf:"local_network_address,omitempty"`
 
-	// (String) VPC Peering Route name
-	// VPC Peering Route name
+	// Display name for the VPC peering route.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID of the project this VPC Peering Route belongs to
-	// ID of the project this VPC Peering Route belongs to
+	// ID of the project that owns this resource.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (String) Remote network address in CIDR notation
-	// Remote network address in CIDR notation
+	// Remote network CIDR reachable through the peering connection (e.g., `10.0.2.0/24`).
 	RemoteNetworkAddress *string `json:"remoteNetworkAddress,omitempty" tf:"remote_network_address,omitempty"`
 
-	// (List of String) List of tags for the VPC Peering Route
-	// List of tags for the VPC Peering Route
+	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String) ID of the VPC this peering route belongs to
-	// ID of the VPC this peering route belongs to
+	// ID of the VPC this peering route belongs to.
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 
-	// (String) ID of the VPC Peering this route belongs to
-	// ID of the VPC Peering this route belongs to
+	// ID of the VPC peering connection this route belongs to.
 	VPCPeeringID *string `json:"vpcPeeringId,omitempty" tf:"vpc_peering_id,omitempty"`
 }
 
 type VPCPeeringRouteObservation struct {
 
-	// (String) Billing period (Hour, Month, Year)
-	// Billing period (Hour, Month, Year)
+	// Billing cycle for the resource. Accepted values: `Hour`, `Month`, `Year`.
 	BillingPeriod *string `json:"billingPeriod,omitempty" tf:"billing_period,omitempty"`
 
-	// (String) VPC Peering Route identifier
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// (String) Local network address in CIDR notation
-	// Local network address in CIDR notation
+	// Local network CIDR that is reachable on this side of the peering (e.g., `10.0.1.0/24`).
 	LocalNetworkAddress *string `json:"localNetworkAddress,omitempty" tf:"local_network_address,omitempty"`
 
-	// (String) VPC Peering Route name
-	// VPC Peering Route name
+	// Display name for the VPC peering route.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID of the project this VPC Peering Route belongs to
-	// ID of the project this VPC Peering Route belongs to
+	// ID of the project that owns this resource.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (String) Remote network address in CIDR notation
-	// Remote network address in CIDR notation
+	// Remote network CIDR reachable through the peering connection (e.g., `10.0.2.0/24`).
 	RemoteNetworkAddress *string `json:"remoteNetworkAddress,omitempty" tf:"remote_network_address,omitempty"`
 
-	// (List of String) List of tags for the VPC Peering Route
-	// List of tags for the VPC Peering Route
+	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String) VPC Peering Route URI
-	// VPC Peering Route URI
+	// Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a `*_uri_ref` attribute).
 	URI *string `json:"uri,omitempty" tf:"uri,omitempty"`
 
-	// (String) ID of the VPC this peering route belongs to
-	// ID of the VPC this peering route belongs to
+	// ID of the VPC this peering route belongs to.
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 
-	// (String) ID of the VPC Peering this route belongs to
-	// ID of the VPC Peering this route belongs to
+	// ID of the VPC peering connection this route belongs to.
 	VPCPeeringID *string `json:"vpcPeeringId,omitempty" tf:"vpc_peering_id,omitempty"`
 }
 
 type VPCPeeringRouteParameters struct {
 
-	// (String) Billing period (Hour, Month, Year)
-	// Billing period (Hour, Month, Year)
+	// Billing cycle for the resource. Accepted values: `Hour`, `Month`, `Year`.
 	// +kubebuilder:validation:Required
 	BillingPeriod *string `json:"billingPeriod,omitempty" tf:"billing_period,omitempty"`
 
-	// (String) Local network address in CIDR notation
-	// Local network address in CIDR notation
+	// Local network CIDR that is reachable on this side of the peering (e.g., `10.0.1.0/24`).
 	// +kubebuilder:validation:Required
 	LocalNetworkAddress *string `json:"localNetworkAddress,omitempty" tf:"local_network_address,omitempty"`
 
-	// (String) VPC Peering Route name
-	// VPC Peering Route name
+	// Display name for the VPC peering route.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID of the project this VPC Peering Route belongs to
-	// ID of the project this VPC Peering Route belongs to
+	// ID of the project that owns this resource.
 	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (String) Remote network address in CIDR notation
-	// Remote network address in CIDR notation
+	// Remote network CIDR reachable through the peering connection (e.g., `10.0.2.0/24`).
 	// +kubebuilder:validation:Required
 	RemoteNetworkAddress *string `json:"remoteNetworkAddress,omitempty" tf:"remote_network_address,omitempty"`
 
-	// (List of String) List of tags for the VPC Peering Route
-	// List of tags for the VPC Peering Route
+	// List of string tags attached to the resource for filtering and organisation.
 	// +kubebuilder:validation:Optional
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String) ID of the VPC this peering route belongs to
-	// ID of the VPC this peering route belongs to
+	// ID of the VPC this peering route belongs to.
 	// +kubebuilder:validation:Required
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
 
-	// (String) ID of the VPC Peering this route belongs to
-	// ID of the VPC Peering this route belongs to
+	// ID of the VPC peering connection this route belongs to.
 	// +kubebuilder:validation:Required
 	VPCPeeringID *string `json:"vpcPeeringId,omitempty" tf:"vpc_peering_id,omitempty"`
 }
@@ -161,7 +135,7 @@ type VPCPeeringRouteStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// VPCPeeringRoute is the Schema for the VPCPeeringRoutes API. Manages an ArubaCloud VPC Peering Route.
+// VPCPeeringRoute is the Schema for the VPCPeeringRoutes API. <no value>
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

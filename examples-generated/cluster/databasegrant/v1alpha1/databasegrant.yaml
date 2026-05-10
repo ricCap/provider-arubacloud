@@ -1,0 +1,15 @@
+apiVersion: databasegrant.arubacloud.crossplane.io/v1alpha1
+kind: DatabaseGrant
+metadata:
+  annotations:
+    meta.upbound.io/example-id: databasegrant/v1alpha1/databasegrant
+  labels:
+    testing.upbound.io/example-name: example
+  name: example
+spec:
+  forProvider:
+    database: ${arubacloud_database.example.id}
+    dbaasId: ${arubacloud_dbaas.example.id}
+    projectId: ${arubacloud_project.example.id}
+    role: readwrite
+    userId: ${arubacloud_dbaasuser.example.id}

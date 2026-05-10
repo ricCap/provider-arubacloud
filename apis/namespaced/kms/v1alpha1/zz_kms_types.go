@@ -16,81 +16,81 @@ import (
 
 type KMSInitParameters struct {
 
-	// (String) Billing period for the KMS
-	// Billing period for the KMS
+	// (String) Billing cycle. Accepted values: Hour, Month, Year.
+	// Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
 	BillingPeriod *string `json:"billingPeriod,omitempty" tf:"billing_period,omitempty"`
 
-	// (String) Location for the KMS
-	// Location for the KMS
+	// Bergamo). See the available locations and zones.
+	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) KMS name
-	// KMS name
+	// (String) Display name for the KMS instance.
+	// Display name for the KMS instance.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID of the project this KMS belongs to
-	// ID of the project this KMS belongs to
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (List of String) List of tags for the KMS
-	// List of tags for the KMS
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 }
 
 type KMSObservation struct {
 
-	// (String) Billing period for the KMS
-	// Billing period for the KMS
+	// (String) Billing cycle. Accepted values: Hour, Month, Year.
+	// Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
 	BillingPeriod *string `json:"billingPeriod,omitempty" tf:"billing_period,omitempty"`
 
-	// (String) KMS identifier
+	// (String) Computed by the API. Unique identifier for the resource.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// (String) Location for the KMS
-	// Location for the KMS
+	// Bergamo). See the available locations and zones.
+	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) KMS name
-	// KMS name
+	// (String) Display name for the KMS instance.
+	// Display name for the KMS instance.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID of the project this KMS belongs to
-	// ID of the project this KMS belongs to
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (List of String) List of tags for the KMS
-	// List of tags for the KMS
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String) KMS URI
-	// KMS URI
+	// (String) Computed by the API. Full resource URI used as a reference value in other resources.
+	// Computed by the API. Full resource URI used as a reference value in other resources.
 	URI *string `json:"uri,omitempty" tf:"uri,omitempty"`
 }
 
 type KMSParameters struct {
 
-	// (String) Billing period for the KMS
-	// Billing period for the KMS
+	// (String) Billing cycle. Accepted values: Hour, Month, Year.
+	// Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
 	// +kubebuilder:validation:Optional
 	BillingPeriod *string `json:"billingPeriod,omitempty" tf:"billing_period,omitempty"`
 
-	// (String) Location for the KMS
-	// Location for the KMS
+	// Bergamo). See the available locations and zones.
+	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
 	// +kubebuilder:validation:Optional
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) KMS name
-	// KMS name
+	// (String) Display name for the KMS instance.
+	// Display name for the KMS instance.
 	// +kubebuilder:validation:Required
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID of the project this KMS belongs to
-	// ID of the project this KMS belongs to
+	// (String) ID of the project that owns this resource.
+	// ID of the project that owns this resource.
 	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (List of String) List of tags for the KMS
-	// List of tags for the KMS
+	// (List of String) List of string tags attached to the resource for filtering and organisation.
+	// List of string tags attached to the resource for filtering and organisation.
 	// +kubebuilder:validation:Optional
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 }
@@ -122,7 +122,7 @@ type KMSStatus struct {
 // +kubebuilder:subresource:status
 // +kubebuilder:storageversion
 
-// KMS is the Schema for the KMSs API. Manages an ArubaCloud Key Management System (KMS).
+// KMS is the Schema for the KMSs API. Manages an ArubaCloud KMS (Key Management Service) instance for storing and managing encryption keys.
 // +kubebuilder:printcolumn:name="SYNCED",type="string",JSONPath=".status.conditions[?(@.type=='Synced')].status"
 // +kubebuilder:printcolumn:name="READY",type="string",JSONPath=".status.conditions[?(@.type=='Ready')].status"
 // +kubebuilder:printcolumn:name="EXTERNAL-NAME",type="string",JSONPath=".metadata.annotations.crossplane\\.io/external-name"

@@ -35,7 +35,8 @@ spec:
     schema:
       openAPIV3Schema:
         description: DBaaS is the Schema for the DBaaSs API. Manages an ArubaCloud
-          DBaaS.
+          DBaaS cluster — a managed database cluster with automated backups and high
+          availability.
         properties:
           apiVersion:
             description: |-
@@ -75,100 +76,101 @@ spec:
                 properties:
                   billingPeriod:
                     description: |-
-                      (String) Billing period (Hour, Month, Year)
-                      Billing period (Hour, Month, Year)
+                      (String) Billing cycle. Accepted values: Hour, Month, Year.
+                      Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
                     type: string
                   engineId:
                     description: |-
-                      8.0 for MySQL version 8.0.
-                      Database engine ID. Available engines are described in the [ArubaCloud API documentation](https://api.arubacloud.com/docs/metadata/#dbaas-engines). For example, `mysql-8.0` for MySQL version 8.0.
+                      8.0 for MySQL 8.0, postgresql-15 for PostgreSQL 15). See the available engines.
+                      Database engine type and version identifier (e.g., `mysql-8.0` for MySQL 8.0, `postgresql-15` for PostgreSQL 15). See the [available engines](https://api.arubacloud.com/docs/metadata/#dbaas-engines).
                     type: string
                   flavor:
                     description: |-
-                      (String) DBaaS flavor name. Available flavors are described in the ArubaCloud API documentation. For example, DBO2A4 means 2 CPU and 4GB RAM.
-                      DBaaS flavor name. Available flavors are described in the [ArubaCloud API documentation](https://api.arubacloud.com/docs/metadata/#dbaas-flavors). For example, `DBO2A4` means 2 CPU and 4GB RAM.
+                      (String) Compute flavour for the DBaaS cluster nodes. See available flavours. For example, DBO2A4 means 2 vCPU and 4 GB RAM.
+                      Compute flavour for the DBaaS cluster nodes. See [available flavours](https://api.arubacloud.com/docs/metadata/#dbaas-flavors). For example, `DBO2A4` means 2 vCPU and 4 GB RAM.
                     type: string
                   location:
                     description: |-
-                      (String) DBaaS location
-                      DBaaS location
+                      Bergamo). See the available locations and zones.
+                      Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
                     type: string
                   name:
                     description: |-
-                      (String) DBaaS name
-                      DBaaS name
+                      (String) Display name for the DBaaS cluster.
+                      Display name for the DBaaS cluster.
                     type: string
                   network:
                     description: (Attributes) Network configuration for the DBaaS
-                      instance (see below for nested schema)
+                      instance. All URI references are immutable after creation. (see
+                      below for nested schema)
                     properties:
                       elasticIpUriRef:
                         description: |-
-                          (String) URI reference to the Elastic IP resource (e.g., arubacloud_elasticip.example.uri)
-                          URI reference to the Elastic IP resource (e.g., `arubacloud_elasticip.example.uri`)
+                          (String) Optional URI reference to an Elastic IP resource. References the uri attribute of an arubacloud_elasticip resource (e.g., arubacloud_elasticip.example.uri).
+                          Optional URI reference to an Elastic IP resource. References the `uri` attribute of an `arubacloud_elasticip` resource (e.g., `arubacloud_elasticip.example.uri`).
                         type: string
                       securityGroupUriRef:
                         description: |-
-                          (String) URI reference to the Security Group resource (e.g., arubacloud_securitygroup.example.uri)
-                          URI reference to the Security Group resource (e.g., `arubacloud_securitygroup.example.uri`)
+                          (String) URI reference to the Security Group resource. References the uri attribute of an arubacloud_securitygroup resource (e.g., arubacloud_securitygroup.example.uri).
+                          URI reference to the Security Group resource. References the `uri` attribute of an `arubacloud_securitygroup` resource (e.g., `arubacloud_securitygroup.example.uri`).
                         type: string
                       subnetUriRef:
                         description: |-
-                          (String) URI reference to the Subnet resource (e.g., arubacloud_subnet.example.uri)
-                          URI reference to the Subnet resource (e.g., `arubacloud_subnet.example.uri`)
+                          (String) URI reference to the Subnet resource. References the uri attribute of an arubacloud_subnet resource (e.g., arubacloud_subnet.example.uri).
+                          URI reference to the Subnet resource. References the `uri` attribute of an `arubacloud_subnet` resource (e.g., `arubacloud_subnet.example.uri`).
                         type: string
                       vpcUriRef:
                         description: |-
-                          (String) URI reference to the VPC resource (e.g., arubacloud_vpc.example.uri)
-                          URI reference to the VPC resource (e.g., `arubacloud_vpc.example.uri`)
+                          (String) URI reference to the VPC resource. References the uri attribute of an arubacloud_vpc resource (e.g., arubacloud_vpc.example.uri).
+                          URI reference to the VPC resource. References the `uri` attribute of an `arubacloud_vpc` resource (e.g., `arubacloud_vpc.example.uri`).
                         type: string
                     type: object
                   projectId:
                     description: |-
-                      (String) ID of the project this DBaaS belongs to
-                      ID of the project this DBaaS belongs to
+                      (String) ID of the project that owns this resource.
+                      ID of the project that owns this resource.
                     type: string
                   storage:
                     description: (Attributes) Storage configuration for the DBaaS
-                      instance (see below for nested schema)
+                      instance. (see below for nested schema)
                     properties:
                       autoscaling:
-                        description: (Attributes) Autoscaling configuration for the
-                          DBaaS instance (see below for nested schema)
+                        description: (Attributes) Optional autoscaling configuration
+                          for the DBaaS storage. (see below for nested schema)
                         properties:
                           availableSpace:
                             description: |-
-                              (Number) Minimum available space threshold in GB. When the available storage falls below this value, autoscaling will increase the storage by the step_size amount.
-                              Minimum available space threshold in GB. When the available storage falls below this value, autoscaling will increase the storage by the step_size amount.
+                              (Number) Minimum available space threshold in GB. When the available storage falls below this value, autoscaling increases storage by the step_size amount.
+                              Minimum available space threshold in GB. When the available storage falls below this value, autoscaling increases storage by the `step_size` amount.
                             type: number
                           enabled:
                             description: |-
-                              (Boolean) Enable autoscaling
-                              Enable autoscaling
+                              (Boolean) Whether storage autoscaling is enabled.
+                              Whether storage autoscaling is enabled.
                             type: boolean
                           stepSize:
                             description: |-
-                              (Number) Step size for autoscaling (in GB)
-                              Step size for autoscaling (in GB)
+                              (Number) Amount of storage (in GB) added on each autoscaling event.
+                              Amount of storage (in GB) added on each autoscaling event.
                             type: number
                         type: object
                       sizeGb:
                         description: |-
-                          (Number) Storage size in GB for the DBaaS instance
-                          Storage size in GB for the DBaaS instance
+                          (Number) Storage size in GB for the DBaaS instance.
+                          Storage size in GB for the DBaaS instance.
                         type: number
                     type: object
                   tags:
                     description: |-
-                      (List of String) List of tags for the DBaaS resource
-                      List of tags for the DBaaS resource
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
                   zone:
                     description: |-
-                      (String) Zone
-                      Zone
+                      (String) Availability zone within the region where the DBaaS cluster is deployed.
+                      Availability zone within the region where the DBaaS cluster is deployed.
                     type: string
                 required:
                 - engineId
@@ -195,100 +197,101 @@ spec:
                 properties:
                   billingPeriod:
                     description: |-
-                      (String) Billing period (Hour, Month, Year)
-                      Billing period (Hour, Month, Year)
+                      (String) Billing cycle. Accepted values: Hour, Month, Year.
+                      Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
                     type: string
                   engineId:
                     description: |-
-                      8.0 for MySQL version 8.0.
-                      Database engine ID. Available engines are described in the [ArubaCloud API documentation](https://api.arubacloud.com/docs/metadata/#dbaas-engines). For example, `mysql-8.0` for MySQL version 8.0.
+                      8.0 for MySQL 8.0, postgresql-15 for PostgreSQL 15). See the available engines.
+                      Database engine type and version identifier (e.g., `mysql-8.0` for MySQL 8.0, `postgresql-15` for PostgreSQL 15). See the [available engines](https://api.arubacloud.com/docs/metadata/#dbaas-engines).
                     type: string
                   flavor:
                     description: |-
-                      (String) DBaaS flavor name. Available flavors are described in the ArubaCloud API documentation. For example, DBO2A4 means 2 CPU and 4GB RAM.
-                      DBaaS flavor name. Available flavors are described in the [ArubaCloud API documentation](https://api.arubacloud.com/docs/metadata/#dbaas-flavors). For example, `DBO2A4` means 2 CPU and 4GB RAM.
+                      (String) Compute flavour for the DBaaS cluster nodes. See available flavours. For example, DBO2A4 means 2 vCPU and 4 GB RAM.
+                      Compute flavour for the DBaaS cluster nodes. See [available flavours](https://api.arubacloud.com/docs/metadata/#dbaas-flavors). For example, `DBO2A4` means 2 vCPU and 4 GB RAM.
                     type: string
                   location:
                     description: |-
-                      (String) DBaaS location
-                      DBaaS location
+                      Bergamo). See the available locations and zones.
+                      Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
                     type: string
                   name:
                     description: |-
-                      (String) DBaaS name
-                      DBaaS name
+                      (String) Display name for the DBaaS cluster.
+                      Display name for the DBaaS cluster.
                     type: string
                   network:
                     description: (Attributes) Network configuration for the DBaaS
-                      instance (see below for nested schema)
+                      instance. All URI references are immutable after creation. (see
+                      below for nested schema)
                     properties:
                       elasticIpUriRef:
                         description: |-
-                          (String) URI reference to the Elastic IP resource (e.g., arubacloud_elasticip.example.uri)
-                          URI reference to the Elastic IP resource (e.g., `arubacloud_elasticip.example.uri`)
+                          (String) Optional URI reference to an Elastic IP resource. References the uri attribute of an arubacloud_elasticip resource (e.g., arubacloud_elasticip.example.uri).
+                          Optional URI reference to an Elastic IP resource. References the `uri` attribute of an `arubacloud_elasticip` resource (e.g., `arubacloud_elasticip.example.uri`).
                         type: string
                       securityGroupUriRef:
                         description: |-
-                          (String) URI reference to the Security Group resource (e.g., arubacloud_securitygroup.example.uri)
-                          URI reference to the Security Group resource (e.g., `arubacloud_securitygroup.example.uri`)
+                          (String) URI reference to the Security Group resource. References the uri attribute of an arubacloud_securitygroup resource (e.g., arubacloud_securitygroup.example.uri).
+                          URI reference to the Security Group resource. References the `uri` attribute of an `arubacloud_securitygroup` resource (e.g., `arubacloud_securitygroup.example.uri`).
                         type: string
                       subnetUriRef:
                         description: |-
-                          (String) URI reference to the Subnet resource (e.g., arubacloud_subnet.example.uri)
-                          URI reference to the Subnet resource (e.g., `arubacloud_subnet.example.uri`)
+                          (String) URI reference to the Subnet resource. References the uri attribute of an arubacloud_subnet resource (e.g., arubacloud_subnet.example.uri).
+                          URI reference to the Subnet resource. References the `uri` attribute of an `arubacloud_subnet` resource (e.g., `arubacloud_subnet.example.uri`).
                         type: string
                       vpcUriRef:
                         description: |-
-                          (String) URI reference to the VPC resource (e.g., arubacloud_vpc.example.uri)
-                          URI reference to the VPC resource (e.g., `arubacloud_vpc.example.uri`)
+                          (String) URI reference to the VPC resource. References the uri attribute of an arubacloud_vpc resource (e.g., arubacloud_vpc.example.uri).
+                          URI reference to the VPC resource. References the `uri` attribute of an `arubacloud_vpc` resource (e.g., `arubacloud_vpc.example.uri`).
                         type: string
                     type: object
                   projectId:
                     description: |-
-                      (String) ID of the project this DBaaS belongs to
-                      ID of the project this DBaaS belongs to
+                      (String) ID of the project that owns this resource.
+                      ID of the project that owns this resource.
                     type: string
                   storage:
                     description: (Attributes) Storage configuration for the DBaaS
-                      instance (see below for nested schema)
+                      instance. (see below for nested schema)
                     properties:
                       autoscaling:
-                        description: (Attributes) Autoscaling configuration for the
-                          DBaaS instance (see below for nested schema)
+                        description: (Attributes) Optional autoscaling configuration
+                          for the DBaaS storage. (see below for nested schema)
                         properties:
                           availableSpace:
                             description: |-
-                              (Number) Minimum available space threshold in GB. When the available storage falls below this value, autoscaling will increase the storage by the step_size amount.
-                              Minimum available space threshold in GB. When the available storage falls below this value, autoscaling will increase the storage by the step_size amount.
+                              (Number) Minimum available space threshold in GB. When the available storage falls below this value, autoscaling increases storage by the step_size amount.
+                              Minimum available space threshold in GB. When the available storage falls below this value, autoscaling increases storage by the `step_size` amount.
                             type: number
                           enabled:
                             description: |-
-                              (Boolean) Enable autoscaling
-                              Enable autoscaling
+                              (Boolean) Whether storage autoscaling is enabled.
+                              Whether storage autoscaling is enabled.
                             type: boolean
                           stepSize:
                             description: |-
-                              (Number) Step size for autoscaling (in GB)
-                              Step size for autoscaling (in GB)
+                              (Number) Amount of storage (in GB) added on each autoscaling event.
+                              Amount of storage (in GB) added on each autoscaling event.
                             type: number
                         type: object
                       sizeGb:
                         description: |-
-                          (Number) Storage size in GB for the DBaaS instance
-                          Storage size in GB for the DBaaS instance
+                          (Number) Storage size in GB for the DBaaS instance.
+                          Storage size in GB for the DBaaS instance.
                         type: number
                     type: object
                   tags:
                     description: |-
-                      (List of String) List of tags for the DBaaS resource
-                      List of tags for the DBaaS resource
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
                   zone:
                     description: |-
-                      (String) Zone
-                      Zone
+                      (String) Availability zone within the region where the DBaaS cluster is deployed.
+                      Availability zone within the region where the DBaaS cluster is deployed.
                     type: string
                 type: object
               managementPolicies:
@@ -417,108 +420,110 @@ spec:
                 properties:
                   billingPeriod:
                     description: |-
-                      (String) Billing period (Hour, Month, Year)
-                      Billing period (Hour, Month, Year)
+                      (String) Billing cycle. Accepted values: Hour, Month, Year.
+                      Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
                     type: string
                   engineId:
                     description: |-
-                      8.0 for MySQL version 8.0.
-                      Database engine ID. Available engines are described in the [ArubaCloud API documentation](https://api.arubacloud.com/docs/metadata/#dbaas-engines). For example, `mysql-8.0` for MySQL version 8.0.
+                      8.0 for MySQL 8.0, postgresql-15 for PostgreSQL 15). See the available engines.
+                      Database engine type and version identifier (e.g., `mysql-8.0` for MySQL 8.0, `postgresql-15` for PostgreSQL 15). See the [available engines](https://api.arubacloud.com/docs/metadata/#dbaas-engines).
                     type: string
                   flavor:
                     description: |-
-                      (String) DBaaS flavor name. Available flavors are described in the ArubaCloud API documentation. For example, DBO2A4 means 2 CPU and 4GB RAM.
-                      DBaaS flavor name. Available flavors are described in the [ArubaCloud API documentation](https://api.arubacloud.com/docs/metadata/#dbaas-flavors). For example, `DBO2A4` means 2 CPU and 4GB RAM.
+                      (String) Compute flavour for the DBaaS cluster nodes. See available flavours. For example, DBO2A4 means 2 vCPU and 4 GB RAM.
+                      Compute flavour for the DBaaS cluster nodes. See [available flavours](https://api.arubacloud.com/docs/metadata/#dbaas-flavors). For example, `DBO2A4` means 2 vCPU and 4 GB RAM.
                     type: string
                   id:
-                    description: (String) DBaaS identifier
+                    description: (String) Computed by the API. Unique identifier for
+                      the resource.
                     type: string
                   location:
                     description: |-
-                      (String) DBaaS location
-                      DBaaS location
+                      Bergamo). See the available locations and zones.
+                      Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
                     type: string
                   name:
                     description: |-
-                      (String) DBaaS name
-                      DBaaS name
+                      (String) Display name for the DBaaS cluster.
+                      Display name for the DBaaS cluster.
                     type: string
                   network:
                     description: (Attributes) Network configuration for the DBaaS
-                      instance (see below for nested schema)
+                      instance. All URI references are immutable after creation. (see
+                      below for nested schema)
                     properties:
                       elasticIpUriRef:
                         description: |-
-                          (String) URI reference to the Elastic IP resource (e.g., arubacloud_elasticip.example.uri)
-                          URI reference to the Elastic IP resource (e.g., `arubacloud_elasticip.example.uri`)
+                          (String) Optional URI reference to an Elastic IP resource. References the uri attribute of an arubacloud_elasticip resource (e.g., arubacloud_elasticip.example.uri).
+                          Optional URI reference to an Elastic IP resource. References the `uri` attribute of an `arubacloud_elasticip` resource (e.g., `arubacloud_elasticip.example.uri`).
                         type: string
                       securityGroupUriRef:
                         description: |-
-                          (String) URI reference to the Security Group resource (e.g., arubacloud_securitygroup.example.uri)
-                          URI reference to the Security Group resource (e.g., `arubacloud_securitygroup.example.uri`)
+                          (String) URI reference to the Security Group resource. References the uri attribute of an arubacloud_securitygroup resource (e.g., arubacloud_securitygroup.example.uri).
+                          URI reference to the Security Group resource. References the `uri` attribute of an `arubacloud_securitygroup` resource (e.g., `arubacloud_securitygroup.example.uri`).
                         type: string
                       subnetUriRef:
                         description: |-
-                          (String) URI reference to the Subnet resource (e.g., arubacloud_subnet.example.uri)
-                          URI reference to the Subnet resource (e.g., `arubacloud_subnet.example.uri`)
+                          (String) URI reference to the Subnet resource. References the uri attribute of an arubacloud_subnet resource (e.g., arubacloud_subnet.example.uri).
+                          URI reference to the Subnet resource. References the `uri` attribute of an `arubacloud_subnet` resource (e.g., `arubacloud_subnet.example.uri`).
                         type: string
                       vpcUriRef:
                         description: |-
-                          (String) URI reference to the VPC resource (e.g., arubacloud_vpc.example.uri)
-                          URI reference to the VPC resource (e.g., `arubacloud_vpc.example.uri`)
+                          (String) URI reference to the VPC resource. References the uri attribute of an arubacloud_vpc resource (e.g., arubacloud_vpc.example.uri).
+                          URI reference to the VPC resource. References the `uri` attribute of an `arubacloud_vpc` resource (e.g., `arubacloud_vpc.example.uri`).
                         type: string
                     type: object
                   projectId:
                     description: |-
-                      (String) ID of the project this DBaaS belongs to
-                      ID of the project this DBaaS belongs to
+                      (String) ID of the project that owns this resource.
+                      ID of the project that owns this resource.
                     type: string
                   storage:
                     description: (Attributes) Storage configuration for the DBaaS
-                      instance (see below for nested schema)
+                      instance. (see below for nested schema)
                     properties:
                       autoscaling:
-                        description: (Attributes) Autoscaling configuration for the
-                          DBaaS instance (see below for nested schema)
+                        description: (Attributes) Optional autoscaling configuration
+                          for the DBaaS storage. (see below for nested schema)
                         properties:
                           availableSpace:
                             description: |-
-                              (Number) Minimum available space threshold in GB. When the available storage falls below this value, autoscaling will increase the storage by the step_size amount.
-                              Minimum available space threshold in GB. When the available storage falls below this value, autoscaling will increase the storage by the step_size amount.
+                              (Number) Minimum available space threshold in GB. When the available storage falls below this value, autoscaling increases storage by the step_size amount.
+                              Minimum available space threshold in GB. When the available storage falls below this value, autoscaling increases storage by the `step_size` amount.
                             type: number
                           enabled:
                             description: |-
-                              (Boolean) Enable autoscaling
-                              Enable autoscaling
+                              (Boolean) Whether storage autoscaling is enabled.
+                              Whether storage autoscaling is enabled.
                             type: boolean
                           stepSize:
                             description: |-
-                              (Number) Step size for autoscaling (in GB)
-                              Step size for autoscaling (in GB)
+                              (Number) Amount of storage (in GB) added on each autoscaling event.
+                              Amount of storage (in GB) added on each autoscaling event.
                             type: number
                         type: object
                       sizeGb:
                         description: |-
-                          (Number) Storage size in GB for the DBaaS instance
-                          Storage size in GB for the DBaaS instance
+                          (Number) Storage size in GB for the DBaaS instance.
+                          Storage size in GB for the DBaaS instance.
                         type: number
                     type: object
                   tags:
                     description: |-
-                      (List of String) List of tags for the DBaaS resource
-                      List of tags for the DBaaS resource
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
                   uri:
                     description: |-
-                      (String) DBaaS URI
-                      DBaaS URI
+                      (String) Computed by the API. Full resource URI used as a reference value in other resources.
+                      Computed by the API. Full resource URI used as a reference value in other resources.
                     type: string
                   zone:
                     description: |-
-                      (String) Zone
-                      Zone
+                      (String) Availability zone within the region where the DBaaS cluster is deployed.
+                      Availability zone within the region where the DBaaS cluster is deployed.
                     type: string
                 type: object
               conditions:

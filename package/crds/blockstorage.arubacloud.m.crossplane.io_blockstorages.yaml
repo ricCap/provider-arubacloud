@@ -35,7 +35,7 @@ spec:
     schema:
       openAPIV3Schema:
         description: BlockStorage is the Schema for the BlockStorages API. Manages
-          an ArubaCloud Block Storage.
+          an ArubaCloud Block Storage volume.
         properties:
           apiVersion:
             description: |-
@@ -61,55 +61,55 @@ spec:
                 properties:
                   billingPeriod:
                     description: |-
-                      (String) Billing period (Hour, Month, Year)
-                      Billing period (Hour, Month, Year)
+                      (String) Billing cycle. Accepted values: Hour, Month, Year.
+                      Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
                     type: string
                   bootable:
                     description: |-
-                      (Boolean) Whether the block storage is bootable. Must be set to true along with image to create a bootable disk.
-                      Whether the block storage is bootable. Must be set to true along with image to create a bootable disk.
+                      (Boolean) Whether this volume can be used as a boot volume for an arubacloud_cloudserver. Must be true when image is set.
+                      Whether this volume can be used as a boot volume for an `arubacloud_cloudserver`. Must be `true` when `image` is set.
                     type: boolean
                   image:
                     description: |-
-                      (String) Image ID for bootable block storage. Required when bootable is true. See available images for a list of supported image IDs.
-                      Image ID for bootable block storage. Required when bootable is true. See [available images](https://api.arubacloud.com/docs/metadata/#cloud-server-bootvolume) for a list of supported image IDs.
+                      (String) Image ID to use when creating a bootable volume. Required when bootable is true. See the available images.
+                      Image ID to use when creating a bootable volume. Required when `bootable` is `true`. See the [available images](https://api.arubacloud.com/docs/metadata/#cloud-server-bootvolume).
                     type: string
                   location:
                     description: |-
-                      (String) Block Storage location/region
-                      Block Storage location/region
+                      Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                      Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   name:
                     description: |-
-                      (String) Block Storage name
-                      Block Storage name
+                      (String) Display name for the block storage volume.
+                      Display name for the block storage volume.
                     type: string
                   projectId:
                     description: |-
-                      (String) ID of the project this Block Storage belongs to
-                      ID of the project this Block Storage belongs to
+                      created.)
+                      ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   sizeGb:
                     description: |-
-                      (Number) Size of the block storage in GB
-                      Size of the block storage in GB
+                      (Number) Size of the block storage volume in GiB. Must be a positive integer.
+                      Size of the block storage volume in GiB. Must be a positive integer.
                     type: number
                   tags:
                     description: |-
-                      (List of String) List of tags for the block storage
-                      List of tags for the block storage
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
                   type:
                     description: |-
-                      (String) Type of block storage (Standard, Performance)
-                      Type of block storage (Standard, Performance)
+                      (String) Storage type. Accepted values: Standard, Performance.
+                      Storage type. Accepted values: `Standard`, `Performance`.
                     type: string
                   zone:
                     description: |-
-                      (String) Zone where blockstorage will be created. If not specified, the block storage will be regional (available across all zones in the location). If specified, the block storage will be zonal (tied to a specific zone).
-                      Zone where blockstorage will be created. If not specified, the block storage will be regional (available across all zones in the location). If specified, the block storage will be zonal (tied to a specific zone).
+                      (String) Availability zone within the region. If omitted the volume is regional (accessible across all zones).
+                      Availability zone within the region. If omitted the volume is regional (accessible across all zones).
                     type: string
                 required:
                 - billingPeriod
@@ -134,55 +134,55 @@ spec:
                 properties:
                   billingPeriod:
                     description: |-
-                      (String) Billing period (Hour, Month, Year)
-                      Billing period (Hour, Month, Year)
+                      (String) Billing cycle. Accepted values: Hour, Month, Year.
+                      Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
                     type: string
                   bootable:
                     description: |-
-                      (Boolean) Whether the block storage is bootable. Must be set to true along with image to create a bootable disk.
-                      Whether the block storage is bootable. Must be set to true along with image to create a bootable disk.
+                      (Boolean) Whether this volume can be used as a boot volume for an arubacloud_cloudserver. Must be true when image is set.
+                      Whether this volume can be used as a boot volume for an `arubacloud_cloudserver`. Must be `true` when `image` is set.
                     type: boolean
                   image:
                     description: |-
-                      (String) Image ID for bootable block storage. Required when bootable is true. See available images for a list of supported image IDs.
-                      Image ID for bootable block storage. Required when bootable is true. See [available images](https://api.arubacloud.com/docs/metadata/#cloud-server-bootvolume) for a list of supported image IDs.
+                      (String) Image ID to use when creating a bootable volume. Required when bootable is true. See the available images.
+                      Image ID to use when creating a bootable volume. Required when `bootable` is `true`. See the [available images](https://api.arubacloud.com/docs/metadata/#cloud-server-bootvolume).
                     type: string
                   location:
                     description: |-
-                      (String) Block Storage location/region
-                      Block Storage location/region
+                      Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                      Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   name:
                     description: |-
-                      (String) Block Storage name
-                      Block Storage name
+                      (String) Display name for the block storage volume.
+                      Display name for the block storage volume.
                     type: string
                   projectId:
                     description: |-
-                      (String) ID of the project this Block Storage belongs to
-                      ID of the project this Block Storage belongs to
+                      created.)
+                      ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   sizeGb:
                     description: |-
-                      (Number) Size of the block storage in GB
-                      Size of the block storage in GB
+                      (Number) Size of the block storage volume in GiB. Must be a positive integer.
+                      Size of the block storage volume in GiB. Must be a positive integer.
                     type: number
                   tags:
                     description: |-
-                      (List of String) List of tags for the block storage
-                      List of tags for the block storage
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
                   type:
                     description: |-
-                      (String) Type of block storage (Standard, Performance)
-                      Type of block storage (Standard, Performance)
+                      (String) Storage type. Accepted values: Standard, Performance.
+                      Storage type. Accepted values: `Standard`, `Performance`.
                     type: string
                   zone:
                     description: |-
-                      (String) Zone where blockstorage will be created. If not specified, the block storage will be regional (available across all zones in the location). If specified, the block storage will be zonal (tied to a specific zone).
-                      Zone where blockstorage will be created. If not specified, the block storage will be regional (available across all zones in the location). If specified, the block storage will be zonal (tied to a specific zone).
+                      (String) Availability zone within the region. If omitted the volume is regional (accessible across all zones).
+                      Availability zone within the region. If omitted the volume is regional (accessible across all zones).
                     type: string
                 type: object
               managementPolicies:
@@ -275,63 +275,64 @@ spec:
                 properties:
                   billingPeriod:
                     description: |-
-                      (String) Billing period (Hour, Month, Year)
-                      Billing period (Hour, Month, Year)
+                      (String) Billing cycle. Accepted values: Hour, Month, Year.
+                      Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
                     type: string
                   bootable:
                     description: |-
-                      (Boolean) Whether the block storage is bootable. Must be set to true along with image to create a bootable disk.
-                      Whether the block storage is bootable. Must be set to true along with image to create a bootable disk.
+                      (Boolean) Whether this volume can be used as a boot volume for an arubacloud_cloudserver. Must be true when image is set.
+                      Whether this volume can be used as a boot volume for an `arubacloud_cloudserver`. Must be `true` when `image` is set.
                     type: boolean
                   id:
-                    description: (String) Block Storage identifier
+                    description: (String) Computed by the API. Unique identifier for
+                      the resource.
                     type: string
                   image:
                     description: |-
-                      (String) Image ID for bootable block storage. Required when bootable is true. See available images for a list of supported image IDs.
-                      Image ID for bootable block storage. Required when bootable is true. See [available images](https://api.arubacloud.com/docs/metadata/#cloud-server-bootvolume) for a list of supported image IDs.
+                      (String) Image ID to use when creating a bootable volume. Required when bootable is true. See the available images.
+                      Image ID to use when creating a bootable volume. Required when `bootable` is `true`. See the [available images](https://api.arubacloud.com/docs/metadata/#cloud-server-bootvolume).
                     type: string
                   location:
                     description: |-
-                      (String) Block Storage location/region
-                      Block Storage location/region
+                      Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                      Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   name:
                     description: |-
-                      (String) Block Storage name
-                      Block Storage name
+                      (String) Display name for the block storage volume.
+                      Display name for the block storage volume.
                     type: string
                   projectId:
                     description: |-
-                      (String) ID of the project this Block Storage belongs to
-                      ID of the project this Block Storage belongs to
+                      created.)
+                      ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   sizeGb:
                     description: |-
-                      (Number) Size of the block storage in GB
-                      Size of the block storage in GB
+                      (Number) Size of the block storage volume in GiB. Must be a positive integer.
+                      Size of the block storage volume in GiB. Must be a positive integer.
                     type: number
                   tags:
                     description: |-
-                      (List of String) List of tags for the block storage
-                      List of tags for the block storage
+                      (List of String) List of string tags attached to the resource for filtering and organisation.
+                      List of string tags attached to the resource for filtering and organisation.
                     items:
                       type: string
                     type: array
                   type:
                     description: |-
-                      (String) Type of block storage (Standard, Performance)
-                      Type of block storage (Standard, Performance)
+                      (String) Storage type. Accepted values: Standard, Performance.
+                      Storage type. Accepted values: `Standard`, `Performance`.
                     type: string
                   uri:
                     description: |-
-                      (String) Block Storage URI
-                      Block Storage URI
+                      (String) Computed by the API. Full resource URI used as a reference value in other resources.
+                      Computed by the API. Full resource URI used as a reference value in other resources.
                     type: string
                   zone:
                     description: |-
-                      (String) Zone where blockstorage will be created. If not specified, the block storage will be regional (available across all zones in the location). If specified, the block storage will be zonal (tied to a specific zone).
-                      Zone where blockstorage will be created. If not specified, the block storage will be regional (available across all zones in the location). If specified, the block storage will be zonal (tied to a specific zone).
+                      (String) Availability zone within the region. If omitted the volume is regional (accessible across all zones).
+                      Availability zone within the region. If omitted the volume is regional (accessible across all zones).
                     type: string
                 type: object
               conditions:
