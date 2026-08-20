@@ -31,10 +31,6 @@ type DatabaseBackupInitParameters struct {
 	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) Display name for the database backup.
-	// Display name for the database backup.
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
 	// (String) ID of the project that owns this resource.
 	// ID of the project that owns this resource.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
@@ -42,6 +38,10 @@ type DatabaseBackupInitParameters struct {
 	// (List of String) List of string tags attached to the resource for filtering and organisation.
 	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
+	// resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+	// Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+	Timeout *string `json:"timeout,omitempty" tf:"timeout,omitempty"`
 
 	// (String) Availability zone within the region where the backup is stored.
 	// Availability zone within the region where the backup is stored.
@@ -69,8 +69,8 @@ type DatabaseBackupObservation struct {
 	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) Display name for the database backup.
-	// Display name for the database backup.
+	// generated backup name assigned by the API (e.g. mysql_wordpress_20260713140736). The value provided in config is not used — the API always generates its own name.
+	// Auto-generated backup name assigned by the API (e.g. `mysql_wordpress_20260713140736`). The value provided in config is not used — the API always generates its own name.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// (String) ID of the project that owns this resource.
@@ -80,6 +80,10 @@ type DatabaseBackupObservation struct {
 	// (List of String) List of string tags attached to the resource for filtering and organisation.
 	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
+	// resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+	// Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+	Timeout *string `json:"timeout,omitempty" tf:"timeout,omitempty"`
 
 	// (String) Computed by the API. Full resource URI used as a reference value in other resources.
 	// Computed by the API. Full resource URI used as a reference value in other resources.
@@ -112,11 +116,6 @@ type DatabaseBackupParameters struct {
 	// +kubebuilder:validation:Required
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) Display name for the database backup.
-	// Display name for the database backup.
-	// +kubebuilder:validation:Required
-	Name *string `json:"name,omitempty" tf:"name,omitempty"`
-
 	// (String) ID of the project that owns this resource.
 	// ID of the project that owns this resource.
 	// +kubebuilder:validation:Required
@@ -126,6 +125,11 @@ type DatabaseBackupParameters struct {
 	// List of string tags attached to the resource for filtering and organisation.
 	// +kubebuilder:validation:Optional
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
+	// resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+	// Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+	// +kubebuilder:validation:Optional
+	Timeout *string `json:"timeout,omitempty" tf:"timeout,omitempty"`
 
 	// (String) Availability zone within the region where the backup is stored.
 	// Availability zone within the region where the backup is stored.
@@ -173,7 +177,6 @@ type DatabaseBackup struct {
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.database) || (has(self.initProvider) && has(self.initProvider.database))",message="spec.forProvider.database is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.dbaasId) || (has(self.initProvider) && has(self.initProvider.dbaasId))",message="spec.forProvider.dbaasId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.location) || (has(self.initProvider) && has(self.initProvider.location))",message="spec.forProvider.location is a required parameter"
-	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.projectId) || (has(self.initProvider) && has(self.initProvider.projectId))",message="spec.forProvider.projectId is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.zone) || (has(self.initProvider) && has(self.initProvider.zone))",message="spec.forProvider.zone is a required parameter"
 	Spec   DatabaseBackupSpec   `json:"spec"`

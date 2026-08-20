@@ -84,6 +84,11 @@ func (in *CloudServerInitParameters) DeepCopyInto(out *CloudServerInitParameters
 			}
 		}
 	}
+	if in.Timeout != nil {
+		in, out := &in.Timeout, &out.Timeout
+		*out = new(string)
+		**out = **in
+	}
 	if in.Zone != nil {
 		in, out := &in.Zone, &out.Zone
 		*out = new(string)
@@ -182,6 +187,11 @@ func (in *CloudServerObservation) DeepCopyInto(out *CloudServerObservation) {
 			}
 		}
 	}
+	if in.Timeout != nil {
+		in, out := &in.Timeout, &out.Timeout
+		*out = new(string)
+		**out = **in
+	}
 	if in.URI != nil {
 		in, out := &in.URI, &out.URI
 		*out = new(string)
@@ -247,6 +257,11 @@ func (in *CloudServerParameters) DeepCopyInto(out *CloudServerParameters) {
 				**out = **in
 			}
 		}
+	}
+	if in.Timeout != nil {
+		in, out := &in.Timeout, &out.Timeout
+		*out = new(string)
+		**out = **in
 	}
 	if in.Zone != nil {
 		in, out := &in.Zone, &out.Zone

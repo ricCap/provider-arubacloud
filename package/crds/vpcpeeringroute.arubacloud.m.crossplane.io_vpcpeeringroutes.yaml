@@ -83,6 +83,11 @@ spec:
                     items:
                       type: string
                     type: array
+                  timeout:
+                    description: Per-resource timeout override (e.g. `"15m"`, `"1h"`).
+                      Overrides the provider-level `resource_timeout` for this resource's
+                      Create and Delete operations. Uses Go duration syntax.
+                    type: string
                   vpcId:
                     description: ID of the VPC this peering route belongs to.
                     type: string
@@ -136,6 +141,11 @@ spec:
                     items:
                       type: string
                     type: array
+                  timeout:
+                    description: Per-resource timeout override (e.g. `"15m"`, `"1h"`).
+                      Overrides the provider-level `resource_timeout` for this resource's
+                      Create and Delete operations. Uses Go duration syntax.
+                    type: string
                   vpcId:
                     description: ID of the VPC this peering route belongs to.
                     type: string
@@ -262,6 +272,11 @@ spec:
                     items:
                       type: string
                     type: array
+                  timeout:
+                    description: Per-resource timeout override (e.g. `"15m"`, `"1h"`).
+                      Overrides the provider-level `resource_timeout` for this resource's
+                      Create and Delete operations. Uses Go duration syntax.
+                    type: string
                   uri:
                     description: Computed by the API. Full resource URI used as a
                       reference value in other resources (e.g., as a `*_uri_ref` attribute).

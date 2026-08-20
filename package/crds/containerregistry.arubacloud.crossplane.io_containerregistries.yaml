@@ -120,13 +120,13 @@ spec:
                       ID of the project that owns this resource.
                     type: string
                   settings:
-                    description: (Attributes) Optional registry configuration settings.
-                      (see below for nested schema)
+                    description: (Attributes) Registry configuration settings. Required
+                      because admin_user is mandatory. (see below for nested schema)
                     properties:
                       adminUser:
                         description: |-
-                          (String) Administrator username for the registry.
-                          Administrator username for the registry.
+                          (String) Administrator username for the registry. Must not be "admin" (reserved by the API).
+                          Administrator username for the registry. Must not be `"admin"` (reserved by the API).
                         type: string
                       concurrentUsersFlavor:
                         description: |-
@@ -151,11 +151,17 @@ spec:
                     items:
                       type: string
                     type: array
+                  timeout:
+                    description: |-
+                      resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+                      Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+                    type: string
                 required:
                 - location
                 - name
                 - network
                 - projectId
+                - settings
                 - storage
                 type: object
               initProvider:
@@ -217,13 +223,13 @@ spec:
                       ID of the project that owns this resource.
                     type: string
                   settings:
-                    description: (Attributes) Optional registry configuration settings.
-                      (see below for nested schema)
+                    description: (Attributes) Registry configuration settings. Required
+                      because admin_user is mandatory. (see below for nested schema)
                     properties:
                       adminUser:
                         description: |-
-                          (String) Administrator username for the registry.
-                          Administrator username for the registry.
+                          (String) Administrator username for the registry. Must not be "admin" (reserved by the API).
+                          Administrator username for the registry. Must not be `"admin"` (reserved by the API).
                         type: string
                       concurrentUsersFlavor:
                         description: |-
@@ -248,6 +254,11 @@ spec:
                     items:
                       type: string
                     type: array
+                  timeout:
+                    description: |-
+                      resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+                      Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+                    type: string
                 type: object
               managementPolicies:
                 default:
@@ -352,6 +363,10 @@ spec:
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.projectId)
                 || (has(self.initProvider) && has(self.initProvider.projectId))'
+            - message: spec.forProvider.settings is a required parameter
+              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
+                || ''Update'' in self.managementPolicies) || has(self.forProvider.settings)
+                || (has(self.initProvider) && has(self.initProvider.settings))'
             - message: spec.forProvider.storage is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.storage)
@@ -411,13 +426,13 @@ spec:
                       ID of the project that owns this resource.
                     type: string
                   settings:
-                    description: (Attributes) Optional registry configuration settings.
-                      (see below for nested schema)
+                    description: (Attributes) Registry configuration settings. Required
+                      because admin_user is mandatory. (see below for nested schema)
                     properties:
                       adminUser:
                         description: |-
-                          (String) Administrator username for the registry.
-                          Administrator username for the registry.
+                          (String) Administrator username for the registry. Must not be "admin" (reserved by the API).
+                          Administrator username for the registry. Must not be `"admin"` (reserved by the API).
                         type: string
                       concurrentUsersFlavor:
                         description: |-
@@ -442,6 +457,11 @@ spec:
                     items:
                       type: string
                     type: array
+                  timeout:
+                    description: |-
+                      resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+                      Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+                    type: string
                   uri:
                     description: |-
                       (String) Computed by the API. Full resource URI used as a reference value in other resources.

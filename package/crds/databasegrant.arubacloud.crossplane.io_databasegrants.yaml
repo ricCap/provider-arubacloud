@@ -75,28 +75,33 @@ spec:
                 properties:
                   database:
                     description: |-
-                      (String) ID of the database this grant applies to.
-                      ID of the database this grant applies to.
+                      created.)
+                      ID of the database this grant applies to. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   dbaasId:
                     description: |-
-                      (String) ID of the parent DBaaS cluster this grant belongs to.
-                      ID of the parent DBaaS cluster this grant belongs to.
+                      created.)
+                      ID of the parent DBaaS cluster this grant belongs to. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   projectId:
                     description: |-
-                      (String) ID of the project that owns this resource.
-                      ID of the project that owns this resource.
+                      created.)
+                      ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   role:
                     description: |-
-                      (String) Privilege level granted. Accepted values depend on the database engine (e.g., ALL, READ, WRITE).
-                      Privilege level granted. Accepted values depend on the database engine (e.g., `ALL`, `READ`, `WRITE`).
+                      place role changes. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                      Privilege level granted. Accepted values depend on the database engine (e.g., `ALL`, `READ`, `WRITE`). The DBaaS grant API does not support in-place role changes. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                    type: string
+                  timeout:
+                    description: |-
+                      resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+                      Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
                     type: string
                   userId:
                     description: |-
-                      (String) Name or ID of the DBaaS user receiving the grant.
-                      Name or ID of the DBaaS user receiving the grant.
+                      created.)
+                      Name or ID of the DBaaS user receiving the grant. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                 required:
                 - database
@@ -120,28 +125,33 @@ spec:
                 properties:
                   database:
                     description: |-
-                      (String) ID of the database this grant applies to.
-                      ID of the database this grant applies to.
+                      created.)
+                      ID of the database this grant applies to. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   dbaasId:
                     description: |-
-                      (String) ID of the parent DBaaS cluster this grant belongs to.
-                      ID of the parent DBaaS cluster this grant belongs to.
+                      created.)
+                      ID of the parent DBaaS cluster this grant belongs to. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   projectId:
                     description: |-
-                      (String) ID of the project that owns this resource.
-                      ID of the project that owns this resource.
+                      created.)
+                      ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   role:
                     description: |-
-                      (String) Privilege level granted. Accepted values depend on the database engine (e.g., ALL, READ, WRITE).
-                      Privilege level granted. Accepted values depend on the database engine (e.g., `ALL`, `READ`, `WRITE`).
+                      place role changes. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                      Privilege level granted. Accepted values depend on the database engine (e.g., `ALL`, `READ`, `WRITE`). The DBaaS grant API does not support in-place role changes. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                    type: string
+                  timeout:
+                    description: |-
+                      resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+                      Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
                     type: string
                   userId:
                     description: |-
-                      (String) Name or ID of the DBaaS user receiving the grant.
-                      Name or ID of the DBaaS user receiving the grant.
+                      created.)
+                      Name or ID of the DBaaS user receiving the grant. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                 type: object
               managementPolicies:
@@ -258,13 +268,13 @@ spec:
                 properties:
                   database:
                     description: |-
-                      (String) ID of the database this grant applies to.
-                      ID of the database this grant applies to.
+                      created.)
+                      ID of the database this grant applies to. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   dbaasId:
                     description: |-
-                      (String) ID of the parent DBaaS cluster this grant belongs to.
-                      ID of the parent DBaaS cluster this grant belongs to.
+                      created.)
+                      ID of the parent DBaaS cluster this grant belongs to. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   id:
                     description: '(String) Computed by the API. Unique identifier
@@ -272,13 +282,18 @@ spec:
                     type: string
                   projectId:
                     description: |-
-                      (String) ID of the project that owns this resource.
-                      ID of the project that owns this resource.
+                      created.)
+                      ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   role:
                     description: |-
-                      (String) Privilege level granted. Accepted values depend on the database engine (e.g., ALL, READ, WRITE).
-                      Privilege level granted. Accepted values depend on the database engine (e.g., `ALL`, `READ`, `WRITE`).
+                      place role changes. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                      Privilege level granted. Accepted values depend on the database engine (e.g., `ALL`, `READ`, `WRITE`). The DBaaS grant API does not support in-place role changes. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                    type: string
+                  timeout:
+                    description: |-
+                      resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+                      Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
                     type: string
                   uri:
                     description: |-
@@ -287,8 +302,8 @@ spec:
                     type: string
                   userId:
                     description: |-
-                      (String) Name or ID of the DBaaS user receiving the grant.
-                      Name or ID of the DBaaS user receiving the grant.
+                      created.)
+                      Name or ID of the DBaaS user receiving the grant. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                 type: object
               conditions:

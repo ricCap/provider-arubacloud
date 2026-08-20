@@ -89,38 +89,37 @@ spec:
                       ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   properties:
-                    description: matching properties of the security rule. Most fields
-                      are immutable after creation. (see below for nested schema)
+                    description: matching properties of the security rule. All fields
+                      are immutable after creation — to change any of them, destroy
+                      and re-create the rule. (see below for nested schema)
                     properties:
                       direction:
                         description: |-
                           created.)
-                          Traffic direction the rule applies to. Accepted values: `Inbound`, `Outbound`. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                          Traffic direction the rule applies to. Accepted values: `Ingress`, `Egress`. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                         type: string
                       port:
                         description: |-
-                          8090). Use 0 for ICMP or ANY.
-                          Port or port range for TCP/UDP (e.g., `80` or `8080-8090`). Use `0` for ICMP or ANY.
+                          8090). Use 0 for ICMP or ANY. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                          Port or port range for TCP/UDP (e.g., `80` or `8080-8090`). Use `0` for ICMP or ANY. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                         type: string
                       protocol:
                         description: |-
-                          (String) IP protocol. Accepted values: TCP, UDP, ICMP, ANY. (Immutable if marked.)
-                          IP protocol. Accepted values: `TCP`, `UDP`, `ICMP`, `ANY`. (Immutable if marked.)
+                          insensitive — the value is normalised before sending to the API). (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                          IP protocol. Accepted values: `TCP`, `UDP`, `ICMP`, `ANY` (case-insensitive — the value is normalised before sending to the API). (Immutable — changing this value forces the resource to be destroyed and re-created.)
                         type: string
                       target:
-                        description: (Attributes) Source (inbound) or destination
-                          (outbound) endpoint for this rule. (see below for nested
-                          schema)
+                        description: created.) (see below for nested schema)
                         properties:
                           kind:
                             description: |-
-                              (String) Type of the target endpoint. Accepted values: IP, SecurityGroup.
-                              Type of the target endpoint. Accepted values: `IP`, `SecurityGroup`.
+                              insensitive — the value is normalised before sending to the API). (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                              Type of the target endpoint. Accepted values: `IP`, `SecurityGroup` (case-insensitive — the value is normalised before sending to the API). (Immutable — changing this value forces the resource to be destroyed and re-created.)
                             type: string
                           value:
                             description: |-
-                              (String) Source (inbound) or destination (outbound) CIDR in notation like 0.0.0.0/0, or SecurityGroup URI.
-                              Source (inbound) or destination (outbound) CIDR in notation like `0.0.0.0/0`, or SecurityGroup URI.
+                              created.)
+                              Source (inbound) or destination (outbound) CIDR in notation like `0.0.0.0/0`, or SecurityGroup URI. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                             type: string
                         type: object
                     type: object
@@ -136,6 +135,11 @@ spec:
                     items:
                       type: string
                     type: array
+                  timeout:
+                    description: |-
+                      resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+                      Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+                    type: string
                   vpcId:
                     description: |-
                       created.)
@@ -178,38 +182,37 @@ spec:
                       ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   properties:
-                    description: matching properties of the security rule. Most fields
-                      are immutable after creation. (see below for nested schema)
+                    description: matching properties of the security rule. All fields
+                      are immutable after creation — to change any of them, destroy
+                      and re-create the rule. (see below for nested schema)
                     properties:
                       direction:
                         description: |-
                           created.)
-                          Traffic direction the rule applies to. Accepted values: `Inbound`, `Outbound`. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                          Traffic direction the rule applies to. Accepted values: `Ingress`, `Egress`. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                         type: string
                       port:
                         description: |-
-                          8090). Use 0 for ICMP or ANY.
-                          Port or port range for TCP/UDP (e.g., `80` or `8080-8090`). Use `0` for ICMP or ANY.
+                          8090). Use 0 for ICMP or ANY. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                          Port or port range for TCP/UDP (e.g., `80` or `8080-8090`). Use `0` for ICMP or ANY. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                         type: string
                       protocol:
                         description: |-
-                          (String) IP protocol. Accepted values: TCP, UDP, ICMP, ANY. (Immutable if marked.)
-                          IP protocol. Accepted values: `TCP`, `UDP`, `ICMP`, `ANY`. (Immutable if marked.)
+                          insensitive — the value is normalised before sending to the API). (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                          IP protocol. Accepted values: `TCP`, `UDP`, `ICMP`, `ANY` (case-insensitive — the value is normalised before sending to the API). (Immutable — changing this value forces the resource to be destroyed and re-created.)
                         type: string
                       target:
-                        description: (Attributes) Source (inbound) or destination
-                          (outbound) endpoint for this rule. (see below for nested
-                          schema)
+                        description: created.) (see below for nested schema)
                         properties:
                           kind:
                             description: |-
-                              (String) Type of the target endpoint. Accepted values: IP, SecurityGroup.
-                              Type of the target endpoint. Accepted values: `IP`, `SecurityGroup`.
+                              insensitive — the value is normalised before sending to the API). (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                              Type of the target endpoint. Accepted values: `IP`, `SecurityGroup` (case-insensitive — the value is normalised before sending to the API). (Immutable — changing this value forces the resource to be destroyed and re-created.)
                             type: string
                           value:
                             description: |-
-                              (String) Source (inbound) or destination (outbound) CIDR in notation like 0.0.0.0/0, or SecurityGroup URI.
-                              Source (inbound) or destination (outbound) CIDR in notation like `0.0.0.0/0`, or SecurityGroup URI.
+                              created.)
+                              Source (inbound) or destination (outbound) CIDR in notation like `0.0.0.0/0`, or SecurityGroup URI. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                             type: string
                         type: object
                     type: object
@@ -225,6 +228,11 @@ spec:
                     items:
                       type: string
                     type: array
+                  timeout:
+                    description: |-
+                      resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+                      Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+                    type: string
                   vpcId:
                     description: |-
                       created.)
@@ -367,38 +375,37 @@ spec:
                       ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   properties:
-                    description: matching properties of the security rule. Most fields
-                      are immutable after creation. (see below for nested schema)
+                    description: matching properties of the security rule. All fields
+                      are immutable after creation — to change any of them, destroy
+                      and re-create the rule. (see below for nested schema)
                     properties:
                       direction:
                         description: |-
                           created.)
-                          Traffic direction the rule applies to. Accepted values: `Inbound`, `Outbound`. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                          Traffic direction the rule applies to. Accepted values: `Ingress`, `Egress`. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                         type: string
                       port:
                         description: |-
-                          8090). Use 0 for ICMP or ANY.
-                          Port or port range for TCP/UDP (e.g., `80` or `8080-8090`). Use `0` for ICMP or ANY.
+                          8090). Use 0 for ICMP or ANY. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                          Port or port range for TCP/UDP (e.g., `80` or `8080-8090`). Use `0` for ICMP or ANY. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                         type: string
                       protocol:
                         description: |-
-                          (String) IP protocol. Accepted values: TCP, UDP, ICMP, ANY. (Immutable if marked.)
-                          IP protocol. Accepted values: `TCP`, `UDP`, `ICMP`, `ANY`. (Immutable if marked.)
+                          insensitive — the value is normalised before sending to the API). (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                          IP protocol. Accepted values: `TCP`, `UDP`, `ICMP`, `ANY` (case-insensitive — the value is normalised before sending to the API). (Immutable — changing this value forces the resource to be destroyed and re-created.)
                         type: string
                       target:
-                        description: (Attributes) Source (inbound) or destination
-                          (outbound) endpoint for this rule. (see below for nested
-                          schema)
+                        description: created.) (see below for nested schema)
                         properties:
                           kind:
                             description: |-
-                              (String) Type of the target endpoint. Accepted values: IP, SecurityGroup.
-                              Type of the target endpoint. Accepted values: `IP`, `SecurityGroup`.
+                              insensitive — the value is normalised before sending to the API). (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                              Type of the target endpoint. Accepted values: `IP`, `SecurityGroup` (case-insensitive — the value is normalised before sending to the API). (Immutable — changing this value forces the resource to be destroyed and re-created.)
                             type: string
                           value:
                             description: |-
-                              (String) Source (inbound) or destination (outbound) CIDR in notation like 0.0.0.0/0, or SecurityGroup URI.
-                              Source (inbound) or destination (outbound) CIDR in notation like `0.0.0.0/0`, or SecurityGroup URI.
+                              created.)
+                              Source (inbound) or destination (outbound) CIDR in notation like `0.0.0.0/0`, or SecurityGroup URI. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                             type: string
                         type: object
                     type: object
@@ -414,6 +421,11 @@ spec:
                     items:
                       type: string
                     type: array
+                  timeout:
+                    description: |-
+                      resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+                      Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+                    type: string
                   uri:
                     description: |-
                       (String) Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a *_uri_ref attribute).

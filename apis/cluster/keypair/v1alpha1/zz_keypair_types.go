@@ -15,24 +15,28 @@ import (
 
 type KeyPairInitParameters struct {
 
-	// Bergamo). See the available locations and zones.
-	// Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
+	// Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) Display name for the KeyPair.
-	// Display name for the KeyPair.
+	// created.)
+	// Display name for the KeyPair. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID of the project that owns this resource.
-	// ID of the project that owns this resource.
+	// created.)
+	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
 	// (List of String) List of string tags attached to the resource for filtering and organisation.
 	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// format public key string (e.g., ssh-rsa AAAA...). The provider uploads this to ArubaCloud; the corresponding private key is never stored. Write-only — this value is sent to the API but is not returned in subsequent read responses.
-	// OpenSSH-format public key string (e.g., `ssh-rsa AAAA...`). The provider uploads this to ArubaCloud; the corresponding private key is never stored. Write-only — this value is sent to the API but is not returned in subsequent read responses.
+	// resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+	// Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+	Timeout *string `json:"timeout,omitempty" tf:"timeout,omitempty"`
+
+	// format public key string (e.g., ssh-rsa AAAA...). The provider uploads this to ArubaCloud; the corresponding private key is never stored. Write-only — this value is sent to the API but is not returned in subsequent read responses. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// OpenSSH-format public key string (e.g., `ssh-rsa AAAA...`). The provider uploads this to ArubaCloud; the corresponding private key is never stored. Write-only — this value is sent to the API but is not returned in subsequent read responses. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	ValueSecretRef v1.SecretKeySelector `json:"valueSecretRef" tf:"-"`
 }
 
@@ -41,21 +45,25 @@ type KeyPairObservation struct {
 	// (String) Computed by the API. Unique identifier for the resource.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// Bergamo). See the available locations and zones.
-	// Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
+	// Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) Display name for the KeyPair.
-	// Display name for the KeyPair.
+	// created.)
+	// Display name for the KeyPair. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID of the project that owns this resource.
-	// ID of the project that owns this resource.
+	// created.)
+	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
 	// (List of String) List of string tags attached to the resource for filtering and organisation.
 	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
+	// resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+	// Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+	Timeout *string `json:"timeout,omitempty" tf:"timeout,omitempty"`
 
 	// (String) Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a *_uri_ref attribute).
 	// Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a `*_uri_ref` attribute).
@@ -64,18 +72,18 @@ type KeyPairObservation struct {
 
 type KeyPairParameters struct {
 
-	// Bergamo). See the available locations and zones.
-	// Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
+	// Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Required
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
-	// (String) Display name for the KeyPair.
-	// Display name for the KeyPair.
+	// created.)
+	// Display name for the KeyPair. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Required
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID of the project that owns this resource.
-	// ID of the project that owns this resource.
+	// created.)
+	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
@@ -84,8 +92,13 @@ type KeyPairParameters struct {
 	// +kubebuilder:validation:Optional
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// format public key string (e.g., ssh-rsa AAAA...). The provider uploads this to ArubaCloud; the corresponding private key is never stored. Write-only — this value is sent to the API but is not returned in subsequent read responses.
-	// OpenSSH-format public key string (e.g., `ssh-rsa AAAA...`). The provider uploads this to ArubaCloud; the corresponding private key is never stored. Write-only — this value is sent to the API but is not returned in subsequent read responses.
+	// resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+	// Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+	// +kubebuilder:validation:Optional
+	Timeout *string `json:"timeout,omitempty" tf:"timeout,omitempty"`
+
+	// format public key string (e.g., ssh-rsa AAAA...). The provider uploads this to ArubaCloud; the corresponding private key is never stored. Write-only — this value is sent to the API but is not returned in subsequent read responses. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// OpenSSH-format public key string (e.g., `ssh-rsa AAAA...`). The provider uploads this to ArubaCloud; the corresponding private key is never stored. Write-only — this value is sent to the API but is not returned in subsequent read responses. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Optional
 	ValueSecretRef v1.SecretKeySelector `json:"valueSecretRef" tf:"-"`
 }

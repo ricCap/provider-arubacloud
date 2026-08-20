@@ -148,6 +148,11 @@ func (in *VPNRouteInitParameters) DeepCopyInto(out *VPNRouteInitParameters) {
 			}
 		}
 	}
+	if in.Timeout != nil {
+		in, out := &in.Timeout, &out.Timeout
+		*out = new(string)
+		**out = **in
+	}
 	if in.VPNTunnelID != nil {
 		in, out := &in.VPNTunnelID, &out.VPNTunnelID
 		*out = new(string)
@@ -236,6 +241,11 @@ func (in *VPNRouteObservation) DeepCopyInto(out *VPNRouteObservation) {
 			}
 		}
 	}
+	if in.Timeout != nil {
+		in, out := &in.Timeout, &out.Timeout
+		*out = new(string)
+		**out = **in
+	}
 	if in.URI != nil {
 		in, out := &in.URI, &out.URI
 		*out = new(string)
@@ -291,6 +301,11 @@ func (in *VPNRouteParameters) DeepCopyInto(out *VPNRouteParameters) {
 				**out = **in
 			}
 		}
+	}
+	if in.Timeout != nil {
+		in, out := &in.Timeout, &out.Timeout
+		*out = new(string)
+		**out = **in
 	}
 	if in.VPNTunnelID != nil {
 		in, out := &in.VPNTunnelID, &out.VPNTunnelID

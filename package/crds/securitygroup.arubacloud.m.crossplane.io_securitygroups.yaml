@@ -82,6 +82,11 @@ spec:
                     items:
                       type: string
                     type: array
+                  timeout:
+                    description: |-
+                      resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+                      Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+                    type: string
                   vpcId:
                     description: |-
                       created.)
@@ -128,6 +133,11 @@ spec:
                     items:
                       type: string
                     type: array
+                  timeout:
+                    description: |-
+                      resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+                      Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+                    type: string
                   vpcId:
                     description: |-
                       created.)
@@ -240,6 +250,11 @@ spec:
                     items:
                       type: string
                     type: array
+                  timeout:
+                    description: |-
+                      resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+                      Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+                    type: string
                   uri:
                     description: |-
                       (String) Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a *_uri_ref attribute).

@@ -27,8 +27,8 @@ type EspInitParameters struct {
 	// ESP phase-2 lifetime in seconds.
 	Lifetime *float64 `json:"lifetime,omitempty" tf:"lifetime,omitempty"`
 
-	// (String) ESP Perfect Forward Secrecy group (e.g., modp2048).
-	// ESP Perfect Forward Secrecy group (e.g., `modp2048`).
+	// group<N>" (e.g. "dh-group14" for MODP-2048).
+	// ESP Perfect Forward Secrecy group. Use `"enable"`, `"disable"`, or `"dh-group<N>"` (e.g. `"dh-group14"` for MODP-2048).
 	Pfs *string `json:"pfs,omitempty" tf:"pfs,omitempty"`
 }
 
@@ -46,8 +46,8 @@ type EspObservation struct {
 	// ESP phase-2 lifetime in seconds.
 	Lifetime *float64 `json:"lifetime,omitempty" tf:"lifetime,omitempty"`
 
-	// (String) ESP Perfect Forward Secrecy group (e.g., modp2048).
-	// ESP Perfect Forward Secrecy group (e.g., `modp2048`).
+	// group<N>" (e.g. "dh-group14" for MODP-2048).
+	// ESP Perfect Forward Secrecy group. Use `"enable"`, `"disable"`, or `"dh-group<N>"` (e.g. `"dh-group14"` for MODP-2048).
 	Pfs *string `json:"pfs,omitempty" tf:"pfs,omitempty"`
 }
 
@@ -68,8 +68,8 @@ type EspParameters struct {
 	// +kubebuilder:validation:Optional
 	Lifetime *float64 `json:"lifetime,omitempty" tf:"lifetime,omitempty"`
 
-	// (String) ESP Perfect Forward Secrecy group (e.g., modp2048).
-	// ESP Perfect Forward Secrecy group (e.g., `modp2048`).
+	// group<N>" (e.g. "dh-group14" for MODP-2048).
+	// ESP Perfect Forward Secrecy group. Use `"enable"`, `"disable"`, or `"dh-group<N>"` (e.g. `"dh-group14"` for MODP-2048).
 	// +kubebuilder:validation:Optional
 	Pfs *string `json:"pfs,omitempty" tf:"pfs,omitempty"`
 }
@@ -115,8 +115,8 @@ type IPConfigurationsParameters struct {
 
 type IkeInitParameters struct {
 
-	// Hellman group (e.g., modp2048).
-	// IKE Diffie-Hellman group (e.g., `modp2048`).
+	// Hellman group. Use the numeric group identifier: "1", "2", "5", "14" … "32". The common choice for IKEv2 is "14" (MODP-2048).
+	// IKE Diffie-Hellman group. Use the numeric group identifier: `"1"`, `"2"`, `"5"`, `"14"` … `"32"`. The common choice for IKEv2 is `"14"` (MODP-2048).
 	DhGroup *string `json:"dhGroup,omitempty" tf:"dh_group,omitempty"`
 
 	// (String) Dead Peer Detection action on failure (e.g., restart).
@@ -146,8 +146,8 @@ type IkeInitParameters struct {
 
 type IkeObservation struct {
 
-	// Hellman group (e.g., modp2048).
-	// IKE Diffie-Hellman group (e.g., `modp2048`).
+	// Hellman group. Use the numeric group identifier: "1", "2", "5", "14" … "32". The common choice for IKEv2 is "14" (MODP-2048).
+	// IKE Diffie-Hellman group. Use the numeric group identifier: `"1"`, `"2"`, `"5"`, `"14"` … `"32"`. The common choice for IKEv2 is `"14"` (MODP-2048).
 	DhGroup *string `json:"dhGroup,omitempty" tf:"dh_group,omitempty"`
 
 	// (String) Dead Peer Detection action on failure (e.g., restart).
@@ -177,8 +177,8 @@ type IkeObservation struct {
 
 type IkeParameters struct {
 
-	// Hellman group (e.g., modp2048).
-	// IKE Diffie-Hellman group (e.g., `modp2048`).
+	// Hellman group. Use the numeric group identifier: "1", "2", "5", "14" … "32". The common choice for IKEv2 is "14" (MODP-2048).
+	// IKE Diffie-Hellman group. Use the numeric group identifier: `"1"`, `"2"`, `"5"`, `"14"` … `"32"`. The common choice for IKEv2 is `"14"` (MODP-2048).
 	// +kubebuilder:validation:Optional
 	DhGroup *string `json:"dhGroup,omitempty" tf:"dh_group,omitempty"`
 
@@ -353,6 +353,10 @@ type PublicIPParameters struct {
 
 type SubnetInitParameters struct {
 
+	// (String) CIDR block of the subnet (e.g. 192.168.10.0/24). Required by the API.
+	// CIDR block of the subnet (e.g. `192.168.10.0/24`). Required by the API.
+	Cidr *string `json:"cidr,omitempty" tf:"cidr,omitempty"`
+
 	// (String) Computed by the API. Unique identifier for the resource.
 	// ID of the subnet.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
@@ -360,12 +364,21 @@ type SubnetInitParameters struct {
 
 type SubnetObservation struct {
 
+	// (String) CIDR block of the subnet (e.g. 192.168.10.0/24). Required by the API.
+	// CIDR block of the subnet (e.g. `192.168.10.0/24`). Required by the API.
+	Cidr *string `json:"cidr,omitempty" tf:"cidr,omitempty"`
+
 	// (String) Computed by the API. Unique identifier for the resource.
 	// ID of the subnet.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 }
 
 type SubnetParameters struct {
+
+	// (String) CIDR block of the subnet (e.g. 192.168.10.0/24). Required by the API.
+	// CIDR block of the subnet (e.g. `192.168.10.0/24`). Required by the API.
+	// +kubebuilder:validation:Optional
+	Cidr *string `json:"cidr,omitempty" tf:"cidr,omitempty"`
 
 	// (String) Computed by the API. Unique identifier for the resource.
 	// ID of the subnet.
@@ -467,6 +480,10 @@ type VPNTunnelInitParameters struct {
 	// (List of String) List of string tags attached to the resource for filtering and organisation.
 	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
+	// resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+	// Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+	Timeout *string `json:"timeout,omitempty" tf:"timeout,omitempty"`
 }
 
 type VPNTunnelObservation struct {
@@ -492,6 +509,10 @@ type VPNTunnelObservation struct {
 	// (List of String) List of string tags attached to the resource for filtering and organisation.
 	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
+	// resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+	// Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+	Timeout *string `json:"timeout,omitempty" tf:"timeout,omitempty"`
 
 	// (String) Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a *_uri_ref attribute).
 	// Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a `*_uri_ref` attribute).
@@ -523,6 +544,11 @@ type VPNTunnelParameters struct {
 	// List of string tags attached to the resource for filtering and organisation.
 	// +kubebuilder:validation:Optional
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
+	// resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+	// Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+	// +kubebuilder:validation:Optional
+	Timeout *string `json:"timeout,omitempty" tf:"timeout,omitempty"`
 }
 
 // VPNTunnelSpec defines the desired state of VPNTunnel

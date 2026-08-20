@@ -16,81 +16,94 @@ import (
 
 type DatabaseGrantInitParameters struct {
 
-	// (String) ID of the database this grant applies to.
-	// ID of the database this grant applies to.
+	// created.)
+	// ID of the database this grant applies to. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Database *string `json:"database,omitempty" tf:"database,omitempty"`
 
-	// (String) ID of the parent DBaaS cluster this grant belongs to.
-	// ID of the parent DBaaS cluster this grant belongs to.
+	// created.)
+	// ID of the parent DBaaS cluster this grant belongs to. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	DbaasID *string `json:"dbaasId,omitempty" tf:"dbaas_id,omitempty"`
 
-	// (String) ID of the project that owns this resource.
-	// ID of the project that owns this resource.
+	// created.)
+	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (String) Privilege level granted. Accepted values depend on the database engine (e.g., ALL, READ, WRITE).
-	// Privilege level granted. Accepted values depend on the database engine (e.g., `ALL`, `READ`, `WRITE`).
+	// place role changes. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Privilege level granted. Accepted values depend on the database engine (e.g., `ALL`, `READ`, `WRITE`). The DBaaS grant API does not support in-place role changes. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Role *string `json:"role,omitempty" tf:"role,omitempty"`
 
-	// (String) Name or ID of the DBaaS user receiving the grant.
-	// Name or ID of the DBaaS user receiving the grant.
+	// resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+	// Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+	Timeout *string `json:"timeout,omitempty" tf:"timeout,omitempty"`
+
+	// created.)
+	// Name or ID of the DBaaS user receiving the grant. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	UserID *string `json:"userId,omitempty" tf:"user_id,omitempty"`
 }
 
 type DatabaseGrantObservation struct {
 
-	// (String) ID of the database this grant applies to.
-	// ID of the database this grant applies to.
+	// created.)
+	// ID of the database this grant applies to. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Database *string `json:"database,omitempty" tf:"database,omitempty"`
 
-	// (String) ID of the parent DBaaS cluster this grant belongs to.
-	// ID of the parent DBaaS cluster this grant belongs to.
+	// created.)
+	// ID of the parent DBaaS cluster this grant belongs to. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	DbaasID *string `json:"dbaasId,omitempty" tf:"dbaas_id,omitempty"`
 
 	// (String) Computed by the API. Unique identifier for the resource (composite key: project_id/dbaas_id/database/user_id).
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// (String) ID of the project that owns this resource.
-	// ID of the project that owns this resource.
+	// created.)
+	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (String) Privilege level granted. Accepted values depend on the database engine (e.g., ALL, READ, WRITE).
-	// Privilege level granted. Accepted values depend on the database engine (e.g., `ALL`, `READ`, `WRITE`).
+	// place role changes. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Privilege level granted. Accepted values depend on the database engine (e.g., `ALL`, `READ`, `WRITE`). The DBaaS grant API does not support in-place role changes. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Role *string `json:"role,omitempty" tf:"role,omitempty"`
+
+	// resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+	// Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+	Timeout *string `json:"timeout,omitempty" tf:"timeout,omitempty"`
 
 	// (String) Computed by the API. Full resource URI used as a reference value in other resources.
 	// Computed by the API. Full resource URI used as a reference value in other resources.
 	URI *string `json:"uri,omitempty" tf:"uri,omitempty"`
 
-	// (String) Name or ID of the DBaaS user receiving the grant.
-	// Name or ID of the DBaaS user receiving the grant.
+	// created.)
+	// Name or ID of the DBaaS user receiving the grant. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	UserID *string `json:"userId,omitempty" tf:"user_id,omitempty"`
 }
 
 type DatabaseGrantParameters struct {
 
-	// (String) ID of the database this grant applies to.
-	// ID of the database this grant applies to.
+	// created.)
+	// ID of the database this grant applies to. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Required
 	Database *string `json:"database,omitempty" tf:"database,omitempty"`
 
-	// (String) ID of the parent DBaaS cluster this grant belongs to.
-	// ID of the parent DBaaS cluster this grant belongs to.
+	// created.)
+	// ID of the parent DBaaS cluster this grant belongs to. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Required
 	DbaasID *string `json:"dbaasId,omitempty" tf:"dbaas_id,omitempty"`
 
-	// (String) ID of the project that owns this resource.
-	// ID of the project that owns this resource.
+	// created.)
+	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (String) Privilege level granted. Accepted values depend on the database engine (e.g., ALL, READ, WRITE).
-	// Privilege level granted. Accepted values depend on the database engine (e.g., `ALL`, `READ`, `WRITE`).
+	// place role changes. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Privilege level granted. Accepted values depend on the database engine (e.g., `ALL`, `READ`, `WRITE`). The DBaaS grant API does not support in-place role changes. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Required
 	Role *string `json:"role,omitempty" tf:"role,omitempty"`
 
-	// (String) Name or ID of the DBaaS user receiving the grant.
-	// Name or ID of the DBaaS user receiving the grant.
+	// resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+	// Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+	// +kubebuilder:validation:Optional
+	Timeout *string `json:"timeout,omitempty" tf:"timeout,omitempty"`
+
+	// created.)
+	// Name or ID of the DBaaS user receiving the grant. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Required
 	UserID *string `json:"userId,omitempty" tf:"user_id,omitempty"`
 }

@@ -21,7 +21,7 @@ spec:
           count: 100
           start: 10.0.1.10
         routes:
-        - address: 0.0.0.0/0
+        - address: 10.0.1.128/25
           gateway: 10.0.1.1
     projectId: your-project-id
     tags:

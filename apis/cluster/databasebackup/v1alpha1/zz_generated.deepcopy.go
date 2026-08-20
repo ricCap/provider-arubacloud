@@ -62,11 +62,6 @@ func (in *DatabaseBackupInitParameters) DeepCopyInto(out *DatabaseBackupInitPara
 		*out = new(string)
 		**out = **in
 	}
-	if in.Name != nil {
-		in, out := &in.Name, &out.Name
-		*out = new(string)
-		**out = **in
-	}
 	if in.ProjectID != nil {
 		in, out := &in.ProjectID, &out.ProjectID
 		*out = new(string)
@@ -82,6 +77,11 @@ func (in *DatabaseBackupInitParameters) DeepCopyInto(out *DatabaseBackupInitPara
 				**out = **in
 			}
 		}
+	}
+	if in.Timeout != nil {
+		in, out := &in.Timeout, &out.Timeout
+		*out = new(string)
+		**out = **in
 	}
 	if in.Zone != nil {
 		in, out := &in.Zone, &out.Zone
@@ -181,6 +181,11 @@ func (in *DatabaseBackupObservation) DeepCopyInto(out *DatabaseBackupObservation
 			}
 		}
 	}
+	if in.Timeout != nil {
+		in, out := &in.Timeout, &out.Timeout
+		*out = new(string)
+		**out = **in
+	}
 	if in.URI != nil {
 		in, out := &in.URI, &out.URI
 		*out = new(string)
@@ -226,11 +231,6 @@ func (in *DatabaseBackupParameters) DeepCopyInto(out *DatabaseBackupParameters) 
 		*out = new(string)
 		**out = **in
 	}
-	if in.Name != nil {
-		in, out := &in.Name, &out.Name
-		*out = new(string)
-		**out = **in
-	}
 	if in.ProjectID != nil {
 		in, out := &in.ProjectID, &out.ProjectID
 		*out = new(string)
@@ -246,6 +246,11 @@ func (in *DatabaseBackupParameters) DeepCopyInto(out *DatabaseBackupParameters) 
 				**out = **in
 			}
 		}
+	}
+	if in.Timeout != nil {
+		in, out := &in.Timeout, &out.Timeout
+		*out = new(string)
+		**out = **in
 	}
 	if in.Zone != nil {
 		in, out := &in.Zone, &out.Zone

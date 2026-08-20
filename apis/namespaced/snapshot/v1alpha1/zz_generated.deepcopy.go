@@ -73,6 +73,11 @@ func (in *SnapshotInitParameters) DeepCopyInto(out *SnapshotInitParameters) {
 			}
 		}
 	}
+	if in.Timeout != nil {
+		in, out := &in.Timeout, &out.Timeout
+		*out = new(string)
+		**out = **in
+	}
 	if in.VolumeURI != nil {
 		in, out := &in.VolumeURI, &out.VolumeURI
 		*out = new(string)
@@ -161,6 +166,11 @@ func (in *SnapshotObservation) DeepCopyInto(out *SnapshotObservation) {
 			}
 		}
 	}
+	if in.Timeout != nil {
+		in, out := &in.Timeout, &out.Timeout
+		*out = new(string)
+		**out = **in
+	}
 	if in.URI != nil {
 		in, out := &in.URI, &out.URI
 		*out = new(string)
@@ -216,6 +226,11 @@ func (in *SnapshotParameters) DeepCopyInto(out *SnapshotParameters) {
 				**out = **in
 			}
 		}
+	}
+	if in.Timeout != nil {
+		in, out := &in.Timeout, &out.Timeout
+		*out = new(string)
+		**out = **in
 	}
 	if in.VolumeURI != nil {
 		in, out := &in.VolumeURI, &out.VolumeURI

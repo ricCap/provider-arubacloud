@@ -53,6 +53,11 @@ func (in *DBaaSUserInitParameters) DeepCopyInto(out *DBaaSUserInitParameters) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.Timeout != nil {
+		in, out := &in.Timeout, &out.Timeout
+		*out = new(string)
+		**out = **in
+	}
 	if in.Username != nil {
 		in, out := &in.Username, &out.Username
 		*out = new(string)
@@ -120,6 +125,11 @@ func (in *DBaaSUserObservation) DeepCopyInto(out *DBaaSUserObservation) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.Timeout != nil {
+		in, out := &in.Timeout, &out.Timeout
+		*out = new(string)
+		**out = **in
+	}
 	if in.URI != nil {
 		in, out := &in.URI, &out.URI
 		*out = new(string)
@@ -153,6 +163,11 @@ func (in *DBaaSUserParameters) DeepCopyInto(out *DBaaSUserParameters) {
 	in.PasswordSecretRef.DeepCopyInto(&out.PasswordSecretRef)
 	if in.ProjectID != nil {
 		in, out := &in.ProjectID, &out.ProjectID
+		*out = new(string)
+		**out = **in
+	}
+	if in.Timeout != nil {
+		in, out := &in.Timeout, &out.Timeout
 		*out = new(string)
 		**out = **in
 	}

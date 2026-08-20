@@ -15,70 +15,78 @@ import (
 
 type ElasticIPInitParameters struct {
 
-	// (String) Computed by the API. Billing cycle for the resource. Accepted values: Hour, Month, Year.
-	// Computed by the API. Billing cycle for the resource. Accepted values: `Hour`, `Month`, `Year`.
+	// (String) Billing cycle. Accepted values: Hour, Month, Year.
+	// Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
 	BillingPeriod *string `json:"billingPeriod,omitempty" tf:"billing_period,omitempty"`
 
-	// Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
-	// Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Bergamo). Changing this value forces a new resource.
+	// Region identifier (e.g., `ITBG-Bergamo`). Changing this value forces a new resource.
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
 	// (String) Display name for the Elastic IP.
 	// Display name for the Elastic IP.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// created.)
-	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// (String) ID of the project that owns this resource. Changing this value forces a new resource.
+	// ID of the project that owns this resource. Changing this value forces a new resource.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (List of String) List of string tags attached to the resource for filtering and organisation.
-	// List of string tags attached to the resource for filtering and organisation.
+	// (List of String) List of string tags.
+	// List of string tags.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
+	// resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+	// Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+	Timeout *string `json:"timeout,omitempty" tf:"timeout,omitempty"`
 }
 
 type ElasticIPObservation struct {
 
-	// (String) Computed by the API. Public IPv4 address allocated for this Elastic IP.
-	// Computed by the API. Public IPv4 address allocated for this Elastic IP.
+	// (String) Computed by the API. The assigned public IP address.
+	// Computed by the API. The assigned public IP address.
 	Address *string `json:"address,omitempty" tf:"address,omitempty"`
 
-	// (String) Computed by the API. Billing cycle for the resource. Accepted values: Hour, Month, Year.
-	// Computed by the API. Billing cycle for the resource. Accepted values: `Hour`, `Month`, `Year`.
+	// (String) Billing cycle. Accepted values: Hour, Month, Year.
+	// Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
 	BillingPeriod *string `json:"billingPeriod,omitempty" tf:"billing_period,omitempty"`
 
 	// (String) Computed by the API. Unique identifier for the resource.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
-	// Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Bergamo). Changing this value forces a new resource.
+	// Region identifier (e.g., `ITBG-Bergamo`). Changing this value forces a new resource.
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
 	// (String) Display name for the Elastic IP.
 	// Display name for the Elastic IP.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// created.)
-	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// (String) ID of the project that owns this resource. Changing this value forces a new resource.
+	// ID of the project that owns this resource. Changing this value forces a new resource.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (List of String) List of string tags attached to the resource for filtering and organisation.
-	// List of string tags attached to the resource for filtering and organisation.
+	// (List of String) List of string tags.
+	// List of string tags.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String) Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a *_uri_ref attribute).
-	// Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a `*_uri_ref` attribute).
+	// resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+	// Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+	Timeout *string `json:"timeout,omitempty" tf:"timeout,omitempty"`
+
+	// (String) Computed by the API. Full resource URI.
+	// Computed by the API. Full resource URI.
 	URI *string `json:"uri,omitempty" tf:"uri,omitempty"`
 }
 
 type ElasticIPParameters struct {
 
-	// (String) Computed by the API. Billing cycle for the resource. Accepted values: Hour, Month, Year.
-	// Computed by the API. Billing cycle for the resource. Accepted values: `Hour`, `Month`, `Year`.
+	// (String) Billing cycle. Accepted values: Hour, Month, Year.
+	// Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
 	// +kubebuilder:validation:Optional
 	BillingPeriod *string `json:"billingPeriod,omitempty" tf:"billing_period,omitempty"`
 
-	// Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
-	// Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Bergamo). Changing this value forces a new resource.
+	// Region identifier (e.g., `ITBG-Bergamo`). Changing this value forces a new resource.
 	// +kubebuilder:validation:Required
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
@@ -87,15 +95,20 @@ type ElasticIPParameters struct {
 	// +kubebuilder:validation:Required
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// created.)
-	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// (String) ID of the project that owns this resource. Changing this value forces a new resource.
+	// ID of the project that owns this resource. Changing this value forces a new resource.
 	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (List of String) List of string tags attached to the resource for filtering and organisation.
-	// List of string tags attached to the resource for filtering and organisation.
+	// (List of String) List of string tags.
+	// List of string tags.
 	// +kubebuilder:validation:Optional
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
+	// resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+	// Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+	// +kubebuilder:validation:Optional
+	Timeout *string `json:"timeout,omitempty" tf:"timeout,omitempty"`
 }
 
 // ElasticIPSpec defines the desired state of ElasticIP

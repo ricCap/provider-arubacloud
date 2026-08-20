@@ -80,13 +80,18 @@ spec:
                     type: string
                   name:
                     description: |-
-                      (String) Display name for the database.
-                      Display name for the database.
+                      created. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                      Display name for the database. The database API does not support renaming — changing this value forces the resource to be destroyed and re-created. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   projectId:
                     description: |-
                       (String) ID of the project that owns this resource.
                       ID of the project that owns this resource.
+                    type: string
+                  timeout:
+                    description: |-
+                      resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+                      Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
                     type: string
                 required:
                 - dbaasId
@@ -113,13 +118,18 @@ spec:
                     type: string
                   name:
                     description: |-
-                      (String) Display name for the database.
-                      Display name for the database.
+                      created. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                      Display name for the database. The database API does not support renaming — changing this value forces the resource to be destroyed and re-created. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   projectId:
                     description: |-
                       (String) ID of the project that owns this resource.
                       ID of the project that owns this resource.
+                    type: string
+                  timeout:
+                    description: |-
+                      resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+                      Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
                     type: string
                 type: object
               managementPolicies:
@@ -237,13 +247,18 @@ spec:
                     type: string
                   name:
                     description: |-
-                      (String) Display name for the database.
-                      Display name for the database.
+                      created. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                      Display name for the database. The database API does not support renaming — changing this value forces the resource to be destroyed and re-created. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   projectId:
                     description: |-
                       (String) ID of the project that owns this resource.
                       ID of the project that owns this resource.
+                    type: string
+                  timeout:
+                    description: |-
+                      resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+                      Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
                     type: string
                   uri:
                     description: |-

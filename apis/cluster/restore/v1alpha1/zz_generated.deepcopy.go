@@ -73,6 +73,11 @@ func (in *RestoreInitParameters) DeepCopyInto(out *RestoreInitParameters) {
 			}
 		}
 	}
+	if in.Timeout != nil {
+		in, out := &in.Timeout, &out.Timeout
+		*out = new(string)
+		**out = **in
+	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID
 		*out = new(string)
@@ -161,6 +166,11 @@ func (in *RestoreObservation) DeepCopyInto(out *RestoreObservation) {
 			}
 		}
 	}
+	if in.Timeout != nil {
+		in, out := &in.Timeout, &out.Timeout
+		*out = new(string)
+		**out = **in
+	}
 	if in.URI != nil {
 		in, out := &in.URI, &out.URI
 		*out = new(string)
@@ -216,6 +226,11 @@ func (in *RestoreParameters) DeepCopyInto(out *RestoreParameters) {
 				**out = **in
 			}
 		}
+	}
+	if in.Timeout != nil {
+		in, out := &in.Timeout, &out.Timeout
+		*out = new(string)
+		**out = **in
 	}
 	if in.VolumeID != nil {
 		in, out := &in.VolumeID, &out.VolumeID

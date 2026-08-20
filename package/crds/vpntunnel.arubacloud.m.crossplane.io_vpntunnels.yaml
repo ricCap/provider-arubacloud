@@ -102,6 +102,11 @@ spec:
                             description: (Attributes) Reference to the subnet used
                               by this tunnel. (see below for nested schema)
                             properties:
+                              cidr:
+                                description: |-
+                                  (String) CIDR block of the subnet (e.g. 192.168.10.0/24). Required by the API.
+                                  CIDR block of the subnet (e.g. `192.168.10.0/24`). Required by the API.
+                                type: string
                               id:
                                 description: |-
                                   (String) Computed by the API. Unique identifier for the resource.
@@ -148,8 +153,8 @@ spec:
                                 type: number
                               pfs:
                                 description: |-
-                                  (String) ESP Perfect Forward Secrecy group (e.g., modp2048).
-                                  ESP Perfect Forward Secrecy group (e.g., `modp2048`).
+                                  group<N>" (e.g. "dh-group14" for MODP-2048).
+                                  ESP Perfect Forward Secrecy group. Use `"enable"`, `"disable"`, or `"dh-group<N>"` (e.g. `"dh-group14"` for MODP-2048).
                                 type: string
                             type: object
                           ike:
@@ -157,8 +162,8 @@ spec:
                             properties:
                               dhGroup:
                                 description: |-
-                                  Hellman group (e.g., modp2048).
-                                  IKE Diffie-Hellman group (e.g., `modp2048`).
+                                  Hellman group. Use the numeric group identifier: "1", "2", "5", "14" … "32". The common choice for IKEv2 is "14" (MODP-2048).
+                                  IKE Diffie-Hellman group. Use the numeric group identifier: `"1"`, `"2"`, `"5"`, `"14"` … `"32"`. The common choice for IKEv2 is `"14"` (MODP-2048).
                                 type: string
                               dpdAction:
                                 description: |-
@@ -230,6 +235,11 @@ spec:
                     items:
                       type: string
                     type: array
+                  timeout:
+                    description: |-
+                      resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+                      Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+                    type: string
                 required:
                 - location
                 - name
@@ -291,6 +301,11 @@ spec:
                             description: (Attributes) Reference to the subnet used
                               by this tunnel. (see below for nested schema)
                             properties:
+                              cidr:
+                                description: |-
+                                  (String) CIDR block of the subnet (e.g. 192.168.10.0/24). Required by the API.
+                                  CIDR block of the subnet (e.g. `192.168.10.0/24`). Required by the API.
+                                type: string
                               id:
                                 description: |-
                                   (String) Computed by the API. Unique identifier for the resource.
@@ -337,8 +352,8 @@ spec:
                                 type: number
                               pfs:
                                 description: |-
-                                  (String) ESP Perfect Forward Secrecy group (e.g., modp2048).
-                                  ESP Perfect Forward Secrecy group (e.g., `modp2048`).
+                                  group<N>" (e.g. "dh-group14" for MODP-2048).
+                                  ESP Perfect Forward Secrecy group. Use `"enable"`, `"disable"`, or `"dh-group<N>"` (e.g. `"dh-group14"` for MODP-2048).
                                 type: string
                             type: object
                           ike:
@@ -346,8 +361,8 @@ spec:
                             properties:
                               dhGroup:
                                 description: |-
-                                  Hellman group (e.g., modp2048).
-                                  IKE Diffie-Hellman group (e.g., `modp2048`).
+                                  Hellman group. Use the numeric group identifier: "1", "2", "5", "14" … "32". The common choice for IKEv2 is "14" (MODP-2048).
+                                  IKE Diffie-Hellman group. Use the numeric group identifier: `"1"`, `"2"`, `"5"`, `"14"` … `"32"`. The common choice for IKEv2 is `"14"` (MODP-2048).
                                 type: string
                               dpdAction:
                                 description: |-
@@ -419,6 +434,11 @@ spec:
                     items:
                       type: string
                     type: array
+                  timeout:
+                    description: |-
+                      resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+                      Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+                    type: string
                 type: object
               managementPolicies:
                 default:
@@ -546,6 +566,11 @@ spec:
                             description: (Attributes) Reference to the subnet used
                               by this tunnel. (see below for nested schema)
                             properties:
+                              cidr:
+                                description: |-
+                                  (String) CIDR block of the subnet (e.g. 192.168.10.0/24). Required by the API.
+                                  CIDR block of the subnet (e.g. `192.168.10.0/24`). Required by the API.
+                                type: string
                               id:
                                 description: |-
                                   (String) Computed by the API. Unique identifier for the resource.
@@ -592,8 +617,8 @@ spec:
                                 type: number
                               pfs:
                                 description: |-
-                                  (String) ESP Perfect Forward Secrecy group (e.g., modp2048).
-                                  ESP Perfect Forward Secrecy group (e.g., `modp2048`).
+                                  group<N>" (e.g. "dh-group14" for MODP-2048).
+                                  ESP Perfect Forward Secrecy group. Use `"enable"`, `"disable"`, or `"dh-group<N>"` (e.g. `"dh-group14"` for MODP-2048).
                                 type: string
                             type: object
                           ike:
@@ -601,8 +626,8 @@ spec:
                             properties:
                               dhGroup:
                                 description: |-
-                                  Hellman group (e.g., modp2048).
-                                  IKE Diffie-Hellman group (e.g., `modp2048`).
+                                  Hellman group. Use the numeric group identifier: "1", "2", "5", "14" … "32". The common choice for IKEv2 is "14" (MODP-2048).
+                                  IKE Diffie-Hellman group. Use the numeric group identifier: `"1"`, `"2"`, `"5"`, `"14"` … `"32"`. The common choice for IKEv2 is `"14"` (MODP-2048).
                                 type: string
                               dpdAction:
                                 description: |-
@@ -674,6 +699,11 @@ spec:
                     items:
                       type: string
                     type: array
+                  timeout:
+                    description: |-
+                      resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+                      Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+                    type: string
                   uri:
                     description: |-
                       (String) Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a *_uri_ref attribute).

@@ -138,7 +138,7 @@ type RangeParameters struct {
 type RoutesInitParameters struct {
 
 	// 1918 notation (e.g., 10.0.1.0/24). Must fall within the parent VPC CIDR.
-	// Destination network in CIDR notation (e.g., `0.0.0.0/0` for a default route).
+	// Destination network in CIDR notation. Must be within the subnet's `network.address` CIDR block (e.g., `10.0.1.128/25` when the subnet is `10.0.1.0/24`).
 	Address *string `json:"address,omitempty" tf:"address,omitempty"`
 
 	// (String) Gateway IP address for this route.
@@ -149,7 +149,7 @@ type RoutesInitParameters struct {
 type RoutesObservation struct {
 
 	// 1918 notation (e.g., 10.0.1.0/24). Must fall within the parent VPC CIDR.
-	// Destination network in CIDR notation (e.g., `0.0.0.0/0` for a default route).
+	// Destination network in CIDR notation. Must be within the subnet's `network.address` CIDR block (e.g., `10.0.1.128/25` when the subnet is `10.0.1.0/24`).
 	Address *string `json:"address,omitempty" tf:"address,omitempty"`
 
 	// (String) Gateway IP address for this route.
@@ -160,7 +160,7 @@ type RoutesObservation struct {
 type RoutesParameters struct {
 
 	// 1918 notation (e.g., 10.0.1.0/24). Must fall within the parent VPC CIDR.
-	// Destination network in CIDR notation (e.g., `0.0.0.0/0` for a default route).
+	// Destination network in CIDR notation. Must be within the subnet's `network.address` CIDR block (e.g., `10.0.1.128/25` when the subnet is `10.0.1.0/24`).
 	// +kubebuilder:validation:Optional
 	Address *string `json:"address,omitempty" tf:"address,omitempty"`
 
@@ -190,6 +190,10 @@ type SubnetInitParameters struct {
 	// (List of String) List of string tags attached to the resource for filtering and organisation.
 	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
+	// resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+	// Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+	Timeout *string `json:"timeout,omitempty" tf:"timeout,omitempty"`
 
 	// created.)
 	// Subnet type. Accepted values: `Basic` (no custom CIDR), `Advanced` (requires the `network` block). (Immutable — changing this value forces the resource to be destroyed and re-created.)
@@ -223,6 +227,10 @@ type SubnetObservation struct {
 	// (List of String) List of string tags attached to the resource for filtering and organisation.
 	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
+	// resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+	// Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+	Timeout *string `json:"timeout,omitempty" tf:"timeout,omitempty"`
 
 	// created.)
 	// Subnet type. Accepted values: `Basic` (no custom CIDR), `Advanced` (requires the `network` block). (Immutable — changing this value forces the resource to be destroyed and re-created.)
@@ -262,6 +270,11 @@ type SubnetParameters struct {
 	// List of string tags attached to the resource for filtering and organisation.
 	// +kubebuilder:validation:Optional
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
+	// resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+	// Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+	// +kubebuilder:validation:Optional
+	Timeout *string `json:"timeout,omitempty" tf:"timeout,omitempty"`
 
 	// created.)
 	// Subnet type. Accepted values: `Basic` (no custom CIDR), `Advanced` (requires the `network` block). (Immutable — changing this value forces the resource to be destroyed and re-created.)

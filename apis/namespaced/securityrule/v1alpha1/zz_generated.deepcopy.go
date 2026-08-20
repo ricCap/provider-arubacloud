@@ -183,6 +183,11 @@ func (in *SecurityRuleInitParameters) DeepCopyInto(out *SecurityRuleInitParamete
 			}
 		}
 	}
+	if in.Timeout != nil {
+		in, out := &in.Timeout, &out.Timeout
+		*out = new(string)
+		**out = **in
+	}
 	if in.VPCID != nil {
 		in, out := &in.VPCID, &out.VPCID
 		*out = new(string)
@@ -276,6 +281,11 @@ func (in *SecurityRuleObservation) DeepCopyInto(out *SecurityRuleObservation) {
 			}
 		}
 	}
+	if in.Timeout != nil {
+		in, out := &in.Timeout, &out.Timeout
+		*out = new(string)
+		**out = **in
+	}
 	if in.URI != nil {
 		in, out := &in.URI, &out.URI
 		*out = new(string)
@@ -336,6 +346,11 @@ func (in *SecurityRuleParameters) DeepCopyInto(out *SecurityRuleParameters) {
 				**out = **in
 			}
 		}
+	}
+	if in.Timeout != nil {
+		in, out := &in.Timeout, &out.Timeout
+		*out = new(string)
+		**out = **in
 	}
 	if in.VPCID != nil {
 		in, out := &in.VPCID, &out.VPCID

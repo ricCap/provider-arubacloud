@@ -36,6 +36,10 @@ type VPCPeeringInitParameters struct {
 	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
+	// resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+	// Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+	Timeout *string `json:"timeout,omitempty" tf:"timeout,omitempty"`
+
 	// (String) ID of the local VPC initiating this peering connection.
 	// ID of the local VPC initiating this peering connection.
 	VPCID *string `json:"vpcId,omitempty" tf:"vpc_id,omitempty"`
@@ -65,6 +69,10 @@ type VPCPeeringObservation struct {
 	// (List of String) List of string tags attached to the resource for filtering and organisation.
 	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
+	// resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+	// Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+	Timeout *string `json:"timeout,omitempty" tf:"timeout,omitempty"`
 
 	// (String) Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a *_uri_ref attribute).
 	// Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a `*_uri_ref` attribute).
@@ -101,6 +109,11 @@ type VPCPeeringParameters struct {
 	// List of string tags attached to the resource for filtering and organisation.
 	// +kubebuilder:validation:Optional
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
+	// resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+	// Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+	// +kubebuilder:validation:Optional
+	Timeout *string `json:"timeout,omitempty" tf:"timeout,omitempty"`
 
 	// (String) ID of the local VPC initiating this peering connection.
 	// ID of the local VPC initiating this peering connection.

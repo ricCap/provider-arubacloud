@@ -35,7 +35,7 @@ type ContainerRegistryInitParameters struct {
 	// ID of the project that owns this resource.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (Attributes) Optional registry configuration settings. (see below for nested schema)
+	// (Attributes) Registry configuration settings. Required because admin_user is mandatory. (see below for nested schema)
 	Settings *SettingsInitParameters `json:"settings,omitempty" tf:"settings,omitempty"`
 
 	// (Attributes) Block storage volume that backs the registry image store. (see below for nested schema)
@@ -44,6 +44,10 @@ type ContainerRegistryInitParameters struct {
 	// (List of String) List of string tags attached to the resource for filtering and organisation.
 	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
+	// resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+	// Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+	Timeout *string `json:"timeout,omitempty" tf:"timeout,omitempty"`
 }
 
 type ContainerRegistryObservation struct {
@@ -70,7 +74,7 @@ type ContainerRegistryObservation struct {
 	// ID of the project that owns this resource.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (Attributes) Optional registry configuration settings. (see below for nested schema)
+	// (Attributes) Registry configuration settings. Required because admin_user is mandatory. (see below for nested schema)
 	Settings *SettingsObservation `json:"settings,omitempty" tf:"settings,omitempty"`
 
 	// (Attributes) Block storage volume that backs the registry image store. (see below for nested schema)
@@ -79,6 +83,10 @@ type ContainerRegistryObservation struct {
 	// (List of String) List of string tags attached to the resource for filtering and organisation.
 	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
+	// resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+	// Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+	Timeout *string `json:"timeout,omitempty" tf:"timeout,omitempty"`
 
 	// (String) Computed by the API. Full resource URI used as a reference value in other resources.
 	// Computed by the API. Full resource URI used as a reference value in other resources.
@@ -111,8 +119,8 @@ type ContainerRegistryParameters struct {
 	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (Attributes) Optional registry configuration settings. (see below for nested schema)
-	// +kubebuilder:validation:Optional
+	// (Attributes) Registry configuration settings. Required because admin_user is mandatory. (see below for nested schema)
+	// +kubebuilder:validation:Required
 	Settings *SettingsParameters `json:"settings,omitempty" tf:"settings,omitempty"`
 
 	// (Attributes) Block storage volume that backs the registry image store. (see below for nested schema)
@@ -123,6 +131,11 @@ type ContainerRegistryParameters struct {
 	// List of string tags attached to the resource for filtering and organisation.
 	// +kubebuilder:validation:Optional
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
+	// resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+	// Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+	// +kubebuilder:validation:Optional
+	Timeout *string `json:"timeout,omitempty" tf:"timeout,omitempty"`
 }
 
 type NetworkInitParameters struct {
@@ -188,8 +201,8 @@ type NetworkParameters struct {
 
 type SettingsInitParameters struct {
 
-	// (String) Administrator username for the registry.
-	// Administrator username for the registry.
+	// (String) Administrator username for the registry. Must not be "admin" (reserved by the API).
+	// Administrator username for the registry. Must not be `"admin"` (reserved by the API).
 	AdminUser *string `json:"adminUser,omitempty" tf:"admin_user,omitempty"`
 
 	// (String) Concurrency tier that determines how many simultaneous push/pull sessions are supported. Accepted values: Small, Medium, HighPerf.
@@ -199,8 +212,8 @@ type SettingsInitParameters struct {
 
 type SettingsObservation struct {
 
-	// (String) Administrator username for the registry.
-	// Administrator username for the registry.
+	// (String) Administrator username for the registry. Must not be "admin" (reserved by the API).
+	// Administrator username for the registry. Must not be `"admin"` (reserved by the API).
 	AdminUser *string `json:"adminUser,omitempty" tf:"admin_user,omitempty"`
 
 	// (String) Concurrency tier that determines how many simultaneous push/pull sessions are supported. Accepted values: Small, Medium, HighPerf.
@@ -210,10 +223,10 @@ type SettingsObservation struct {
 
 type SettingsParameters struct {
 
-	// (String) Administrator username for the registry.
-	// Administrator username for the registry.
+	// (String) Administrator username for the registry. Must not be "admin" (reserved by the API).
+	// Administrator username for the registry. Must not be `"admin"` (reserved by the API).
 	// +kubebuilder:validation:Optional
-	AdminUser *string `json:"adminUser,omitempty" tf:"admin_user,omitempty"`
+	AdminUser *string `json:"adminUser" tf:"admin_user,omitempty"`
 
 	// (String) Concurrency tier that determines how many simultaneous push/pull sessions are supported. Accepted values: Small, Medium, HighPerf.
 	// Concurrency tier that determines how many simultaneous push/pull sessions are supported. Accepted values: `Small`, `Medium`, `HighPerf`.
@@ -283,6 +296,7 @@ type ContainerRegistry struct {
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.name) || (has(self.initProvider) && has(self.initProvider.name))",message="spec.forProvider.name is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.network) || (has(self.initProvider) && has(self.initProvider.network))",message="spec.forProvider.network is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.projectId) || (has(self.initProvider) && has(self.initProvider.projectId))",message="spec.forProvider.projectId is a required parameter"
+	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.settings) || (has(self.initProvider) && has(self.initProvider.settings))",message="spec.forProvider.settings is a required parameter"
 	// +kubebuilder:validation:XValidation:rule="!('*' in self.managementPolicies || 'Create' in self.managementPolicies || 'Update' in self.managementPolicies) || has(self.forProvider.storage) || (has(self.initProvider) && has(self.initProvider.storage))",message="spec.forProvider.storage is a required parameter"
 	Spec   ContainerRegistrySpec   `json:"spec"`
 	Status ContainerRegistryStatus `json:"status,omitempty"`

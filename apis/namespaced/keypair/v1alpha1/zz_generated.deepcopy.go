@@ -68,6 +68,11 @@ func (in *KeyPairInitParameters) DeepCopyInto(out *KeyPairInitParameters) {
 			}
 		}
 	}
+	if in.Timeout != nil {
+		in, out := &in.Timeout, &out.Timeout
+		*out = new(string)
+		**out = **in
+	}
 	in.ValueSecretRef.DeepCopyInto(&out.ValueSecretRef)
 }
 
@@ -147,6 +152,11 @@ func (in *KeyPairObservation) DeepCopyInto(out *KeyPairObservation) {
 			}
 		}
 	}
+	if in.Timeout != nil {
+		in, out := &in.Timeout, &out.Timeout
+		*out = new(string)
+		**out = **in
+	}
 	if in.URI != nil {
 		in, out := &in.URI, &out.URI
 		*out = new(string)
@@ -192,6 +202,11 @@ func (in *KeyPairParameters) DeepCopyInto(out *KeyPairParameters) {
 				**out = **in
 			}
 		}
+	}
+	if in.Timeout != nil {
+		in, out := &in.Timeout, &out.Timeout
+		*out = new(string)
+		**out = **in
 	}
 	in.ValueSecretRef.DeepCopyInto(&out.ValueSecretRef)
 }

@@ -78,6 +78,11 @@ func (in *BackupInitParameters) DeepCopyInto(out *BackupInitParameters) {
 			}
 		}
 	}
+	if in.Timeout != nil {
+		in, out := &in.Timeout, &out.Timeout
+		*out = new(string)
+		**out = **in
+	}
 	if in.Type != nil {
 		in, out := &in.Type, &out.Type
 		*out = new(string)
@@ -176,6 +181,11 @@ func (in *BackupObservation) DeepCopyInto(out *BackupObservation) {
 			}
 		}
 	}
+	if in.Timeout != nil {
+		in, out := &in.Timeout, &out.Timeout
+		*out = new(string)
+		**out = **in
+	}
 	if in.Type != nil {
 		in, out := &in.Type, &out.Type
 		*out = new(string)
@@ -241,6 +251,11 @@ func (in *BackupParameters) DeepCopyInto(out *BackupParameters) {
 				**out = **in
 			}
 		}
+	}
+	if in.Timeout != nil {
+		in, out := &in.Timeout, &out.Timeout
+		*out = new(string)
+		**out = **in
 	}
 	if in.Type != nil {
 		in, out := &in.Type, &out.Type

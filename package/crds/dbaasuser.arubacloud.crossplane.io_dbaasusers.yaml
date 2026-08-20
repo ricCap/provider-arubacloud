@@ -75,13 +75,13 @@ spec:
                 properties:
                   dbaasId:
                     description: |-
-                      (String) ID of the parent DBaaS cluster this user belongs to.
-                      ID of the parent DBaaS cluster this user belongs to.
+                      created.)
+                      ID of the parent DBaaS cluster this user belongs to. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   passwordSecretRef:
                     description: |-
-                      only — this value is sent to the API but is not returned in subsequent read responses.
-                      Password for the DBaaS user. Write-only — this value is sent to the API but is not returned in subsequent read responses.
+                      only — this value is sent to the API but is not returned in subsequent read responses. The DBaaS user API does not support password updates. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                      Password for the DBaaS user. Write-only — this value is sent to the API but is not returned in subsequent read responses. The DBaaS user API does not support password updates. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     properties:
                       key:
                         description: The key to select.
@@ -99,13 +99,18 @@ spec:
                     type: object
                   projectId:
                     description: |-
-                      (String) ID of the project that owns this resource.
-                      ID of the project that owns this resource.
+                      created.)
+                      ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                    type: string
+                  timeout:
+                    description: |-
+                      resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+                      Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
                     type: string
                   username:
                     description: |-
-                      (String) Display name for the DBaaS user.
-                      Display name for the DBaaS user.
+                      created.)
+                      Username for the DBaaS user. The DBaaS user API does not support renaming users. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                 required:
                 - dbaasId
@@ -127,13 +132,13 @@ spec:
                 properties:
                   dbaasId:
                     description: |-
-                      (String) ID of the parent DBaaS cluster this user belongs to.
-                      ID of the parent DBaaS cluster this user belongs to.
+                      created.)
+                      ID of the parent DBaaS cluster this user belongs to. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   passwordSecretRef:
                     description: |-
-                      only — this value is sent to the API but is not returned in subsequent read responses.
-                      Password for the DBaaS user. Write-only — this value is sent to the API but is not returned in subsequent read responses.
+                      only — this value is sent to the API but is not returned in subsequent read responses. The DBaaS user API does not support password updates. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                      Password for the DBaaS user. Write-only — this value is sent to the API but is not returned in subsequent read responses. The DBaaS user API does not support password updates. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     properties:
                       key:
                         description: The key to select.
@@ -151,13 +156,18 @@ spec:
                     type: object
                   projectId:
                     description: |-
-                      (String) ID of the project that owns this resource.
-                      ID of the project that owns this resource.
+                      created.)
+                      ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                    type: string
+                  timeout:
+                    description: |-
+                      resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+                      Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
                     type: string
                   username:
                     description: |-
-                      (String) Display name for the DBaaS user.
-                      Display name for the DBaaS user.
+                      created.)
+                      Username for the DBaaS user. The DBaaS user API does not support renaming users. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                 required:
                 - passwordSecretRef
@@ -271,8 +281,8 @@ spec:
                 properties:
                   dbaasId:
                     description: |-
-                      (String) ID of the parent DBaaS cluster this user belongs to.
-                      ID of the parent DBaaS cluster this user belongs to.
+                      created.)
+                      ID of the parent DBaaS cluster this user belongs to. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   id:
                     description: (String) Computed by the API. Unique identifier for
@@ -280,8 +290,13 @@ spec:
                     type: string
                   projectId:
                     description: |-
-                      (String) ID of the project that owns this resource.
-                      ID of the project that owns this resource.
+                      created.)
+                      ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                    type: string
+                  timeout:
+                    description: |-
+                      resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+                      Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
                     type: string
                   uri:
                     description: |-
@@ -290,8 +305,8 @@ spec:
                     type: string
                   username:
                     description: |-
-                      (String) Display name for the DBaaS user.
-                      Display name for the DBaaS user.
+                      created.)
+                      Username for the DBaaS user. The DBaaS user API does not support renaming users. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                 type: object
               conditions:

@@ -62,13 +62,13 @@ spec:
                 properties:
                   billingPeriod:
                     description: |-
-                      (String) Billing cycle. Accepted values: Hour, Month, Year.
-                      Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
+                      (String) Billing cycle. Accepted values: Hour, Month, Year. If omitted, the value returned by the API is used (Computed).
+                      Billing cycle. Accepted values: `Hour`, `Month`, `Year`. If omitted, the value returned by the API is used (Computed).
                     type: string
                   engineId:
                     description: |-
-                      8.0 for MySQL 8.0, postgresql-15 for PostgreSQL 15). See the available engines.
-                      Database engine type and version identifier (e.g., `mysql-8.0` for MySQL 8.0, `postgresql-15` for PostgreSQL 15). See the [available engines](https://api.arubacloud.com/docs/metadata/#dbaas-engines).
+                      8.0 for MySQL 8.0, postgresql-15 for PostgreSQL 15). See the available engines. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                      Database engine type and version identifier (e.g., `mysql-8.0` for MySQL 8.0, `postgresql-15` for PostgreSQL 15). See the [available engines](https://api.arubacloud.com/docs/metadata/#dbaas-engines). (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   flavor:
                     description: |-
@@ -77,8 +77,8 @@ spec:
                     type: string
                   location:
                     description: |-
-                      Bergamo). See the available locations and zones.
-                      Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
+                      Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                      Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   name:
                     description: |-
@@ -92,29 +92,29 @@ spec:
                     properties:
                       elasticIpUriRef:
                         description: |-
-                          (String) Optional URI reference to an Elastic IP resource. References the uri attribute of an arubacloud_elasticip resource (e.g., arubacloud_elasticip.example.uri).
-                          Optional URI reference to an Elastic IP resource. References the `uri` attribute of an `arubacloud_elasticip` resource (e.g., `arubacloud_elasticip.example.uri`).
+                          (String) Optional URI reference to an Elastic IP resource.
+                          Optional URI reference to an Elastic IP resource.
                         type: string
                       securityGroupUriRef:
                         description: |-
-                          (String) URI reference to the Security Group resource. References the uri attribute of an arubacloud_securitygroup resource (e.g., arubacloud_securitygroup.example.uri).
-                          URI reference to the Security Group resource. References the `uri` attribute of an `arubacloud_securitygroup` resource (e.g., `arubacloud_securitygroup.example.uri`).
+                          (String) URI reference to the Security Group resource.
+                          URI reference to the Security Group resource.
                         type: string
                       subnetUriRef:
                         description: |-
-                          (String) URI reference to the Subnet resource. References the uri attribute of an arubacloud_subnet resource (e.g., arubacloud_subnet.example.uri).
-                          URI reference to the Subnet resource. References the `uri` attribute of an `arubacloud_subnet` resource (e.g., `arubacloud_subnet.example.uri`).
+                          (String) URI reference to the Subnet resource.
+                          URI reference to the Subnet resource.
                         type: string
                       vpcUriRef:
                         description: |-
-                          (String) URI reference to the VPC resource. References the uri attribute of an arubacloud_vpc resource (e.g., arubacloud_vpc.example.uri).
-                          URI reference to the VPC resource. References the `uri` attribute of an `arubacloud_vpc` resource (e.g., `arubacloud_vpc.example.uri`).
+                          (String) URI reference to the VPC resource.
+                          URI reference to the VPC resource.
                         type: string
                     type: object
                   projectId:
                     description: |-
-                      (String) ID of the project that owns this resource.
-                      ID of the project that owns this resource.
+                      created.)
+                      ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   storage:
                     description: (Attributes) Storage configuration for the DBaaS
@@ -153,10 +153,15 @@ spec:
                     items:
                       type: string
                     type: array
+                  timeout:
+                    description: |-
+                      resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+                      Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+                    type: string
                   zone:
                     description: |-
-                      (String) Availability zone within the region where the DBaaS cluster is deployed.
-                      Availability zone within the region where the DBaaS cluster is deployed.
+                      created.)
+                      Availability zone within the region where the DBaaS cluster is deployed. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                 required:
                 - engineId
@@ -183,13 +188,13 @@ spec:
                 properties:
                   billingPeriod:
                     description: |-
-                      (String) Billing cycle. Accepted values: Hour, Month, Year.
-                      Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
+                      (String) Billing cycle. Accepted values: Hour, Month, Year. If omitted, the value returned by the API is used (Computed).
+                      Billing cycle. Accepted values: `Hour`, `Month`, `Year`. If omitted, the value returned by the API is used (Computed).
                     type: string
                   engineId:
                     description: |-
-                      8.0 for MySQL 8.0, postgresql-15 for PostgreSQL 15). See the available engines.
-                      Database engine type and version identifier (e.g., `mysql-8.0` for MySQL 8.0, `postgresql-15` for PostgreSQL 15). See the [available engines](https://api.arubacloud.com/docs/metadata/#dbaas-engines).
+                      8.0 for MySQL 8.0, postgresql-15 for PostgreSQL 15). See the available engines. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                      Database engine type and version identifier (e.g., `mysql-8.0` for MySQL 8.0, `postgresql-15` for PostgreSQL 15). See the [available engines](https://api.arubacloud.com/docs/metadata/#dbaas-engines). (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   flavor:
                     description: |-
@@ -198,8 +203,8 @@ spec:
                     type: string
                   location:
                     description: |-
-                      Bergamo). See the available locations and zones.
-                      Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
+                      Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                      Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   name:
                     description: |-
@@ -213,29 +218,29 @@ spec:
                     properties:
                       elasticIpUriRef:
                         description: |-
-                          (String) Optional URI reference to an Elastic IP resource. References the uri attribute of an arubacloud_elasticip resource (e.g., arubacloud_elasticip.example.uri).
-                          Optional URI reference to an Elastic IP resource. References the `uri` attribute of an `arubacloud_elasticip` resource (e.g., `arubacloud_elasticip.example.uri`).
+                          (String) Optional URI reference to an Elastic IP resource.
+                          Optional URI reference to an Elastic IP resource.
                         type: string
                       securityGroupUriRef:
                         description: |-
-                          (String) URI reference to the Security Group resource. References the uri attribute of an arubacloud_securitygroup resource (e.g., arubacloud_securitygroup.example.uri).
-                          URI reference to the Security Group resource. References the `uri` attribute of an `arubacloud_securitygroup` resource (e.g., `arubacloud_securitygroup.example.uri`).
+                          (String) URI reference to the Security Group resource.
+                          URI reference to the Security Group resource.
                         type: string
                       subnetUriRef:
                         description: |-
-                          (String) URI reference to the Subnet resource. References the uri attribute of an arubacloud_subnet resource (e.g., arubacloud_subnet.example.uri).
-                          URI reference to the Subnet resource. References the `uri` attribute of an `arubacloud_subnet` resource (e.g., `arubacloud_subnet.example.uri`).
+                          (String) URI reference to the Subnet resource.
+                          URI reference to the Subnet resource.
                         type: string
                       vpcUriRef:
                         description: |-
-                          (String) URI reference to the VPC resource. References the uri attribute of an arubacloud_vpc resource (e.g., arubacloud_vpc.example.uri).
-                          URI reference to the VPC resource. References the `uri` attribute of an `arubacloud_vpc` resource (e.g., `arubacloud_vpc.example.uri`).
+                          (String) URI reference to the VPC resource.
+                          URI reference to the VPC resource.
                         type: string
                     type: object
                   projectId:
                     description: |-
-                      (String) ID of the project that owns this resource.
-                      ID of the project that owns this resource.
+                      created.)
+                      ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   storage:
                     description: (Attributes) Storage configuration for the DBaaS
@@ -274,10 +279,15 @@ spec:
                     items:
                       type: string
                     type: array
+                  timeout:
+                    description: |-
+                      resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+                      Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+                    type: string
                   zone:
                     description: |-
-                      (String) Availability zone within the region where the DBaaS cluster is deployed.
-                      Availability zone within the region where the DBaaS cluster is deployed.
+                      created.)
+                      Availability zone within the region where the DBaaS cluster is deployed. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                 type: object
               managementPolicies:
@@ -378,13 +388,13 @@ spec:
                 properties:
                   billingPeriod:
                     description: |-
-                      (String) Billing cycle. Accepted values: Hour, Month, Year.
-                      Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
+                      (String) Billing cycle. Accepted values: Hour, Month, Year. If omitted, the value returned by the API is used (Computed).
+                      Billing cycle. Accepted values: `Hour`, `Month`, `Year`. If omitted, the value returned by the API is used (Computed).
                     type: string
                   engineId:
                     description: |-
-                      8.0 for MySQL 8.0, postgresql-15 for PostgreSQL 15). See the available engines.
-                      Database engine type and version identifier (e.g., `mysql-8.0` for MySQL 8.0, `postgresql-15` for PostgreSQL 15). See the [available engines](https://api.arubacloud.com/docs/metadata/#dbaas-engines).
+                      8.0 for MySQL 8.0, postgresql-15 for PostgreSQL 15). See the available engines. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                      Database engine type and version identifier (e.g., `mysql-8.0` for MySQL 8.0, `postgresql-15` for PostgreSQL 15). See the [available engines](https://api.arubacloud.com/docs/metadata/#dbaas-engines). (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   flavor:
                     description: |-
@@ -397,8 +407,8 @@ spec:
                     type: string
                   location:
                     description: |-
-                      Bergamo). See the available locations and zones.
-                      Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
+                      Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                      Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   name:
                     description: |-
@@ -412,29 +422,29 @@ spec:
                     properties:
                       elasticIpUriRef:
                         description: |-
-                          (String) Optional URI reference to an Elastic IP resource. References the uri attribute of an arubacloud_elasticip resource (e.g., arubacloud_elasticip.example.uri).
-                          Optional URI reference to an Elastic IP resource. References the `uri` attribute of an `arubacloud_elasticip` resource (e.g., `arubacloud_elasticip.example.uri`).
+                          (String) Optional URI reference to an Elastic IP resource.
+                          Optional URI reference to an Elastic IP resource.
                         type: string
                       securityGroupUriRef:
                         description: |-
-                          (String) URI reference to the Security Group resource. References the uri attribute of an arubacloud_securitygroup resource (e.g., arubacloud_securitygroup.example.uri).
-                          URI reference to the Security Group resource. References the `uri` attribute of an `arubacloud_securitygroup` resource (e.g., `arubacloud_securitygroup.example.uri`).
+                          (String) URI reference to the Security Group resource.
+                          URI reference to the Security Group resource.
                         type: string
                       subnetUriRef:
                         description: |-
-                          (String) URI reference to the Subnet resource. References the uri attribute of an arubacloud_subnet resource (e.g., arubacloud_subnet.example.uri).
-                          URI reference to the Subnet resource. References the `uri` attribute of an `arubacloud_subnet` resource (e.g., `arubacloud_subnet.example.uri`).
+                          (String) URI reference to the Subnet resource.
+                          URI reference to the Subnet resource.
                         type: string
                       vpcUriRef:
                         description: |-
-                          (String) URI reference to the VPC resource. References the uri attribute of an arubacloud_vpc resource (e.g., arubacloud_vpc.example.uri).
-                          URI reference to the VPC resource. References the `uri` attribute of an `arubacloud_vpc` resource (e.g., `arubacloud_vpc.example.uri`).
+                          (String) URI reference to the VPC resource.
+                          URI reference to the VPC resource.
                         type: string
                     type: object
                   projectId:
                     description: |-
-                      (String) ID of the project that owns this resource.
-                      ID of the project that owns this resource.
+                      created.)
+                      ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   storage:
                     description: (Attributes) Storage configuration for the DBaaS
@@ -473,6 +483,11 @@ spec:
                     items:
                       type: string
                     type: array
+                  timeout:
+                    description: |-
+                      resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+                      Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+                    type: string
                   uri:
                     description: |-
                       (String) Computed by the API. Full resource URI used as a reference value in other resources.
@@ -480,8 +495,8 @@ spec:
                     type: string
                   zone:
                     description: |-
-                      (String) Availability zone within the region where the DBaaS cluster is deployed.
-                      Availability zone within the region where the DBaaS cluster is deployed.
+                      created.)
+                      Availability zone within the region where the DBaaS cluster is deployed. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                 type: object
               conditions:

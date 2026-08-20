@@ -62,8 +62,8 @@ spec:
                 properties:
                   location:
                     description: |-
-                      Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
-                      Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                      Bergamo). Changing this value forces a new resource.
+                      Region identifier for the resource (e.g., `ITBG-Bergamo`). Changing this value forces a new resource.
                     type: string
                   name:
                     description: |-
@@ -72,8 +72,8 @@ spec:
                     type: string
                   projectId:
                     description: |-
-                      created.)
-                      ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                      (String) ID of the project that owns this resource. Changing this value forces a new resource.
+                      ID of the project that owns this resource. Changing this value forces a new resource.
                     type: string
                   tags:
                     description: |-
@@ -82,6 +82,11 @@ spec:
                     items:
                       type: string
                     type: array
+                  timeout:
+                    description: |-
+                      resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+                      Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+                    type: string
                 required:
                 - location
                 - name
@@ -102,8 +107,8 @@ spec:
                 properties:
                   location:
                     description: |-
-                      Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
-                      Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                      Bergamo). Changing this value forces a new resource.
+                      Region identifier for the resource (e.g., `ITBG-Bergamo`). Changing this value forces a new resource.
                     type: string
                   name:
                     description: |-
@@ -112,8 +117,8 @@ spec:
                     type: string
                   projectId:
                     description: |-
-                      created.)
-                      ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                      (String) ID of the project that owns this resource. Changing this value forces a new resource.
+                      ID of the project that owns this resource. Changing this value forces a new resource.
                     type: string
                   tags:
                     description: |-
@@ -122,6 +127,11 @@ spec:
                     items:
                       type: string
                     type: array
+                  timeout:
+                    description: |-
+                      resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+                      Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+                    type: string
                 type: object
               managementPolicies:
                 default:
@@ -205,8 +215,8 @@ spec:
                     type: string
                   location:
                     description: |-
-                      Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
-                      Region identifier for the resource (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                      Bergamo). Changing this value forces a new resource.
+                      Region identifier for the resource (e.g., `ITBG-Bergamo`). Changing this value forces a new resource.
                     type: string
                   name:
                     description: |-
@@ -215,8 +225,8 @@ spec:
                     type: string
                   projectId:
                     description: |-
-                      created.)
-                      ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                      (String) ID of the project that owns this resource. Changing this value forces a new resource.
+                      ID of the project that owns this resource. Changing this value forces a new resource.
                     type: string
                   tags:
                     description: |-
@@ -225,10 +235,15 @@ spec:
                     items:
                       type: string
                     type: array
+                  timeout:
+                    description: |-
+                      resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+                      Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+                    type: string
                   uri:
                     description: |-
-                      (String) Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a *_uri_ref attribute).
-                      Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a `*_uri_ref` attribute).
+                      (String) Computed by the API. Full resource URI used as a reference value in other resources.
+                      Computed by the API. Full resource URI used as a reference value in other resources.
                     type: string
                 type: object
               conditions:

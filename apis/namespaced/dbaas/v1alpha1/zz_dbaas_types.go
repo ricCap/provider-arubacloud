@@ -64,20 +64,20 @@ type AutoscalingParameters struct {
 
 type DBaaSInitParameters struct {
 
-	// (String) Billing cycle. Accepted values: Hour, Month, Year.
-	// Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
+	// (String) Billing cycle. Accepted values: Hour, Month, Year. If omitted, the value returned by the API is used (Computed).
+	// Billing cycle. Accepted values: `Hour`, `Month`, `Year`. If omitted, the value returned by the API is used (Computed).
 	BillingPeriod *string `json:"billingPeriod,omitempty" tf:"billing_period,omitempty"`
 
-	// 8.0 for MySQL 8.0, postgresql-15 for PostgreSQL 15). See the available engines.
-	// Database engine type and version identifier (e.g., `mysql-8.0` for MySQL 8.0, `postgresql-15` for PostgreSQL 15). See the [available engines](https://api.arubacloud.com/docs/metadata/#dbaas-engines).
+	// 8.0 for MySQL 8.0, postgresql-15 for PostgreSQL 15). See the available engines. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Database engine type and version identifier (e.g., `mysql-8.0` for MySQL 8.0, `postgresql-15` for PostgreSQL 15). See the [available engines](https://api.arubacloud.com/docs/metadata/#dbaas-engines). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	EngineID *string `json:"engineId,omitempty" tf:"engine_id,omitempty"`
 
 	// (String) Compute flavour for the DBaaS cluster nodes. See available flavours. For example, DBO2A4 means 2 vCPU and 4 GB RAM.
 	// Compute flavour for the DBaaS cluster nodes. See [available flavours](https://api.arubacloud.com/docs/metadata/#dbaas-flavors). For example, `DBO2A4` means 2 vCPU and 4 GB RAM.
 	Flavor *string `json:"flavor,omitempty" tf:"flavor,omitempty"`
 
-	// Bergamo). See the available locations and zones.
-	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
+	// Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
 	// (String) Display name for the DBaaS cluster.
@@ -87,8 +87,8 @@ type DBaaSInitParameters struct {
 	// (Attributes) Network configuration for the DBaaS instance. All URI references are immutable after creation. (see below for nested schema)
 	Network *NetworkInitParameters `json:"network,omitempty" tf:"network,omitempty"`
 
-	// (String) ID of the project that owns this resource.
-	// ID of the project that owns this resource.
+	// created.)
+	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
 	// (Attributes) Storage configuration for the DBaaS instance. (see below for nested schema)
@@ -98,19 +98,23 @@ type DBaaSInitParameters struct {
 	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String) Availability zone within the region where the DBaaS cluster is deployed.
-	// Availability zone within the region where the DBaaS cluster is deployed.
+	// resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+	// Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+	Timeout *string `json:"timeout,omitempty" tf:"timeout,omitempty"`
+
+	// created.)
+	// Availability zone within the region where the DBaaS cluster is deployed. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
 
 type DBaaSObservation struct {
 
-	// (String) Billing cycle. Accepted values: Hour, Month, Year.
-	// Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
+	// (String) Billing cycle. Accepted values: Hour, Month, Year. If omitted, the value returned by the API is used (Computed).
+	// Billing cycle. Accepted values: `Hour`, `Month`, `Year`. If omitted, the value returned by the API is used (Computed).
 	BillingPeriod *string `json:"billingPeriod,omitempty" tf:"billing_period,omitempty"`
 
-	// 8.0 for MySQL 8.0, postgresql-15 for PostgreSQL 15). See the available engines.
-	// Database engine type and version identifier (e.g., `mysql-8.0` for MySQL 8.0, `postgresql-15` for PostgreSQL 15). See the [available engines](https://api.arubacloud.com/docs/metadata/#dbaas-engines).
+	// 8.0 for MySQL 8.0, postgresql-15 for PostgreSQL 15). See the available engines. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Database engine type and version identifier (e.g., `mysql-8.0` for MySQL 8.0, `postgresql-15` for PostgreSQL 15). See the [available engines](https://api.arubacloud.com/docs/metadata/#dbaas-engines). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	EngineID *string `json:"engineId,omitempty" tf:"engine_id,omitempty"`
 
 	// (String) Compute flavour for the DBaaS cluster nodes. See available flavours. For example, DBO2A4 means 2 vCPU and 4 GB RAM.
@@ -120,8 +124,8 @@ type DBaaSObservation struct {
 	// (String) Computed by the API. Unique identifier for the resource.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// Bergamo). See the available locations and zones.
-	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
+	// Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
 	// (String) Display name for the DBaaS cluster.
@@ -131,8 +135,8 @@ type DBaaSObservation struct {
 	// (Attributes) Network configuration for the DBaaS instance. All URI references are immutable after creation. (see below for nested schema)
 	Network *NetworkObservation `json:"network,omitempty" tf:"network,omitempty"`
 
-	// (String) ID of the project that owns this resource.
-	// ID of the project that owns this resource.
+	// created.)
+	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
 	// (Attributes) Storage configuration for the DBaaS instance. (see below for nested schema)
@@ -142,24 +146,28 @@ type DBaaSObservation struct {
 	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
+	// resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+	// Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+	Timeout *string `json:"timeout,omitempty" tf:"timeout,omitempty"`
+
 	// (String) Computed by the API. Full resource URI used as a reference value in other resources.
 	// Computed by the API. Full resource URI used as a reference value in other resources.
 	URI *string `json:"uri,omitempty" tf:"uri,omitempty"`
 
-	// (String) Availability zone within the region where the DBaaS cluster is deployed.
-	// Availability zone within the region where the DBaaS cluster is deployed.
+	// created.)
+	// Availability zone within the region where the DBaaS cluster is deployed. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
 
 type DBaaSParameters struct {
 
-	// (String) Billing cycle. Accepted values: Hour, Month, Year.
-	// Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
+	// (String) Billing cycle. Accepted values: Hour, Month, Year. If omitted, the value returned by the API is used (Computed).
+	// Billing cycle. Accepted values: `Hour`, `Month`, `Year`. If omitted, the value returned by the API is used (Computed).
 	// +kubebuilder:validation:Optional
 	BillingPeriod *string `json:"billingPeriod,omitempty" tf:"billing_period,omitempty"`
 
-	// 8.0 for MySQL 8.0, postgresql-15 for PostgreSQL 15). See the available engines.
-	// Database engine type and version identifier (e.g., `mysql-8.0` for MySQL 8.0, `postgresql-15` for PostgreSQL 15). See the [available engines](https://api.arubacloud.com/docs/metadata/#dbaas-engines).
+	// 8.0 for MySQL 8.0, postgresql-15 for PostgreSQL 15). See the available engines. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Database engine type and version identifier (e.g., `mysql-8.0` for MySQL 8.0, `postgresql-15` for PostgreSQL 15). See the [available engines](https://api.arubacloud.com/docs/metadata/#dbaas-engines). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Required
 	EngineID *string `json:"engineId,omitempty" tf:"engine_id,omitempty"`
 
@@ -168,8 +176,8 @@ type DBaaSParameters struct {
 	// +kubebuilder:validation:Required
 	Flavor *string `json:"flavor,omitempty" tf:"flavor,omitempty"`
 
-	// Bergamo). See the available locations and zones.
-	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
+	// Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Required
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
@@ -182,8 +190,8 @@ type DBaaSParameters struct {
 	// +kubebuilder:validation:Required
 	Network *NetworkParameters `json:"network,omitempty" tf:"network,omitempty"`
 
-	// (String) ID of the project that owns this resource.
-	// ID of the project that owns this resource.
+	// created.)
+	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
@@ -196,69 +204,74 @@ type DBaaSParameters struct {
 	// +kubebuilder:validation:Optional
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String) Availability zone within the region where the DBaaS cluster is deployed.
-	// Availability zone within the region where the DBaaS cluster is deployed.
+	// resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+	// Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+	// +kubebuilder:validation:Optional
+	Timeout *string `json:"timeout,omitempty" tf:"timeout,omitempty"`
+
+	// created.)
+	// Availability zone within the region where the DBaaS cluster is deployed. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Required
 	Zone *string `json:"zone,omitempty" tf:"zone,omitempty"`
 }
 
 type NetworkInitParameters struct {
 
-	// (String) Optional URI reference to an Elastic IP resource. References the uri attribute of an arubacloud_elasticip resource (e.g., arubacloud_elasticip.example.uri).
-	// Optional URI reference to an Elastic IP resource. References the `uri` attribute of an `arubacloud_elasticip` resource (e.g., `arubacloud_elasticip.example.uri`).
+	// (String) Optional URI reference to an Elastic IP resource.
+	// Optional URI reference to an Elastic IP resource.
 	ElasticIPURIRef *string `json:"elasticIpUriRef,omitempty" tf:"elastic_ip_uri_ref,omitempty"`
 
-	// (String) URI reference to the Security Group resource. References the uri attribute of an arubacloud_securitygroup resource (e.g., arubacloud_securitygroup.example.uri).
-	// URI reference to the Security Group resource. References the `uri` attribute of an `arubacloud_securitygroup` resource (e.g., `arubacloud_securitygroup.example.uri`).
+	// (String) URI reference to the Security Group resource.
+	// URI reference to the Security Group resource.
 	SecurityGroupURIRef *string `json:"securityGroupUriRef,omitempty" tf:"security_group_uri_ref,omitempty"`
 
-	// (String) URI reference to the Subnet resource. References the uri attribute of an arubacloud_subnet resource (e.g., arubacloud_subnet.example.uri).
-	// URI reference to the Subnet resource. References the `uri` attribute of an `arubacloud_subnet` resource (e.g., `arubacloud_subnet.example.uri`).
+	// (String) URI reference to the Subnet resource.
+	// URI reference to the Subnet resource.
 	SubnetURIRef *string `json:"subnetUriRef,omitempty" tf:"subnet_uri_ref,omitempty"`
 
-	// (String) URI reference to the VPC resource. References the uri attribute of an arubacloud_vpc resource (e.g., arubacloud_vpc.example.uri).
-	// URI reference to the VPC resource. References the `uri` attribute of an `arubacloud_vpc` resource (e.g., `arubacloud_vpc.example.uri`).
+	// (String) URI reference to the VPC resource.
+	// URI reference to the VPC resource.
 	VPCURIRef *string `json:"vpcUriRef,omitempty" tf:"vpc_uri_ref,omitempty"`
 }
 
 type NetworkObservation struct {
 
-	// (String) Optional URI reference to an Elastic IP resource. References the uri attribute of an arubacloud_elasticip resource (e.g., arubacloud_elasticip.example.uri).
-	// Optional URI reference to an Elastic IP resource. References the `uri` attribute of an `arubacloud_elasticip` resource (e.g., `arubacloud_elasticip.example.uri`).
+	// (String) Optional URI reference to an Elastic IP resource.
+	// Optional URI reference to an Elastic IP resource.
 	ElasticIPURIRef *string `json:"elasticIpUriRef,omitempty" tf:"elastic_ip_uri_ref,omitempty"`
 
-	// (String) URI reference to the Security Group resource. References the uri attribute of an arubacloud_securitygroup resource (e.g., arubacloud_securitygroup.example.uri).
-	// URI reference to the Security Group resource. References the `uri` attribute of an `arubacloud_securitygroup` resource (e.g., `arubacloud_securitygroup.example.uri`).
+	// (String) URI reference to the Security Group resource.
+	// URI reference to the Security Group resource.
 	SecurityGroupURIRef *string `json:"securityGroupUriRef,omitempty" tf:"security_group_uri_ref,omitempty"`
 
-	// (String) URI reference to the Subnet resource. References the uri attribute of an arubacloud_subnet resource (e.g., arubacloud_subnet.example.uri).
-	// URI reference to the Subnet resource. References the `uri` attribute of an `arubacloud_subnet` resource (e.g., `arubacloud_subnet.example.uri`).
+	// (String) URI reference to the Subnet resource.
+	// URI reference to the Subnet resource.
 	SubnetURIRef *string `json:"subnetUriRef,omitempty" tf:"subnet_uri_ref,omitempty"`
 
-	// (String) URI reference to the VPC resource. References the uri attribute of an arubacloud_vpc resource (e.g., arubacloud_vpc.example.uri).
-	// URI reference to the VPC resource. References the `uri` attribute of an `arubacloud_vpc` resource (e.g., `arubacloud_vpc.example.uri`).
+	// (String) URI reference to the VPC resource.
+	// URI reference to the VPC resource.
 	VPCURIRef *string `json:"vpcUriRef,omitempty" tf:"vpc_uri_ref,omitempty"`
 }
 
 type NetworkParameters struct {
 
-	// (String) Optional URI reference to an Elastic IP resource. References the uri attribute of an arubacloud_elasticip resource (e.g., arubacloud_elasticip.example.uri).
-	// Optional URI reference to an Elastic IP resource. References the `uri` attribute of an `arubacloud_elasticip` resource (e.g., `arubacloud_elasticip.example.uri`).
+	// (String) Optional URI reference to an Elastic IP resource.
+	// Optional URI reference to an Elastic IP resource.
 	// +kubebuilder:validation:Optional
 	ElasticIPURIRef *string `json:"elasticIpUriRef,omitempty" tf:"elastic_ip_uri_ref,omitempty"`
 
-	// (String) URI reference to the Security Group resource. References the uri attribute of an arubacloud_securitygroup resource (e.g., arubacloud_securitygroup.example.uri).
-	// URI reference to the Security Group resource. References the `uri` attribute of an `arubacloud_securitygroup` resource (e.g., `arubacloud_securitygroup.example.uri`).
+	// (String) URI reference to the Security Group resource.
+	// URI reference to the Security Group resource.
 	// +kubebuilder:validation:Optional
 	SecurityGroupURIRef *string `json:"securityGroupUriRef" tf:"security_group_uri_ref,omitempty"`
 
-	// (String) URI reference to the Subnet resource. References the uri attribute of an arubacloud_subnet resource (e.g., arubacloud_subnet.example.uri).
-	// URI reference to the Subnet resource. References the `uri` attribute of an `arubacloud_subnet` resource (e.g., `arubacloud_subnet.example.uri`).
+	// (String) URI reference to the Subnet resource.
+	// URI reference to the Subnet resource.
 	// +kubebuilder:validation:Optional
 	SubnetURIRef *string `json:"subnetUriRef" tf:"subnet_uri_ref,omitempty"`
 
-	// (String) URI reference to the VPC resource. References the uri attribute of an arubacloud_vpc resource (e.g., arubacloud_vpc.example.uri).
-	// URI reference to the VPC resource. References the `uri` attribute of an `arubacloud_vpc` resource (e.g., `arubacloud_vpc.example.uri`).
+	// (String) URI reference to the VPC resource.
+	// URI reference to the VPC resource.
 	// +kubebuilder:validation:Optional
 	VPCURIRef *string `json:"vpcUriRef" tf:"vpc_uri_ref,omitempty"`
 }
