@@ -17,57 +17,57 @@ import (
 type PropertiesInitParameters struct {
 
 	// created.)
-	// Traffic direction the rule applies to. Accepted values: `Inbound`, `Outbound`. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Traffic direction the rule applies to. Accepted values: `Ingress`, `Egress`. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Direction *string `json:"direction,omitempty" tf:"direction,omitempty"`
 
-	// 8090). Use 0 for ICMP or ANY.
-	// Port or port range for TCP/UDP (e.g., `80` or `8080-8090`). Use `0` for ICMP or ANY.
+	// 8090). Use 0 for ICMP or ANY. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Port or port range for TCP/UDP (e.g., `80` or `8080-8090`). Use `0` for ICMP or ANY. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Port *string `json:"port,omitempty" tf:"port,omitempty"`
 
-	// (String) IP protocol. Accepted values: TCP, UDP, ICMP, ANY. (Immutable if marked.)
-	// IP protocol. Accepted values: `TCP`, `UDP`, `ICMP`, `ANY`. (Immutable if marked.)
+	// insensitive — the value is normalised before sending to the API). (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// IP protocol. Accepted values: `TCP`, `UDP`, `ICMP`, `ANY` (case-insensitive — the value is normalised before sending to the API). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Protocol *string `json:"protocol,omitempty" tf:"protocol,omitempty"`
 
-	// (Attributes) Source (inbound) or destination (outbound) endpoint for this rule. (see below for nested schema)
+	// created.) (see below for nested schema)
 	Target *TargetInitParameters `json:"target,omitempty" tf:"target,omitempty"`
 }
 
 type PropertiesObservation struct {
 
 	// created.)
-	// Traffic direction the rule applies to. Accepted values: `Inbound`, `Outbound`. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Traffic direction the rule applies to. Accepted values: `Ingress`, `Egress`. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Direction *string `json:"direction,omitempty" tf:"direction,omitempty"`
 
-	// 8090). Use 0 for ICMP or ANY.
-	// Port or port range for TCP/UDP (e.g., `80` or `8080-8090`). Use `0` for ICMP or ANY.
+	// 8090). Use 0 for ICMP or ANY. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Port or port range for TCP/UDP (e.g., `80` or `8080-8090`). Use `0` for ICMP or ANY. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Port *string `json:"port,omitempty" tf:"port,omitempty"`
 
-	// (String) IP protocol. Accepted values: TCP, UDP, ICMP, ANY. (Immutable if marked.)
-	// IP protocol. Accepted values: `TCP`, `UDP`, `ICMP`, `ANY`. (Immutable if marked.)
+	// insensitive — the value is normalised before sending to the API). (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// IP protocol. Accepted values: `TCP`, `UDP`, `ICMP`, `ANY` (case-insensitive — the value is normalised before sending to the API). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Protocol *string `json:"protocol,omitempty" tf:"protocol,omitempty"`
 
-	// (Attributes) Source (inbound) or destination (outbound) endpoint for this rule. (see below for nested schema)
+	// created.) (see below for nested schema)
 	Target *TargetObservation `json:"target,omitempty" tf:"target,omitempty"`
 }
 
 type PropertiesParameters struct {
 
 	// created.)
-	// Traffic direction the rule applies to. Accepted values: `Inbound`, `Outbound`. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Traffic direction the rule applies to. Accepted values: `Ingress`, `Egress`. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Optional
 	Direction *string `json:"direction" tf:"direction,omitempty"`
 
-	// 8090). Use 0 for ICMP or ANY.
-	// Port or port range for TCP/UDP (e.g., `80` or `8080-8090`). Use `0` for ICMP or ANY.
+	// 8090). Use 0 for ICMP or ANY. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Port or port range for TCP/UDP (e.g., `80` or `8080-8090`). Use `0` for ICMP or ANY. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Optional
 	Port *string `json:"port,omitempty" tf:"port,omitempty"`
 
-	// (String) IP protocol. Accepted values: TCP, UDP, ICMP, ANY. (Immutable if marked.)
-	// IP protocol. Accepted values: `TCP`, `UDP`, `ICMP`, `ANY`. (Immutable if marked.)
+	// insensitive — the value is normalised before sending to the API). (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// IP protocol. Accepted values: `TCP`, `UDP`, `ICMP`, `ANY` (case-insensitive — the value is normalised before sending to the API). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Optional
 	Protocol *string `json:"protocol" tf:"protocol,omitempty"`
 
-	// (Attributes) Source (inbound) or destination (outbound) endpoint for this rule. (see below for nested schema)
+	// created.) (see below for nested schema)
 	// +kubebuilder:validation:Optional
 	Target *TargetParameters `json:"target" tf:"target,omitempty"`
 }
@@ -86,7 +86,7 @@ type SecurityRuleInitParameters struct {
 	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// matching properties of the security rule. Most fields are immutable after creation. (see below for nested schema)
+	// matching properties of the security rule. All fields are immutable after creation — to change any of them, destroy and re-create the rule. (see below for nested schema)
 	Properties *PropertiesInitParameters `json:"properties,omitempty" tf:"properties,omitempty"`
 
 	// created.)
@@ -96,6 +96,10 @@ type SecurityRuleInitParameters struct {
 	// (List of String) List of string tags attached to the resource for filtering and organisation.
 	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
+	// resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+	// Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+	Timeout *string `json:"timeout,omitempty" tf:"timeout,omitempty"`
 
 	// created.)
 	// ID of the VPC this security rule belongs to. (Immutable — changing this value forces the resource to be destroyed and re-created.)
@@ -119,7 +123,7 @@ type SecurityRuleObservation struct {
 	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// matching properties of the security rule. Most fields are immutable after creation. (see below for nested schema)
+	// matching properties of the security rule. All fields are immutable after creation — to change any of them, destroy and re-create the rule. (see below for nested schema)
 	Properties *PropertiesObservation `json:"properties,omitempty" tf:"properties,omitempty"`
 
 	// created.)
@@ -129,6 +133,10 @@ type SecurityRuleObservation struct {
 	// (List of String) List of string tags attached to the resource for filtering and organisation.
 	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
+	// resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+	// Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+	Timeout *string `json:"timeout,omitempty" tf:"timeout,omitempty"`
 
 	// (String) Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a *_uri_ref attribute).
 	// Computed by the API. Full resource URI used as a reference value in other resources (e.g., as a `*_uri_ref` attribute).
@@ -156,7 +164,7 @@ type SecurityRuleParameters struct {
 	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// matching properties of the security rule. Most fields are immutable after creation. (see below for nested schema)
+	// matching properties of the security rule. All fields are immutable after creation — to change any of them, destroy and re-create the rule. (see below for nested schema)
 	// +kubebuilder:validation:Required
 	Properties *PropertiesParameters `json:"properties,omitempty" tf:"properties,omitempty"`
 
@@ -170,6 +178,11 @@ type SecurityRuleParameters struct {
 	// +kubebuilder:validation:Optional
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
+	// resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+	// Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+	// +kubebuilder:validation:Optional
+	Timeout *string `json:"timeout,omitempty" tf:"timeout,omitempty"`
+
 	// created.)
 	// ID of the VPC this security rule belongs to. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Required
@@ -178,35 +191,35 @@ type SecurityRuleParameters struct {
 
 type TargetInitParameters struct {
 
-	// (String) Type of the target endpoint. Accepted values: IP, SecurityGroup.
-	// Type of the target endpoint. Accepted values: `IP`, `SecurityGroup`.
+	// insensitive — the value is normalised before sending to the API). (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Type of the target endpoint. Accepted values: `IP`, `SecurityGroup` (case-insensitive — the value is normalised before sending to the API). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Kind *string `json:"kind,omitempty" tf:"kind,omitempty"`
 
-	// (String) Source (inbound) or destination (outbound) CIDR in notation like 0.0.0.0/0, or SecurityGroup URI.
-	// Source (inbound) or destination (outbound) CIDR in notation like `0.0.0.0/0`, or SecurityGroup URI.
+	// created.)
+	// Source (inbound) or destination (outbound) CIDR in notation like `0.0.0.0/0`, or SecurityGroup URI. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Value *string `json:"value,omitempty" tf:"value,omitempty"`
 }
 
 type TargetObservation struct {
 
-	// (String) Type of the target endpoint. Accepted values: IP, SecurityGroup.
-	// Type of the target endpoint. Accepted values: `IP`, `SecurityGroup`.
+	// insensitive — the value is normalised before sending to the API). (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Type of the target endpoint. Accepted values: `IP`, `SecurityGroup` (case-insensitive — the value is normalised before sending to the API). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Kind *string `json:"kind,omitempty" tf:"kind,omitempty"`
 
-	// (String) Source (inbound) or destination (outbound) CIDR in notation like 0.0.0.0/0, or SecurityGroup URI.
-	// Source (inbound) or destination (outbound) CIDR in notation like `0.0.0.0/0`, or SecurityGroup URI.
+	// created.)
+	// Source (inbound) or destination (outbound) CIDR in notation like `0.0.0.0/0`, or SecurityGroup URI. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Value *string `json:"value,omitempty" tf:"value,omitempty"`
 }
 
 type TargetParameters struct {
 
-	// (String) Type of the target endpoint. Accepted values: IP, SecurityGroup.
-	// Type of the target endpoint. Accepted values: `IP`, `SecurityGroup`.
+	// insensitive — the value is normalised before sending to the API). (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Type of the target endpoint. Accepted values: `IP`, `SecurityGroup` (case-insensitive — the value is normalised before sending to the API). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Optional
 	Kind *string `json:"kind" tf:"kind,omitempty"`
 
-	// (String) Source (inbound) or destination (outbound) CIDR in notation like 0.0.0.0/0, or SecurityGroup URI.
-	// Source (inbound) or destination (outbound) CIDR in notation like `0.0.0.0/0`, or SecurityGroup URI.
+	// created.)
+	// Source (inbound) or destination (outbound) CIDR in notation like `0.0.0.0/0`, or SecurityGroup URI. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Optional
 	Value *string `json:"value" tf:"value,omitempty"`
 }

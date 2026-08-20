@@ -62,6 +62,11 @@ func (in *DatabaseGrantInitParameters) DeepCopyInto(out *DatabaseGrantInitParame
 		*out = new(string)
 		**out = **in
 	}
+	if in.Timeout != nil {
+		in, out := &in.Timeout, &out.Timeout
+		*out = new(string)
+		**out = **in
+	}
 	if in.UserID != nil {
 		in, out := &in.UserID, &out.UserID
 		*out = new(string)
@@ -139,6 +144,11 @@ func (in *DatabaseGrantObservation) DeepCopyInto(out *DatabaseGrantObservation) 
 		*out = new(string)
 		**out = **in
 	}
+	if in.Timeout != nil {
+		in, out := &in.Timeout, &out.Timeout
+		*out = new(string)
+		**out = **in
+	}
 	if in.URI != nil {
 		in, out := &in.URI, &out.URI
 		*out = new(string)
@@ -181,6 +191,11 @@ func (in *DatabaseGrantParameters) DeepCopyInto(out *DatabaseGrantParameters) {
 	}
 	if in.Role != nil {
 		in, out := &in.Role, &out.Role
+		*out = new(string)
+		**out = **in
+	}
+	if in.Timeout != nil {
+		in, out := &in.Timeout, &out.Timeout
 		*out = new(string)
 		**out = **in
 	}

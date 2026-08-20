@@ -118,7 +118,7 @@ spec:
                                 address:
                                   description: |-
                                     1918 notation (e.g., 10.0.1.0/24). Must fall within the parent VPC CIDR.
-                                    Destination network in CIDR notation (e.g., `0.0.0.0/0` for a default route).
+                                    Destination network in CIDR notation. Must be within the subnet's `network.address` CIDR block (e.g., `10.0.1.128/25` when the subnet is `10.0.1.0/24`).
                                   type: string
                                 gateway:
                                   description: |-
@@ -141,6 +141,11 @@ spec:
                     items:
                       type: string
                     type: array
+                  timeout:
+                    description: |-
+                      resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+                      Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+                    type: string
                   type:
                     description: |-
                       created.)
@@ -229,7 +234,7 @@ spec:
                                 address:
                                   description: |-
                                     1918 notation (e.g., 10.0.1.0/24). Must fall within the parent VPC CIDR.
-                                    Destination network in CIDR notation (e.g., `0.0.0.0/0` for a default route).
+                                    Destination network in CIDR notation. Must be within the subnet's `network.address` CIDR block (e.g., `10.0.1.128/25` when the subnet is `10.0.1.0/24`).
                                   type: string
                                 gateway:
                                   description: |-
@@ -252,6 +257,11 @@ spec:
                     items:
                       type: string
                     type: array
+                  timeout:
+                    description: |-
+                      resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+                      Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+                    type: string
                   type:
                     description: |-
                       created.)
@@ -409,7 +419,7 @@ spec:
                                 address:
                                   description: |-
                                     1918 notation (e.g., 10.0.1.0/24). Must fall within the parent VPC CIDR.
-                                    Destination network in CIDR notation (e.g., `0.0.0.0/0` for a default route).
+                                    Destination network in CIDR notation. Must be within the subnet's `network.address` CIDR block (e.g., `10.0.1.128/25` when the subnet is `10.0.1.0/24`).
                                   type: string
                                 gateway:
                                   description: |-
@@ -432,6 +442,11 @@ spec:
                     items:
                       type: string
                     type: array
+                  timeout:
+                    description: |-
+                      resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+                      Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+                    type: string
                   type:
                     description: |-
                       created.)

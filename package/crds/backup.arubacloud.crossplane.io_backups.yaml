@@ -80,8 +80,8 @@ spec:
                     type: string
                   location:
                     description: |-
-                      Bergamo). See the available locations and zones.
-                      Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
+                      Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                      Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   name:
                     description: |-
@@ -90,13 +90,13 @@ spec:
                     type: string
                   projectId:
                     description: |-
-                      (String) ID of the project that owns this resource.
-                      ID of the project that owns this resource.
+                      created.)
+                      ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   retentionDays:
                     description: |-
-                      (Number) Number of days to retain the backup before automatic deletion. Optional — if omitted, the backup is retained indefinitely.
-                      Number of days to retain the backup before automatic deletion. Optional — if omitted, the backup is retained indefinitely.
+                      created, because the API does not apply retention_days changes in update requests.)
+                      Number of days to retain the backup before automatic deletion. Optional — if omitted, the backup is retained indefinitely. (Immutable — changing this value forces the resource to be destroyed and re-created, because the API does not apply retention_days changes in update requests.)
                     type: number
                   tags:
                     description: |-
@@ -105,15 +105,20 @@ spec:
                     items:
                       type: string
                     type: array
+                  timeout:
+                    description: |-
+                      resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+                      Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+                    type: string
                   type:
                     description: |-
-                      (String) Backup type. Accepted values: Full, Incremental.
-                      Backup type. Accepted values: `Full`, `Incremental`.
+                      created.)
+                      Backup type. Accepted values: `Full`, `Incremental`. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   volumeId:
                     description: |-
-                      (String) ID of the block storage volume to back up.
-                      ID of the block storage volume to back up.
+                      created.)
+                      ID of the block storage volume to back up. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                 required:
                 - location
@@ -142,8 +147,8 @@ spec:
                     type: string
                   location:
                     description: |-
-                      Bergamo). See the available locations and zones.
-                      Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
+                      Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                      Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   name:
                     description: |-
@@ -152,13 +157,13 @@ spec:
                     type: string
                   projectId:
                     description: |-
-                      (String) ID of the project that owns this resource.
-                      ID of the project that owns this resource.
+                      created.)
+                      ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   retentionDays:
                     description: |-
-                      (Number) Number of days to retain the backup before automatic deletion. Optional — if omitted, the backup is retained indefinitely.
-                      Number of days to retain the backup before automatic deletion. Optional — if omitted, the backup is retained indefinitely.
+                      created, because the API does not apply retention_days changes in update requests.)
+                      Number of days to retain the backup before automatic deletion. Optional — if omitted, the backup is retained indefinitely. (Immutable — changing this value forces the resource to be destroyed and re-created, because the API does not apply retention_days changes in update requests.)
                     type: number
                   tags:
                     description: |-
@@ -167,15 +172,20 @@ spec:
                     items:
                       type: string
                     type: array
+                  timeout:
+                    description: |-
+                      resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+                      Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+                    type: string
                   type:
                     description: |-
-                      (String) Backup type. Accepted values: Full, Incremental.
-                      Backup type. Accepted values: `Full`, `Incremental`.
+                      created.)
+                      Backup type. Accepted values: `Full`, `Incremental`. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   volumeId:
                     description: |-
-                      (String) ID of the block storage volume to back up.
-                      ID of the block storage volume to back up.
+                      created.)
+                      ID of the block storage volume to back up. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                 type: object
               managementPolicies:
@@ -301,8 +311,8 @@ spec:
                     type: string
                   location:
                     description: |-
-                      Bergamo). See the available locations and zones.
-                      Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
+                      Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                      Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   name:
                     description: |-
@@ -311,13 +321,13 @@ spec:
                     type: string
                   projectId:
                     description: |-
-                      (String) ID of the project that owns this resource.
-                      ID of the project that owns this resource.
+                      created.)
+                      ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   retentionDays:
                     description: |-
-                      (Number) Number of days to retain the backup before automatic deletion. Optional — if omitted, the backup is retained indefinitely.
-                      Number of days to retain the backup before automatic deletion. Optional — if omitted, the backup is retained indefinitely.
+                      created, because the API does not apply retention_days changes in update requests.)
+                      Number of days to retain the backup before automatic deletion. Optional — if omitted, the backup is retained indefinitely. (Immutable — changing this value forces the resource to be destroyed and re-created, because the API does not apply retention_days changes in update requests.)
                     type: number
                   tags:
                     description: |-
@@ -326,10 +336,15 @@ spec:
                     items:
                       type: string
                     type: array
+                  timeout:
+                    description: |-
+                      resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+                      Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+                    type: string
                   type:
                     description: |-
-                      (String) Backup type. Accepted values: Full, Incremental.
-                      Backup type. Accepted values: `Full`, `Incremental`.
+                      created.)
+                      Backup type. Accepted values: `Full`, `Incremental`. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   uri:
                     description: |-
@@ -338,8 +353,8 @@ spec:
                     type: string
                   volumeId:
                     description: |-
-                      (String) ID of the block storage volume to back up.
-                      ID of the block storage volume to back up.
+                      created.)
+                      ID of the block storage volume to back up. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                 type: object
               conditions:

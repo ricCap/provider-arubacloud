@@ -79,11 +79,6 @@ spec:
                       Bergamo). See the available locations and zones.
                       Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
                     type: string
-                  name:
-                    description: |-
-                      (String) Display name for the database backup.
-                      Display name for the database backup.
-                    type: string
                   projectId:
                     description: |-
                       (String) ID of the project that owns this resource.
@@ -96,6 +91,11 @@ spec:
                     items:
                       type: string
                     type: array
+                  timeout:
+                    description: |-
+                      resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+                      Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+                    type: string
                   zone:
                     description: |-
                       (String) Availability zone within the region where the backup is stored.
@@ -106,7 +106,6 @@ spec:
                 - database
                 - dbaasId
                 - location
-                - name
                 - projectId
                 - zone
                 type: object
@@ -143,11 +142,6 @@ spec:
                       Bergamo). See the available locations and zones.
                       Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
                     type: string
-                  name:
-                    description: |-
-                      (String) Display name for the database backup.
-                      Display name for the database backup.
-                    type: string
                   projectId:
                     description: |-
                       (String) ID of the project that owns this resource.
@@ -160,6 +154,11 @@ spec:
                     items:
                       type: string
                     type: array
+                  timeout:
+                    description: |-
+                      resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+                      Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+                    type: string
                   zone:
                     description: |-
                       (String) Availability zone within the region where the backup is stored.
@@ -241,10 +240,6 @@ spec:
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.location)
                 || (has(self.initProvider) && has(self.initProvider.location))'
-            - message: spec.forProvider.name is a required parameter
-              rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
-                || ''Update'' in self.managementPolicies) || has(self.forProvider.name)
-                || (has(self.initProvider) && has(self.initProvider.name))'
             - message: spec.forProvider.projectId is a required parameter
               rule: '!(''*'' in self.managementPolicies || ''Create'' in self.managementPolicies
                 || ''Update'' in self.managementPolicies) || has(self.forProvider.projectId)
@@ -284,8 +279,8 @@ spec:
                     type: string
                   name:
                     description: |-
-                      (String) Display name for the database backup.
-                      Display name for the database backup.
+                      generated backup name assigned by the API (e.g. mysql_wordpress_20260713140736). The value provided in config is not used — the API always generates its own name.
+                      Auto-generated backup name assigned by the API (e.g. `mysql_wordpress_20260713140736`). The value provided in config is not used — the API always generates its own name.
                     type: string
                   projectId:
                     description: |-
@@ -299,6 +294,11 @@ spec:
                     items:
                       type: string
                     type: array
+                  timeout:
+                    description: |-
+                      resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+                      Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+                    type: string
                   uri:
                     description: |-
                       (String) Computed by the API. Full resource URI used as a reference value in other resources.

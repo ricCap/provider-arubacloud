@@ -183,6 +183,11 @@ func (in *DBaaSInitParameters) DeepCopyInto(out *DBaaSInitParameters) {
 			}
 		}
 	}
+	if in.Timeout != nil {
+		in, out := &in.Timeout, &out.Timeout
+		*out = new(string)
+		**out = **in
+	}
 	if in.Zone != nil {
 		in, out := &in.Zone, &out.Zone
 		*out = new(string)
@@ -291,6 +296,11 @@ func (in *DBaaSObservation) DeepCopyInto(out *DBaaSObservation) {
 			}
 		}
 	}
+	if in.Timeout != nil {
+		in, out := &in.Timeout, &out.Timeout
+		*out = new(string)
+		**out = **in
+	}
 	if in.URI != nil {
 		in, out := &in.URI, &out.URI
 		*out = new(string)
@@ -366,6 +376,11 @@ func (in *DBaaSParameters) DeepCopyInto(out *DBaaSParameters) {
 				**out = **in
 			}
 		}
+	}
+	if in.Timeout != nil {
+		in, out := &in.Timeout, &out.Timeout
+		*out = new(string)
+		**out = **in
 	}
 	if in.Zone != nil {
 		in, out := &in.Zone, &out.Zone

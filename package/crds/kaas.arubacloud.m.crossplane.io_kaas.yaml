@@ -66,8 +66,8 @@ spec:
                     type: string
                   location:
                     description: |-
-                      Bergamo). See the available locations and zones.
-                      Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
+                      Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                      Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   name:
                     description: |-
@@ -105,19 +105,19 @@ spec:
                         type: string
                       subnetUriRef:
                         description: |-
-                          (String) URI of the subnet within the VPC (e.g., arubacloud_subnet.example.uri).
-                          URI of the subnet within the VPC (e.g., `arubacloud_subnet.example.uri`).
+                          created.)
+                          URI of the subnet within the VPC (e.g., `arubacloud_subnet.example.uri`). (Immutable — changing this value forces the resource to be destroyed and re-created.)
                         type: string
                       vpcUriRef:
                         description: |-
-                          (String) URI of the VPC that hosts the cluster (e.g., arubacloud_vpc.example.uri).
-                          URI of the VPC that hosts the cluster (e.g., `arubacloud_vpc.example.uri`).
+                          created.)
+                          URI of the VPC that hosts the cluster (e.g., `arubacloud_vpc.example.uri`). (Immutable — changing this value forces the resource to be destroyed and re-created.)
                         type: string
                     type: object
                   projectId:
                     description: |-
-                      (String) ID of the project that owns this resource.
-                      ID of the project that owns this resource.
+                      created.)
+                      ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   settings:
                     description: pool configuration. (see below for nested schema)
@@ -183,6 +183,11 @@ spec:
                     items:
                       type: string
                     type: array
+                  timeout:
+                    description: |-
+                      resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+                      Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+                    type: string
                 required:
                 - location
                 - name
@@ -210,8 +215,8 @@ spec:
                     type: string
                   location:
                     description: |-
-                      Bergamo). See the available locations and zones.
-                      Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
+                      Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                      Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   name:
                     description: |-
@@ -249,19 +254,19 @@ spec:
                         type: string
                       subnetUriRef:
                         description: |-
-                          (String) URI of the subnet within the VPC (e.g., arubacloud_subnet.example.uri).
-                          URI of the subnet within the VPC (e.g., `arubacloud_subnet.example.uri`).
+                          created.)
+                          URI of the subnet within the VPC (e.g., `arubacloud_subnet.example.uri`). (Immutable — changing this value forces the resource to be destroyed and re-created.)
                         type: string
                       vpcUriRef:
                         description: |-
-                          (String) URI of the VPC that hosts the cluster (e.g., arubacloud_vpc.example.uri).
-                          URI of the VPC that hosts the cluster (e.g., `arubacloud_vpc.example.uri`).
+                          created.)
+                          URI of the VPC that hosts the cluster (e.g., `arubacloud_vpc.example.uri`). (Immutable — changing this value forces the resource to be destroyed and re-created.)
                         type: string
                     type: object
                   projectId:
                     description: |-
-                      (String) ID of the project that owns this resource.
-                      ID of the project that owns this resource.
+                      created.)
+                      ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   settings:
                     description: pool configuration. (see below for nested schema)
@@ -327,6 +332,11 @@ spec:
                     items:
                       type: string
                     type: array
+                  timeout:
+                    description: |-
+                      resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+                      Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+                    type: string
                 type: object
               managementPolicies:
                 default:
@@ -423,8 +433,8 @@ spec:
                     type: string
                   location:
                     description: |-
-                      Bergamo). See the available locations and zones.
-                      Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
+                      Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+                      Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   managementIp:
                     description: |-
@@ -467,19 +477,19 @@ spec:
                         type: string
                       subnetUriRef:
                         description: |-
-                          (String) URI of the subnet within the VPC (e.g., arubacloud_subnet.example.uri).
-                          URI of the subnet within the VPC (e.g., `arubacloud_subnet.example.uri`).
+                          created.)
+                          URI of the subnet within the VPC (e.g., `arubacloud_subnet.example.uri`). (Immutable — changing this value forces the resource to be destroyed and re-created.)
                         type: string
                       vpcUriRef:
                         description: |-
-                          (String) URI of the VPC that hosts the cluster (e.g., arubacloud_vpc.example.uri).
-                          URI of the VPC that hosts the cluster (e.g., `arubacloud_vpc.example.uri`).
+                          created.)
+                          URI of the VPC that hosts the cluster (e.g., `arubacloud_vpc.example.uri`). (Immutable — changing this value forces the resource to be destroyed and re-created.)
                         type: string
                     type: object
                   projectId:
                     description: |-
-                      (String) ID of the project that owns this resource.
-                      ID of the project that owns this resource.
+                      created.)
+                      ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   settings:
                     description: pool configuration. (see below for nested schema)
@@ -545,6 +555,11 @@ spec:
                     items:
                       type: string
                     type: array
+                  timeout:
+                    description: |-
+                      resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+                      Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+                    type: string
                   uri:
                     description: |-
                       (String) Computed by the API. Full resource URI used as a reference value in other resources.

@@ -19,13 +19,17 @@ type DatabaseInitParameters struct {
 	// ID of the parent DBaaS cluster this database belongs to.
 	DbaasID *string `json:"dbaasId,omitempty" tf:"dbaas_id,omitempty"`
 
-	// (String) Display name for the database.
-	// Display name for the database.
+	// created. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Display name for the database. The database API does not support renaming — changing this value forces the resource to be destroyed and re-created. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// (String) ID of the project that owns this resource.
 	// ID of the project that owns this resource.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
+
+	// resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+	// Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+	Timeout *string `json:"timeout,omitempty" tf:"timeout,omitempty"`
 }
 
 type DatabaseObservation struct {
@@ -37,13 +41,17 @@ type DatabaseObservation struct {
 	// (String) Computed by the API. Unique identifier for the resource (same as the database name).
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// (String) Display name for the database.
-	// Display name for the database.
+	// created. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Display name for the database. The database API does not support renaming — changing this value forces the resource to be destroyed and re-created. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
 	// (String) ID of the project that owns this resource.
 	// ID of the project that owns this resource.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
+
+	// resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+	// Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+	Timeout *string `json:"timeout,omitempty" tf:"timeout,omitempty"`
 
 	// (String) Computed by the API. Full resource URI used as a reference value in other resources.
 	// Computed by the API. Full resource URI used as a reference value in other resources.
@@ -57,8 +65,8 @@ type DatabaseParameters struct {
 	// +kubebuilder:validation:Required
 	DbaasID *string `json:"dbaasId,omitempty" tf:"dbaas_id,omitempty"`
 
-	// (String) Display name for the database.
-	// Display name for the database.
+	// created. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Display name for the database. The database API does not support renaming — changing this value forces the resource to be destroyed and re-created. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Required
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
@@ -66,6 +74,11 @@ type DatabaseParameters struct {
 	// ID of the project that owns this resource.
 	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
+
+	// resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+	// Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+	// +kubebuilder:validation:Optional
+	Timeout *string `json:"timeout,omitempty" tf:"timeout,omitempty"`
 }
 
 // DatabaseSpec defines the desired state of Database

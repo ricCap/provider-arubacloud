@@ -20,8 +20,8 @@ type KaaSInitParameters struct {
 	// Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
 	BillingPeriod *string `json:"billingPeriod,omitempty" tf:"billing_period,omitempty"`
 
-	// Bergamo). See the available locations and zones.
-	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
+	// Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
 	// (String) Display name for the KaaS cluster.
@@ -31,8 +31,8 @@ type KaaSInitParameters struct {
 	// (Attributes) Network configuration for the KaaS cluster. (see below for nested schema)
 	Network *NetworkInitParameters `json:"network,omitempty" tf:"network,omitempty"`
 
-	// (String) ID of the project that owns this resource.
-	// ID of the project that owns this resource.
+	// created.)
+	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
 	// pool configuration. (see below for nested schema)
@@ -41,6 +41,10 @@ type KaaSInitParameters struct {
 	// (List of String) List of string tags attached to the resource for filtering and organisation.
 	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
+	// resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+	// Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+	Timeout *string `json:"timeout,omitempty" tf:"timeout,omitempty"`
 }
 
 type KaaSObservation struct {
@@ -52,8 +56,8 @@ type KaaSObservation struct {
 	// (String) Computed by the API. Unique identifier for the resource.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// Bergamo). See the available locations and zones.
-	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
+	// Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
 	// (String) Computed by the API. Management IP address of the cluster control plane, available once the cluster is active.
@@ -67,8 +71,8 @@ type KaaSObservation struct {
 	// (Attributes) Network configuration for the KaaS cluster. (see below for nested schema)
 	Network *NetworkObservation `json:"network,omitempty" tf:"network,omitempty"`
 
-	// (String) ID of the project that owns this resource.
-	// ID of the project that owns this resource.
+	// created.)
+	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
 	// pool configuration. (see below for nested schema)
@@ -77,6 +81,10 @@ type KaaSObservation struct {
 	// (List of String) List of string tags attached to the resource for filtering and organisation.
 	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
+	// resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+	// Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+	Timeout *string `json:"timeout,omitempty" tf:"timeout,omitempty"`
 
 	// (String) Computed by the API. Full resource URI used as a reference value in other resources.
 	// Computed by the API. Full resource URI used as a reference value in other resources.
@@ -90,8 +98,8 @@ type KaaSParameters struct {
 	// +kubebuilder:validation:Optional
 	BillingPeriod *string `json:"billingPeriod,omitempty" tf:"billing_period,omitempty"`
 
-	// Bergamo). See the available locations and zones.
-	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
+	// Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Required
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
@@ -104,8 +112,8 @@ type KaaSParameters struct {
 	// +kubebuilder:validation:Required
 	Network *NetworkParameters `json:"network,omitempty" tf:"network,omitempty"`
 
-	// (String) ID of the project that owns this resource.
-	// ID of the project that owns this resource.
+	// created.)
+	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
@@ -117,6 +125,11 @@ type KaaSParameters struct {
 	// List of string tags attached to the resource for filtering and organisation.
 	// +kubebuilder:validation:Optional
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
+
+	// resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+	// Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+	// +kubebuilder:validation:Optional
+	Timeout *string `json:"timeout,omitempty" tf:"timeout,omitempty"`
 }
 
 type NetworkInitParameters struct {
@@ -132,12 +145,12 @@ type NetworkInitParameters struct {
 	// Name of the security group applied to cluster nodes.
 	SecurityGroupName *string `json:"securityGroupName,omitempty" tf:"security_group_name,omitempty"`
 
-	// (String) URI of the subnet within the VPC (e.g., arubacloud_subnet.example.uri).
-	// URI of the subnet within the VPC (e.g., `arubacloud_subnet.example.uri`).
+	// created.)
+	// URI of the subnet within the VPC (e.g., `arubacloud_subnet.example.uri`). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	SubnetURIRef *string `json:"subnetUriRef,omitempty" tf:"subnet_uri_ref,omitempty"`
 
-	// (String) URI of the VPC that hosts the cluster (e.g., arubacloud_vpc.example.uri).
-	// URI of the VPC that hosts the cluster (e.g., `arubacloud_vpc.example.uri`).
+	// created.)
+	// URI of the VPC that hosts the cluster (e.g., `arubacloud_vpc.example.uri`). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	VPCURIRef *string `json:"vpcUriRef,omitempty" tf:"vpc_uri_ref,omitempty"`
 }
 
@@ -154,12 +167,12 @@ type NetworkObservation struct {
 	// Name of the security group applied to cluster nodes.
 	SecurityGroupName *string `json:"securityGroupName,omitempty" tf:"security_group_name,omitempty"`
 
-	// (String) URI of the subnet within the VPC (e.g., arubacloud_subnet.example.uri).
-	// URI of the subnet within the VPC (e.g., `arubacloud_subnet.example.uri`).
+	// created.)
+	// URI of the subnet within the VPC (e.g., `arubacloud_subnet.example.uri`). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	SubnetURIRef *string `json:"subnetUriRef,omitempty" tf:"subnet_uri_ref,omitempty"`
 
-	// (String) URI of the VPC that hosts the cluster (e.g., arubacloud_vpc.example.uri).
-	// URI of the VPC that hosts the cluster (e.g., `arubacloud_vpc.example.uri`).
+	// created.)
+	// URI of the VPC that hosts the cluster (e.g., `arubacloud_vpc.example.uri`). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	VPCURIRef *string `json:"vpcUriRef,omitempty" tf:"vpc_uri_ref,omitempty"`
 }
 
@@ -179,13 +192,13 @@ type NetworkParameters struct {
 	// +kubebuilder:validation:Optional
 	SecurityGroupName *string `json:"securityGroupName" tf:"security_group_name,omitempty"`
 
-	// (String) URI of the subnet within the VPC (e.g., arubacloud_subnet.example.uri).
-	// URI of the subnet within the VPC (e.g., `arubacloud_subnet.example.uri`).
+	// created.)
+	// URI of the subnet within the VPC (e.g., `arubacloud_subnet.example.uri`). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Optional
 	SubnetURIRef *string `json:"subnetUriRef" tf:"subnet_uri_ref,omitempty"`
 
-	// (String) URI of the VPC that hosts the cluster (e.g., arubacloud_vpc.example.uri).
-	// URI of the VPC that hosts the cluster (e.g., `arubacloud_vpc.example.uri`).
+	// created.)
+	// URI of the VPC that hosts the cluster (e.g., `arubacloud_vpc.example.uri`). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Optional
 	VPCURIRef *string `json:"vpcUriRef" tf:"vpc_uri_ref,omitempty"`
 }

@@ -115,10 +115,15 @@ spec:
                     items:
                       type: string
                     type: array
+                  timeout:
+                    description: |-
+                      resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+                      Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+                    type: string
                   type:
                     description: |-
-                      (String) Storage type. Accepted values: Standard, Performance.
-                      Storage type. Accepted values: `Standard`, `Performance`.
+                      created.)
+                      Storage type. Accepted values: `Standard`, `Performance`. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   zone:
                     description: |-
@@ -188,10 +193,15 @@ spec:
                     items:
                       type: string
                     type: array
+                  timeout:
+                    description: |-
+                      resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+                      Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+                    type: string
                   type:
                     description: |-
-                      (String) Storage type. Accepted values: Standard, Performance.
-                      Storage type. Accepted values: `Standard`, `Performance`.
+                      created.)
+                      Storage type. Accepted values: `Standard`, `Performance`. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   zone:
                     description: |-
@@ -361,10 +371,15 @@ spec:
                     items:
                       type: string
                     type: array
+                  timeout:
+                    description: |-
+                      resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+                      Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+                    type: string
                   type:
                     description: |-
-                      (String) Storage type. Accepted values: Standard, Performance.
-                      Storage type. Accepted values: `Standard`, `Performance`.
+                      created.)
+                      Storage type. Accepted values: `Standard`, `Performance`. (Immutable — changing this value forces the resource to be destroyed and re-created.)
                     type: string
                   uri:
                     description: |-

@@ -20,32 +20,36 @@ type BackupInitParameters struct {
 	// Billing cycle. Accepted values: `Hour`, `Month`, `Year`.
 	BillingPeriod *string `json:"billingPeriod,omitempty" tf:"billing_period,omitempty"`
 
-	// Bergamo). See the available locations and zones.
-	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
+	// Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
 	// (String) Display name for the backup.
 	// Display name for the backup.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID of the project that owns this resource.
-	// ID of the project that owns this resource.
+	// created.)
+	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (Number) Number of days to retain the backup before automatic deletion. Optional — if omitted, the backup is retained indefinitely.
-	// Number of days to retain the backup before automatic deletion. Optional — if omitted, the backup is retained indefinitely.
+	// created, because the API does not apply retention_days changes in update requests.)
+	// Number of days to retain the backup before automatic deletion. Optional — if omitted, the backup is retained indefinitely. (Immutable — changing this value forces the resource to be destroyed and re-created, because the API does not apply retention_days changes in update requests.)
 	RetentionDays *float64 `json:"retentionDays,omitempty" tf:"retention_days,omitempty"`
 
 	// (List of String) List of string tags attached to the resource for filtering and organisation.
 	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String) Backup type. Accepted values: Full, Incremental.
-	// Backup type. Accepted values: `Full`, `Incremental`.
+	// resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+	// Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+	Timeout *string `json:"timeout,omitempty" tf:"timeout,omitempty"`
+
+	// created.)
+	// Backup type. Accepted values: `Full`, `Incremental`. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 
-	// (String) ID of the block storage volume to back up.
-	// ID of the block storage volume to back up.
+	// created.)
+	// ID of the block storage volume to back up. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	VolumeID *string `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
@@ -58,36 +62,40 @@ type BackupObservation struct {
 	// (String) Computed by the API. Unique identifier for the resource.
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// Bergamo). See the available locations and zones.
-	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
+	// Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
 	// (String) Display name for the backup.
 	// Display name for the backup.
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID of the project that owns this resource.
-	// ID of the project that owns this resource.
+	// created.)
+	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (Number) Number of days to retain the backup before automatic deletion. Optional — if omitted, the backup is retained indefinitely.
-	// Number of days to retain the backup before automatic deletion. Optional — if omitted, the backup is retained indefinitely.
+	// created, because the API does not apply retention_days changes in update requests.)
+	// Number of days to retain the backup before automatic deletion. Optional — if omitted, the backup is retained indefinitely. (Immutable — changing this value forces the resource to be destroyed and re-created, because the API does not apply retention_days changes in update requests.)
 	RetentionDays *float64 `json:"retentionDays,omitempty" tf:"retention_days,omitempty"`
 
 	// (List of String) List of string tags attached to the resource for filtering and organisation.
 	// List of string tags attached to the resource for filtering and organisation.
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String) Backup type. Accepted values: Full, Incremental.
-	// Backup type. Accepted values: `Full`, `Incremental`.
+	// resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+	// Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+	Timeout *string `json:"timeout,omitempty" tf:"timeout,omitempty"`
+
+	// created.)
+	// Backup type. Accepted values: `Full`, `Incremental`. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 
 	// (String) Computed by the API. Full resource URI used as a reference value in other resources.
 	// Computed by the API. Full resource URI used as a reference value in other resources.
 	URI *string `json:"uri,omitempty" tf:"uri,omitempty"`
 
-	// (String) ID of the block storage volume to back up.
-	// ID of the block storage volume to back up.
+	// created.)
+	// ID of the block storage volume to back up. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	VolumeID *string `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }
 
@@ -98,8 +106,8 @@ type BackupParameters struct {
 	// +kubebuilder:validation:Optional
 	BillingPeriod *string `json:"billingPeriod,omitempty" tf:"billing_period,omitempty"`
 
-	// Bergamo). See the available locations and zones.
-	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center).
+	// Bergamo). See the available locations and zones. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Region identifier (e.g., `ITBG-Bergamo`). See the [available locations and zones](https://api.arubacloud.com/docs/metadata/#location-and-data-center). (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Required
 	Location *string `json:"location,omitempty" tf:"location,omitempty"`
 
@@ -108,13 +116,13 @@ type BackupParameters struct {
 	// +kubebuilder:validation:Required
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
-	// (String) ID of the project that owns this resource.
-	// ID of the project that owns this resource.
+	// created.)
+	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (Number) Number of days to retain the backup before automatic deletion. Optional — if omitted, the backup is retained indefinitely.
-	// Number of days to retain the backup before automatic deletion. Optional — if omitted, the backup is retained indefinitely.
+	// created, because the API does not apply retention_days changes in update requests.)
+	// Number of days to retain the backup before automatic deletion. Optional — if omitted, the backup is retained indefinitely. (Immutable — changing this value forces the resource to be destroyed and re-created, because the API does not apply retention_days changes in update requests.)
 	// +kubebuilder:validation:Optional
 	RetentionDays *float64 `json:"retentionDays,omitempty" tf:"retention_days,omitempty"`
 
@@ -123,13 +131,18 @@ type BackupParameters struct {
 	// +kubebuilder:validation:Optional
 	Tags []*string `json:"tags,omitempty" tf:"tags,omitempty"`
 
-	// (String) Backup type. Accepted values: Full, Incremental.
-	// Backup type. Accepted values: `Full`, `Incremental`.
+	// resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+	// Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+	// +kubebuilder:validation:Optional
+	Timeout *string `json:"timeout,omitempty" tf:"timeout,omitempty"`
+
+	// created.)
+	// Backup type. Accepted values: `Full`, `Incremental`. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Required
 	Type *string `json:"type,omitempty" tf:"type,omitempty"`
 
-	// (String) ID of the block storage volume to back up.
-	// ID of the block storage volume to back up.
+	// created.)
+	// ID of the block storage volume to back up. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Required
 	VolumeID *string `json:"volumeId,omitempty" tf:"volume_id,omitempty"`
 }

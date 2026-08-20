@@ -16,64 +16,77 @@ import (
 
 type DBaaSUserInitParameters struct {
 
-	// (String) ID of the parent DBaaS cluster this user belongs to.
-	// ID of the parent DBaaS cluster this user belongs to.
+	// created.)
+	// ID of the parent DBaaS cluster this user belongs to. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	DbaasID *string `json:"dbaasId,omitempty" tf:"dbaas_id,omitempty"`
 
-	// only — this value is sent to the API but is not returned in subsequent read responses.
-	// Password for the DBaaS user. Write-only — this value is sent to the API but is not returned in subsequent read responses.
+	// only — this value is sent to the API but is not returned in subsequent read responses. The DBaaS user API does not support password updates. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Password for the DBaaS user. Write-only — this value is sent to the API but is not returned in subsequent read responses. The DBaaS user API does not support password updates. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	PasswordSecretRef v1.LocalSecretKeySelector `json:"passwordSecretRef" tf:"-"`
 
-	// (String) ID of the project that owns this resource.
-	// ID of the project that owns this resource.
+	// created.)
+	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (String) Display name for the DBaaS user.
-	// Display name for the DBaaS user.
+	// resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+	// Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+	Timeout *string `json:"timeout,omitempty" tf:"timeout,omitempty"`
+
+	// created.)
+	// Username for the DBaaS user. The DBaaS user API does not support renaming users. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Username *string `json:"username,omitempty" tf:"username,omitempty"`
 }
 
 type DBaaSUserObservation struct {
 
-	// (String) ID of the parent DBaaS cluster this user belongs to.
-	// ID of the parent DBaaS cluster this user belongs to.
+	// created.)
+	// ID of the parent DBaaS cluster this user belongs to. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	DbaasID *string `json:"dbaasId,omitempty" tf:"dbaas_id,omitempty"`
 
 	// (String) Computed by the API. Unique identifier for the resource (same as the username).
 	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 
-	// (String) ID of the project that owns this resource.
-	// ID of the project that owns this resource.
+	// created.)
+	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
+
+	// resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+	// Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+	Timeout *string `json:"timeout,omitempty" tf:"timeout,omitempty"`
 
 	// (String) Computed by the API. Full resource URI used as a reference value in other resources.
 	// Computed by the API. Full resource URI used as a reference value in other resources.
 	URI *string `json:"uri,omitempty" tf:"uri,omitempty"`
 
-	// (String) Display name for the DBaaS user.
-	// Display name for the DBaaS user.
+	// created.)
+	// Username for the DBaaS user. The DBaaS user API does not support renaming users. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Username *string `json:"username,omitempty" tf:"username,omitempty"`
 }
 
 type DBaaSUserParameters struct {
 
-	// (String) ID of the parent DBaaS cluster this user belongs to.
-	// ID of the parent DBaaS cluster this user belongs to.
+	// created.)
+	// ID of the parent DBaaS cluster this user belongs to. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Required
 	DbaasID *string `json:"dbaasId,omitempty" tf:"dbaas_id,omitempty"`
 
-	// only — this value is sent to the API but is not returned in subsequent read responses.
-	// Password for the DBaaS user. Write-only — this value is sent to the API but is not returned in subsequent read responses.
+	// only — this value is sent to the API but is not returned in subsequent read responses. The DBaaS user API does not support password updates. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Password for the DBaaS user. Write-only — this value is sent to the API but is not returned in subsequent read responses. The DBaaS user API does not support password updates. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Optional
 	PasswordSecretRef v1.LocalSecretKeySelector `json:"passwordSecretRef" tf:"-"`
 
-	// (String) ID of the project that owns this resource.
-	// ID of the project that owns this resource.
+	// created.)
+	// ID of the project that owns this resource. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Required
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
 
-	// (String) Display name for the DBaaS user.
-	// Display name for the DBaaS user.
+	// resource timeout override (e.g. "15m", "1h"). Overrides the provider-level resource_timeout for this resource's Create and Delete operations. Uses Go duration syntax.
+	// Per-resource timeout override (e.g. `"15m"`, `"1h"`). Overrides the provider-level `resource_timeout` for this resource's Create and Delete operations. Uses Go duration syntax.
+	// +kubebuilder:validation:Optional
+	Timeout *string `json:"timeout,omitempty" tf:"timeout,omitempty"`
+
+	// created.)
+	// Username for the DBaaS user. The DBaaS user API does not support renaming users. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Required
 	Username *string `json:"username,omitempty" tf:"username,omitempty"`
 }

@@ -11,5 +11,4 @@ spec:
   forProvider:
     database: example-database
     location: example-location
-    name: example-database-backup
     projectId: example-project
