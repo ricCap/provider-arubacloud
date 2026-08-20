@@ -23,6 +23,13 @@ const (
 	errExtractCredentials   = "cannot extract credentials"
 	errUnmarshalCredentials = "cannot unmarshal arubacloud credentials as JSON"
 
+	// Terraform provider configuration keys. The upstream provider renamed
+	// these from api_key/api_secret in v1.0.0.
+	keyClientID     = "client_id"
+	keyClientSecret = "client_secret"
+
+	// Deprecated credential keys, still accepted in the credentials secret so
+	// that ProviderConfigs written against earlier releases keep working.
 	keyAPIKey    = "api_key"
 	keyAPISecret = "api_secret"
 )
@@ -54,14 +61,25 @@ func TerraformSetupBuilder(version, providerSource, providerVersion string) terr
 		}
 
 		ps.Configuration = map[string]any{}
-		if v, ok := creds[keyAPIKey]; ok {
-			ps.Configuration[keyAPIKey] = v
+		if v, ok := firstOf(creds, keyClientID, keyAPIKey); ok {
+			ps.Configuration[keyClientID] = v
 		}
-		if v, ok := creds[keyAPISecret]; ok {
-			ps.Configuration[keyAPISecret] = v
+		if v, ok := firstOf(creds, keyClientSecret, keyAPISecret); ok {
+			ps.Configuration[keyClientSecret] = v
 		}
 		return ps, nil
 	}
+}
+
+// firstOf returns the value of the first key present in creds, allowing the
+// deprecated credential keys to be used as a fallback for the current ones.
+func firstOf(creds map[string]string, keys ...string) (string, bool) {
+	for _, k := range keys {
+		if v, ok := creds[k]; ok {
+			return v, true
+		}
+	}
+	return "", false
 }
 
 func toSharedPCSpec(pc *clusterv1beta1.ProviderConfig) (*namespacedv1beta1.ProviderConfigSpec, error) {
