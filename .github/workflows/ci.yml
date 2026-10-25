@@ -37,6 +37,9 @@ jobs:
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
           submodules: true
+          # crddiff and schema-version-diff read the base branch via
+          # GITHUB_BASE_REF, which a shallow clone does not fetch.
+          fetch-depth: 0
 
       - name: Get modified CRDs
         id: modified-crds
@@ -50,8 +53,10 @@ jobs:
           MODIFIED_CRD_LIST: ${{ steps.modified-crds.outputs.all_changed_files }}
         run: |
           make crddiff
-      - name: Report native schema version changes
-        if: ${{ inputs.upjet-based-provider }}
+      - name: Check native state schema version changes
+        # GITHUB_BASE_REF is only set for pull requests; there is no base
+        # revision to compare against on push or workflow_dispatch.
+        if: github.event_name == 'pull_request'
         run: |
           make schema-version-diff
 

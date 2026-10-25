@@ -227,7 +227,11 @@ crddiff: $(UPTEST)
 
 schema-version-diff:
 	@$(INFO) Checking for native state schema version changes
-	@export PREV_PROVIDER_VERSION=$$(git cat-file -p "${GITHUB_BASE_REF}:Makefile" | sed -nr 's/^export[[:space:]]*TERRAFORM_PROVIDER_VERSION[[:space:]]*:=[[:space:]]*(.+)/\1/p'); \
+	@if [ -z "$${GITHUB_BASE_REF}" ] || ! git cat-file -e "$${GITHUB_BASE_REF}:config/schema.json" 2>/dev/null; then \
+		echo "Cannot read config/schema.json from base ref '$${GITHUB_BASE_REF}'. Set GITHUB_BASE_REF and fetch the base branch (actions/checkout fetch-depth: 0)."; \
+		exit 1; \
+	fi
+	@export PREV_PROVIDER_VERSION=$$(git cat-file -p "$${GITHUB_BASE_REF}:Makefile" | sed -nr 's/^export[[:space:]]*TERRAFORM_PROVIDER_VERSION[[:space:]]*[?:]?=[[:space:]]*(.+)/\1/p'); \
 	echo Detected previous Terraform provider version: $${PREV_PROVIDER_VERSION}; \
 	echo Current Terraform provider version: $${TERRAFORM_PROVIDER_VERSION}; \
 	mkdir -p $(WORK_DIR); \
