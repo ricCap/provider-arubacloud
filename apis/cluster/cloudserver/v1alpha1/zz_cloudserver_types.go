@@ -65,9 +65,17 @@ type CloudServerObservation struct {
 	// (Attributes) Network configuration for the CloudServer. (see below for nested schema)
 	Network *NetworkObservation `json:"network,omitempty" tf:"network,omitempty"`
 
+	// assigned private IPv4 address of the CloudServer, as returned by the API.
+	// DHCP-assigned private IPv4 address of the CloudServer, as returned by the API.
+	PrivateIP *string `json:"privateIp,omitempty" tf:"private_ip,omitempty"`
+
 	// (String) ID of the project that owns this resource. Changing this value forces a new resource.
 	// ID of the project that owns this resource. Changing this value forces a new resource.
 	ProjectID *string `json:"projectId,omitempty" tf:"project_id,omitempty"`
+
+	// (String) Public IP address assigned to this CloudServer via the associated Elastic IP (network.elastic_ip_uri_ref). Populated only when an Elastic IP is attached and has been assigned an address. Equivalent to the address attribute of the associated arubacloud_elasticip resource.
+	// Public IP address assigned to this CloudServer via the associated Elastic IP (`network.elastic_ip_uri_ref`). Populated only when an Elastic IP is attached and has been assigned an address. Equivalent to the `address` attribute of the associated `arubacloud_elasticip` resource.
+	PublicIP *string `json:"publicIp,omitempty" tf:"public_ip,omitempty"`
 
 	// (Attributes) Compute and access settings for the CloudServer. (see below for nested schema)
 	Settings *SettingsObservation `json:"settings,omitempty" tf:"settings,omitempty"`

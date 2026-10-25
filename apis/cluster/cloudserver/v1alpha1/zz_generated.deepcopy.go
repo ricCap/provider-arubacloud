@@ -161,8 +161,18 @@ func (in *CloudServerObservation) DeepCopyInto(out *CloudServerObservation) {
 		*out = new(NetworkObservation)
 		(*in).DeepCopyInto(*out)
 	}
+	if in.PrivateIP != nil {
+		in, out := &in.PrivateIP, &out.PrivateIP
+		*out = new(string)
+		**out = **in
+	}
 	if in.ProjectID != nil {
 		in, out := &in.ProjectID, &out.ProjectID
+		*out = new(string)
+		**out = **in
+	}
+	if in.PublicIP != nil {
+		in, out := &in.PublicIP, &out.PublicIP
 		*out = new(string)
 		**out = **in
 	}

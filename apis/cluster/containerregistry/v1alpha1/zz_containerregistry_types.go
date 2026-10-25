@@ -139,8 +139,8 @@ type ContainerRegistryParameters struct {
 
 type NetworkInitParameters struct {
 
-	// (String) URI of the Elastic IP that exposes the registry endpoint (e.g., arubacloud_elasticip.example.uri).
-	// URI of the Elastic IP that exposes the registry endpoint (e.g., `arubacloud_elasticip.example.uri`).
+	// (String) URI of the Elastic IP that exposes the registry endpoint (e.g., arubacloud_elasticip.example.uri). It can be omitted if not necessary
+	// URI of the Elastic IP that exposes the registry endpoint (e.g., `arubacloud_elasticip.example.uri`). It can be omitted if not necessary
 	PublicIPURIRef *string `json:"publicIpUriRef,omitempty" tf:"public_ip_uri_ref,omitempty"`
 
 	// (String) URI of the security group controlling registry traffic (e.g., arubacloud_securitygroup.example.uri).
@@ -158,8 +158,8 @@ type NetworkInitParameters struct {
 
 type NetworkObservation struct {
 
-	// (String) URI of the Elastic IP that exposes the registry endpoint (e.g., arubacloud_elasticip.example.uri).
-	// URI of the Elastic IP that exposes the registry endpoint (e.g., `arubacloud_elasticip.example.uri`).
+	// (String) URI of the Elastic IP that exposes the registry endpoint (e.g., arubacloud_elasticip.example.uri). It can be omitted if not necessary
+	// URI of the Elastic IP that exposes the registry endpoint (e.g., `arubacloud_elasticip.example.uri`). It can be omitted if not necessary
 	PublicIPURIRef *string `json:"publicIpUriRef,omitempty" tf:"public_ip_uri_ref,omitempty"`
 
 	// (String) URI of the security group controlling registry traffic (e.g., arubacloud_securitygroup.example.uri).
@@ -177,10 +177,10 @@ type NetworkObservation struct {
 
 type NetworkParameters struct {
 
-	// (String) URI of the Elastic IP that exposes the registry endpoint (e.g., arubacloud_elasticip.example.uri).
-	// URI of the Elastic IP that exposes the registry endpoint (e.g., `arubacloud_elasticip.example.uri`).
+	// (String) URI of the Elastic IP that exposes the registry endpoint (e.g., arubacloud_elasticip.example.uri). It can be omitted if not necessary
+	// URI of the Elastic IP that exposes the registry endpoint (e.g., `arubacloud_elasticip.example.uri`). It can be omitted if not necessary
 	// +kubebuilder:validation:Optional
-	PublicIPURIRef *string `json:"publicIpUriRef" tf:"public_ip_uri_ref,omitempty"`
+	PublicIPURIRef *string `json:"publicIpUriRef,omitempty" tf:"public_ip_uri_ref,omitempty"`
 
 	// (String) URI of the security group controlling registry traffic (e.g., arubacloud_securitygroup.example.uri).
 	// URI of the security group controlling registry traffic (e.g., `arubacloud_securitygroup.example.uri`).

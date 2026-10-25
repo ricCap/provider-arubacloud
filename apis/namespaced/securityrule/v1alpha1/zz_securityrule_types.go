@@ -20,8 +20,8 @@ type PropertiesInitParameters struct {
 	// Traffic direction the rule applies to. Accepted values: `Ingress`, `Egress`. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Direction *string `json:"direction,omitempty" tf:"direction,omitempty"`
 
-	// 8090). Use 0 for ICMP or ANY. (Immutable — changing this value forces the resource to be destroyed and re-created.)
-	// Port or port range for TCP/UDP (e.g., `80` or `8080-8090`). Use `0` for ICMP or ANY. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// 8090). Defaults to * (all ports) when omitted — the API normalises an omitted port to *, so the default keeps plan and state consistent. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Port or port range for TCP/UDP (e.g., `80` or `8080-8090`). Defaults to `*` (all ports) when omitted — the API normalises an omitted port to `*`, so the default keeps plan and state consistent. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Port *string `json:"port,omitempty" tf:"port,omitempty"`
 
 	// insensitive — the value is normalised before sending to the API). (Immutable — changing this value forces the resource to be destroyed and re-created.)
@@ -38,8 +38,8 @@ type PropertiesObservation struct {
 	// Traffic direction the rule applies to. Accepted values: `Ingress`, `Egress`. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Direction *string `json:"direction,omitempty" tf:"direction,omitempty"`
 
-	// 8090). Use 0 for ICMP or ANY. (Immutable — changing this value forces the resource to be destroyed and re-created.)
-	// Port or port range for TCP/UDP (e.g., `80` or `8080-8090`). Use `0` for ICMP or ANY. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// 8090). Defaults to * (all ports) when omitted — the API normalises an omitted port to *, so the default keeps plan and state consistent. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Port or port range for TCP/UDP (e.g., `80` or `8080-8090`). Defaults to `*` (all ports) when omitted — the API normalises an omitted port to `*`, so the default keeps plan and state consistent. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	Port *string `json:"port,omitempty" tf:"port,omitempty"`
 
 	// insensitive — the value is normalised before sending to the API). (Immutable — changing this value forces the resource to be destroyed and re-created.)
@@ -57,8 +57,8 @@ type PropertiesParameters struct {
 	// +kubebuilder:validation:Optional
 	Direction *string `json:"direction" tf:"direction,omitempty"`
 
-	// 8090). Use 0 for ICMP or ANY. (Immutable — changing this value forces the resource to be destroyed and re-created.)
-	// Port or port range for TCP/UDP (e.g., `80` or `8080-8090`). Use `0` for ICMP or ANY. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// 8090). Defaults to * (all ports) when omitted — the API normalises an omitted port to *, so the default keeps plan and state consistent. (Immutable — changing this value forces the resource to be destroyed and re-created.)
+	// Port or port range for TCP/UDP (e.g., `80` or `8080-8090`). Defaults to `*` (all ports) when omitted — the API normalises an omitted port to `*`, so the default keeps plan and state consistent. (Immutable — changing this value forces the resource to be destroyed and re-created.)
 	// +kubebuilder:validation:Optional
 	Port *string `json:"port,omitempty" tf:"port,omitempty"`
 

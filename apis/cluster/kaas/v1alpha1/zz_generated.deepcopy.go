@@ -357,6 +357,11 @@ func (in *NetworkObservation) DeepCopyInto(out *NetworkObservation) {
 		*out = new(string)
 		**out = **in
 	}
+	if in.SecurityGroupID != nil {
+		in, out := &in.SecurityGroupID, &out.SecurityGroupID
+		*out = new(string)
+		**out = **in
+	}
 	if in.SecurityGroupName != nil {
 		in, out := &in.SecurityGroupName, &out.SecurityGroupName
 		*out = new(string)
