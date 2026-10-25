@@ -12,7 +12,7 @@ TERRAFORM_VERSION_VALID := $(shell [ "$(TERRAFORM_VERSION)" = "`printf "$(TERRAF
 
 export TERRAFORM_PROVIDER_SOURCE ?= arubacloud/arubacloud
 export TERRAFORM_PROVIDER_REPO ?= https://github.com/Arubacloud/terraform-provider-arubacloud
-export TERRAFORM_PROVIDER_VERSION ?= 1.0.1
+export TERRAFORM_PROVIDER_VERSION ?= 1.1.1
 export TERRAFORM_PROVIDER_DOWNLOAD_NAME ?= terraform-provider-arubacloud
 export TERRAFORM_NATIVE_PROVIDER_VERSION ?= $(TERRAFORM_PROVIDER_VERSION)
 export TERRAFORM_PROVIDER_DOWNLOAD_URL_PREFIX ?= https://github.com/Arubacloud/terraform-provider-arubacloud/releases/download/v$(TERRAFORM_NATIVE_PROVIDER_VERSION)
@@ -45,8 +45,8 @@ NPROCS ?= 1
 # to half the number of CPU cores.
 GO_TEST_PARALLEL := $(shell echo $$(( $(NPROCS) / 2 )))
 
-GO_REQUIRED_VERSION ?= 1.24
-GOLANGCILINT_VERSION ?= 2.7.2
+GO_REQUIRED_VERSION ?= 1.26
+GOLANGCILINT_VERSION ?= 2.15.0
 GO_STATIC_PACKAGES = $(GO_PROJECT)/cmd/provider $(GO_PROJECT)/cmd/generator
 GO_LDFLAGS += -X $(GO_PROJECT)/internal/version.Version=$(VERSION)
 GO_SUBDIRS += cmd internal apis
@@ -208,15 +208,21 @@ local-deploy: build controlplane.up local.xpkg.deploy.provider.$(PROJECT_NAME)
 
 e2e: local-deploy uptest
 
+# On a pull_request, actions/checkout fetches the full history but creates the
+# base branch only as a remote-tracking ref, so GITHUB_BASE_REF on its own does
+# not resolve to a commit. Fall back to origin/ before giving up.
+BASE_REF_RESOLVE = BASE_REF="$${GITHUB_BASE_REF}"; if [ -n "$${BASE_REF}" ] && ! git rev-parse --verify --quiet "$${BASE_REF}^{commit}" >/dev/null; then BASE_REF="origin/$${GITHUB_BASE_REF}"; fi
+
 crddiff: $(UPTEST)
 	@$(INFO) Checking breaking CRD schema changes
-	@for crd in $${MODIFIED_CRD_LIST}; do \
-		if ! git cat-file -e "$${GITHUB_BASE_REF}:$${crd}" 2>/dev/null; then \
+	@$(BASE_REF_RESOLVE); \
+	for crd in $${MODIFIED_CRD_LIST}; do \
+		if ! git cat-file -e "$${BASE_REF}:$${crd}" 2>/dev/null; then \
 			echo "CRD $${crd} does not exist in the $${GITHUB_BASE_REF} branch. Skipping..." ; \
 			continue ; \
 		fi ; \
 		echo "Checking $${crd} for breaking API changes..." ; \
-		changes_detected=$$(go run github.com/crossplane/uptest/cmd/crddiff@$(CRDDIFF_VERSION) revision --enable-upjet-extensions <(git cat-file -p "$${GITHUB_BASE_REF}:$${crd}") "$${crd}" 2>&1) ; \
+		changes_detected=$$(go run github.com/crossplane/uptest/cmd/crddiff@$(CRDDIFF_VERSION) revision --enable-upjet-extensions <(git cat-file -p "$${BASE_REF}:$${crd}") "$${crd}" 2>&1) ; \
 		if [[ $$? != 0 ]] ; then \
 			printf "\033[31m"; echo "Breaking change detected!"; printf "\033[0m" ; \
 			echo "$${changes_detected}" ; \
@@ -227,11 +233,17 @@ crddiff: $(UPTEST)
 
 schema-version-diff:
 	@$(INFO) Checking for native state schema version changes
-	@export PREV_PROVIDER_VERSION=$$(git cat-file -p "${GITHUB_BASE_REF}:Makefile" | sed -nr 's/^export[[:space:]]*TERRAFORM_PROVIDER_VERSION[[:space:]]*:=[[:space:]]*(.+)/\1/p'); \
+	@set -e; \
+	$(BASE_REF_RESOLVE); \
+	if [ -z "$${GITHUB_BASE_REF}" ] || ! git cat-file -e "$${BASE_REF}:config/schema.json" 2>/dev/null; then \
+		echo "Cannot read config/schema.json from base ref '$${GITHUB_BASE_REF}'. Set GITHUB_BASE_REF and fetch the base branch (actions/checkout fetch-depth: 0)."; \
+		exit 1; \
+	fi; \
+	PREV_PROVIDER_VERSION=$$(git cat-file -p "$${BASE_REF}:Makefile" | sed -nr 's/^export[[:space:]]*TERRAFORM_PROVIDER_VERSION[[:space:]]*[?:]?=[[:space:]]*(.+)/\1/p'); \
 	echo Detected previous Terraform provider version: $${PREV_PROVIDER_VERSION}; \
 	echo Current Terraform provider version: $${TERRAFORM_PROVIDER_VERSION}; \
 	mkdir -p $(WORK_DIR); \
-	git cat-file -p "$${GITHUB_BASE_REF}:config/schema.json" > "$(WORK_DIR)/schema.json.$${PREV_PROVIDER_VERSION}"; \
+	git cat-file -p "$${BASE_REF}:config/schema.json" > "$(WORK_DIR)/schema.json.$${PREV_PROVIDER_VERSION}"; \
 	./scripts/version_diff.py config/generated.lst "$(WORK_DIR)/schema.json.$${PREV_PROVIDER_VERSION}" config/schema.json
 	@$(OK) Checking for native state schema version changes
 
